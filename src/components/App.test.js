@@ -19,4 +19,10 @@ describe('login', () => {
     const labelNode = component.getByText('Email:');
     expect(labelNode).toBeInTheDocument();
   });
+
+  test('email field should have label', () => {
+    const component = render(<App />);
+    const emailInputNode = component.getByLabelText('Email:');
+    expect(emailInputNode.getAttribute('name')).toBe('email');
+  });
 });
