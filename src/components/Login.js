@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const validateInput = (str = '') => str.includes('@');
+
 export default function Login() {
   return (
     <form>
