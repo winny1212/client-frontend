@@ -1,8 +1,47 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from './App';
+import Login, { validateInput } from './Login';
 
-test('App renders normally', () => {
-  render(<App />);
-  const linkElement = screen.getByText('Hello!! DIY GROOMING Team!');
-  expect(linkElement).toBeInTheDocument();
+afterEach(() => {
+  cleanup();
+});
+
+describe('login', () => {
+  test('validate function should pass on correct input', () => {
+    const text = 'test@test.com';
+    expect(validateInput(text)).toBe(true);
+  });
+
+  test('validate function should pass on correct input', () => {
+    const text = 'test';
+    expect(validateInput(text)).not.toBe(true);
+  });
+
+  test('login form should be in the document', () => {
+    const component = render(<App />);
+    const labelNode = component.getByText('Email:');
+    expect(labelNode).toBeInTheDocument();
+  });
+
+  test('email field should have label', () => {
+    const component = render(<App />);
+    const emailInputNode = component.getByLabelText('Email:');
+    expect(emailInputNode.getAttribute('name')).toBe('email');
+  });
+
+  test('email input should accept text', () => {
+    const { getByLabelText } = render(<App />);
+    const emailInputNode = getByLabelText('Email:');
+    expect(emailInputNode.value).toMatch('');
+    fireEvent.change(emailInputNode, { target: { value: 'testing' } });
+    expect(emailInputNode.value).toMatch('testing');
+  });
+
+  test('should be able to submit form', () => {
+    const mockFn = jest.fn();
+    const { getByRole } = render(<App handleSumbit={mockFn} />);
+    const buttonNode = getByRole('button');
+    fireEvent.submit(buttonNode);
+  });
 });
