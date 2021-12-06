@@ -1,7 +1,11 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from './App';
 import Login, { validateInput } from './Login';
+
+afterEach(() => {
+  cleanup();
+});
 
 describe('login', () => {
   test('validate function should pass on correct input', () => {
