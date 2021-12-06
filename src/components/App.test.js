@@ -33,4 +33,11 @@ describe('login', () => {
     fireEvent.change(emailInputNode, { target: { value: 'testing' } });
     expect(emailInputNode.value).toMatch('testing');
   });
+
+  test('should be able to submit form', () => {
+    const mockFn = jest.fn();
+    const { getByRole } = render(<App handleSumbit={mockFn} />);
+    const buttonNode = getByRole('button');
+    fireEvent.submit(buttonNode);
+  });
 });
