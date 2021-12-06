@@ -25,4 +25,12 @@ describe('login', () => {
     const emailInputNode = component.getByLabelText('Email:');
     expect(emailInputNode.getAttribute('name')).toBe('email');
   });
+
+  test('email input should accept text', () => {
+    const { getByLabelText } = render(<App />);
+    const emailInputNode = getByLabelText('Email:');
+    expect(emailInputNode.value).toMatch('');
+    fireEvent.change(emailInputNode, { target: { value: 'testing' } });
+    expect(emailInputNode.value).toMatch('testing');
+  });
 });
