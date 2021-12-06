@@ -4,14 +4,21 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+// Redux - our state manager.
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
+// Our state reducer
+import reducers from './reducers';
+
+// This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
+// and compose is simply applying the middleware so we can perform async functions.
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
