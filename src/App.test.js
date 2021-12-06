@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import App from './App';
-import Login, { validateInput } from './Login';
+import Login, { validateInput } from './components/Users/Login/Login';
 
 //cleanup the data after each test
 afterEach(() => {
@@ -9,7 +8,7 @@ afterEach(() => {
 });
 
 describe('login', () => {
-  test('validate function should pass on correct input', () => {
+  test('email input to be email address', () => {
     const text = 'test@test.com';
     expect(validateInput(text)).toBe(true);
   });
