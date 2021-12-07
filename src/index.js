@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import App from './components/App';
+import App from './App';
 
 // Redux - our state manager.
 import { Provider } from 'react-redux';
