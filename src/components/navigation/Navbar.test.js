@@ -20,5 +20,6 @@ describe('Navbar', () => {
     expect(nav.getByText('Home')).toBeInTheDocument();
     expect(nav.getByText('Register')).toBeInTheDocument();
     expect(nav.getByText('Login')).toBeInTheDocument();
+    expect(nav.getByText('Form')).toBeInTheDocument();
   });
 });
