@@ -2,6 +2,7 @@
   "name": "client-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "license": "UNLICENSED",
   "author": "The { W.A.N.T } Team - Winny Chen, Angie Hentri, Natacha Bartu, Thang Za Thang",
   "dependencies": {
