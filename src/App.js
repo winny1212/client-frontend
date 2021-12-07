@@ -5,6 +5,7 @@ import Home from './views/home/Home';
 import Register from './views/register/Register';
 import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
+import Form from './views/form/Form';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/about" element={<About />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/create" element={<Form />}></Route>
         </Routes>
       </Router>
     </div>
