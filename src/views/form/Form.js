@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+// Redux State
+import { useDispatch } from 'react-redux';
+// Dispatch Action
+import { createPost } from '../../actions/posts';
+
 // Custom style hook
 import useStyles from './styles';
 
@@ -7,6 +12,9 @@ import useStyles from './styles';
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
 function Form() {
+  // Invoke Redux State
+  const dispatch = useDispatch();
+
   // Invoke the styles
   const classes = useStyles();
 
@@ -40,6 +48,7 @@ function Form() {
     }
     if (postData.title && postData.videoLink && postData.instructions) {
       console.log(postData);
+      // dispatch(createPost(postData));
       clear();
     }
   };
