@@ -1,4 +1,3 @@
-// For individual post
 import React from 'react';
 
 function Post() {
