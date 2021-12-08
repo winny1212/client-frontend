@@ -17,12 +17,35 @@ function Form() {
     instructions: '',
   });
 
+  // Client side validation
+  const [titleError, setTitleError] = useState(false);
+  const [videoLinkError, setLinkError] = useState(false);
+  const [instructionsError, setInstructionError] = useState(false);
+
+  // Submit Handler - make the dispatch here
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted');
-    console.log(postData);
+    setTitleError(false);
+    setLinkError(false);
+    setInstructionError(false);
+
+    if (postData.title === '') {
+      setTitleError(true);
+    }
+    if (postData.videoLink === '') {
+      setLinkError(true);
+    }
+    if (postData.instructions === '') {
+      setInstructionError(true);
+    }
+    if (postData.title && postData.videoLink && postData.instructions) {
+      console.log(postData);
+      clear();
+    }
   };
 
+  // Every keystroke change this function will be called.
+  // Very DRY code to get each data, more dynamic when form is more complex
   function handleChange(event) {
     const { name, value } = event.target;
     setPostData((prev) => ({
@@ -30,6 +53,15 @@ function Form() {
       [name]: value,
     }));
   }
+
+  // Clear - sets all inputs to blank
+  const clear = () => {
+    setPostData({
+      title: '',
+      videoLink: '',
+      instructions: '',
+    });
+  };
 
   return (
     <Container fixed>
@@ -44,28 +76,33 @@ function Form() {
             Create A Post
           </Typography>
           <TextField
+            name="title"
+            value={postData.title}
             autoFocus={true}
             fullWidth
             required
             variant="outlined"
-            name="title"
             autoComplete="off"
             label="Title"
             color="secondary"
             onChange={(e) => handleChange(e)}
+            error={titleError}
           />
           <TextField
+            name="videoLink"
+            value={postData.videoLink}
             fullWidth
             required
             variant="outlined"
-            name="videoLink"
             autoComplete="off"
             label="Video Link"
             color="secondary"
             onChange={(e) => handleChange(e)}
+            error={videoLinkError}
           />
           <TextField
             name="instructions"
+            value={postData.instructions}
             variant="outlined"
             label="Instructions"
             color="secondary"
@@ -74,6 +111,7 @@ function Form() {
             rows={4}
             required
             onChange={(e) => handleChange(e)}
+            error={instructionsError}
           />
           <Button
             type="submit"
