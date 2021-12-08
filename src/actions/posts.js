@@ -1,5 +1,5 @@
-import { fetchAllPosts } from '../api';
-import { FETCH_ALL } from '../constants/actionTypes';
+import { fetchAllPosts, createNewPost } from '../api';
+import { FETCH_ALL, CREATE } from '../constants/actionTypes';
 
 // This is where we can make requests to the backend.
 // All of these function will be used throughout our app, whenever needed.
@@ -19,6 +19,16 @@ export const getAllPosts = () => async (dispatch) => {
 
     // Send data to out local state
     dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await createNewPost(post);
+
+    dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
   }
