@@ -10,16 +10,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openNav = Boolean(anchorElNav);
   const openUser = Boolean(anchorElUser);
-  const theme = useTheme();
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,43 +45,52 @@ function Navbar() {
             >
               DIY Grooming
             </Typography> */}
-
+            <Container>
+              <Button href="/" variant="container">
+                Home
+              </Button>
+              <Button href="/register" variant="container">
+                Register
+              </Button>
+              <Button href="/about" variant="container">
+                About
+              </Button>
+              <Button href="/login" variant="container">
+                Login
+              </Button>
+              <Button href="/create" variant="container">
+                Create a Post
+              </Button>
+            </Container>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              {isMobile ? (
-                <>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left',
-                    }}
-                    open={openNav}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: 'block', md: 'none' },
-                    }}
-                  ></Menu>
-                </>
-              ) : (
-                <Typography> not mobile </Typography>
-              )}
-              ;
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={openNav}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              ></Menu>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
