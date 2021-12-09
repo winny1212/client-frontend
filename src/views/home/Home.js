@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Posts from '../../components/posts/Posts';
+// import { useDispatch } from 'react-redux';
+// import { getAllPosts } from '../../actions/posts';
 
 function Home() {
   return (
