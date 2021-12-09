@@ -19,8 +19,8 @@ const postsData = [
     ],
     tags: ['stubborn', 'hate water', 'dirty'],
     image: {
-      before: '',
-      after: '',
+      before: 'https://picsum.photos/600',
+      after: 'https://picsum.photos/600',
     },
     video: 'https://youtu.be/Xc1KZcra4mE',
     likes: [],
@@ -44,8 +44,8 @@ const postsData = [
     ],
     tags: ['de-shed', 'smelly', 'stinky'],
     image: {
-      before: '',
-      after: '',
+      before: 'https://picsum.photos/600',
+      after: 'https://picsum.photos/600',
     },
     video: 'https://youtu.be/NfzraeixPLc',
     likes: [],
@@ -68,8 +68,8 @@ const postsData = [
     ],
     tags: ['messy', 'curly', 'white', 'knots'],
     image: {
-      before: '',
-      after: '',
+      before: 'https://picsum.photos/600',
+      after: 'https://picsum.photos/600',
     },
     video: 'https://youtu.be/OgvC-wVTAu0',
     likes: [],
