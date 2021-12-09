@@ -48,7 +48,7 @@ function Form() {
     }
     if (postData.title && postData.videoLink && postData.instructions) {
       console.log(postData);
-      // dispatch(createPost(postData));
+      dispatch(createPost(postData));
       clear();
     }
   };

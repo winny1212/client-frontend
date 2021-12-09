@@ -8,8 +8,8 @@ import data from '../../data/postsData';
 // import Paper from '@mui/material/Paper';
 
 function Posts() {
-  const posts = useSelector((state) => state.posts);
-
+  const posts = useSelector((state) => state.postsReducer);
+  console.log(`-- checking --\n${posts}`);
   return (
     <div>
       <h3>List of Posts</h3>
@@ -30,19 +30,19 @@ function Posts() {
       <hr />
 
       <small>test with data fetched from server</small>
-      {/* {posts.map((post, index) => {
+      {posts.map((post, index) => {
         return (
           <div key={index}>
             <Post post={post} />
           </div>
         );
-      })} */}
+      })}
 
-      <hr />
+      {/* <hr />
       <small>test with local fake data</small>
       {data.map((post) => {
         return <p key={post._id}>{post.title}</p>;
-      })}
+      })} */}
     </div>
   );
 }
