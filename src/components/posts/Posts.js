@@ -30,13 +30,13 @@ function Posts() {
       <hr />
 
       <small>test with data fetched from server</small>
-      {posts.map((post, index) => {
+      {/* {posts.map((post, index) => {
         return (
           <div key={index}>
             <Post post={post} />
           </div>
         );
-      })}
+      })} */}
 
       <hr />
       <small>test with local fake data</small>
