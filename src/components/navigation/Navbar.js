@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../assets/comps/diyg_logo_purple.png';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,34 +8,32 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-//import { Link } from 'react-router-dom';
-
-// const pages = ['Home', 'About', 'Register', 'Login'];
-// const settings = ['Post'];
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function Navbar() {
-  const pages = ['Home', 'About', 'Register', 'Login'];
-  const settings = ['Post'];
-  const [anchorNav, setAnchorNav] = useState(null);
-  const [anchorUser, setAnchorUser] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const openNav = Boolean(anchorElNav);
+  const openUser = Boolean(anchorElUser);
+  const theme = useTheme();
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
   const handleOpenNavMenu = (event) => {
-    setAnchorNav(event.currentTarget);
+    setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
-    setAnchorUser(event.currentTarget);
+    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorNav(null);
+    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
-    setAnchorUser(null);
+    setAnchorElUser(null);
   };
 
   return (
@@ -43,81 +41,63 @@ function Navbar() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
+            {/* <Typography
               variant="h6"
               noWrap
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             >
-              {Logo}
-            </Typography>
+              DIY Grooming
+            </Typography> */}
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-            >
-              LOGO
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
-              ))}
+              {isMobile ? (
+                <>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    open={openNav}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: 'block', md: 'none' },
+                    }}
+                  ></Menu>
+                </>
+              ) : (
+                <Typography> not mobile </Typography>
+              )}
+              ;
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <MenuIcon />
                 </IconButton>
               </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
-                anchorEl={anchorUser}
+                anchorEl={anchorElUser}
                 anchorOrigin={{
                   vertical: 'top',
                   horizontal: 'right',
@@ -127,41 +107,31 @@ function Navbar() {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={Boolean(anchorUser)}
+                open={openUser}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <Container>
+                  <Button href="/" variant="container">
+                    Home
+                  </Button>
+                  <Button href="/register" variant="container">
+                    Register
+                  </Button>
+                  <Button href="/about" variant="container">
+                    About
+                  </Button>
+                  <Button href="/login" variant="container">
+                    Login
+                  </Button>
+                  <Button href="/create" variant="container">
+                    Create a Post
+                  </Button>
+                </Container>
               </Menu>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-
-      {/* <div className="navbar">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-
-        <li>
-          <Link to="/create">Create Post</Link>
-        </li>
-      </div> */}
     </>
   );
 }
