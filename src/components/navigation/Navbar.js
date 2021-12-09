@@ -10,16 +10,18 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import Logo from '../../assets/images/diyg_logo_purple.png';
-//import styles from './components/navigation/styles';
 
 //Hooks for breakpoints
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import { useStyles } from '../../components/navigation/styles';
+
 function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
   //styles
+  const classes = useStyles();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -35,16 +37,16 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="static" elevation={0} style={{ background: '#ECC590' }}>
+      <AppBar position="static" elevation={0} className={classes.navBackground}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <img src={Logo} alt="logo" />
-            {/* classeName={classes.logo} */}
+            <img src={Logo} alt="logo" classeName={classes.logo} />
+
             <Box sx={{ flexGrow: 1 }}>
               {isMatch ? (
                 <>
                   <Container>
-                    <Button variant="text" href="/">
+                    <Button variant="container" href="/">
                       Home
                     </Button>
                     <Button href="/register" variant="container">

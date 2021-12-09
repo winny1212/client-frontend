@@ -1,13 +1,19 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   button: {
-    color: 'white',
-    backgroundColor: 'purple',
+    borderRadius: '30px',
+    backgroundColor: 'violet',
+    '&:hover': {
+      backgroundColor: '#502D5C',
+    },
   },
-  NavBackground: {
-    backgroungColor: '#ECC590',
+
+  navBackground: {
+    backgroungColor: '#EBEAE7',
+  },
+
+  logo: {
+    width: '60%',
   },
 });
-
-export default useStyles;
