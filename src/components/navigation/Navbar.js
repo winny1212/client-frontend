@@ -4,12 +4,13 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-//import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import Logo from '../../assets/images/diyg_logo_purple.png';
+//import styles from './components/navigation/styles';
 
 //Hooks for breakpoints
 import { useTheme } from '@mui/material/styles';
@@ -18,6 +19,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
+  //styles
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -33,23 +35,16 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="static" elevation={0} color="secondary">
+      <AppBar position="static" elevation={0} style={{ background: '#ECC590' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-            >
-              DIY Grooming
-            </Typography> */}
-
+            <img src={Logo} alt="logo" />
+            {/* classeName={classes.logo} */}
             <Box sx={{ flexGrow: 1 }}>
               {isMatch ? (
                 <>
                   <Container>
-                    <Button href="/" variant="container">
+                    <Button variant="text" href="/">
                       Home
                     </Button>
                     <Button href="/register" variant="container">
