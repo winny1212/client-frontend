@@ -11,6 +11,10 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 
+//Hooks for breakpoints
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -32,9 +36,13 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
+  //Breakpoints
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0} color="secondary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <Typography
@@ -45,94 +53,73 @@ function Navbar() {
             >
               DIY Grooming
             </Typography> */}
-            <Container>
-              <Button href="/" variant="container">
-                Home
-              </Button>
-              <Button href="/register" variant="container">
-                Register
-              </Button>
-              <Button href="/about" variant="container">
-                About
-              </Button>
-              <Button href="/login" variant="container">
-                Login
-              </Button>
-              <Button href="/create" variant="container">
-                Create a Post
-              </Button>
-            </Container>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={openNav}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              ></Menu>
-            </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <MenuIcon />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={openUser}
-                onClose={handleCloseUserMenu}
-              >
-                <Container>
-                  <Button href="/" variant="container">
-                    Home
-                  </Button>
-                  <Button href="/register" variant="container">
-                    Register
-                  </Button>
-                  <Button href="/about" variant="container">
-                    About
-                  </Button>
-                  <Button href="/login" variant="container">
-                    Login
-                  </Button>
-                  <Button href="/create" variant="container">
-                    Create a Post
-                  </Button>
-                </Container>
-              </Menu>
+            <Box sx={{ flexGrow: 1 }}>
+              {isMatch ? (
+                <>
+                  <Container>
+                    <Button href="/" variant="container">
+                      Home
+                    </Button>
+                    <Button href="/register" variant="container">
+                      Register
+                    </Button>
+                    <Button href="/about" variant="container">
+                      About
+                    </Button>
+                    <Button href="/login" variant="container">
+                      Login
+                    </Button>
+                    <Button href="/create" variant="container">
+                      Create a Post
+                    </Button>
+                  </Container>
+                </>
+              ) : (
+                <>
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <MenuIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: '45px' }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={openUser}
+                      onClose={handleCloseUserMenu}
+                    >
+                      <Container>
+                        <Button href="/" variant="container">
+                          Home
+                        </Button>
+                        <Button href="/register" variant="container">
+                          Register
+                        </Button>
+                        <Button href="/about" variant="container">
+                          About
+                        </Button>
+                        <Button href="/login" variant="container">
+                          Login
+                        </Button>
+                        <Button href="/create" variant="container">
+                          Create a Post
+                        </Button>
+                      </Container>
+                    </Menu>
+                  </Box>
+                </>
+              )}
             </Box>
           </Toolbar>
         </Container>
