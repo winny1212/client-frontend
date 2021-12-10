@@ -5,11 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import AboutImage from '../../assets/img/dogs/home_grooming_02.jpg.jpg';
+import { useStyles } from '../../views/about/styles';
 
 function About() {
+  const classes = useStyles();
+
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card element="Cut corner" className={classes.container}>
         <CardActionArea>
           <CardMedia
             component="img"
