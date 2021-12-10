@@ -39,7 +39,7 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="static" elevation={0} className={classes.navBackground}>
+      <AppBar position="static" elevation={0}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <img src={Logo} alt="logo" className={classes.logo} />
