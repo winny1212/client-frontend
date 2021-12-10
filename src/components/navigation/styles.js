@@ -10,7 +10,7 @@ export const useStyles = makeStyles({
   },
 
   navBackground: {
-    backgroungColor: '#EBEAE7',
+    backgroundColor: '#EBEAE7',
   },
 
   logo: {
