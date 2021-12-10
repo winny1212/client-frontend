@@ -20,8 +20,10 @@ import { useStyles } from '../../components/navigation/styles';
 function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
+
   //styles
   const classes = useStyles();
+  console.log(classes.navBackground);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -40,7 +42,7 @@ function Navbar() {
       <AppBar position="static" elevation={0} className={classes.navBackground}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <img src={Logo} alt="logo" classeName={classes.logo} />
+            <img src={Logo} alt="logo" className={classes.logo} />
 
             <Box sx={{ flexGrow: 1 }}>
               {isMatch ? (
