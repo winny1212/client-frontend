@@ -44,6 +44,12 @@ export default function Register() {
                 <Typography variant="h5">I'm a dog groomer</Typography>
                 <FormControlLabel control={<Checkbox />} label="Yes" />
                 <FormControlLabel control={<Checkbox />} label="No" />
+
+                <Typography variant="h5">
+                  I am a professional dog groomer
+                </Typography>
+                <FormControlLabel control={<Checkbox />} label="Yes" />
+                <FormControlLabel control={<Checkbox />} label="No" />
               </>
             )}
 
