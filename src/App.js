@@ -1,3 +1,4 @@
+// import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Users/Login/Login';
@@ -6,6 +7,7 @@ import Register from './views/register/Register';
 import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

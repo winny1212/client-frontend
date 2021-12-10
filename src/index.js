@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-
 import App from './App';
+import { CssBaseline } from '@mui/material';
 
 // Redux - our state manager.
 import { Provider } from 'react-redux';
@@ -18,6 +17,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
+    <CssBaseline />
     <App />
   </Provider>,
   document.getElementById('root'),

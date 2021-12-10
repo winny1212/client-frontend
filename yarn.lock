@@ -8954,6 +8954,13 @@ neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+neumorphism-react@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/neumorphism-react/-/neumorphism-react-1.1.1.tgz#504ac530d6ef03764852955eb6d2c3eefbc39112"
+  integrity sha512-QxAVB/1IY47HzdQ5+Bll5fZyuvoZ4bAx3CkpDsvs0Wh0yYDU9xBsonF/kDxrtz1NtL2iGbcOYK/b0DnBtdXGwA==
+  dependencies:
+    prop-types "^15.7.2"
+
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
@@ -10762,7 +10769,7 @@ react-router-dom@^6.0.2:
     history "^5.1.0"
     react-router "6.0.2"
 
-react-router@6.0.2:
+react-router@6.0.2, react-router@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.0.2.tgz#bd2b0fa84fd1d152671e9f654d9c0b1f5a7c86da"
   integrity sha512-8/Wm3Ed8t7TuedXjAvV39+c8j0vwrI5qVsYqjFr5WkJjsJpEvNSoLRUbtqSEYzqaTUj1IV+sbPJxvO+accvU0Q==

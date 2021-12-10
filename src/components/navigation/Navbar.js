@@ -1,44 +1,119 @@
-import React from 'react';
-//import { Box, AppBar, MenuIcon, Toolbar, Button } from '@mui/material';
-//import Logo from '../../assets/comps/diyg_logo_purple.png';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import Logo from '../../assets/images/diyg_logo_purple.png';
+
+//Hooks for breakpoints
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { useStyles } from '../../components/navigation/styles';
 
 function Navbar() {
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const openUser = Boolean(anchorElUser);
+
+  //styles
+  const classes = useStyles();
+  console.log(classes.navBackground);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  //Breakpoints
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <>
-      {/* <Box sx={{ flexGrow: 1 }}>
-        <AppBar>
-          <Toolbar>
-            <MenuIcon>{Logo}</MenuIcon>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Register</Button>
-            <Button color="inherit">Login</Button>
+      <AppBar position="static" elevation={0}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <img src={Logo} alt="logo" className={classes.logo} />
+
+            <Box sx={{ flexGrow: 1 }}>
+              {isMatch ? (
+                <>
+                  <Container>
+                    <Button variant="container" href="/">
+                      Home
+                    </Button>
+                    <Button href="/register" variant="container">
+                      Register
+                    </Button>
+                    <Button href="/about" variant="container">
+                      About
+                    </Button>
+                    <Button href="/login" variant="container">
+                      Login
+                    </Button>
+                    <Button href="/create" variant="container">
+                      Create a Post
+                    </Button>
+                  </Container>
+                </>
+              ) : (
+                <>
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <MenuIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: '45px' }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={openUser}
+                      onClose={handleCloseUserMenu}
+                    >
+                      <Container>
+                        <Button href="/" variant="container">
+                          Home
+                        </Button>
+                        <Button href="/register" variant="container">
+                          Register
+                        </Button>
+                        <Button href="/about" variant="container">
+                          About
+                        </Button>
+                        <Button href="/login" variant="container">
+                          Login
+                        </Button>
+                        <Button href="/create" variant="container">
+                          Create a Post
+                        </Button>
+                      </Container>
+                    </Menu>
+                  </Box>
+                </>
+              )}
+            </Box>
           </Toolbar>
-        </AppBar>
-      </Box> */}
-
-      <div className="navbar">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-
-        <li>
-          <Link to="/create">Create Post</Link>
-        </li>
-      </div>
+        </Container>
+      </AppBar>
     </>
   );
 }

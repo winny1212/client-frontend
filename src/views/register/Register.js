@@ -7,6 +7,8 @@ import {
   Typography,
   TextField,
   Container,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
@@ -14,12 +16,12 @@ import Input from './Input';
 
 export default function Register() {
   const classes = useStyles();
-  const isSignup = false;
+  const isSignup = true;
   const handleChange = () => {};
   const handleSubmit = () => {};
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md" sx={{ marginTop: 3 }}>
       <Paper className={classes.paper} elevation={3}>
         <Avatar sx={{ margin: 1, backgroundColor: 'secondary.light' }}>
           <LockIcon />
@@ -31,7 +33,19 @@ export default function Register() {
 
         <form>
           <Grid container spacing={2}>
-            {isSignup && <></>}
+            {isSignup && (
+              <>
+                <Input
+                  name="username"
+                  label="Username"
+                  handleChange={handleChange}
+                  type="username"
+                />
+                <Typography variant="h5">I'm a dog groomer</Typography>
+                <FormControlLabel control={<Checkbox />} label="Yes" />
+                <FormControlLabel control={<Checkbox />} label="No" />
+              </>
+            )}
 
             <Input
               name="email"
