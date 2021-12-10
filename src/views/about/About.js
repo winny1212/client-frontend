@@ -12,7 +12,7 @@ function About() {
 
   return (
     <>
-      <Card element="Cut corner" className={classes.container}>
+      <Card className={classes.container}>
         <CardActionArea>
           <CardMedia
             component="img"
