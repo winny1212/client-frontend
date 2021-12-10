@@ -1,10 +1,15 @@
-// import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-// const useStyles = makeStyles({
-//   button: {
-//     color: 'white',
-//     backgroundColor: 'purple',
-//   },
-// });
+export const useStyles = makeStyles({
+  button: {
+    borderRadius: 30,
+    backgroundColor: 'violet',
+    '&:hover': {
+      backgroundColor: '#502D5C',
+    },
+  },
 
-// export default useStyles;
+  logo: {
+    width: '20%',
+  },
+});
