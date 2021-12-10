@@ -50,6 +50,19 @@ export default function Register() {
                 </Typography>
                 <FormControlLabel control={<Checkbox />} label="Yes" />
                 <FormControlLabel control={<Checkbox />} label="No" />
+
+                <Input
+                  name="location"
+                  label="Your service location"
+                  handleChange={handleChange}
+                  type="location"
+                />
+                <Input
+                  name="media"
+                  label="Social media"
+                  handleChange={handleChange}
+                  type="media"
+                />
               </>
             )}
 
