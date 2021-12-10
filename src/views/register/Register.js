@@ -44,6 +44,14 @@ export default function Register() {
               label="Password"
               handleChange={handleChange}
             />
+            {isSignup && (
+              <Input
+                name="confirmPassword"
+                label="Repeat Password"
+                handleChange={handleChange}
+                type="password"
+              />
+            )}
           </Grid>
         </form>
       </Paper>
