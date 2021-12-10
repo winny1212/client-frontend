@@ -12,7 +12,21 @@ const Input = ({
   type,
   handleShowPassword,
 }) => (
-  
+  <Grid item xs={12}>
+    <TextField
+      name={name}
+      onChange={handleChange}
+      variant="outlined"
+      required
+      fullWidth
+      label={label}
+      autoFocus={autoFocus}
+      type={type}
+      InputProps={
+        
+      }
+    />
+  </Grid>
 );
 
 export default Input;
