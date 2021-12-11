@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 
 // Our state reducer
 import reducers from './reducers';
+console.log(theme);
 
 // This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
 // and compose is simply applying the middleware so we can perform async functions.
@@ -21,7 +22,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme('light')}>
       <CssBaseline />
       <App />
     </ThemeProvider>
