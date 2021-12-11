@@ -1,24 +1,12 @@
 import '../../index.css';
+import global from './globalStyle';
 import { createTheme } from '@mui/material/styles';
-import { grey, pink } from '@mui/material/colors/';
+import { pink } from '@mui/material/colors/';
 
 /* 400, 700 */
 /* font-family: 'Libre Baskerville', serif; */
 /* 400, 600, 800 */
 /* font-family: 'Montserrat', sans-serif; */
-
-// set global reusable variables
-const g = {
-  colorPrimary: 'rgba(80, 45, 92, 1)',
-  colorSecondary: 'rgba(153, 132, 203, 1)',
-  colorBase: grey[200],
-  // accent colors
-  accentYellow: 'rgba(236, 197, 144, 1)',
-  accentPink: 'rgba(203, 133, 168, 1)',
-  // fonts
-  fontPrimary: `'Libre Baskerville', serif`,
-  fontSecondary: `'Montserrat', sans-serif`,
-};
 
 const theme = (mode) =>
   createTheme({
@@ -26,16 +14,16 @@ const theme = (mode) =>
     palette: {
       mode: 'light',
       primary: {
-        main: g.colorPrimary,
+        main: global.colorPrimary,
       },
       secondary: {
-        main: g.colorSecondary,
+        main: global.colorSecondary,
       },
       background: {
-        default: g.colorBase,
+        default: global.colorBase,
       },
       text: {
-        primary: g.colorPrimary,
+        primary: global.colorPrimary,
       },
       // accent colors
       error: {
@@ -50,56 +38,56 @@ const theme = (mode) =>
       success: {
         main: '#aed581',
       },
-      divider: g.colorPrimary,
+      divider: global.colorPrimary,
     },
     typography: {
-      fontFamily: g.fontPrimary,
+      fontFamily: global.fontPrimary,
       h1: {
-        fontFamily: g.fontPrimary,
+        fontFamily: global.fontPrimary,
         // fontWeight: 700,
       },
       h2: {
-        fontFamily: g.fontPrimary,
+        fontFamily: global.fontPrimary,
         // fontWeight: 700,
         fontStyle: 'italic',
       },
       h3: {
-        fontFamily: g.fontPrimary,
+        fontFamily: global.fontPrimary,
         // fontWeight: 700,
         fontStyle: 'italic',
       },
       h4: {
-        fontFamily: g.fontPrimary,
+        fontFamily: global.fontPrimary,
         // fontWeight: 700,
         fontStyle: 'italic',
       },
       body1: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
       },
       body2: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
       },
       button: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
         fontWeight: 600,
         letterSpacing: 1,
         // textTransform: 'uppercase',
       },
       subtitle1: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
         // fontStyle: 'italic',
         fontWeight: 600,
         textTransform: 'uppercase',
       },
       subtitle2: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
         textTransform: 'uppercase',
       },
       caption: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
       },
       overline: {
-        fontFamily: g.fontSecondary,
+        fontFamily: global.fontSecondary,
       },
     },
   });
