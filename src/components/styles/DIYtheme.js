@@ -31,15 +31,26 @@ const theme = (mode) =>
       secondary: {
         main: g.colorSecondary,
       },
-      error: {
-        main: pink[500],
-      },
       background: {
         default: g.colorBase,
       },
       text: {
         primary: g.colorPrimary,
       },
+      // accent colors
+      error: {
+        main: pink[500],
+      },
+      warning: {
+        main: '#ff9800',
+      },
+      info: {
+        main: '#4dd0e1',
+      },
+      success: {
+        main: '#aed581',
+      },
+      divider: g.colorPrimary,
     },
     typography: {
       fontFamily: g.fontPrimary,
