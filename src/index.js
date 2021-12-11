@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // MUI
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import theme from './components/styles/DIYtheme';
 
 // Redux - our state manager.
 import { Provider } from 'react-redux';
@@ -17,9 +18,6 @@ import reducers from './reducers';
 // This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
 // and compose is simply applying the middleware so we can perform async functions.
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
-
-// Initialise global theme
-const theme = createTheme();
 
 ReactDOM.render(
   <Provider store={store}>
