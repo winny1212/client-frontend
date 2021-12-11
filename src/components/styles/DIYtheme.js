@@ -8,6 +8,8 @@ import { pink } from '@mui/material/colors/';
 /* 400, 600, 800 */
 /* font-family: 'Montserrat', sans-serif; */
 
+const { palette } = createTheme();
+
 const theme = (mode) =>
   createTheme({
     // color settings
@@ -39,6 +41,13 @@ const theme = (mode) =>
         main: '#aed581',
       },
       divider: global.colorPrimary,
+      // generate new custom colors to be used in MUI components
+      accentYellow: palette.augmentColor({
+        color: { main: global.accentYellow },
+      }),
+      accentPink: palette.augmentColor({
+        color: { main: global.accentPink },
+      }),
     },
     typography: {
       fontFamily: global.fontPrimary,
