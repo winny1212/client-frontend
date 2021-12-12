@@ -41,15 +41,32 @@ export default function Register() {
                   handleChange={handleChange}
                   type="username"
                 />
-                <Typography variant="h5">I'm a dog groomer</Typography>
-                <FormControlLabel control={<Checkbox />} label="Yes" />
-                <FormControlLabel control={<Checkbox />} label="No" />
 
-                <Typography variant="h5">
-                  I am a professional dog groomer
-                </Typography>
-                <FormControlLabel control={<Checkbox />} label="Yes" />
-                <FormControlLabel control={<Checkbox />} label="No" />
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-start"
+                  margin="5px 15px 0 "
+                >
+                  <Typography variant="h5" sx={{ marginRight: 8 }}>
+                    Are you a dog groomer
+                  </Typography>
+                  <FormControlLabel control={<Checkbox />} label="Yes" />
+                  <FormControlLabel control={<Checkbox />} label="No" />
+                </Grid>
+
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-start"
+                  margin="0 15px 0 "
+                >
+                  <Typography variant="h5" sx={{ marginRight: 8 }}>
+                    Are you a professional dog groomer
+                  </Typography>
+                  <FormControlLabel control={<Checkbox />} label="Yes" />
+                  <FormControlLabel control={<Checkbox />} label="No" />
+                </Grid>
 
                 <Input
                   name="location"
