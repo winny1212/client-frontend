@@ -16,7 +16,12 @@ import Input from './Input';
 
 export default function Register() {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState();
   const isSignup = true;
+
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+
   const handleChange = () => {};
   const handleSubmit = () => {};
 
@@ -46,10 +51,10 @@ export default function Register() {
                   container
                   direction="row"
                   justifyContent="flex-start"
-                  margin="5px 15px 0 "
+                  margin="10px 15px 0 "
                 >
                   <Typography variant="h5" sx={{ marginRight: 8 }}>
-                    Are you a dog groomer
+                    Are you a dog groomer?
                   </Typography>
                   <FormControlLabel control={<Checkbox />} label="Yes" />
                   <FormControlLabel control={<Checkbox />} label="No" />
@@ -62,7 +67,7 @@ export default function Register() {
                   margin="0 15px 0 "
                 >
                   <Typography variant="h5" sx={{ marginRight: 8 }}>
-                    Are you a professional dog groomer
+                    Are you a professional dog groomer?
                   </Typography>
                   <FormControlLabel control={<Checkbox />} label="Yes" />
                   <FormControlLabel control={<Checkbox />} label="No" />
@@ -93,6 +98,8 @@ export default function Register() {
               name="password"
               label="Password"
               handleChange={handleChange}
+              type={showPassword ? 'text' : 'password'}
+              handleShowPassword={handleShowPassword}
             />
             {isSignup && (
               <Input
