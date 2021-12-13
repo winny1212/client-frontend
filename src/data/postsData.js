@@ -50,7 +50,7 @@ const postsData = [
     video: 'https://youtu.be/NfzraeixPLc',
     likes: [],
     comments: [],
-    createdAt: '2021-3-08T07:49:43.012Z',
+    createdAt: '2021-12-11T00:17:53.187Z',
   },
   {
     _id: 3,
@@ -74,7 +74,7 @@ const postsData = [
     video: 'https://youtu.be/OgvC-wVTAu0',
     likes: [],
     comments: [],
-    createdAt: '2021-7-08T07:49:43.012Z',
+    createdAt: '2021-12-11T00:17:53.187Z',
   },
 ];
 
