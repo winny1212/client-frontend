@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 // Redux State
 import { useDispatch } from 'react-redux';
-// User Context
-import { UserContext } from '../../Context/UserContext';
 // Dispatch Action
 import { createPost } from '../../actions/posts';
 
@@ -13,10 +11,7 @@ import useStyles from './styles';
 // Material UI
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
-function Form() {
-  // User Context
-  const { currentId, setCurrentId } = useContext(UserContext);
-
+function UpdateForm({ currentId, setCurrentId }) {
   // Invoke Redux State
   const dispatch = useDispatch();
 
@@ -76,6 +71,8 @@ function Form() {
       instructions: '',
     });
   };
+
+  // Get the currentID
 
   return (
     <Container fixed>
@@ -142,4 +139,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default UpdateForm;

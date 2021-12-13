@@ -5,7 +5,7 @@ import Post from './post/Post';
 // MUI
 // import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import { CircularProgress } from '@mui/material';
 
@@ -19,9 +19,7 @@ function Posts() {
     <Grid container direction="row" spacing={2} alignItems="stretch">
       {posts.map((post) => (
         <Grid item xs={12} md={2} lg={3} key={post._id}>
-          <Box sx={{ bgcolor: '#fff' }}>
-            <Post post={post} />
-          </Box>
+          <Post post={post} />
         </Grid>
       ))}
     </Grid>
