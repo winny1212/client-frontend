@@ -15,9 +15,10 @@ import useStyles from './styles';
 // Material UI
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
-function UpdateForm({ currentId }) {
+function UpdateForm() {
   // UserContext
-  const { setCurrentId } = useContext(UserContext);
+  const { currentId, setCurrentId } = useContext(UserContext);
+  console.log(currentId);
 
   // Invoke Redux State
   const dispatch = useDispatch();
