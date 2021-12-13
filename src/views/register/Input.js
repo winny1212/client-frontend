@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Grid, InputAdornment, IconButton } from '@material-ui/core';
+import { TextField, Grid, InputAdornment, IconButton } from '@mui/material';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -17,6 +17,7 @@ const Input = ({
       name={name}
       onChange={handleChange}
       variant="outlined"
+      color="secondary"
       required
       fullWidth
       label={label}
@@ -27,7 +28,7 @@ const Input = ({
           ? {
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton>
+                  <IconButton onClick={handleShowPassword}>
                     {type === 'password' ? (
                       <VisibilityIcon />
                     ) : (

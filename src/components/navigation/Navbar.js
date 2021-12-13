@@ -9,7 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+<<<<<<< HEAD
+import Logo from '../../assets/images/diyg_logo_purple.png';
+=======
 import Logo from '../../assets/img/diyg_logo_purple.png';
+>>>>>>> 64a8220519f4ab3e05949041fe6afaf5ce383df7
 
 //Hooks for breakpoints
 import { useTheme } from '@mui/material/styles';
@@ -39,7 +43,11 @@ function Navbar() {
 
   return (
     <>
+<<<<<<< HEAD
+      <AppBar position="static" elevation={0}>
+=======
       <AppBar position="static" elevation={0} color="accentYellow">
+>>>>>>> 64a8220519f4ab3e05949041fe6afaf5ce383df7
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <img src={Logo} alt="logo" className={classes.logo} />
