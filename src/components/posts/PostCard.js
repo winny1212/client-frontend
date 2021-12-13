@@ -1,23 +1,36 @@
 import React from 'react';
+import defaultImg from '../../assets/img/diyg_default_img_01.png';
 
 // MUI
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
 
 const PostCard = ({ post }) => {
   return (
-    <Box
+    <Card
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        alignItems: 'center',
         bgcolor: 'background.paper',
-        borderRadius: '4px',
+        borderRadius: '6px',
       }}
+      elevation={0}
     >
-      <Box component="img" alt={post.breed} src={post.image.before} />
-
-      <h3>{post.title}</h3>
-    </Box>
+      <CardMedia
+        component="img"
+        alt={post.breed}
+        image={defaultImg}
+        sx={{ width: 1 / 2 }}
+      />
+      <CardContent>
+        <h3>{post.title}</h3>
+        <CardActions></CardActions>
+      </CardContent>
+    </Card>
   );
 };
 
