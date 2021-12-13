@@ -11,7 +11,7 @@ import useStyles from './styles';
 // Material UI
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
-function UpdateForm() {
+function UpdateForm({ currentId, setCurrentId }) {
   // Invoke Redux State
   const dispatch = useDispatch();
 
@@ -71,6 +71,8 @@ function UpdateForm() {
       instructions: '',
     });
   };
+
+  // Get the currentID
 
   return (
     <Container fixed>
