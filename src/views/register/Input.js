@@ -17,6 +17,7 @@ const Input = ({
       name={name}
       onChange={handleChange}
       variant="outlined"
+      color="secondary"
       required
       fullWidth
       label={label}

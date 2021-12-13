@@ -16,14 +16,19 @@ import Input from './Input';
 
 export default function Register() {
   const classes = useStyles();
-  const [showPassword, setShowPassword] = useState();
-  const isSignup = true;
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleChange = () => {};
   const handleSubmit = () => {};
+
+  const switchMode = () => {
+    setIsSignup((preIsSignup) => !preIsSignup);
+    handleShowPassword(false);
+  };
 
   return (
     <Container component="main" maxWidth="md" sx={{ marginTop: 3 }}>
@@ -53,11 +58,22 @@ export default function Register() {
                   justifyContent="flex-start"
                   margin="10px 15px 0 "
                 >
-                  <Typography variant="h5" sx={{ marginRight: 8 }}>
+                  <Typography
+                    variant="h5"
+                    sx={{ marginRight: 8, fontSize: 22 }}
+                  >
                     Are you a dog groomer?
                   </Typography>
-                  <FormControlLabel control={<Checkbox />} label="Yes" />
-                  <FormControlLabel control={<Checkbox />} label="No" />
+                  <FormControlLabel
+                    color="secondary"
+                    control={<Checkbox />}
+                    label="Yes"
+                  />
+                  <FormControlLabel
+                    color="secondary"
+                    control={<Checkbox />}
+                    label="No"
+                  />
                 </Grid>
 
                 <Grid
@@ -66,11 +82,22 @@ export default function Register() {
                   justifyContent="flex-start"
                   margin="0 15px 0 "
                 >
-                  <Typography variant="h5" sx={{ marginRight: 8 }}>
+                  <Typography
+                    variant="h5"
+                    sx={{ marginRight: 8, fontSize: 22 }}
+                  >
                     Are you a professional dog groomer?
                   </Typography>
-                  <FormControlLabel control={<Checkbox />} label="Yes" />
-                  <FormControlLabel control={<Checkbox />} label="No" />
+                  <FormControlLabel
+                    color="secondary"
+                    control={<Checkbox />}
+                    label="Yes"
+                  />
+                  <FormControlLabel
+                    color="secondary"
+                    control={<Checkbox />}
+                    label="No"
+                  />
                 </Grid>
 
                 <Input
@@ -109,6 +136,26 @@ export default function Register() {
                 type="password"
               />
             )}
+          </Grid>
+          <Button
+            type="submit"
+            sx={{ marginTop: 2 }}
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+          >
+            {isSignup ? 'Sign Up' : 'Sign In'}
+          </Button>
+
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Button color="secondary" onClick={switchMode}>
+                {isSignup
+                  ? 'Already have an account? Sign in'
+                  : "Don't have an account? Sign Up"}
+              </Button>
+            </Grid>
           </Grid>
         </form>
       </Paper>
