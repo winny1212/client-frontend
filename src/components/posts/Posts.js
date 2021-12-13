@@ -1,41 +1,30 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Post from './post/Post';
-// import { CircularProgress } from '@mui/material';
-// import Grid from '@mui/material/Grid';
+
+// MUI
+// import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
+import { CircularProgress } from '@mui/material';
 
 function Posts() {
   const posts = useSelector((state) => state.postsReducer);
   console.log(`-- checking --\n${posts}`);
 
-  return (
-    <div>
-      <h3>List of Posts (in cards)</h3>
-      {/* Will map the posts later once the card is ready */}
-
-      {/* <Grid container>
-        <Grid item>
-          <Post />
-        </Grid>
-        <Grid item>
-          <Post />
-        </Grid>
-        <Grid item>
-          <Post />
-        </Grid>
-      </Grid> */}
-      <hr />
-
-      <small>test with data fetched from server</small>
-      {posts.map((post, index) => {
-        return (
-          <div key={index}>
+  return !posts.length ? (
+    <CircularProgress />
+  ) : (
+    <Grid container direction="row" spacing={2} alignItems="stretch">
+      {posts.map((post) => (
+        <Grid item xs={12} md={2} lg={3} key={post._id}>
+          <Box sx={{ bgcolor: '#fff' }}>
             <Post post={post} />
-          </div>
-        );
-      })}
-    </div>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 
