@@ -20,7 +20,7 @@ const Profile = () => {
   const [value, setValue] = useState('');
 
   //upload photo state
-  const [photo, setPhoto] = useState('');
+  const [photo, setPhoto] = useState([]);
 
   //handle type of user
   const handleChange = (event) => {
@@ -39,7 +39,7 @@ const Profile = () => {
 
   //handle upload photo
   const uploadPhotoHandler = (event) => {
-    setPhoto(event.target.value);
+    setPhoto([...event.target.value]);
   };
 
   const handleSubmit = (event) => {
@@ -87,7 +87,6 @@ const Profile = () => {
                 id="contained-button-file"
                 multiple
                 type="file"
-                //value={photo}
               />
               <Button
                 variant="contained"
@@ -98,13 +97,11 @@ const Profile = () => {
               </Button>
             </label>
           </FormControl>
+          <br />
           <TextareaAutosize
-            maxRows={4}
+            maxRows={10}
             aria-label="maximum height"
-            placeholder="add you bio here!"
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua."
-            style={{ width: 200 }}
+            placeholder="You can add your bio here!!!"
           />
           <br />
           <Stack direction="row" spacing={2}>
