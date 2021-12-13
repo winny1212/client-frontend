@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE } from '../constants/actionTypes';
 
 // This is where the actual data is being sent. In line 4 is where the posts for now stay.
 const postsReducer = (posts = [], action) => {
@@ -7,6 +7,11 @@ const postsReducer = (posts = [], action) => {
       return action.payload;
     case CREATE:
       return [...posts, action.payload];
+    case UPDATE:
+      // This action.payload is the new updated post.
+      return posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post,
+      );
     default:
       return posts;
   }

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // Redux State
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// UserContext
+import { UserContext } from '../../Context/UserContext';
 
 // Dispatch Action
-import { createPost } from '../../actions/posts';
+import { updatePost } from '../../actions/posts';
 
 // Custom style hook
 import useStyles from './styles';
@@ -12,12 +15,30 @@ import useStyles from './styles';
 // Material UI
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
-function Form() {
+function UpdateForm() {
+  // UserContext
+  const { currentId, setCurrentId } = useContext(UserContext);
+  console.log(currentId);
+
   // Invoke Redux State
   const dispatch = useDispatch();
-
   // Invoke the styles
   const classes = useStyles();
+
+  // Get the post from state we actually want to update.
+  const post = useSelector((state) =>
+    currentId
+      ? state.postsReducer.find((post) => post._id === currentId)
+      : null,
+  );
+
+  useEffect(() => {
+    // If we have the post we are looking for, populate all fields with the data,
+    // This is possible because teh fields are closed forms.
+    if (post) {
+      setPostData(post);
+    }
+  }, [post]);
 
   // Post state
   const [postData, setPostData] = useState({
@@ -33,6 +54,7 @@ function Form() {
 
   // Submit Handler - make the dispatch here
   const handleSubmit = (e) => {
+    // We do teh same checks as if a new post
     e.preventDefault();
     setTitleError(false);
     setLinkError(false);
@@ -48,7 +70,7 @@ function Form() {
       setInstructionError(true);
     }
     if (postData.title && postData.videoLink && postData.instructions) {
-      dispatch(createPost(postData));
+      dispatch(updatePost(currentId, postData));
       clear();
     }
   };
@@ -65,12 +87,15 @@ function Form() {
 
   // Clear - sets all inputs to blank
   const clear = () => {
+    setCurrentId(null);
     setPostData({
       title: '',
       videoLink: '',
       instructions: '',
     });
   };
+
+  // Get the currentID
 
   return (
     <Container fixed>
@@ -82,7 +107,7 @@ function Form() {
           onSubmit={handleSubmit}
         >
           <Typography variant="h4" gutterBottom component="div" pt={2} mt={2}>
-            Create A Post
+            Edit a Post
           </Typography>
           <TextField
             name="title"
@@ -137,4 +162,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default UpdateForm;
