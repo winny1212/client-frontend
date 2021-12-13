@@ -1,5 +1,10 @@
-import { fetchAllPosts, createNewPost, updateOldPost } from '../api';
-import { FETCH_ALL, CREATE, UPDATE } from '../constants/actionTypes';
+import {
+  fetchAllPosts,
+  createNewPost,
+  updateOldPost,
+  deleteAPost,
+} from '../api';
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 
 // This is where we can make requests to the backend.
 // All of these function will be used throughout our app, whenever needed.
@@ -42,6 +47,18 @@ export const updatePost = (id, post) => async (dispatch) => {
     const { data } = await updateOldPost(id, post);
 
     dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Delete a Post
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    const { deletedToken } = await deleteAPost(id);
+    console.log('From actions.posts:', deletedToken);
+
+    dispatch({ type: DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
