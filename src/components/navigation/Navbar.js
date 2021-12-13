@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import Logo from '../../assets/images/diyg_logo_purple.png';
+import Logo from '../../assets/img/diyg_logo_purple.png';
 
 //Hooks for breakpoints
 import { useTheme } from '@mui/material/styles';
