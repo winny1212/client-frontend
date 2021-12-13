@@ -14,9 +14,6 @@ import useStyles from './styles';
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
 function Form() {
-  // User Context
-  const { currentId, setCurrentId } = useContext(UserContext);
-
   // Invoke Redux State
   const dispatch = useDispatch();
 
@@ -52,7 +49,6 @@ function Form() {
       setInstructionError(true);
     }
     if (postData.title && postData.videoLink && postData.instructions) {
-      console.log(postData);
       dispatch(createPost(postData));
       clear();
     }

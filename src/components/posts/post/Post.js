@@ -7,8 +7,15 @@ import { UserContext } from '../../../Context/UserContext';
 function Post({ post }) {
   // const dispatch = useDispatch();
 
-  // For the Edit Button.
   const [currentId, setCurrentId] = useContext(UserContext);
+
+  // 1. Edit Button
+  /*
+    When we press the edit button, we will redirect the User to '/edit'/ 
+    That 'edit' page is the <UpdateForm /> page. We will give the Update form the currentId
+  */
+
+  // 2. Delete Button
 
   return (
     <div>
