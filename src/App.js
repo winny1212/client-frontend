@@ -7,7 +7,7 @@ import Register from './views/register/Register';
 import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
-import UpdateForm from './views/form/UpdateForm';
+import Profile from './views/User/profile/Profile.js';
 import Footer from './components/footer/Footer';
 
 function App() {
@@ -21,7 +21,9 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
-          <Route exact path="/edit" element={<UpdateForm />}></Route>
+
+          {/* create a route for Profile but shoul just render once user login, need add logic */}
+          <Route exact path="/profile" element={<Profile />}></Route>
         </Routes>
         <Footer />
       </Router>
