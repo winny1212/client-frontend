@@ -1,18 +1,21 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { UserContext } from '../../../Context/UserContext';
-// import { useDispatch } from 'react-redux';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
 function Post({ post }) {
   // const dispatch = useDispatch();
 
-  const [currentId, setCurrentId] = useContext(UserContext);
+  // const { currentId, setCurrentId } = useContext(UserContext);
 
   // 1. Edit Button
   /*
     When we press the edit button, we will redirect the User to '/edit'/ 
-    That 'edit' page is the <UpdateForm /> page. We will give the Update form the currentId
+    Before that though, update the currentId so out global context knows which specific post to update.
+    That 'edit' page is the <UpdateForm /> page. 
+
   */
 
   // 2. Delete Button

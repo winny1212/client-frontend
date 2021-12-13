@@ -17,7 +17,8 @@ import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
 function UpdateForm({ currentId }) {
   // UserContext
-  const [setCurrentId] = useContext(UserContext);
+  const { setCurrentId } = useContext(UserContext);
+
   // Invoke Redux State
   const dispatch = useDispatch();
   // Invoke the styles

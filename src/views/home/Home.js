@@ -9,7 +9,7 @@ import { UserContext } from '../../Context/UserContext';
 function Home() {
   const dispatch = useDispatch();
 
-  const [currentId] = useContext(UserContext);
+  const { currentId } = useContext(UserContext);
 
   // fetch & load all posts
   useEffect(() => {

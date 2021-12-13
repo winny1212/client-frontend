@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 // Redux State
 import { useDispatch } from 'react-redux';
-// User Context
-import { UserContext } from '../../Context/UserContext';
+
 // Dispatch Action
 import { createPost } from '../../actions/posts';
 
