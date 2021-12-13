@@ -10,6 +10,7 @@ import {
   Stack,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 const Profile = () => {
   //username state
@@ -49,7 +50,7 @@ const Profile = () => {
     <>
       <h1> Profile </h1>
       <Container>
-        <form onSubmit={handleSubmit}>
+        <FormControl onSubmit={handleSubmit}>
           {/* user name */}
           <FormControl>
             <TextField
@@ -60,7 +61,7 @@ const Profile = () => {
               onChange={updateUserName}
             />
           </FormControl>
-
+          <br />
           {/* type of user */}
           <FormControl>
             <Select
@@ -77,15 +78,16 @@ const Profile = () => {
               </MenuItem>
             </Select>
           </FormControl>
+          <br />
           <FormControl>
             {/* upload button */}
             <label htmlFor="contained-button-file">
               <Input
                 accept="image/*"
                 id="contained-button-file"
-                // multiple
+                multiple
                 type="file"
-                value={photo}
+                //value={photo}
               />
               <Button
                 variant="contained"
@@ -96,14 +98,21 @@ const Profile = () => {
               </Button>
             </label>
           </FormControl>
-          <div>
-            <Stack direction="row" spacing={2}>
-              <Button variant="contained" endIcon={<SendIcon />}>
-                Submit
-              </Button>
-            </Stack>
-          </div>
-        </form>
+          <TextareaAutosize
+            maxRows={4}
+            aria-label="maximum height"
+            placeholder="add you bio here!"
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+      ut labore et dolore magna aliqua."
+            style={{ width: 200 }}
+          />
+          <br />
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" endIcon={<SendIcon />}>
+              Submit
+            </Button>
+          </Stack>
+        </FormControl>
       </Container>
     </>
   );
