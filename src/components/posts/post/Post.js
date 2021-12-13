@@ -7,7 +7,7 @@ function Post({ post }) {
   // const dispatch = useDispatch();
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#fff' }}>
       <h6>Ind Post</h6>
       <h3>{post.title}</h3>
     </div>
