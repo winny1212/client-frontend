@@ -21,6 +21,8 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
+
+          {/* create a route for Profile but shoul just render once user login, need add logic */}
           <Route exact path="/profile" element={<Profile />}></Route>
         </Routes>
         <Footer />
