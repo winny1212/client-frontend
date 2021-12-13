@@ -16,6 +16,9 @@ import thunk from 'redux-thunk';
 // Our state reducer
 import reducers from './reducers';
 
+// User Context to keep track of current user
+import { UserContextProvider } from './Context/UserContext';
+
 // This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
 // and compose is simply applying the middleware so we can perform async functions.
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
@@ -24,7 +27,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme('light')}>
       <CssBaseline />
-      <App />
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
     </ThemeProvider>
   </Provider>,
   document.getElementById('root'),
