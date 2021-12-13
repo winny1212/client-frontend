@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 // Redux State
 import { useDispatch } from 'react-redux';
-// User Context
-import { UserContext } from '../../Context/UserContext';
+
 // Dispatch Action
 import { createPost } from '../../actions/posts';
 
@@ -14,9 +13,6 @@ import useStyles from './styles';
 import { Paper, Container, TextField, Typography, Button } from '@mui/material';
 
 function Form() {
-  // User Context
-  const { currentId, setCurrentId } = useContext(UserContext);
-
   // Invoke Redux State
   const dispatch = useDispatch();
 
@@ -52,7 +48,6 @@ function Form() {
       setInstructionError(true);
     }
     if (postData.title && postData.videoLink && postData.instructions) {
-      console.log(postData);
       dispatch(createPost(postData));
       clear();
     }

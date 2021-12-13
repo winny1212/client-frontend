@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const UserContext = React.createContext();
 
 function UserContextProvider(props) {
-  const [currentId, setCurrentId] = useState(99);
+  const [currentId, setCurrentId] = useState(0);
 
   return (
     <UserContext.Provider value={{ currentId, setCurrentId }}>
