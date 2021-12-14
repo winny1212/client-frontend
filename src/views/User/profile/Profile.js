@@ -9,7 +9,6 @@ import {
   FormControlLabel,
   Input,
 } from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 //import { styled } from '@mui/material/styles';
 
 // const Input = styled('input')({
@@ -30,6 +29,9 @@ const Profile = () => {
   const [file, setFile] = useState();
   const [fileSelected, setFileSelected] = useState(false);
 
+  //text field state
+  const [bio, setBio] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setNameError(false);
@@ -40,7 +42,7 @@ const Profile = () => {
     }
 
     if (name && fileSelected) {
-      console.log(name, category, fileSelected);
+      console.log(name, category, fileSelected, bio);
     }
     // //handle upload data
     // const formData = new FormData();
@@ -122,11 +124,17 @@ const Profile = () => {
             </label>
           </FormControl>
           <br />
-          <TextareaAutosize
-            maxRows={5}
-            aria-label="maximum height"
-            placeholder="You can add your bio here!!!"
-          />
+          <div>
+            <TextField
+              id="outlined-multiline-static"
+              label="Add you Bio"
+              multiline
+              rows={4}
+              defaultValue="Default Value"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+            />
+          </div>
           <br />
 
           <Button type="submit" variant="contained">
