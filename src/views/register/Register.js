@@ -67,6 +67,8 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // We should compare if the two passwords entered are correct.
+
     if (isSignup) {
       // We dispatch the Sign Up Action
       dispatch(signup(formData), navigate);
