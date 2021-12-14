@@ -5,7 +5,6 @@ import {
   Paper,
   Grid,
   Typography,
-  TextField,
   Container,
   Checkbox,
   FormControlLabel,
@@ -14,20 +13,55 @@ import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
 import Input from './Input';
 
+const initialState = {
+  username: '',
+  proGroomer: false,
+  location: '',
+  socMedia: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
+
 export default function Register() {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(true);
 
+  // Form Data State
+  const [formData, setFormData] = useState(initialState);
+
+  // Toggling the Password privacy button.
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
-  const handleChange = () => {};
-  const handleSubmit = () => {};
-
+  // Toggling between Sign up and Sign In
   const switchMode = () => {
     setIsSignup((preIsSignup) => !preIsSignup);
+
     handleShowPassword(false);
+  };
+
+  // Will update our formData with its respective field.
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      // We dispatch the Sign Up Action
+    } else {
+      // We dispatch the Sign In Action
+    }
   };
 
   return (
@@ -41,7 +75,7 @@ export default function Register() {
           {isSignup ? 'Sign up' : 'Sign in'}
         </Typography>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignup && (
               <>
@@ -49,7 +83,7 @@ export default function Register() {
                   name="username"
                   label="Username"
                   handleChange={handleChange}
-                  type="username"
+                  type="text"
                 />
 
                 <Grid
@@ -104,13 +138,13 @@ export default function Register() {
                   name="location"
                   label="Your service location"
                   handleChange={handleChange}
-                  type="location"
+                  type="text"
                 />
                 <Input
-                  name="media"
+                  name="socMedia"
                   label="Social media"
                   handleChange={handleChange}
-                  type="media"
+                  type="text"
                 />
               </>
             )}
