@@ -29,7 +29,7 @@ function App() {
 
           <Route exact path="/create" element={<Form />}></Route>
 
-          {/* create a route for Profile but shoul just render once user login, need add logic */}
+          {/* create a route for Profile but should just render once user login, need add logic */}
           <Route exact path="/profile" element={<ProfileForm />}></Route>
         </Routes>
         <Footer />

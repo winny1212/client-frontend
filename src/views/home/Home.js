@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import Posts from '../../components/posts/Posts';
+import Header from '../../components/layout/Header';
+
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../actions/posts';
 
@@ -9,10 +11,8 @@ import { UserContext } from '../../Context/UserContext';
 // MUI
 import Container from '@mui/material/Container';
 // import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-
-import global from '../../components/styles/globalStyle';
+// import Box from '@mui/material/Box';
+// import Typography from '@mui/material/Typography';
 
 function Home() {
   const dispatch = useDispatch();
@@ -26,20 +26,7 @@ function Home() {
 
   return (
     <>
-      <Box
-        component="header"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 150,
-          bgcolor: global.accentYellow,
-        }}
-      >
-        <Typography variant="headerTitle" sx={{ p: '1rem' }}>
-          Find tips and tricks to groom your beloved pets
-        </Typography>
-      </Box>
+      <Header />
       <Container maxWidth="lg">
         <h3>Searchbar</h3>
         <h3>Featured Posts</h3>
