@@ -32,7 +32,7 @@ const Profile = () => {
   const [category, setCategory] = useState('');
 
   //upload photo state
-  //const [photo, setPhoto] = useState([]);
+  //const [photo, setPhoto] = useState('');
 
   //handle upload photo
   // const uploadPhotoHandler = (event) => {
@@ -53,7 +53,7 @@ const Profile = () => {
     }
 
     if (name && type) {
-      console.log(name, type);
+      console.log(name, type, category);
     }
   };
 
@@ -61,9 +61,10 @@ const Profile = () => {
     <>
       <h1> Profile </h1>
       <form
-      //style={{ marginTop: '20px', marginBottom: '20px', display: 'block' }}
+        onSubmit={handleSubmit}
+        //style={{ marginTop: '20px', marginBottom: '20px', display: 'block' }}
       >
-        <FormControl onSubmit={handleSubmit}>
+        <FormControl>
           {/* user name */}
           <FormControl>
             <TextField
@@ -78,7 +79,7 @@ const Profile = () => {
           </FormControl>
           <br />
 
-          {/* Testing radio button */}
+          {/* type of user radio button */}
           <FormControl component="fieldset">
             <FormLabel component="legend">Type of user</FormLabel>
             <RadioGroup
@@ -102,7 +103,7 @@ const Profile = () => {
           </FormControl>
 
           <br />
-          {/* type of user */}
+          {/* type of user select input*/}
           <FormControl>
             <InputLabel id="demo-simple-select-label">Type of user</InputLabel>
             <Select
@@ -147,15 +148,15 @@ const Profile = () => {
             placeholder="You can add your bio here!!!"
           />
           <br />
-          {/* <Stack direction="row" spacing={2}> */}
+
           <Button
-            // onClick={() => console.log('you clicked me')}
+            primary={true}
+            type="submit"
             variant="contained"
             endIcon={<SendIcon />}
           >
             Submit
           </Button>
-          {/* </Stack> */}
         </FormControl>
       </form>
     </>
