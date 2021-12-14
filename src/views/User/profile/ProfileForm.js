@@ -19,8 +19,14 @@ const Profile = () => {
   //user name state
   const [name, setName] = useState('');
 
+  //user location state
+  const [location, setLocation] = useState('');
+
   //error user name
   const [nameError, setNameError] = useState(false);
+
+  //error location
+  const [locationError, setLocationError] = useState(false);
 
   //set radio button to the state
   const [category, setCategory] = useState('');
@@ -35,10 +41,14 @@ const Profile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setNameError(false);
+    setLocationError(false);
 
     console.log(file.name);
     if (name === '') {
       setNameError(true);
+    }
+    if (location === '') {
+      setLocationError(true);
     }
 
     if (name && fileSelected) {
@@ -84,6 +94,17 @@ const Profile = () => {
               required
               onChange={(e) => setName(e.target.value)}
               error={nameError}
+            />
+            <br />
+            {/* user location */}
+            <TextField
+              id="outlined-basic"
+              label="Add you Location"
+              variant="outlined"
+              fullWidth
+              required
+              onChange={(e) => setLocation(e.target.value)}
+              error={locationError}
             />
           </FormControl>
           <br />
