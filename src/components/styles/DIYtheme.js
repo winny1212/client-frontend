@@ -70,6 +70,13 @@ const theme = (mode) =>
         // fontWeight: 700,
         fontStyle: 'italic',
       },
+      // Post Card title
+      h6: {
+        fontFamily: global.fontPrimary,
+        letterSpacing: -0.5,
+        lineHeight: 1.35,
+        textTransform: 'capitalize',
+      },
       body1: {
         fontFamily: global.fontSecondary,
       },
