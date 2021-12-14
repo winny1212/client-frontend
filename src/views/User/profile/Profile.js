@@ -1,83 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Container,
   TextField,
   FormControl,
-  Select,
-  MenuItem,
-  Input,
   Button,
-  Stack,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  Input,
 } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 const Profile = () => {
-  //username state
+  //user name state
   const [name, setName] = useState('');
 
-  //type of user state
-  const [value, setValue] = useState('');
+  //error user name
+  const [nameError, setNameError] = useState(false);
 
-  //upload photo state
-  const [photo, setPhoto] = useState([]);
+  //set radio button to the state
+  const [category, setCategory] = useState('');
 
-  //handle type of user
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  //handle username mount
-  useEffect(() => {
-    document.title = { name };
-  });
-
-  //handle username event target
-  const updateUserName = (event) => {
-    setName(event.target.value);
-  };
-
-  //handle upload photo
-  const uploadPhotoHandler = (event) => {
-    setPhoto([...event.target.value]);
-  };
+  //upload photo to the state
+  const [photo, setPhoto] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setNameError(false);
+
+    if (name === '') {
+      setNameError(true);
+    }
+
+    if (name) {
+      console.log(name, category);
+    }
   };
 
   return (
     <>
       <h1> Profile </h1>
-      <Container>
-        <FormControl onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <FormControl>
           {/* user name */}
           <FormControl>
             <TextField
               id="outlined-basic"
               label="Add your name"
               variant="outlined"
-              value={name}
-              onChange={updateUserName}
+              fullWidth
+              required
+              onChange={(e) => setName(e.target.value)}
+              error={nameError}
             />
           </FormControl>
           <br />
-          {/* type of user */}
-          <FormControl>
-            <Select
-              value={value}
-              id="demo-simple-select"
-              onChange={handleChange}
-            >
-              <MenuItem value={'Professional Groomer'}>
-                Professional Groomer
-              </MenuItem>
 
-              <MenuItem value={'Non Professional Groomer'}>
-                Non Professional Groomer
-              </MenuItem>
-            </Select>
+          {/* type of user radio button */}
+          <FormControl component="fieldset">
+            <FormLabel component="legend">
+              Are you professional groomer?
+            </FormLabel>
+            <RadioGroup
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              aria-label="type of user"
+              defaultValue="no"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel value="no" control={<Radio />} label="no" />
+              <FormControlLabel value="yes" control={<Radio />} label="yes" />
+            </RadioGroup>
           </FormControl>
+
           <br />
           <FormControl>
             {/* upload button */}
@@ -89,9 +84,10 @@ const Profile = () => {
                 type="file"
               />
               <Button
+                value={photo}
                 variant="contained"
                 component="span"
-                onChange={uploadPhotoHandler}
+                onChange={(e) => setPhoto(e.target.value)}
               >
                 Upload Photo
               </Button>
@@ -99,18 +95,17 @@ const Profile = () => {
           </FormControl>
           <br />
           <TextareaAutosize
-            maxRows={10}
+            maxRows={5}
             aria-label="maximum height"
             placeholder="You can add your bio here!!!"
           />
           <br />
-          <Stack direction="row" spacing={2}>
-            <Button variant="contained" endIcon={<SendIcon />}>
-              Submit
-            </Button>
-          </Stack>
+
+          <Button primary={true} type="submit" variant="contained">
+            Submit
+          </Button>
         </FormControl>
-      </Container>
+      </form>
     </>
   );
 };
