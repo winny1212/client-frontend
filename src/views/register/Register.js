@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Avatar,
   Button,
@@ -13,6 +17,9 @@ import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
 import Input from './Input';
 
+// Import Actions
+import { signup, signin } from '../../actions/auth';
+
 const initialState = {
   username: '',
   proGroomer: false,
@@ -24,6 +31,9 @@ const initialState = {
 };
 
 export default function Register() {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(true);
@@ -59,8 +69,10 @@ export default function Register() {
 
     if (isSignup) {
       // We dispatch the Sign Up Action
+      dispatch(signup(formData), navigate);
     } else {
       // We dispatch the Sign In Action
+      dispatch(signin(formData), navigate);
     }
   };
 
