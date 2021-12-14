@@ -4,10 +4,9 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../../Context/UserContext';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
+import { deletePost } from '../../../actions/posts';
 
 function Post({ post }) {
-  // const dispatch = useDispatch();
-
   // const { currentId, setCurrentId } = useContext(UserContext);
 
   // 1. Edit Button
@@ -19,6 +18,9 @@ function Post({ post }) {
   */
 
   // 2. Delete Button
+  // const dispatch = useDispatch();
+  // On the onClick Button, we will dispatch the following.
+  // dispatch(deletePost(post._id))
 
   return (
     <div style={{ backgroundColor: '#fff' }}>
