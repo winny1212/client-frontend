@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import defaultImg from '../../assets/img/diyg_default_img_01.png';
 
 // MUI
@@ -9,14 +9,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { CardActionArea } from '@mui/material';
 
+// <Link to={`/post/${post._id}`} className="link">
+
 const PostCard = ({ post }) => {
+  // const handlePostLink = (post) => {
+  //   console.log(`Card has been clicked`);
+  //   return <Link to={`/post/${post._id}`}></Link>;
+  // };
+
   return (
-    <CardActionArea>
+    // LINK TO SINGLE POST to="/about" will be updated!
+    <CardActionArea component={RouterLink} to="/about">
       <Card
         sx={{
           display: 'flex',
