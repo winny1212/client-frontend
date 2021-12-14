@@ -98,6 +98,12 @@ const theme = (mode) =>
       overline: {
         fontFamily: global.fontSecondary,
       },
+      headerTitle: {
+        fontFamily: global.fontPrimary,
+        fontStyle: 'italic',
+        fontSize: '1.5rem',
+        letterSpacing: -0.5,
+      },
     },
   });
 
