@@ -2,68 +2,45 @@ import React, { useState } from 'react';
 import {
   TextField,
   FormControl,
-  Select,
-  MenuItem,
-  Input,
   Button,
-  InputLabel,
   FormLabel,
   RadioGroup,
   Radio,
   FormControlLabel,
+  Input,
 } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 const Profile = () => {
   //user name state
   const [name, setName] = useState('');
 
-  //type of user state
-  const [type, setType] = useState('');
-
   //error user name
   const [nameError, setNameError] = useState(false);
-
-  //error type of user
-  const [typeError, setTypeError] = useState(false);
 
   //set radio button to the state
   const [category, setCategory] = useState('');
 
-  //upload photo state
-  //const [photo, setPhoto] = useState('');
-
-  //handle upload photo
-  // const uploadPhotoHandler = (event) => {
-  //   setPhoto([...event.target.value]);
-  // };
+  //upload photo to the state
+  const [photo, setPhoto] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setNameError(false);
-    setTypeError(false);
 
     if (name === '') {
       setNameError(true);
     }
 
-    if (type === '') {
-      setTypeError(true);
-    }
-
-    if (name && type) {
-      console.log(name, type, category);
+    if (name) {
+      console.log(name, category);
     }
   };
 
   return (
     <>
       <h1> Profile </h1>
-      <form
-        onSubmit={handleSubmit}
-        //style={{ marginTop: '20px', marginBottom: '20px', display: 'block' }}
-      >
+      <form onSubmit={handleSubmit}>
         <FormControl>
           {/* user name */}
           <FormControl>
@@ -81,51 +58,25 @@ const Profile = () => {
 
           {/* type of user radio button */}
           <FormControl component="fieldset">
-            <FormLabel component="legend">Type of user</FormLabel>
+            <FormLabel component="legend">
+              Are you professional groomer?
+            </FormLabel>
             <RadioGroup
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              aria-label="type of user "
-              defaultValue="non professional groomer"
+              aria-label="type of user"
+              defaultValue="no"
               name="radio-buttons-group"
             >
-              <FormControlLabel
-                value="non professional groomer"
-                control={<Radio />}
-                label="non professional groomer"
-              />
-              <FormControlLabel
-                value="Professional Groomer"
-                control={<Radio />}
-                label="Professional Groomer"
-              />
+              <FormControlLabel value="no" control={<Radio />} label="no" />
+              <FormControlLabel value="yes" control={<Radio />} label="yes" />
             </RadioGroup>
           </FormControl>
 
           <br />
-          {/* type of user select input*/}
-          <FormControl>
-            <InputLabel id="demo-simple-select-label">Type of user</InputLabel>
-            <Select
-              id="demo-simple-select"
-              label="Add your type of user"
-              required
-              error={typeError}
-              onChange={(e) => setType(e.target.value)}
-            >
-              <MenuItem value={'Professional Groomer'}>
-                Professional Groomer
-              </MenuItem>
-
-              <MenuItem value={'Non Professional Groomer'}>
-                Non Professional Groomer
-              </MenuItem>
-            </Select>
-          </FormControl>
-          <br />
           <FormControl>
             {/* upload button */}
-            {/* <label htmlFor="contained-button-file">
+            <label htmlFor="contained-button-file">
               <Input
                 accept="image/*"
                 id="contained-button-file"
@@ -133,13 +84,14 @@ const Profile = () => {
                 type="file"
               />
               <Button
+                value={photo}
                 variant="contained"
                 component="span"
-                onChange={uploadPhotoHandler}
+                onChange={(e) => setPhoto(e.target.value)}
               >
                 Upload Photo
               </Button>
-            </label> */}
+            </label>
           </FormControl>
           <br />
           <TextareaAutosize
@@ -149,12 +101,7 @@ const Profile = () => {
           />
           <br />
 
-          <Button
-            primary={true}
-            type="submit"
-            variant="contained"
-            endIcon={<SendIcon />}
-          >
+          <Button primary={true} type="submit" variant="contained">
             Submit
           </Button>
         </FormControl>
