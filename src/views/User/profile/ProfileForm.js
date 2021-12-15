@@ -67,6 +67,7 @@ const ProfileForm = () => {
       setEmailError(true);
     }
 
+    // testing into console
     if (name) {
       console.log(
         name,
