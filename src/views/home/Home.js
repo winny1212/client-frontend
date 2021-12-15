@@ -26,7 +26,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header title="Find tips and tricks to groom your beloved pets" />
       <Container maxWidth="lg">
         <h3>Searchbar</h3>
         <h3>Featured Posts</h3>

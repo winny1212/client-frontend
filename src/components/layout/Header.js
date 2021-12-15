@@ -13,11 +13,11 @@ const Header = ({ title, color }) => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 150,
-        bgcolor: 'accentYellow.main' || color,
+        bgcolor: color || 'accentYellow.main',
       }}
     >
-      <Typography variant="headerTitle" sx={{ p: '1rem' }}>
-        Find tips and tricks to groom your beloved pets
+      <Typography component="h1" variant="headerTitle" sx={{ p: '1rem' }}>
+        {title || `Change header title`}
       </Typography>
     </Box>
   );
