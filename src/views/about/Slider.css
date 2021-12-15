@@ -72,3 +72,18 @@
     border: 4px solid rgb(209, 209, 129);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
+
+
+  .text {
+    max-width: 35em;
+    margin: 0 auto;
+    margin-top: 2rem;
+    line-height: 2;
+    color: whitesmoke;
+  }
+  .icon {
+    font-size: 3rem;
+    margin-top: 1rem;
+    color: rgb(180, 121, 180);
+  }
+  
