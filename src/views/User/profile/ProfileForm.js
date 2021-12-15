@@ -9,11 +9,7 @@ import {
   FormControlLabel,
   Input,
 } from '@mui/material';
-//import { styled } from '@mui/material/styles';
-
-// const Input = styled('input')({
-//   display: 'none',
-// });
+import Header from '../../../components/layout/Header';
 
 const ProfileForm = () => {
   //username state
@@ -107,7 +103,7 @@ const ProfileForm = () => {
 
   return (
     <>
-      <h1> Profile </h1>
+      <Header title="Edit Profile" />
       <form onSubmit={handleSubmit}>
         <FormControl>
           {/* username */}
