@@ -22,5 +22,4 @@ const Header = ({ title, color }) => {
     </Box>
   );
 };
-
 export default Header;
