@@ -23,6 +23,14 @@ export default function About() {
             </article>
           );
         })}
+        {/* import the left icon button and set up the click function */}
+        <button className="prev" onClick={() => setIndex(index - 1)}>
+          <FiChevronLeft />
+        </button>
+        {/* import the right icon and set up the click function */}
+        <button className="next" onClick={() => setIndex(index + 1)}>
+          <FiChevronRight />
+        </button>
       </div>
     </section>
   );
