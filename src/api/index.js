@@ -1,17 +1,23 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/posts';
+// Creating an Axios Instance
+const API = axios.create({ baseURL: 'http://localhost:5000' });
 
-export const fetchAllPosts = () => axios.get(url);
+// const url = 'http://localhost:5000/posts';
+// We add out heroku base URL later
 
-export const createNewPost = (newPost) => axios.post(url, newPost);
+export const fetchAllPosts = () => API.get('/posts');
+
+export const createNewPost = (newPost) => API.post('/posts', newPost);
 
 export const updateOldPost = (id, updatedPost) =>
-  axios.patch(`${url}/${id}`, updatedPost);
+  API.patch(`'/posts'/${id}`, updatedPost);
 
-export const deleteAPost = (id) => axios.delete(`${url}/${id}`);
+export const deleteAPost = (id) => API.delete(`'/posts'/${id}`);
+
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
 // Sign in and Sign Up Routes
-export const signInUser = (formData) => axios.post('/user/signin', formData);
+export const signInUser = (formData) => API.post('/user/signin', formData);
 
-export const signUpUser = (formData) => axios.post('/user/signup', formData);
+export const signUpUser = (formData) => API.post('/user/signup', formData);
