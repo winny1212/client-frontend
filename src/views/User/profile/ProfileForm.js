@@ -28,6 +28,9 @@ const ProfileForm = () => {
   // website state
   const [website, setWebsite] = useState('');
 
+  // Social Media state
+  const [socialMedia, setSocialMedia] = useState('');
+
   //name validation
   const [nameError, setNameError] = useState(false);
 
@@ -65,7 +68,16 @@ const ProfileForm = () => {
     }
 
     if (name) {
-      console.log(name, category, fileSelected, bio, location, email, website);
+      console.log(
+        name,
+        category,
+        fileSelected,
+        bio,
+        location,
+        email,
+        website,
+        socialMedia,
+      );
     }
     // //handle upload data
     // const formData = new FormData();
@@ -100,7 +112,7 @@ const ProfileForm = () => {
           {/* username */}
           <TextField
             id="outlined-basic"
-            label="Add your name"
+            label="Username"
             variant="outlined"
             fullWidth
             required
@@ -108,21 +120,10 @@ const ProfileForm = () => {
             error={nameError}
           />
           <br />
-          {/* location */}
-          <TextField
-            id="outlined-basic"
-            label="Add your Location"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setLocation(e.target.value)}
-            error={locationError}
-          />
-          <br />
           {/* email */}
           <TextField
             id="outlined-basic"
-            label="Add your Email"
+            label="Email"
             variant="outlined"
             fullWidth
             required
@@ -130,13 +131,34 @@ const ProfileForm = () => {
             error={emailError}
           />
           <br />
+          {/* location */}
+          <TextField
+            id="outlined-basic"
+            label="Location"
+            variant="outlined"
+            fullWidth
+            required
+            onChange={(e) => setLocation(e.target.value)}
+            error={locationError}
+          />
+
+          <br />
           {/* website */}
           <TextField
             id="outlined-basic"
-            label="Add your website"
+            label="Website"
             variant="outlined"
             fullWidth
             onChange={(e) => setWebsite(e.target.value)}
+          />
+          <br />
+          {/* Social Media */}
+          <TextField
+            id="outlined-basic"
+            label="Social Media"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setSocialMedia(e.target.value)}
           />
           <br />
           {/* type of user radio button */}
@@ -172,7 +194,7 @@ const ProfileForm = () => {
           <br />
           <TextField
             id="outlined-multiline-static"
-            label="Add you Bio"
+            label="Bio"
             multiline
             rows={4}
             value={bio}
