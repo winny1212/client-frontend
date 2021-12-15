@@ -48,7 +48,7 @@ export default function About() {
 
           if (
             imageIndex === index - 1 ||
-            (index === 0 && )
+            (index === 0 && imageIndex === image.length - 1)
           ) {
             position = 'lastSlide';
           }
