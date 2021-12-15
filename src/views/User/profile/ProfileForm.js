@@ -1,99 +1,66 @@
 import React, { useState } from 'react';
 import {
+  Container,
+  Paper,
+  Typography,
+  Checkbox,
   TextField,
   FormControl,
   Button,
-  FormLabel,
-  RadioGroup,
-  Radio,
   FormControlLabel,
   Input,
 } from '@mui/material';
 import Header from '../../../components/layout/Header';
 
+const initialState = {
+  username: '',
+  email: '',
+  proGroomer: false,
+  location: '',
+  socMedia: '',
+  website: '',
+  bio: '',
+};
+
 const ProfileForm = () => {
-  //username state
-  const [name, setName] = useState('');
-
-  // email state
-  const [email, setEmail] = useState('');
-
-  // location state
-  const [location, setLocation] = useState('');
-
-  // website state
-  const [website, setWebsite] = useState('');
-
-  // Social Media state
-  const [socialMedia, setSocialMedia] = useState('');
-
-  //name validation
-  const [nameError, setNameError] = useState(false);
-
-  //location validation
-  const [locationError, setLocationError] = useState(false);
-
-  //email validation
-  const [emailError, setEmailError] = useState(false);
-
-  //set radio button to the state
-  const [category, setCategory] = useState('');
-
+  // Form Data State
+  const [formData, setFormData] = useState(initialState);
   //upload file to the state
   const [file, setFile] = useState();
   const [fileSelected, setFileSelected] = useState(false);
 
-  //text field state
-  const [bio, setBio] = useState('');
+  // Will update our formData with its respective field.
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setNameError(false);
-    setLocationError(false);
-    setEmailError(false);
-
-    console.log(file.name);
-    if (name === '') {
-      setNameError(true);
-    }
-    if (location === '') {
-      setLocationError(true);
-    }
-    if (email === '') {
-      setEmailError(true);
-    }
-
-    // testing into console
-    if (name) {
-      console.log(
-        name,
-        category,
-        fileSelected,
-        bio,
-        location,
-        email,
-        website,
-        socialMedia,
-      );
-    }
-    // //handle upload data
-    // const formData = new FormData();
-
-    // formData.append('File', file);
-
-    // console.log(file.name);
-    // fetch({
-    //   method: 'POST',
-    //   body: formData,
-    // })
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     console.log('Success:', result);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  // //handle upload data
+  // const formData = new FormData();
+
+  // formData.append('File', file);
+
+  // console.log(file.name);
+  // fetch({
+  //   method: 'POST',
+  //   body: formData,
+  // })
+  //   .then((response) => response.json())
+  //   .then((result) => {
+  //     console.log('Success:', result);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error:', error);
+  //   });
 
   // upload functionality
   const changeHandler = (event) => {
@@ -104,105 +71,121 @@ const ProfileForm = () => {
   return (
     <>
       <Header title="Edit Profile" />
-      <form onSubmit={handleSubmit}>
-        <FormControl>
-          {/* username */}
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setName(e.target.value)}
-            error={nameError}
-          />
+      <Container
+        component="main"
+        maxWidth="md"
+        sx={{ marginTop: 4, marginBottom: 4 }}
+      >
+        <Paper
+          style={{
+            padding: '10px 30px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          elevation={3}
+        >
           <br />
-          {/* email */}
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            error={emailError}
-          />
-          <br />
-          {/* location */}
-          <TextField
-            id="outlined-basic"
-            label="Location"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setLocation(e.target.value)}
-            error={locationError}
-          />
+          <form onSubmit={handleSubmit}>
+            <FormControl>
+              {/* username */}
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+                type="text"
+              />
+              <br />
+              <Typography variant="h5" sx={{ marginRight: 8, fontSize: 22 }}>
+                Are you a professional dog groomer?
+              </Typography>
+              <FormControlLabel
+                color="secondary"
+                control={<Checkbox />}
+                label="Yes"
+              />
+              <FormControlLabel
+                color="secondary"
+                control={<Checkbox />}
+                label="No"
+              />
+              <br />
+              {/* email */}
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+              />
+              <br />
+              {/* location */}
+              <TextField
+                id="outlined-basic"
+                label="Location"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+              />
+              <br />
+              {/* website */}
+              <TextField
+                id="outlined-basic"
+                label="Website"
+                variant="outlined"
+                fullWidth
+                onChange={handleChange}
+              />
+              <br />
+              {/* Social Media */}
+              <TextField
+                id="outlined-basic"
+                label="Social Media"
+                variant="outlined"
+                fullWidth
+                onChange={handleChange}
+              />
+              <br />
+              {/* upload button */}
+              <p>Please, add your photo!</p>
+              <label htmlFor="contained-button-file">
+                <Input
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  onChange={changeHandler}
+                />
 
-          <br />
-          {/* website */}
-          <TextField
-            id="outlined-basic"
-            label="Website"
-            variant="outlined"
-            fullWidth
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-          <br />
-          {/* Social Media */}
-          <TextField
-            id="outlined-basic"
-            label="Social Media"
-            variant="outlined"
-            fullWidth
-            onChange={(e) => setSocialMedia(e.target.value)}
-          />
-          <br />
-          {/* type of user radio button */}
-          <FormLabel component="legend">
-            Are you professional groomer?
-          </FormLabel>
-          <RadioGroup
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            aria-label="type of user"
-            defaultValue="no"
-            name="radio-buttons-group"
-          >
-            <FormControlLabel value="no" control={<Radio />} label="no" />
-            <FormControlLabel value="yes" control={<Radio />} label="yes" />
-          </RadioGroup>
-          <br />
-          {/* upload button */}
-          <p>Please, add your photo!</p>
-          <label htmlFor="contained-button-file">
-            <Input
-              style={{ display: 'none' }}
-              accept="image/*"
-              id="contained-button-file"
-              multiple
-              type="file"
-              onChange={changeHandler}
-            />
-            <Button variant="contained" component="span">
-              Upload Photo
-            </Button>
-          </label>
-          <br />
-          <TextField
-            id="outlined-multiline-static"
-            label="Bio"
-            multiline
-            rows={4}
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-          <br />
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
-        </FormControl>
-      </form>
+                <Button variant="contained" component="span" fullWidth>
+                  Upload Photo
+                </Button>
+                <br />
+                {/* bio */}
+
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Bio"
+                  multiline
+                  rows={4}
+                  fullWidth
+                />
+                <br />
+                {/* submit */}
+                <Button type="submit" variant="contained">
+                  Submit
+                </Button>
+              </label>
+            </FormControl>
+          </form>
+        </Paper>
+      </Container>
     </>
   );
 };
