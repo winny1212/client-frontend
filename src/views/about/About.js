@@ -4,9 +4,20 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import data from './dataSlider';
 
 export default function About() {
+  // set up the state of image in the carousel
   const [image, setImage] = useState(data);
+  //set up the index of image in the carousel
   const [index, setIndex] = React.useState(0);
 
+  // the function for image carousel, the image will slide each second
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1);
+    }, 1000);
+    return () => {
+      clearInterval(slider);
+    };
+  }, [index]);
   return (
     <section className="section">
       <div className="title">
