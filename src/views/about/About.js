@@ -74,24 +74,12 @@ export default function About() {
       <div className="para">
         <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
         <p>
-          Welcome to the Notting Hill Community Dog Blog! We are Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Dicta, ullam minima.
-          Maiores nisi iste sit necessitatibus officiis cumque distinctio
-          accusamus nesciunt asperiores dolore iusto inventore fugit ut
-          quisquam, modi saepe. Labore perferendis rem minus eius excepturi
-          aliquam eos, adipisci iure vel sunt odit, eaque qui laboriosam. Rem
-          inventore sunt sequi tempora dignissimos, debitis eligendi iste soluta
-          autem quasi explicabo excepturi. Consectetur laborum ex non minus
-          commodi doloremque dolores unde molestiae inventore? Ratione quidem
-          similique veritatis debitis consequatur maxime doloribus nemo itaque
-          aperiam quisquam magni, provident cumque sed beatae rem! Veritatis.
-          Voluptates sit commodi, porro ad quod in eum nobis totam soluta
-          aspernatur magni dicta laudantium debitis tenetur magnam adipisci, cum
-          fugiat perspiciatis voluptatum veritatis illo fugit dolore. Culpa,
-          dolorum magni. Sapiente deleniti voluptates officia nemo culpa dolor
-          at enim, corrupti facilis! Voluptas illum eius exercitationem
-          molestias, pariatur expedita voluptates hic error voluptatem, nesciunt
-          reiciendis dicta fugit. Ex doloribus corrupti voluptas.
+          Welcome to the Notting Hill Community Dog Blog! This is an platform
+          where everyone can create an online blog, dedicated to dog owners in
+          the community to post about their dog grooming tips and tricks to help
+          the community to do their own DIY dog grooming. As well as to give
+          opportunity for the professional dog groomers to get back on their
+          business again if needed as a mobile dog grooming service.
         </p>
       </div>
     </section>
