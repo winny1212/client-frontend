@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 
 import data from './dataSlider';
+import './Slider.css';
 
 export default function About() {
   // set up the state of image in the carousel
@@ -24,7 +25,7 @@ export default function About() {
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);
-    }, 1000);
+    }, 2000);
     return () => {
       clearInterval(slider);
     };
@@ -55,7 +56,7 @@ export default function About() {
 
           return (
             <article className={position} key={id}>
-              <img src={image_link} alt={title} className="person-img" />
+              <img src={image_link} alt={title} className="dog-img" />
 
               <p className="title">{title}</p>
             </article>

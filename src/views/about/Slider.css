@@ -1,0 +1,28 @@
+*,
+  ::after,
+  ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: rgb(235, 226, 226);
+    color: rgb(236, 107, 236);
+    line-height: 1.5;
+    font-size: 0.875rem;
+  }
+
+  h2{
+    letter-spacing: 0.1rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem; 
+  }
+
+  /* section */
+  .section {
+    width: 90vw;
+    margin: 5rem auto;
+    max-width: 1150px;
+  }
+  
+ 
