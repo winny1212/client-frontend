@@ -4,6 +4,9 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import data from './dataSlider';
 
 export default function About() {
+  const [image, setImage] = useState(data);
+  const [index, setIndex] = React.useState(0);
+
   return (
     <section className="section">
       <div className="title">
