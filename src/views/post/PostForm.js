@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../../components/layout/Header';
 
-const NewPost = () => {
+const PostForm = () => {
   return (
-    <div>
+    <>
       <Header title="New Post" />
-    </div>
+    </>
   );
 };
 
-export default NewPost;
+export default PostForm;
