@@ -18,7 +18,7 @@ import useStyles from './styles';
 import Input from './Input';
 
 // Import Actions
-import { signup, signin } from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 
 const initialState = {
   username: '',
