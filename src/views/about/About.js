@@ -41,6 +41,10 @@ export default function About() {
         {image.map((image, imageIndex) => {
           const { id, image_link, title } = image;
 
+          let position = 'nextSlide';
+          if (imageIndex === index) {
+            position = 'activeSlide';
+          }
           return (
             <article className={position} key={id}>
               <img src={image_link} alt={title} className="person-img" />
