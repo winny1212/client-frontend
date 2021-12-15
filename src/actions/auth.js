@@ -2,7 +2,7 @@ import { signInUser, signUpUser } from '../api/index.js';
 import { AUTH } from '../constants/actionTypes';
 
 // Sign Up
-export const signin = (formData, navigate) => async (dispatch) => {
+export const signIn = (formData, navigate) => async (dispatch) => {
   try {
     // Login the User
     const { data } = await signInUser(formData);
@@ -17,7 +17,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 };
 
 // Sign In
-export const signup = (formData, navigate) => async (dispatch) => {
+export const signUp = (formData, navigate) => async (dispatch) => {
   try {
     // Sign Up the User
     const { data } = await signUpUser(formData);

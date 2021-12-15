@@ -18,7 +18,7 @@ import useStyles from './styles';
 import Input from './Input';
 
 // Import Actions
-import { signin, signup } from '../../actions/auth';
+import { signIn, signUp } from '../../actions/auth';
 
 const initialState = {
   username: '',
@@ -66,15 +66,18 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // We should compare if the two passwords entered are correct.
 
     if (isSignup) {
+      console.log('Signing Up');
+      console.log(formData);
       // We dispatch the Sign Up Action
-      dispatch(signup(formData), navigate);
+      dispatch(signUp(formData), navigate);
     } else {
+      console.log('Signing In');
+      console.log(formData);
       // We dispatch the Sign In Action
-      dispatch(signin(formData), navigate);
+      dispatch(signIn(formData), navigate);
     }
   };
 
