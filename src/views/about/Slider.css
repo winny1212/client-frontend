@@ -86,4 +86,52 @@
     margin-top: 1rem;
     color: rgb(180, 121, 180);
   }
+  .prev,
+  .next {
+    position: absolute;
+    top: 200px;
+    transform: translateY(-50%);
+    background: rgb(221, 82, 221);
+    color: white;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: grid;
+    place-items: center;
+    border-color: transparent;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s linear;
+  }
+  .prev:hover,
+  .next:hover {
+    background: grey;
+  }
+  .prev {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+  h3{
+      padding-bottom: 10px;
+  }
+  .para {
+    width:700px;
+    margin: auto;
+    padding: 15px;
+    color: rgb(175, 98, 175);
+    border: 3px dashed rgb(228, 155, 228);
+    box-shadow: purple;
+  }
   
+  article.activeSlide {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  article.lastSlide {
+    transform: translateX(-100%);
+  }
+  article.nextSlide {
+    transform: translateX(100%);
+  }
