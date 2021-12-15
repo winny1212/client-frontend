@@ -45,6 +45,14 @@ export default function About() {
           if (imageIndex === index) {
             position = 'activeSlide';
           }
+
+          if (
+            imageIndex === index - 1 ||
+            (index === 0 && )
+          ) {
+            position = 'lastSlide';
+          }
+
           return (
             <article className={position} key={id}>
               <img src={image_link} alt={title} className="person-img" />
