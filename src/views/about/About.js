@@ -9,6 +9,16 @@ export default function About() {
   //set up the index of image in the carousel
   const [index, setIndex] = React.useState(0);
 
+  //if the current index of image is smaller than 0, we will change it to the last index of image, if it is greater than the last index, we will set it to the 0.
+  useEffect(() => {
+    const lastIndex = image.length - 1;
+    if (index < 0) {
+      setIndex(lastIndex);
+    }
+    if (index > lastIndex) {
+      setIndex(0);
+    }
+  }, [index, image]);
   // the function for image carousel, the image will slide each second
   useEffect(() => {
     let slider = setInterval(() => {
