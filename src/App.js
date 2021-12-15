@@ -9,6 +9,7 @@ import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
 import Footer from './components/footer/Footer';
+// import Post from './components/posts/post/Post';
 
 function App() {
   return (
@@ -20,9 +21,15 @@ function App() {
           <Route exact path="/about" element={<About />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
+
+          {/* NEED TO FIGURE OUT TO LINK TO INDIVIDUAL POST -- will update */}
+          {/* <Route path="/posts/:postId">
+            <Post />
+          </Route> */}
+
           <Route exact path="/create" element={<Form />}></Route>
 
-          {/* create a route for Profile but shoul just render once user login, need add logic */}
+          {/* create a route for Profile but should just render once user login, need add logic */}
           <Route exact path="/profile" element={<ProfileForm />}></Route>
         </Routes>
         <Footer />

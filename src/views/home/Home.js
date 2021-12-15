@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import Posts from '../../components/posts/Posts';
+import Header from '../../components/layout/Header';
+
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../actions/posts';
 
@@ -10,6 +12,7 @@ import { UserContext } from '../../Context/UserContext';
 import Container from '@mui/material/Container';
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
+// import Typography from '@mui/material/Typography';
 
 function Home() {
   const dispatch = useDispatch();
@@ -22,13 +25,14 @@ function Home() {
   }, [dispatch, currentId]);
 
   return (
-    <Container maxWidth="lg">
-      <h1>Home Page</h1>
-      <h3>Searchbar</h3>
-      <h3>Featured Posts</h3>
-      <hr />
-      <Posts />
-    </Container>
+    <>
+      <Header title="Find tips and tricks to groom your beloved pets" />
+      <Container maxWidth="lg">
+        <h3>Searchbar</h3>
+        <h3>Featured Posts</h3>
+        <Posts />
+      </Container>
+    </>
   );
 }
 
