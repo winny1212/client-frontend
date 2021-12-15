@@ -12,6 +12,7 @@ const Header = ({ title, color }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        mb: '2rem',
         height: 150,
         bgcolor: color || 'accentYellow.main',
       }}

@@ -1,10 +1,11 @@
 import React from 'react';
+import Post from '../../components/posts/post/Post';
 
 const IndPost = () => {
   return (
-    <div>
-      <h3>Individual Post View Page</h3>
-    </div>
+    <>
+      <Post />
+    </>
   );
 };
 

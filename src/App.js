@@ -9,6 +9,7 @@ import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
 import Footer from './components/footer/Footer';
+import NewPost from './views/post/NewPost';
 // import Post from './components/posts/post/Post';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Post />
           </Route> */}
 
+          <Route path="/post/new" element={<NewPost />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
 
           {/* create a route for Profile but should just render once user login, need add logic */}
