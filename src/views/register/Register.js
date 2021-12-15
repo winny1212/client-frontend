@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Avatar,
   Button,
@@ -13,6 +17,9 @@ import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
 import Input from './Input';
 
+// Import Actions
+import { signIn, signUp } from '../../actions/auth';
+
 const initialState = {
   username: '',
   proGroomer: false,
@@ -24,6 +31,9 @@ const initialState = {
 };
 
 export default function Register() {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(true);
@@ -56,11 +66,18 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // We should compare if the two passwords entered are correct.
 
     if (isSignup) {
+      console.log('Signing Up');
+      console.log(formData);
       // We dispatch the Sign Up Action
+      // dispatch(signUp(formData), navigate);
     } else {
+      console.log('Signing In');
+      console.log(formData);
       // We dispatch the Sign In Action
+      // dispatch(signIn(formData), navigate);
     }
   };
 
