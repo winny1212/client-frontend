@@ -72,12 +72,12 @@ export default function Register() {
       console.log('Signing Up');
       console.log(formData);
       // We dispatch the Sign Up Action
-      dispatch(signUp(formData), navigate);
+      // dispatch(signUp(formData), navigate);
     } else {
       console.log('Signing In');
       console.log(formData);
       // We dispatch the Sign In Action
-      dispatch(signIn(formData), navigate);
+      // dispatch(signIn(formData), navigate);
     }
   };
 
