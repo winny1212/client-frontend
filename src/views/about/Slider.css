@@ -25,4 +25,31 @@
     max-width: 1150px;
   }
   
- 
+  @media screen and (min-width: 992px) {
+    .section {
+      width: 95vw;
+    }
+  }
+  /*
+  =============== 
+  Slider
+  ===============
+  */
+  .title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .title h2 {
+   color:darkorchid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  .title span {
+    font-size: 0.85em;
+    color: rgb(236, 107, 236);
+    margin-right: 1rem;
+    font-weight: 700;
+  }
+  
