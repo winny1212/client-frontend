@@ -1,17 +1,21 @@
 import React from 'react';
+import Header from '../../../components/layout/Header';
 
 export const validateInput = (str = '') => str.includes('@');
 
 export default function Login() {
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input type="text" id="email" name="email" />
+    <>
+      <Header />
+      <form>
+        <label htmlFor="email">Email:</label>
+        <input type="text" id="email" name="email" />
 
-      <label htmlFor="password">Password:</label>
-      <input type="password" name="password" />
+        <label htmlFor="password">Password:</label>
+        <input type="password" name="password" />
 
-      <button type="submit">submit</button>
-    </form>
+        <button type="submit">submit</button>
+      </form>
+    </>
   );
 }

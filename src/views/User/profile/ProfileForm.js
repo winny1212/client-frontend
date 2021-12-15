@@ -1,67 +1,66 @@
 import React, { useState } from 'react';
 import {
+  Container,
+  Paper,
+  Typography,
+  Checkbox,
   TextField,
   FormControl,
   Button,
-  FormLabel,
-  RadioGroup,
-  Radio,
   FormControlLabel,
   Input,
 } from '@mui/material';
-//import { styled } from '@mui/material/styles';
+import Header from '../../../components/layout/Header';
 
-// const Input = styled('input')({
-//   display: 'none',
-// });
+const initialState = {
+  username: '',
+  email: '',
+  proGroomer: false,
+  location: '',
+  socMedia: '',
+  website: '',
+  bio: '',
+};
 
-const Profile = () => {
-  //user name state
-  const [name, setName] = useState('');
-
-  //error user name
-  const [nameError, setNameError] = useState(false);
-
-  //set radio button to the state
-  const [category, setCategory] = useState('');
-
+const ProfileForm = () => {
+  // Form Data State
+  const [formData, setFormData] = useState(initialState);
   //upload file to the state
   const [file, setFile] = useState();
   const [fileSelected, setFileSelected] = useState(false);
 
-  //text field state
-  const [bio, setBio] = useState('');
+  // Will update our formData with its respective field.
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setNameError(false);
-
-    console.log(file.name);
-    if (name === '') {
-      setNameError(true);
-    }
-
-    if (name && fileSelected) {
-      console.log(name, category, fileSelected, bio);
-    }
-    // //handle upload data
-    // const formData = new FormData();
-
-    // formData.append('File', file);
-
-    // console.log(file.name);
-    // fetch({
-    //   method: 'POST',
-    //   body: formData,
-    // })
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     console.log('Success:', result);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  // //handle upload data
+  // const formData = new FormData();
+
+  // formData.append('File', file);
+
+  // console.log(file.name);
+  // fetch({
+  //   method: 'POST',
+  //   body: formData,
+  // })
+  //   .then((response) => response.json())
+  //   .then((result) => {
+  //     console.log('Success:', result);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error:', error);
+  //   });
 
   // upload functionality
   const changeHandler = (event) => {
@@ -71,78 +70,124 @@ const Profile = () => {
 
   return (
     <>
-      <h1> Profile </h1>
-      <form onSubmit={handleSubmit}>
-        <FormControl>
-          {/* user name */}
-          <FormControl>
-            <TextField
-              id="outlined-basic"
-              label="Add your name"
-              variant="outlined"
-              fullWidth
-              required
-              onChange={(e) => setName(e.target.value)}
-              error={nameError}
-            />
-          </FormControl>
+      <Header title="Edit Profile" />
+      <Container
+        component="main"
+        maxWidth="md"
+        sx={{ marginTop: 4, marginBottom: 4 }}
+      >
+        <Paper
+          style={{
+            padding: '10px 30px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          elevation={3}
+        >
           <br />
-
-          {/* type of user radio button */}
-          <FormControl component="fieldset">
-            <FormLabel component="legend">
-              Are you professional groomer?
-            </FormLabel>
-            <RadioGroup
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              aria-label="type of user"
-              defaultValue="no"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel value="no" control={<Radio />} label="no" />
-              <FormControlLabel value="yes" control={<Radio />} label="yes" />
-            </RadioGroup>
-          </FormControl>
-
-          <br />
-          <FormControl>
-            {/* upload button */}
-            <p>Please, add your photo!</p>
-            <label htmlFor="contained-button-file">
-              <Input
-                style={{ display: 'none' }}
-                accept="image/*"
-                id="contained-button-file"
-                multiple
-                type="file"
-                onChange={changeHandler}
+          <form onSubmit={handleSubmit}>
+            <FormControl>
+              {/* username */}
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+                type="text"
               />
-              <Button variant="contained" component="span">
-                Upload Photo
-              </Button>
-            </label>
-          </FormControl>
-          <br />
-          <div>
-            <TextField
-              id="outlined-multiline-static"
-              label="Add you Bio"
-              multiline
-              rows={4}
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            />
-          </div>
-          <br />
+              <br />
+              <Typography variant="h5" sx={{ marginRight: 8, fontSize: 22 }}>
+                Are you a professional dog groomer?
+              </Typography>
+              <FormControlLabel
+                color="secondary"
+                control={<Checkbox />}
+                label="Yes"
+              />
+              <FormControlLabel
+                color="secondary"
+                control={<Checkbox />}
+                label="No"
+              />
+              <br />
+              {/* email */}
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+              />
+              <br />
+              {/* location */}
+              <TextField
+                id="outlined-basic"
+                label="Location"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+              />
+              <br />
+              {/* website */}
+              <TextField
+                id="outlined-basic"
+                label="Website"
+                variant="outlined"
+                fullWidth
+                onChange={handleChange}
+              />
+              <br />
+              {/* Social Media */}
+              <TextField
+                id="outlined-basic"
+                label="Social Media"
+                variant="outlined"
+                fullWidth
+                onChange={handleChange}
+              />
+              <br />
+              {/* upload button */}
+              <p>Please, add your photo!</p>
+              <label htmlFor="contained-button-file">
+                <Input
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  onChange={changeHandler}
+                />
 
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
-        </FormControl>
-      </form>
+                <Button variant="contained" component="span" fullWidth>
+                  Upload Photo
+                </Button>
+                <br />
+                {/* bio */}
+
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Bio"
+                  multiline
+                  rows={4}
+                  fullWidth
+                />
+                <br />
+                {/* submit */}
+                <Button type="submit" variant="contained">
+                  Submit
+                </Button>
+              </label>
+            </FormControl>
+          </form>
+        </Paper>
+      </Container>
     </>
   );
 };
 
-export default Profile;
+export default ProfileForm;
