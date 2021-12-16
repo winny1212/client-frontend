@@ -41,10 +41,20 @@ const Profile = () => {
               {' '}
               {profile.username}
             </Typography>{' '}
+            {/* bagde details */}
+            <Typography
+              align="left"
+              style={{ marginTop: '2rem' }}
+              variant="body1"
+              component="div"
+            >
+              {' '}
+              ******************the bagde goes here!!!!!******************
+            </Typography>{' '}
             {/* location details */}
             <Typography
               align="left"
-              style={{ marginTop: '3rem' }}
+              style={{ marginTop: '2rem' }}
               variant="subtitle1"
               component="div"
             >
