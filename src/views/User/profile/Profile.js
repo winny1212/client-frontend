@@ -1,5 +1,6 @@
 import React from 'react';
-//import Header from '../../../components/layout/Header';
+import { useNavigate } from 'react-router-dom';
+import ProfileForm from '../../User/profile/ProfileForm';
 import { useSelector } from 'react-redux';
 import {
   Typography,
@@ -11,6 +12,10 @@ import {
 } from '@mui/material';
 
 const Profile = () => {
+  //redirect the edit button to the Profile Form page.
+  const navigate = useNavigate();
+  navigate('/profileForm');
+
   //import the Data from usersData
   const profile = useSelector((state) => {
     return state.profileReducer;
@@ -113,6 +118,7 @@ const Profile = () => {
               color="secondary"
               variant="contained"
               size="small"
+              onClick={navigate}
             >
               Edit
             </Button>
