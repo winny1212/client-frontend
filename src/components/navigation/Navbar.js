@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -20,6 +21,11 @@ import { useStyles } from '../../components/navigation/styles';
 function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
+
+  //usersData set with reducer
+  const profile = useSelector((state) => {
+    return state.profileReducer;
+  });
 
   //styles
   const classes = useStyles();
@@ -51,21 +57,33 @@ function Navbar() {
                     <Button variant="container" href="/">
                       Home
                     </Button>
-                    <Button href="/register" variant="container">
-                      Register
-                    </Button>
                     <Button href="/about" variant="container">
                       About
                     </Button>
-                    <Button href="/login" variant="container">
-                      Login
-                    </Button>
-                    <Button href="/profile" variant="container">
-                      Profile
-                    </Button>
-                    <Button href="/create" variant="container">
-                      Create a Post
-                    </Button>
+
+                    {/* logic for render routes if user is login  */}
+                    {profile ? (
+                      <>
+                        <Button href="/profile" variant="container">
+                          Profile
+                        </Button>
+                        <Button href="/create" variant="container">
+                          Create a Post
+                        </Button>
+                        <Button href="/logout" variant="container">
+                          Logout
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button href="/register" variant="container">
+                          Register
+                        </Button>
+                        <Button href="/login" variant="container">
+                          Login
+                        </Button>
+                      </>
+                    )}
                   </Container>
                 </>
               ) : (
