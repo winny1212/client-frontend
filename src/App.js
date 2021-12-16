@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />}></Route>
 
           {/* create a route for Profile but should just render once user login, need add logic */}
-          <Route exact path="/profileForm" element={<ProfileForm />}></Route>
+          <Route exact path="/profile/edit" element={<ProfileForm />}></Route>
         </Routes>
         <Footer />
       </Router>

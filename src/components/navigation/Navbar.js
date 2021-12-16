@@ -60,6 +60,9 @@ function Navbar() {
                     <Button href="/login" variant="container">
                       Login
                     </Button>
+                    <Button href="/profile" variant="container">
+                      Profile
+                    </Button>
                     <Button href="/create" variant="container">
                       Create a Post
                     </Button>

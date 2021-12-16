@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import ProfileForm from '../../User/profile/ProfileForm';
 import { useSelector } from 'react-redux';
 import {
   Typography,
@@ -10,12 +8,9 @@ import {
   Container,
   Button,
 } from '@mui/material';
+import PetsIcon from '@mui/icons-material/Pets';
 
 const Profile = () => {
-  //redirect the edit button to the Profile Form page.
-  const navigate = useNavigate();
-  navigate('/profileForm');
-
   //import the Data from usersData
   const profile = useSelector((state) => {
     return state.profileReducer;
@@ -54,15 +49,19 @@ const Profile = () => {
               {profile.username}
             </Typography>{' '}
             {/* bagde details */}
-            <Typography
-              align="left"
-              style={{ marginTop: '1rem' }}
-              variant="body1"
-              component="div"
-            >
-              {' '}
-              ******************the bagde goes here!!!!!******************
-            </Typography>{' '}
+            {profile.proGroomer ? (
+              <Typography
+                align="left"
+                style={{ marginTop: '1rem', marginLeft: '1rem' }}
+                variant="body1"
+                component="div"
+              >
+                <PetsIcon />
+                Professional Groomer
+              </Typography>
+            ) : (
+              ' '
+            )}
             {/* location details */}
             <Typography
               align="left"
@@ -118,7 +117,7 @@ const Profile = () => {
               color="secondary"
               variant="contained"
               size="small"
-              onClick={navigate}
+              href="/profile/edit"
             >
               Edit
             </Button>
