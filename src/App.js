@@ -10,7 +10,7 @@ import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
 import Profile from './views/User/profile/Profile';
 import Footer from './components/footer/Footer';
-import NewPost from './views/post/NewPost';
+import PostForm from './views/post/PostForm';
 // import Post from './components/posts/post/Post';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
             <Post />
           </Route> */}
 
-          <Route path="/post/new" element={<NewPost />}></Route>
+          <Route path="/post/new" element={<PostForm />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
 
           <Route exact path="/profile" element={<Profile />}></Route>
