@@ -4,6 +4,8 @@ import usersData from '../data/usersData';
 // it is imported at Profile.js
 const profileReducer = (state = null, action) => {
   return usersData[0];
+
+  // user is not login
   //return null;
 };
 

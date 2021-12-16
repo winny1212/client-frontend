@@ -16,7 +16,6 @@ const Profile = () => {
     return state.profileReducer;
   });
 
-  console.log(profile.avatar);
   return (
     <>
       <Container>
@@ -52,7 +51,7 @@ const Profile = () => {
             {profile.proGroomer ? (
               <Typography
                 align="left"
-                style={{ marginTop: '1rem', marginLeft: '1rem' }}
+                style={{ marginTop: '1rem' }}
                 variant="body1"
                 component="div"
               >
@@ -66,7 +65,7 @@ const Profile = () => {
             <Typography
               align="left"
               style={{ marginTop: '1rem' }}
-              variant="subtitle1"
+              variant="body1"
               component="div"
             >
               {' '}
@@ -76,7 +75,7 @@ const Profile = () => {
             <Typography
               align="left"
               style={{ marginTop: '1rem' }}
-              variant="subtitle1"
+              variant="body1"
               component="div"
             >
               {' '}
@@ -86,7 +85,7 @@ const Profile = () => {
             <Typography
               align="left"
               style={{ marginTop: '1rem' }}
-              variant="subtitle1"
+              variant="body1"
               component="div"
             >
               {' '}
