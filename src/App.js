@@ -8,6 +8,7 @@ import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
+import Profile from './views/User/profile/Profile';
 import Footer from './components/footer/Footer';
 import NewPost from './views/post/NewPost';
 // import Post from './components/posts/post/Post';
@@ -31,8 +32,10 @@ function App() {
           <Route path="/post/new" element={<NewPost />}></Route>
           <Route exact path="/create" element={<Form />}></Route>
 
+          <Route exact path="/profile" element={<Profile />}></Route>
+
           {/* create a route for Profile but should just render once user login, need add logic */}
-          <Route exact path="/profile" element={<ProfileForm />}></Route>
+          <Route exact path="/profile/edit" element={<ProfileForm />}></Route>
         </Routes>
         <Footer />
       </Router>

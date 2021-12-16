@@ -1,21 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../../components/layout/Header';
+import {
+  Container,
+  Paper,
+  FormControl,
+  TextField,
+  Button,
+} from '@mui/material';
+
+const initialState = {
+  email: '',
+  password: '',
+};
 
 export const validateInput = (str = '') => str.includes('@');
 
 export default function Login() {
+  const [data, setData] = useState(initialState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target.value;
+    setData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
-      <Header />
-      <form>
-        <label htmlFor="email">Email:</label>
-        <input type="text" id="email" name="email" />
-
-        <label htmlFor="password">Password:</label>
-        <input type="password" name="password" />
-
-        <button type="submit">submit</button>
-      </form>
+      <Header title="Please enter you details for login" />
+      <Container component="main" style={{ marginTop: 30, marginBottom: 30 }}>
+        <Paper
+          style={{
+            padding: '10px 30px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          elevation={3}
+        >
+          <form onSubmit={handleSubmit}>
+            <FormControl>
+              {/* Email */}
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+                type="text"
+              />
+              <br />
+              {/* Password */}
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={handleChange}
+                type="password"
+              />
+              <br />
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </FormControl>
+          </form>
+        </Paper>
+      </Container>
     </>
   );
 }
