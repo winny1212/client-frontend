@@ -1,7 +1,14 @@
 import React from 'react';
 //import Header from '../../../components/layout/Header';
 import { useSelector } from 'react-redux';
-import { Typography, Grid, Card, CardMedia, Container } from '@mui/material';
+import {
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  Container,
+  Button,
+} from '@mui/material';
 
 const Profile = () => {
   //import the Data from usersData
@@ -13,12 +20,12 @@ const Profile = () => {
   return (
     <>
       <Container>
-        <Grid style={{ marginBottom: '4rem' }} container spacing={2}>
+        <Grid style={{ marginBottom: '2rem' }} container spacing={2}>
           <Grid item xs={6} md={4}>
             <Card
               style={{
                 marginTop: '4rem',
-                marginLeft: '3rem',
+                marginLeft: '2rem',
                 marginRight: '2rem',
               }}
             >
@@ -44,7 +51,7 @@ const Profile = () => {
             {/* bagde details */}
             <Typography
               align="left"
-              style={{ marginTop: '2rem' }}
+              style={{ marginTop: '1rem' }}
               variant="body1"
               component="div"
             >
@@ -54,7 +61,7 @@ const Profile = () => {
             {/* location details */}
             <Typography
               align="left"
-              style={{ marginTop: '2rem' }}
+              style={{ marginTop: '1rem' }}
               variant="subtitle1"
               component="div"
             >
@@ -93,6 +100,32 @@ const Profile = () => {
             </Typography>{' '}
           </Grid>
         </Grid>
+        <form>
+          <Grid
+            container
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="flex-end"
+          >
+            <Button
+              style={{ marginRight: '20px' }}
+              type="submit"
+              color="secondary"
+              variant="contained"
+              size="small"
+            >
+              Edit
+            </Button>
+            <Button
+              type="submit"
+              color="secondary"
+              variant="contained"
+              size="small"
+            >
+              Delete
+            </Button>
+          </Grid>
+        </form>
       </Container>
     </>
   );
