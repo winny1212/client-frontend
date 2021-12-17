@@ -87,7 +87,7 @@ const theme = (mode) =>
         fontFamily: global.fontSecondary,
         fontWeight: 600,
         letterSpacing: 1,
-        // textTransform: 'uppercase',
+        textTransform: 'capitalize',
       },
       subtitle1: {
         fontFamily: global.fontSecondary,

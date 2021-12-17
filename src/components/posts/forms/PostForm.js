@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 // import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -51,8 +52,8 @@ function PostForm() {
         </Grid>
         <Grid item xs={12} md={12}>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <Button variant="outlined">Save Draft</Button>
-            <Button variant="contained">Publish</Button>
+            <StyledBtnOutlined>Save Draft</StyledBtnOutlined>
+            <StyledBtn>Publish</StyledBtn>
           </Stack>
         </Grid>
       </Grid>
