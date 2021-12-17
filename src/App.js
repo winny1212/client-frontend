@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './index.css';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,36 +25,38 @@ import ErrorPage from './views/error/ErrorPage';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App wrapper">
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+        <main className="content-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
 
-          {/* NEED TO FIGURE OUT TO LINK TO INDIVIDUAL POST -- will update */}
-          {/* <Route path="/posts/:postId">
-            <Post />
-          </Route> */}
+            {/* NEED TO FIGURE OUT TO LINK TO INDIVIDUAL POST -- will update */}
+            {/* <Route path="/posts/:postId">
+              <Post />
+            </Route> */}
 
-          <Route path="posts" element={<Navigate replace to="/" />} />
-          {/* EDIT: /posts/:id/edit */}
-          <Route path="posts/:postID" element={<PostId />} />
-          <Route path="posts/new" element={<PostForm />} />
+            <Route path="posts" element={<Navigate replace to="/" />} />
+            {/* EDIT: /posts/:id/edit */}
+            <Route path="posts/new" element={<PostForm />} />
+            <Route path="posts/:postID" element={<PostId />} />
 
-          {/* Temporary routes for view only */}
-          <Route path="/create" element={<Form />} />
-          <Route path="/edit" element={<UpdateForm />} />
+            {/* Temporary routes for view only */}
+            <Route path="/create" element={<Form />} />
+            <Route path="/edit" element={<UpdateForm />} />
 
-          <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
 
-          {/* create a route for Profile but should just render once user login, need add logic */}
-          <Route path="/profile/edit" element={<ProfileForm />} />
+            {/* create a route for Profile but should just render once user login, need add logic */}
+            <Route path="/profile/edit" element={<ProfileForm />} />
 
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </main>
         <Footer />
       </Router>
     </div>
