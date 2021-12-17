@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import defaultImg from '../../assets/img/diyg_default_img_01.png';
 
 // MUI
@@ -17,14 +17,11 @@ import { CardActionArea } from '@mui/material';
 // <Link to={`/post/${post._id}`} className="link">
 
 const PostCard = ({ post }) => {
-  // const handlePostLink = (post) => {
-  //   console.log(`Card has been clicked`);
-  //   return <Link to={`/post/${post._id}`}></Link>;
-  // };
+  const { postID } = useParams();
 
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
-    <CardActionArea component={RouterLink} to="/about">
+    <CardActionArea component={RouterLink} to={`/posts/${postID}`}>
       <Card
         sx={{
           display: 'flex',

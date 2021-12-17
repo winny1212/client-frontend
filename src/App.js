@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import Login from './components/Users/Login/Login';
 import Home from './views/home/Home';
 import Register from './views/register/Register';
@@ -11,6 +16,10 @@ import ProfileForm from './views/User/profile/ProfileForm';
 import Profile from './views/User/profile/Profile';
 import Footer from './components/footer/Footer';
 import PostForm from './views/post/PostForm';
+import Post from './components/posts/post/Post';
+import PostId from './views/post/PostId';
+import UpdateForm from './views/form/UpdateForm';
+import ErrorPage from './views/error/ErrorPage';
 // import Post from './components/posts/post/Post';
 
 function App() {
@@ -19,23 +28,31 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/about" element={<About />}></Route>
-          <Route exact path="/register" element={<Register />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
           {/* NEED TO FIGURE OUT TO LINK TO INDIVIDUAL POST -- will update */}
           {/* <Route path="/posts/:postId">
             <Post />
           </Route> */}
 
-          <Route path="/post/new" element={<PostForm />}></Route>
-          <Route exact path="/create" element={<Form />}></Route>
+          <Route path="posts" element={<Navigate replace to="/" />} />
+          {/* EDIT: /posts/:id/edit */}
+          <Route path="posts/:postID" element={<PostId />} />
+          <Route path="posts/new" element={<PostForm />} />
 
-          <Route exact path="/profile" element={<Profile />}></Route>
+          {/* Temporary routes for view only */}
+          <Route path="/create" element={<Form />} />
+          <Route path="/edit" element={<UpdateForm />} />
+
+          <Route path="/profile" element={<Profile />} />
 
           {/* create a route for Profile but should just render once user login, need add logic */}
-          <Route exact path="/profile/edit" element={<ProfileForm />}></Route>
+          <Route path="/profile/edit" element={<ProfileForm />} />
+
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </Router>
