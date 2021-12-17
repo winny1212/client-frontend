@@ -17,14 +17,14 @@ import { CardActionArea } from '@mui/material';
 // <Link to={`/post/${post._id}`} className="link">
 
 const PostCard = ({ post }) => {
-  // const handlePostLink = (post) => {
-  //   console.log(`Card has been clicked`);
-  //   return <Link to={`/post/${post._id}`}></Link>;
-  // };
+  // const { postID } = useParams();
+  console.log('--', post);
+  // console.log(`postID: ${postID}`);
+  console.log(`post._id: ${post._id}`);
 
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
-    <CardActionArea component={RouterLink} to="/about">
+    <CardActionArea component={RouterLink} to={`/posts/${post._id}`}>
       <Card
         sx={{
           display: 'flex',
