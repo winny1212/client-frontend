@@ -1,5 +1,7 @@
 import React from 'react';
+// eslint-disable-next-line
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+// eslint-disable-next-line
 import { useSelector } from 'react-redux';
 import Header from '../../components/layout/Header';
 // import Post from '../../components/posts/post/Post';
@@ -7,10 +9,10 @@ import Header from '../../components/layout/Header';
 const PostId = () => {
   // define the post/:id params from App.js
   const { postID } = useParams();
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
 
-  const posts = useSelector((state) => state.postsReducer);
+  // const posts = useSelector((state) => state.postsReducer);
 
   return (
     <>

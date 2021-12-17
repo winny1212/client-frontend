@@ -16,8 +16,7 @@ import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
 import Profile from './views/User/profile/Profile';
 import Footer from './components/footer/Footer';
-import PostForm from './views/post/PostForm';
-import Post from './components/posts/post/Post';
+import NewPost from './views/post/NewPost';
 import PostId from './views/post/PostId';
 import UpdateForm from './views/form/UpdateForm';
 import ErrorPage from './views/error/ErrorPage';
@@ -42,7 +41,7 @@ function App() {
 
             <Route path="posts" element={<Navigate replace to="/" />} />
             {/* EDIT: /posts/:id/edit */}
-            <Route path="posts/new" element={<PostForm />} />
+            <Route path="posts/new" element={<NewPost />} />
             <Route path="posts/:postID" element={<PostId />} />
 
             {/* Temporary routes for view only */}
