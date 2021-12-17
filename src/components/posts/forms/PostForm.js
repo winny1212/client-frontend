@@ -8,8 +8,10 @@ import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
+import DetailsForm from './DetailsForm';
+import FormLayout from '../../shared/FormLayout';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -24,6 +26,7 @@ const initialPostData = {
   steps: [],
   image: { before: '', after: '' },
   video: '',
+  createdAt: '',
 };
 
 function PostForm() {
@@ -31,12 +34,13 @@ function PostForm() {
   const [postData, setPostData] = useState(initialPostData);
   console.log(postData);
 
-  const handleSubmit = (e) => {
+  const handlePublish = (e) => {
     e.preventDefault();
+    console.log('Post Published!');
   };
 
   return (
-    <>
+    <FormLayout>
       <Grid
         container
         direction="row"
@@ -45,19 +49,21 @@ function PostForm() {
         justifyContent="center"
       >
         <Grid item xs={12} md={4}>
-          <h3>General Post Info</h3>
+          <DetailsForm />
         </Grid>
+
         <Grid item xs={12} md={8}>
           <StepsForm />
         </Grid>
+
         <Grid item xs={12} md={12}>
           <Stack spacing={2} direction="row" justifyContent="center">
             <StyledBtnOutlined>Save Draft</StyledBtnOutlined>
-            <StyledBtn>Publish</StyledBtn>
+            <StyledBtn onSubmit={handlePublish}>Publish</StyledBtn>
           </Stack>
         </Grid>
       </Grid>
-    </>
+    </FormLayout>
   );
 }
 
