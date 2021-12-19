@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 import DetailsForm from './DetailsForm';
 import FormLayout from '../../shared/FormLayout';

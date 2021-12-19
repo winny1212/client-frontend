@@ -1,9 +1,10 @@
 import TextField from '@mui/material/TextField';
 
-function FormInput({ children }) {
+function FormInput(props) {
+  const { ...inputProps } = props;
   return (
     <>
-      <TextField>FORM INPUT</TextField>
+      <TextField sx={{}} {...inputProps} />
     </>
   );
 }

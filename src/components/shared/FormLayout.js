@@ -6,7 +6,7 @@ const FormLayout = ({ children }) => {
   return (
     <>
       <Paper elevation={0} sx={{ p: '1.5rem' }}>
-        <Box component="form" autoComplete="off" sx={{}}>
+        <Box component="form" sx={{}}>
           {children}
         </Box>
       </Paper>

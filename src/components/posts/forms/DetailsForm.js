@@ -1,4 +1,5 @@
 import React from 'react';
+import FormInput from '../../shared/FormInput';
 
 function DetailsForm() {
   return (
