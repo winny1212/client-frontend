@@ -33,3 +33,7 @@ code {
 .content-wrapper {
   flex: 1;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}

@@ -1,8 +1,10 @@
 import Button from '@mui/material/Button';
 
-export const StyledBtn = ({ children }) => {
+export const StyledBtn = (props) => {
+  const { children, ...inputProps } = props;
   return (
     <Button
+      {...inputProps}
       variant="contained"
       disableElevation
       sx={{
@@ -15,9 +17,11 @@ export const StyledBtn = ({ children }) => {
   );
 };
 
-export const StyledBtnOutlined = ({ children }) => {
+export const StyledBtnOutlined = (props) => {
+  const { children, ...inputProps } = props;
   return (
     <Button
+      {...inputProps}
       variant="outlined"
       disableElevation
       sx={{
