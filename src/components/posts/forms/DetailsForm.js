@@ -32,8 +32,9 @@ function DetailsForm(props) {
   } = props;
 
   const handleTools = (e) => {
-    const tools = splitWords(e.target.value);
-    console.log(tools);
+    return e.target.value;
+    // const tools = splitWords(e.target.value);
+    // console.log(tools);
   };
 
   return (
@@ -112,7 +113,7 @@ function DetailsForm(props) {
         id="tools"
         helperText="Separate each with a comma"
         value={toolsValue}
-        onChange={(e, tools) => setToolsValue(splitWords(tools))}
+        onChange={handleTools}
       />
 
       <Stack spacing={1}>

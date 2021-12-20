@@ -41,7 +41,6 @@ function PostForm() {
   const [postData, setPostData] = useState(initialPostData);
 
   console.log(postData);
-  console.log(selectedBreed);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
