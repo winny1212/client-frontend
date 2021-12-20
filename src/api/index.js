@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Creating an Axios Instance
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+export const API = axios.create({ baseURL: 'http://localhost:5000' });
 
 // const url = 'http://localhost:5000/posts';
 // We add out heroku base URL later

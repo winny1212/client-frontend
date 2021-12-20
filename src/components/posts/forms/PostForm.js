@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
-// Components
+// Components & Data
 import StepsForm from './StepsForm';
+import breeds from '../../../data/breedsData.js';
 
 // MUI
 import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
+// eslint-disable-next-line
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 import DetailsForm from './DetailsForm';
 import FormLayout from '../../shared/FormLayout';
@@ -26,7 +28,6 @@ const initialPostData = {
   steps: [],
   image: { before: '', after: '' },
   video: '',
-  createdAt: '',
 };
 
 function PostForm() {
@@ -34,35 +35,44 @@ function PostForm() {
   const [postData, setPostData] = useState(initialPostData);
   console.log(postData);
 
+  const handleChange = (e) => {};
+
   const handlePublish = (e) => {
-    e.preventDefault();
     console.log('Post Published!');
+    e.preventDefault();
   };
 
   return (
     <FormLayout>
-      <Grid
-        container
-        direction="row"
-        spacing={2}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Grid item xs={12} md={4}>
-          <DetailsForm />
-        </Grid>
+      <form onSubmit={handlePublish}>
+        <Grid
+          container
+          direction="row"
+          spacing={3}
+          // alignItems="center"
+          // justifyContent="center"
+        >
+          <Grid item xs={12} md={4}>
+            <DetailsForm
+              onChange={handleChange}
+              postData={postData}
+              setPostData={setPostData}
+              breeds={breeds}
+            />
+          </Grid>
 
-        <Grid item xs={12} md={8}>
-          <StepsForm />
-        </Grid>
+          <Grid item xs={12} md={8}>
+            <StepsForm />
+          </Grid>
 
-        <Grid item xs={12} md={12}>
-          <Stack spacing={2} direction="row" justifyContent="center">
-            <StyledBtnOutlined>Save Draft</StyledBtnOutlined>
-            <StyledBtn onSubmit={handlePublish}>Publish</StyledBtn>
-          </Stack>
+          <Grid item xs={12} md={12}>
+            <Stack spacing={2} direction="row" justifyContent="center">
+              {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
+              <StyledBtn type="submit">Publish Post</StyledBtn>
+            </Stack>
+          </Grid>
         </Grid>
-      </Grid>
+      </form>
     </FormLayout>
   );
 }
