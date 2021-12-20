@@ -14,7 +14,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-
 // import Box from '@mui/material/Box';
 
 // onChange = { handleChange };
@@ -30,12 +29,6 @@ function DetailsForm(props) {
     setToolsValue,
     handleChange,
   } = props;
-
-  const handleTools = (e) => {
-    return e.target.value;
-    // const tools = splitWords(e.target.value);
-    // console.log(tools);
-  };
 
   return (
     <>
@@ -102,7 +95,7 @@ function DetailsForm(props) {
       </Stack>
 
       <Stack spacing={1}>
-        <FormHint>Approximate grooming duration</FormHint>
+        <FormHint>Approximate grooming time</FormHint>
         <p>Slider here</p>
       </Stack>
 
@@ -111,9 +104,11 @@ function DetailsForm(props) {
         label="Tools"
         name="tools"
         id="tools"
-        helperText="Separate each with a comma"
-        value={toolsValue}
-        onChange={handleTools}
+        helperText="Separate each item with a comma"
+        value={postData.tools}
+        onChange={(e) =>
+          setPostData({ ...postData, tools: e.target.value.split(',') })
+        }
       />
 
       <Stack spacing={1}>

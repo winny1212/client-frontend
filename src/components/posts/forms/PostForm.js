@@ -31,7 +31,7 @@ function PostForm() {
     dogSize: '',
     duration: '',
     description: '',
-    tools: toolsValue,
+    tools: [],
     steps: [],
     image: { before: '', after: '' },
     video: '',
@@ -40,7 +40,7 @@ function PostForm() {
   // Post state
   const [postData, setPostData] = useState(initialPostData);
 
-  console.log(postData);
+  console.log('-- postData:\n', JSON.stringify(postData, null, 2));
 
   const handleChange = (e) => {
     const { name, value } = e.target;
