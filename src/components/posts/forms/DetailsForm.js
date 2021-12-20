@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components & Data
 import FormInput from '../../shared/FormInput';
 import FormHint from '../../shared/FormHint';
+import breeds from '../../../data/breedsData';
+import { splitWords } from '../../../utils/postUtils';
 
 // MUI
 import Autocomplete from '@mui/material/Autocomplete';
@@ -19,31 +21,51 @@ import FormControl from '@mui/material/FormControl';
 
 function DetailsForm(props) {
   // eslint-disable-next-line
-  const { breeds, postData, setPostData, handleChange } = props;
+  const {
+    postData,
+    setPostData,
+    selectedBreed,
+    setSelectedBreed,
+    toolsValue,
+    setToolsValue,
+    handleChange,
+  } = props;
+
+  const handleTools = (e) => {
+    const tools = splitWords(e.target.value);
+    console.log(tools);
+  };
+
   return (
     <>
       <FormInput
         hint="Short & eye-catching title"
         label="Title"
-        id="post-title"
+        name="title"
+        id="title"
         required
+        onChange={handleChange}
+        value={postData.title}
       />
 
       <FormInput
         hint="Describe the grooming process"
         label="Short Description"
-        id="post-description"
+        name="description"
+        id="description"
         multiline
         rows={2}
+        onChange={handleChange}
+        value={postData.description}
       />
 
       <Stack spacing={1}>
         <FormHint>This grooming is best suited for</FormHint>
         <Autocomplete
-          disablePortal
-          id="dog-breed"
-          options={breeds}
           fullWidth
+          id="dog-breed"
+          name="breed"
+          options={breeds}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -51,11 +73,14 @@ function DetailsForm(props) {
               sx={{ textTransform: 'capitalize' }}
             />
           )}
+          getOptionLabel={(option) => option.label}
+          value={selectedBreed}
+          onChange={(e, newBreed) => setSelectedBreed(newBreed)}
         />
 
         <FormControl component="fieldset">
           <FormHint component="legend">Dog size</FormHint>
-          <RadioGroup row aria-label="dog-size" name="dog-size">
+          <RadioGroup row aria-label="dogSize" name="dogSize">
             <FormControlLabel
               value="small"
               control={<Radio size="small" />}
@@ -79,6 +104,16 @@ function DetailsForm(props) {
         <FormHint>Approximate grooming duration</FormHint>
         <p>Slider here</p>
       </Stack>
+
+      <FormInput
+        hint="Recommended tools or products to use"
+        label="Tools"
+        name="tools"
+        id="tools"
+        helperText="Separate each with a comma"
+        value={toolsValue}
+        onChange={(e, tools) => setToolsValue(splitWords(tools))}
+      />
 
       <Stack spacing={1}>
         <FormHint>Upload grooming photos</FormHint>
