@@ -135,7 +135,7 @@ function DetailsForm(props) {
         helperText="Separate each item with a comma"
         value={postData.tools}
         onChange={(e) =>
-          setPostData({ ...postData, tools: e.target.value.split(',') })
+          setPostData({ ...postData, tools: e.target.value.split(/\s*,\s*/) })
         }
       />
 
