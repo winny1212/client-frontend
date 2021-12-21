@@ -5,6 +5,7 @@ import FormInput from '../../shared/FormInput';
 import FormLabel from '../../shared/FormLabel';
 import breeds from '../../../data/breedsData';
 import timeMarks from '../../../data/groomingTime';
+import ImgUpload from '../../shared/ImgUpload';
 
 // MUI
 import Autocomplete from '@mui/material/Autocomplete';
@@ -16,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import Divider from '@mui/material/Divider';
 
 // onChange = { handleChange };
 
@@ -138,9 +140,17 @@ function DetailsForm(props) {
       />
 
       <Stack spacing={1}>
-        <FormLabel>Upload grooming photos</FormLabel>
-        <p>WIP Before Image</p>
-        <p>WIP After Image</p>
+        <FormLabel>Upload before & after grooming photos</FormLabel>
+        <Stack
+          spacing={2}
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="stretch"
+          divider={<Divider orientation="vertical" flexItem />}
+        >
+          <ImgUpload id="img-before" imgLabel="Before" />
+          <ImgUpload id="img-after" imgLabel="After" />
+        </Stack>
       </Stack>
 
       <FormInput
