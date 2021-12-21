@@ -1,12 +1,12 @@
 import TextField from '@mui/material/TextField';
 // import Typography from '@mui/material/Typography';
-import FormHint from './FormHint';
+import FormLabel from './FormLabel';
 
 function FormInput(props) {
   const { hint, ...inputProps } = props;
   return (
     <>
-      <FormHint>{hint || ' '}</FormHint>
+      <FormLabel>{hint || ' '}</FormLabel>
       <TextField
         {...inputProps}
         fullWidth

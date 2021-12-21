@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // UserContext
-import { UserContext } from '../../Context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 // Dispatch Action
 import { updatePost } from '../../actions/posts';

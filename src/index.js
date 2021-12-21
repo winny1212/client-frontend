@@ -16,7 +16,9 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 // User Context to keep track of current user
-import { UserContextProvider } from './Context/UserContext';
+import { UserContextProvider } from './context/UserContext';
+// Post Context to keep track CRUD PostForm
+import PostContextProvider from './context/PostContext';
 
 // This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
 // and compose is simply applying the middleware so we can perform async functions.
@@ -27,7 +29,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme('light')}>
       <CssBaseline />
       <UserContextProvider>
-        <App />
+        <PostContextProvider>
+          <App />
+        </PostContextProvider>
       </UserContextProvider>
     </ThemeProvider>
   </Provider>,

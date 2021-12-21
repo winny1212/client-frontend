@@ -8,7 +8,8 @@ export const StyledBtn = (props) => {
       variant="contained"
       disableElevation
       sx={{
-        px: '1.8rem',
+        px: '1.5rem',
+        py: 1,
         borderRadius: '1.5rem',
       }}
     >
@@ -25,7 +26,8 @@ export const StyledBtnOutlined = (props) => {
       variant="outlined"
       disableElevation
       sx={{
-        px: '1.8rem',
+        px: '1.5rem',
+        py: 1,
         borderRadius: '1.5rem',
       }}
     >

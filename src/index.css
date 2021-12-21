@@ -37,3 +37,19 @@ code {
 .capitalize {
   text-transform: capitalize;
 }
+
+.btn-icon {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid;
+  display: inline-flex;
+  font-size: smaller;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.5s ease;
+  background-color: white;
+}
+
+.btn-icon:hover {
+  background-color: rgba(153, 132, 203, 0.1);
+}

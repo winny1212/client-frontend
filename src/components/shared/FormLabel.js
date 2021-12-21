@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 
-const FormHint = ({ children }) => {
+const FormLabel = ({ children }) => {
   return (
     <Typography
       component="p"
@@ -12,4 +12,4 @@ const FormHint = ({ children }) => {
   );
 };
 
-export default FormHint;
+export default FormLabel;
