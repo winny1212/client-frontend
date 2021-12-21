@@ -77,18 +77,27 @@ function DetailsForm(props) {
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Dog size</FormLabel>
-          <RadioGroup row aria-label="dogSize" name="dogSize">
+          <RadioGroup
+            row
+            aria-label="dogSize"
+            name="dogSize"
+            value={postData.dogSize}
+            onChange={handleChange}
+          >
             <FormControlLabel
+              key="small"
               value="small"
               control={<Radio size="small" />}
               label="Small"
             />
             <FormControlLabel
+              key="medium"
               value="medium"
               control={<Radio size="small" />}
               label="Medium"
             />
             <FormControlLabel
+              key="large"
               value="large"
               control={<Radio size="small" />}
               label="Large"
@@ -109,6 +118,7 @@ function DetailsForm(props) {
             max={4}
             valueLabelDisplay="off"
             marks={timeMarks}
+            size="small"
             value={postData.duration}
             onChange={handleSliderChange('duration')}
           />
