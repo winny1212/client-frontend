@@ -51,6 +51,12 @@ function PostForm() {
     console.log('Post Published!');
     e.preventDefault();
     // ! Make sure to include breed: selectedBreed!
+
+    // add alert to notify post is published?
+
+    // clear inputs back to initial values
+
+    // redirect page to the new post
   };
 
   return (

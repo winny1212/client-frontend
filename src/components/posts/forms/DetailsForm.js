@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Components & Data
 import FormInput from '../../shared/FormInput';
-import FormHint from '../../shared/FormHint';
+import FormLabel from '../../shared/FormLabel';
 import breeds from '../../../data/breedsData';
 import { splitWords } from '../../../utils/postUtils';
 
@@ -33,7 +33,7 @@ function DetailsForm(props) {
   return (
     <>
       <FormInput
-        hint="Short & eye-catching title"
+        hint="Short & eye-catching post title"
         label="Title"
         name="title"
         id="title"
@@ -54,26 +54,20 @@ function DetailsForm(props) {
       />
 
       <Stack spacing={1}>
-        <FormHint>This grooming is best suited for</FormHint>
+        <FormLabel>This grooming is best suited for</FormLabel>
         <Autocomplete
           fullWidth
           id="dog-breed"
           name="breed"
           options={breeds}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Dog Breed"
-              sx={{ textTransform: 'capitalize' }}
-            />
-          )}
+          renderInput={(params) => <TextField {...params} label="Dog Breed" />}
           getOptionLabel={(option) => option.label}
           value={selectedBreed}
           onChange={(e, newBreed) => setSelectedBreed(newBreed)}
         />
 
         <FormControl component="fieldset">
-          <FormHint component="legend">Dog size</FormHint>
+          <FormLabel component="legend">Dog size</FormLabel>
           <RadioGroup row aria-label="dogSize" name="dogSize">
             <FormControlLabel
               value="small"
@@ -95,7 +89,7 @@ function DetailsForm(props) {
       </Stack>
 
       <Stack spacing={1}>
-        <FormHint>Approximate grooming time</FormHint>
+        <FormLabel>Approximate grooming time</FormLabel>
         <p>Slider here</p>
       </Stack>
 
@@ -112,7 +106,7 @@ function DetailsForm(props) {
       />
 
       <Stack spacing={1}>
-        <FormHint>Upload grooming photos</FormHint>
+        <FormLabel>Upload grooming photos</FormLabel>
         <p>WIP Before Image</p>
         <p>WIP After Image</p>
       </Stack>

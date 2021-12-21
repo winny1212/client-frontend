@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../actions/posts';
 
 // UserContext
-import { UserContext } from '../../Context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 // MUI
 import Container from '@mui/material/Container';
