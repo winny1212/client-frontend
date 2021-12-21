@@ -29,7 +29,7 @@ function Navbar() {
 
   //styles
   const classes = useStyles();
-  console.log(classes.navBackground);
+  // console.log(classes.navBackground);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);

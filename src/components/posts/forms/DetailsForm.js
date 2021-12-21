@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import FormInput from '../../shared/FormInput';
 import FormLabel from '../../shared/FormLabel';
 import breeds from '../../../data/breedsData';
-import { splitWords } from '../../../utils/postUtils';
+import timeMarks from '../../../data/groomingTime';
 
 // MUI
 import Autocomplete from '@mui/material/Autocomplete';
@@ -14,12 +14,12 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-// import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 // onChange = { handleChange };
 
 function DetailsForm(props) {
-  // eslint-disable-next-line
   const {
     postData,
     setPostData,
@@ -29,6 +29,15 @@ function DetailsForm(props) {
     setToolsValue,
     handleChange,
   } = props;
+
+  // For Slider
+  const durationValue = (value) => {
+    return `up to ${value}hr`;
+  };
+
+  const handleSliderChange = (name) => (e, value) => {
+    setPostData({ ...postData, [name]: value });
+  };
 
   return (
     <>
@@ -90,7 +99,20 @@ function DetailsForm(props) {
 
       <Stack spacing={1}>
         <FormLabel>Approximate grooming time</FormLabel>
-        <p>Slider here</p>
+        <Box sx={{ px: 1.5 }}>
+          <Slider
+            aria-label="duration"
+            defaultValue={1}
+            getAriaValueText={durationValue}
+            step={1}
+            min={1}
+            max={4}
+            valueLabelDisplay="off"
+            marks={timeMarks}
+            value={postData.duration}
+            onChange={handleSliderChange('duration')}
+          />
+        </Box>
       </Stack>
 
       <FormInput

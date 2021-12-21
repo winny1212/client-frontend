@@ -29,7 +29,7 @@ function PostForm() {
     author: '',
     breed: selectedBreed,
     dogSize: '',
-    duration: '',
+    duration: 1,
     description: '',
     tools: [],
     steps: [],
