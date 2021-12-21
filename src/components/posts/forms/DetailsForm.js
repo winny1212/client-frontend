@@ -136,7 +136,10 @@ function DetailsForm(props) {
       <FormInput
         hint="Include grooming video link if available"
         label="Video Link"
-        id="post-videolink"
+        id="videolink"
+        name="video"
+        value={postData.video}
+        onChange={handleChange}
       />
     </>
   );
