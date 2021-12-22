@@ -109,7 +109,7 @@ function DetailsForm(props) {
       </Stack>
 
       <Stack spacing={1}>
-        <FormLabel>Approximate grooming time</FormLabel>
+        <FormLabel>Approximate grooming time (up to)</FormLabel>
         <Box sx={{ px: 1.5 }}>
           <Slider
             aria-label="duration"
@@ -135,7 +135,7 @@ function DetailsForm(props) {
         helperText="Separate each item with a comma"
         value={postData.tools}
         onChange={(e) =>
-          setPostData({ ...postData, tools: e.target.value.split(',') })
+          setPostData({ ...postData, tools: e.target.value.split(/\s*,\s*/) })
         }
       />
 
