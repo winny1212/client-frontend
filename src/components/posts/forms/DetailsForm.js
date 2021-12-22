@@ -109,7 +109,7 @@ function DetailsForm(props) {
       </Stack>
 
       <Stack spacing={1}>
-        <FormLabel>Approximate grooming time</FormLabel>
+        <FormLabel>Approximate grooming time (up to)</FormLabel>
         <Box sx={{ px: 1.5 }}>
           <Slider
             aria-label="duration"
