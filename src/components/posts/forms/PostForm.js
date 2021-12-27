@@ -22,7 +22,6 @@ import DetailsForm from './DetailsForm';
 function PostForm() {
   // Handle dog breeds selection state (has to be handled separately for MUI)
   const [selectedBreed, setSelectedBreed] = useState(null);
-  const [toolsValue, setToolsValue] = useState([]);
 
   const initialPostData = {
     title: '',
@@ -70,8 +69,6 @@ function PostForm() {
               setPostData={setPostData}
               selectedBreed={selectedBreed}
               setSelectedBreed={setSelectedBreed}
-              toolsValue={toolsValue}
-              setToolsValue={setToolsValue}
             />
           </Grid>
 

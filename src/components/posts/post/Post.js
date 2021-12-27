@@ -1,10 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
-import { UserContext } from '../../../Context/UserContext';
+import { UserContext } from '../../../context/UserContext';
+import { deletePost } from '../../../actions/posts';
+
+// MUI
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import Container from '@mui/material/Container';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
-import { deletePost } from '../../../actions/posts';
 
 function Post({ post }) {
   // const { currentId, setCurrentId } = useContext(UserContext);
@@ -23,10 +30,19 @@ function Post({ post }) {
   // dispatch(deletePost(post._id))
 
   return (
-    <div style={{ backgroundColor: '#fff' }}>
-      <h6>Ind Post</h6>
-      <h3>{post.title}</h3>
-    </div>
+    <Container>
+      <small>will be stylised later!</small>
+      <Typography variant="body2">
+        {`${post.dogSize} - ${post.breed}`.toUpperCase()}
+      </Typography>
+      <Divider />
+      <p>before photo</p>
+      <p>after photo</p>
+      <p>captions</p>
+      <Divider />
+      <p>post author</p>
+      <p>post details</p>
+    </Container>
   );
 }
 

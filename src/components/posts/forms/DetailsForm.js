@@ -27,8 +27,6 @@ function DetailsForm(props) {
     setPostData,
     selectedBreed,
     setSelectedBreed,
-    toolsValue,
-    setToolsValue,
     handleChange,
   } = props;
 
