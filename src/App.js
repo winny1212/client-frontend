@@ -34,11 +34,6 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
 
-            {/* NEED TO FIGURE OUT TO LINK TO INDIVIDUAL POST -- will update */}
-            {/* <Route path="/posts/:postId">
-              <Post />
-            </Route> */}
-
             <Route path="posts" element={<Navigate replace to="/" />} />
             {/* EDIT: /posts/:id/edit */}
             <Route path="posts/new" element={<NewPost />} />
