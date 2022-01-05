@@ -6,6 +6,18 @@ export const API = axios.create({ baseURL: 'http://localhost:5000' });
 // const url = 'http://localhost:5000/posts';
 // We add out heroku base URL later
 
+// API Interceptor
+// We add the token to our req.headers so that on the back end (middleware/auth), we cam verify token and set req.userID.
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('profile')) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem('profile')).token
+    }`;
+  }
+
+  return req;
+});
+
 export const fetchAllPosts = () => API.get('/posts');
 
 export const createNewPost = (newPost) => API.post('/posts', newPost);

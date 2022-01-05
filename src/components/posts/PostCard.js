@@ -18,7 +18,7 @@ import { CardActionArea } from '@mui/material';
 
 const PostCard = ({ post }) => {
   // const { postID } = useParams();
-  // console.log('--', post);
+  console.log('Post Info:', post);
   // console.log(`postID: ${postID}`);
   // console.log(`post._id: ${post._id}`);
 
@@ -37,7 +37,7 @@ const PostCard = ({ post }) => {
         <CardMedia
           component="img"
           alt={post.breed}
-          image={post.image.before || defaultImg}
+          image={post.image?.before || defaultImg}
           sx={{
             width: 1 / 3,
             border: `solid 8px #fff`,

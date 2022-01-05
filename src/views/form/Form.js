@@ -19,6 +19,9 @@ function Form() {
   // Invoke the styles
   const classes = useStyles();
 
+  // Get the User - we will use to assign it to post.
+  const user = JSON.parse(localStorage.getItem('profile'));
+
   // Post state
   const [postData, setPostData] = useState({
     title: '',
@@ -48,7 +51,8 @@ function Form() {
       setInstructionError(true);
     }
     if (postData.title && postData.videoLink && postData.instructions) {
-      dispatch(createPost(postData));
+      // THis code is very important- keep around so we can actually make posts.
+      dispatch(createPost({ ...postData, username: user?.result?.username }));
       clear();
     }
   };
@@ -71,6 +75,16 @@ function Form() {
       instructions: '',
     });
   };
+
+  if (!user?.result?.username) {
+    return (
+      <Paper elevation={2} className={classes.paper}>
+        <Typography variant="h6" pt={2} mt={2} align="center">
+          Please Sign in to add a Post...
+        </Typography>
+      </Paper>
+    );
+  }
 
   return (
     <Container fixed>

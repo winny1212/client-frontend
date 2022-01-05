@@ -70,13 +70,12 @@ export default function Register() {
 
     // We should compare if the two passwords entered are correct.
     // Do User Sign up checks.
-
     if (isSignup) {
       console.log('Formdata is:', formData);
       console.log('Signing Up');
 
       // We dispatch the Sign Up Action
-      dispatch(signUp(formData));
+      dispatch(signUp(...formData));
 
       console.log('Sent to Dispatch');
 
@@ -85,7 +84,7 @@ export default function Register() {
     } else {
       console.log(formData);
       console.log('Signing In');
-      // We dispatch the Sign In Action
+
       // dispatch(signIn(formData), navigate);
     }
   };
