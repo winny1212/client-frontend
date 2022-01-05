@@ -76,15 +76,16 @@ function Form() {
     });
   };
 
-  if (!user?.result?.username) {
-    return (
-      <Paper elevation={2} className={classes.paper}>
-        <Typography variant="h6" pt={2} mt={2} align="center">
-          Please Sign in to add a Post...
-        </Typography>
-      </Paper>
-    );
-  }
+  // Do this later when you have everything done
+  // if (!user?.result?.username) {
+  //   return (
+  //     <Paper elevation={2} className={classes.paper}>
+  //       <Typography variant="h6" pt={2} mt={2} align="center">
+  //         Please Sign in to add a Post...
+  //       </Typography>
+  //     </Paper>
+  //   );
+  // }
 
   return (
     <Container fixed>

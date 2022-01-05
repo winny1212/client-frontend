@@ -15,8 +15,17 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { CardActionArea } from '@mui/material';
 
 // <Link to={`/post/${post._id}`} className="link">
+import { useDispatch } from 'react-redux';
+import { deletePost, likePost } from '../../actions/posts';
 
 const PostCard = ({ post }) => {
+  // Dispatch needed for Liking Post and commenting on it.
+  const dispatch = useDispatch();
+  // Get the User - we will use to assign it to post.
+  const user = JSON.parse(localStorage.getItem('profile'));
+  // This code below will check if certain users can Delete if u need to do that.
+  // user?.result?._id === post?.creator;
+
   // const { postID } = useParams();
   console.log('Post Info:', post);
   // console.log(`postID: ${postID}`);
@@ -25,6 +34,10 @@ const PostCard = ({ post }) => {
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
     <CardActionArea component={RouterLink} to={`/posts/${post._id}`}>
+      {/* Dont worry about this code - only checking if it works.
+      <Box>
+        {user?.result?._id === post?.creator && <p>You are the creator</p>}
+      </Box> */}
       <Card
         sx={{
           display: 'flex',
@@ -56,7 +69,10 @@ const PostCard = ({ post }) => {
                 {new Date(post.createdAt).toDateString()}
               </Typography>
               <Box>
-                <FavoriteIcon color="accentPink" />
+                <FavoriteIcon
+                  color="accentPink"
+                  onClick={() => dispatch(likePost(post._id))}
+                />
                 <CommentIcon color="accentPink" />
               </Box>
             </CardActions>

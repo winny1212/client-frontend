@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../../../components/layout/Header';
+
+// State
+import { useDispatch } from 'react-redux';
+
+// Actions
+import { signIn } from '../../../actions/auth';
+
 import {
   Container,
   Paper,
@@ -17,9 +24,10 @@ export const validateInput = (str = '') => str.includes('@');
 
 export default function Login() {
   const [data, setData] = useState(initialState);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target;
     setData((prev) => {
       return {
         ...prev,
@@ -30,6 +38,10 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('User Data we got was:', data);
+
+    console.log('Signing in...');
+    dispatch(signIn(data));
   };
 
   return (
@@ -55,6 +67,8 @@ export default function Login() {
                 fullWidth
                 required
                 onChange={handleChange}
+                name="email"
+                value={data.email}
                 type="text"
               />
               <br />
@@ -66,6 +80,8 @@ export default function Login() {
                 fullWidth
                 required
                 onChange={handleChange}
+                name="password"
+                value={data.password}
                 type="password"
               />
               <br />

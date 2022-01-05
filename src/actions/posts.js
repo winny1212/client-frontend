@@ -3,8 +3,16 @@ import {
   createNewPost,
   updateOldPost,
   deleteAPost,
+  likeAPost,
 } from '../api';
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+
+import {
+  FETCH_ALL,
+  CREATE,
+  UPDATE,
+  DELETE,
+  LIKE,
+} from '../constants/actionTypes';
 
 // This is where we can make requests to the backend.
 // All of these function will be used throughout our app, whenever needed.
@@ -59,6 +67,17 @@ export const deletePost = (id) => async (dispatch) => {
     console.log('From actions.posts:', deletedToken);
 
     dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Like a post
+export const likePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await likePost(id);
+
+    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error);
   }
