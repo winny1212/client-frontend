@@ -18,9 +18,9 @@ import { CardActionArea } from '@mui/material';
 
 const PostCard = ({ post }) => {
   // const { postID } = useParams();
-  console.log('--', post);
+  // console.log('--', post);
   // console.log(`postID: ${postID}`);
-  console.log(`post._id: ${post._id}`);
+  // console.log(`post._id: ${post._id}`);
 
   return (
     // LINK TO SINGLE POST to="/about" will be updated!

@@ -32,6 +32,7 @@ const initialState = {
 
 export default function Register() {
   const dispatch = useDispatch();
+  // let navigate = useNavigate();
   let navigate = useNavigate();
 
   const classes = useStyles();
@@ -66,16 +67,24 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // We should compare if the two passwords entered are correct.
+    // Do User Sign up checks.
 
     if (isSignup) {
+      console.log('Formdata is:', formData);
       console.log('Signing Up');
-      console.log(formData);
+
       // We dispatch the Sign Up Action
-      // dispatch(signUp(formData), navigate);
+      dispatch(signUp(formData));
+
+      console.log('Sent to Dispatch');
+
+      // Redirect to Home
+      navigate('/');
     } else {
-      console.log('Signing In');
       console.log(formData);
+      console.log('Signing In');
       // We dispatch the Sign In Action
       // dispatch(signIn(formData), navigate);
     }
