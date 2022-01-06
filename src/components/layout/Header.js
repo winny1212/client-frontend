@@ -20,6 +20,7 @@ const Header = ({ title, color }) => {
       <Typography
         component="h1"
         variant="headerTitle"
+        fontSize={{ md: '2rem' }}
         sx={{ p: '1rem', textAlign: 'center' }}
       >
         {title || `Change header title`}
