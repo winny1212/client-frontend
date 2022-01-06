@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 import Header from '../../components/layout/Header';
 import Post from '../../components/posts/post/Post';
 
+// MUI
+import Container from '@mui/material/Container';
+
 const PostId = () => {
   // define the post/:id params from App.js
   const { postID } = useParams();
@@ -30,9 +33,11 @@ const PostId = () => {
   return (
     <>
       <Header title={post.title} />
-      <Post post={post} />
-      <h3>Comment Form</h3>
-      <h3>Comments</h3>
+      <Container maxWidth="lg">
+        <Post post={post} />
+        <h3>Comment Form</h3>
+        <h3>Comments</h3>
+      </Container>
     </>
   );
 };
