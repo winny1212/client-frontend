@@ -37,12 +37,13 @@ const PostCard = ({ post }) => {
         <CardMedia
           component="img"
           alt={post.breed}
-          image={post.image.before || defaultImg}
+          image={post.image?.before || defaultImg}
           sx={{
-            width: 1 / 3,
+            width: '150px',
             border: `solid 8px #fff`,
             display: { xs: 'none', md: 'block' },
           }}
+          onError={(e) => (e.target.src = defaultImg)}
         />
         <CardContent sx={{ textAlign: 'left' }}>
           <Typography variant="body2">

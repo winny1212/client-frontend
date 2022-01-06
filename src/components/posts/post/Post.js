@@ -3,13 +3,19 @@ import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
+import BaseLayout from '../../shared/BaseLayout';
+import Hr from '../../shared/Hr';
 
 // MUI
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
+import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -29,20 +35,40 @@ function Post({ post }) {
   // On the onClick Button, we will dispatch the following.
   // dispatch(deletePost(post._id))
 
+  const imgHeight = 300;
+
   return (
-    <Container>
-      <small>will be stylised later!</small>
-      <Typography variant="body2">
-        {`${post.dogSize} - ${post.breed}`.toUpperCase()}
-      </Typography>
-      <Divider />
-      <p>before photo</p>
-      <p>after photo</p>
-      <p>captions</p>
-      <Divider />
+    <>
+      <Hr>
+        <Chip
+          color="secondary"
+          label={`${post.dogSize} ${post.breed}`.toUpperCase()}
+        />
+      </Hr>
+
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={1}>
+        <CardMedia
+          component="img"
+          height={imgHeight}
+          image={post.image?.before}
+        />
+        <CardMedia
+          component="img"
+          height={imgHeight}
+          image={post.image?.after}
+        />
+      </Stack>
+
+      <Hr />
+
       <p>post author</p>
       <p>post details</p>
-    </Container>
+
+      <Hr />
+
+      <p>Instructions</p>
+      <p>Video</p>
+    </>
   );
 }
 

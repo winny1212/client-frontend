@@ -13,11 +13,16 @@ const Header = ({ title, color }) => {
         justifyContent: 'center',
         alignItems: 'center',
         mb: '2rem',
-        height: 150,
+        height: 200,
         bgcolor: color || 'accentYellow.main',
       }}
     >
-      <Typography component="h1" variant="headerTitle" sx={{ p: '1rem' }}>
+      <Typography
+        component="h1"
+        variant="headerTitle"
+        fontSize={{ md: '2rem' }}
+        sx={{ p: '1rem', textAlign: 'center' }}
+      >
         {title || `Change header title`}
       </Typography>
     </Box>
