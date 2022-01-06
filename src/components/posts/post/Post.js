@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
+import BaseLayout from '../../shared/BaseLayout';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -30,7 +31,7 @@ function Post({ post }) {
   // dispatch(deletePost(post._id))
 
   return (
-    <Container>
+    <BaseLayout>
       <small>will be stylised later!</small>
       <Typography variant="body2">
         {`${post.dogSize} - ${post.breed}`.toUpperCase()}
@@ -42,7 +43,7 @@ function Post({ post }) {
       <Divider />
       <p>post author</p>
       <p>post details</p>
-    </Container>
+    </BaseLayout>
   );
 }
 
