@@ -10,23 +10,15 @@ function Logo({ white }) {
     <Link to="/">
       <Box
         sx={{
-          height: '42px',
+          height: { xs: 42, md: 45 },
           pt: '0.5rem',
         }}
       >
-        {white ? (
-          <img
-            src={LogoWhite}
-            alt="DIY Grooming"
-            style={{ height: 'inherit' }}
-          />
-        ) : (
-          <img
-            src={LogoPurple}
-            alt="DIY Grooming"
-            style={{ height: 'inherit' }}
-          />
-        )}
+        <img
+          src={white ? LogoWhite : LogoPurple}
+          alt="DIY Grooming"
+          style={{ height: 'inherit' }}
+        />
       </Box>
     </Link>
   );
