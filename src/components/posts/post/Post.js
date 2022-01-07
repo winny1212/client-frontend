@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import Chip from '@mui/material/Chip';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import Image from '../../shared/Image';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -40,32 +41,39 @@ function Post({ post }) {
   return (
     <>
       <Hr>
-        <Chip
-          color="secondary"
-          label={`${post.dogSize} ${post.breed}`.toUpperCase()}
-        />
+        {post.dogSize && (
+          <Chip
+            variant="outlined"
+            color="primary"
+            label={`${post.dogSize} ${post.breed}`.toUpperCase()}
+          />
+        )}
       </Hr>
-
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={1}>
-        <CardMedia
-          component="img"
-          height={imgHeight}
-          image={post.image?.before}
-        />
-        <CardMedia
-          component="img"
-          height={imgHeight}
-          image={post.image?.after}
-        />
-      </Stack>
-
-      <Hr />
+      {post.image && (
+        <>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={6}>
+              <Image
+                src={post.image?.before}
+                alt="Before grooming"
+                caption="Before"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Image
+                src={post.image?.after}
+                alt="After grooming"
+                caption="After"
+              />
+            </Grid>
+          </Grid>
+          <Hr />
+        </>
+      )}
 
       <p>post author</p>
       <p>post details</p>
-
       <Hr />
-
       <p>Instructions</p>
       <p>Video</p>
     </>
