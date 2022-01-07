@@ -5,6 +5,7 @@ import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
 import Hr from '../../shared/Hr';
+import usersData from '../../../data/usersData';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -14,9 +15,9 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Chip from '@mui/material/Chip';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import Image from '../../shared/Image';
+import Avatar from '@mui/material/Avatar';
+import { capitalize } from '@mui/material';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -36,7 +37,7 @@ function Post({ post }) {
   // On the onClick Button, we will dispatch the following.
   // dispatch(deletePost(post._id))
 
-  const imgHeight = 300;
+  const fakeUser = usersData[1];
 
   return (
     <>
@@ -71,9 +72,24 @@ function Post({ post }) {
         </>
       )}
 
-      <p>post author</p>
-      <p>post details</p>
+      <Stack direction="row" spacing={2}>
+        <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            textAlign: 'left',
+          }}
+        >
+          <Typography component="h3" variant="author">
+            by {capitalize(fakeUser.username)}
+          </Typography>
+          {fakeUser.proGroomer && <p>pro groomer</p>}
+        </Box>
+      </Stack>
       <Hr />
+
       <p>Instructions</p>
       <p>Video</p>
     </>

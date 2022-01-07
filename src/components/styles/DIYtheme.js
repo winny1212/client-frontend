@@ -116,6 +116,11 @@ const theme = (mode) =>
         letterSpacing: -0.5,
         textTransform: 'capitalize',
       },
+      author: {
+        fontFamily: global.fontPrimary,
+        fontStyle: 'italic',
+        paddingBottom: 0,
+      },
     },
     components: {
       MuiChip: {
@@ -126,6 +131,18 @@ const theme = (mode) =>
             paddingRight: 10,
             paddingLeft: 10,
             fontWeight: 600,
+          },
+        },
+      },
+      MuiAvatar: {
+        styleOverrides: {
+          root: {
+            fontFamily: global.fontSecondary,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            width: 50,
+            height: 50,
+            backgroundColor: global.colorSecondary,
           },
         },
       },
