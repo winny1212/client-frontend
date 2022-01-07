@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ImageWrapper = styled.figure`
-  border: 1px solid pink;
+  position: relative;
 `;
 
 const Img = styled.img`
@@ -10,14 +10,20 @@ const Img = styled.img`
 `;
 
 const Caption = styled.figcaption`
-  padding-top: 2;
+  position: absolute;
+  inset: 10px auto auto 10px;
+  padding: 5px 13px;
+  border-radius: 2px;
+  background-color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
 `;
 
 const Image = ({ src, alt, caption }) => {
   return (
     <ImageWrapper>
       <Img src={src} alt={alt} />
-      <Caption>{caption || 'Testing Caption'}</Caption>
+      {caption && <Caption>{caption}</Caption>}
     </ImageWrapper>
   );
 };

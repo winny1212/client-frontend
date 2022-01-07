@@ -48,6 +48,9 @@ const theme = (mode) =>
       accentPink: palette.augmentColor({
         color: { main: global.accentPink },
       }),
+      white: palette.augmentColor({
+        color: { main: '#fff' },
+      }),
     },
     typography: {
       fontFamily: global.fontPrimary,

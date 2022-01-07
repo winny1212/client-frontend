@@ -55,14 +55,14 @@ function Post({ post }) {
             <Grid item xs={12} md={6}>
               <Image
                 src={post.image?.before}
-                alt="Before grooming"
+                alt={`${post.dogSize} ${post.breed} before grooming`}
                 caption="Before"
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Image
                 src={post.image?.after}
-                alt="After grooming"
+                alt={`${post.dogSize} ${post.breed} after grooming`}
                 caption="After"
               />
             </Grid>
