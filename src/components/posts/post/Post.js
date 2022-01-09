@@ -20,6 +20,7 @@ import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
 import { capitalize } from '@mui/material';
 import ProGroomer from '../../shared/ProGroomer';
+import { pxToRem } from '../../../utils/general';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -108,6 +109,16 @@ function Post({ post }) {
           Instructions
         </Typography>
         <Grid container spacing={2}>
+          <Grid item xs={12} md={12} sx={{ mb: 1 }}>
+            {post.description && (
+              <Typography
+                variant="bodyIntro"
+                sx={{ fontSize: { xs: pxToRem(18), md: pxToRem(22) } }}
+              >
+                {post.description}
+              </Typography>
+            )}
+          </Grid>
           <Grid item xs={12} md={6}>
             <ol>
               {post.steps?.map((step) => (

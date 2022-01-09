@@ -1,5 +1,6 @@
 import '../../index.css';
 import global from './globalStyle';
+import { pxToRem } from '../../utils/general';
 import { createTheme } from '@mui/material/styles';
 import { pink } from '@mui/material/colors/';
 
@@ -117,6 +118,11 @@ const theme = (mode) =>
         fontSize: '1.5rem',
         letterSpacing: -0.5,
         textTransform: 'capitalize',
+      },
+      bodyIntro: {
+        fontFamily: global.fontSecondary,
+        fontWeight: 400,
+        fontSize: pxToRem(22),
       },
       author: {
         fontFamily: global.fontPrimary,
