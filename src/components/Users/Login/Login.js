@@ -41,6 +41,9 @@ export default function Login() {
     console.log('User Data we got was:', data);
 
     console.log('Signing in...');
+
+    // We need a modal to say wrong password....
+    // Dispatch MESSAGE?
     dispatch(signIn(data));
   };
 
