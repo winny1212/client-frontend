@@ -47,8 +47,10 @@ function PostForm() {
   };
 
   const handlePublish = (e) => {
-    console.log('Post Published!');
     e.preventDefault();
+
+    console.log('Post Published!');
+
     // ! Make sure to include breed: selectedBreed!
 
     // add alert to notify post is published?
