@@ -6,6 +6,7 @@ import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
 import Hr from '../../shared/Hr';
 import usersData from '../../../data/usersData';
+import { format } from 'date-fns';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -38,61 +39,88 @@ function Post({ post }) {
   // On the onClick Button, we will dispatch the following.
   // dispatch(deletePost(post._id))
 
+  const dateFormat = 'EEE, do LLLL yyyy';
   const fakeUser = usersData[1];
 
   return (
     <>
-      <Hr>
-        {post.dogSize && (
-          <Chip
-            variant="outlined"
-            color="primary"
-            label={`${post.dogSize} ${post.breed}`.toUpperCase()}
-          />
+      <Container maxWidth="lg">
+        <Hr>
+          {post.dogSize && (
+            <Chip
+              variant="outlined"
+              color="primary"
+              label={`${post.dogSize} ${post.breed}`.toUpperCase()}
+            />
+          )}
+        </Hr>
+        {post.image && (
+          <>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={6}>
+                <Image
+                  src={post.image?.before}
+                  alt={`${post.dogSize} ${post.breed} before grooming`}
+                  caption="Before"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Image
+                  src={post.image?.after}
+                  alt={`${post.dogSize} ${post.breed} after grooming`}
+                  caption="After"
+                />
+              </Grid>
+            </Grid>
+            <Hr />
+          </>
         )}
-      </Hr>
-      {post.image && (
-        <>
-          <Grid container spacing={1}>
-            <Grid item xs={12} md={6}>
-              <Image
-                src={post.image?.before}
-                alt={`${post.dogSize} ${post.breed} before grooming`}
-                caption="Before"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Image
-                src={post.image?.after}
-                alt={`${post.dogSize} ${post.breed} after grooming`}
-                caption="After"
-              />
-            </Grid>
-          </Grid>
-          <Hr />
-        </>
-      )}
 
-      <Stack direction="row" spacing={2}>
-        <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            textAlign: 'left',
-          }}
+        <Stack direction="row" spacing={2}>
+          <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              textAlign: 'left',
+            }}
+          >
+            <Typography component="h3" variant="author">
+              by {capitalize(fakeUser.username)}
+            </Typography>
+            {fakeUser.proGroomer && <ProGroomer />}
+          </Box>
+        </Stack>
+        <Hr />
+
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={{ xs: 0.25, md: 3 }}
+          divider={<Divider orientation="vertical" flexItem />}
+          sx={{ mb: 3 }}
         >
-          <Typography component="h3" variant="author">
-            by {capitalize(fakeUser.username)}
-          </Typography>
-          {fakeUser.proGroomer && <ProGroomer />}
-        </Box>
-      </Stack>
-      <Hr />
+          <Typography>{format(new Date('2022-01-05'), dateFormat)}</Typography>
+          <Typography>Grooming Time</Typography>
+        </Stack>
 
-      <p>Instructions</p>
-      <p>Video</p>
+        <Typography component="h2" variant="h6" sx={{ mb: 1.5 }}>
+          Instructions
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <ol>
+              {post.steps?.map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <p>Video</p>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 }

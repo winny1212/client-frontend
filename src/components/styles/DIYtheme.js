@@ -129,6 +129,7 @@ const theme = (mode) =>
         styleOverrides: {
           root: {
             fontFamily: global.fontSecondary,
+            fontSize: '0.7rem',
             letterSpacing: 1,
             paddingRight: 10,
             paddingLeft: 10,

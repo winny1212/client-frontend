@@ -5,3 +5,9 @@ export const generateID = () => {
 export const getYear = () => {
   return new Date().getFullYear();
 };
+
+// Calculate Pixel to Rem for font sizing
+const basePx = 16;
+export const pxToRem = (value) => {
+  return `${value / basePx}rem`;
+};
