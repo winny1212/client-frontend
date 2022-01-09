@@ -3,9 +3,13 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // State Managers
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
+;
 // To decode the token
 import decode from 'jwt-decode';
+
+// import { NavLink } from 'react-router-dom';
+
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,7 +20,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import Logo from '../../assets/img/diyg_logo_purple.png';
+// import Logo from '../../assets/img/diyg_logo_purple.png';
+import Logo from '../shared/Logo';
 
 //Hooks for breakpoints
 import { useTheme } from '@mui/material/styles';
@@ -81,12 +86,21 @@ function Navbar() {
       <AppBar position="static" elevation={0} color="accentYellow">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <img src={Logo} alt="logo" className={classes.logo} />
+            {/* <img src={Logo} alt="logo" className={classes.logo} /> */}
+            <Logo />
 
-            <Box sx={{ flexGrow: 1 }}>
+            <Box
+              sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}
+            >
               {isMatch ? (
                 <>
-                  <Container>
+                  <Container
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                    }}
+                  >
                     <Button variant="container" href="/">
                       Home
                     </Button>
@@ -100,7 +114,7 @@ function Navbar() {
                         <Button href="/profile" variant="container">
                           Profile
                         </Button>
-                        <Button href="/create" variant="container">
+                        <Button href="/posts/new" variant="container">
                           Create a Post
                         </Button>
                         <Button href="/" onClick={logout} variant="container">
@@ -123,7 +137,11 @@ function Navbar() {
                 <>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <IconButton
+                        size="large"
+                        onClick={handleOpenUserMenu}
+                        sx={{ p: 0 }}
+                      >
                         <MenuIcon />
                       </IconButton>
                     </Tooltip>

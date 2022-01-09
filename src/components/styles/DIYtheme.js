@@ -40,7 +40,7 @@ const theme = (mode) =>
       success: {
         main: '#aed581',
       },
-      divider: global.colorSecondary,
+      divider: global.colorPrimary,
       // generate new custom colors to be used in MUI components
       accentYellow: palette.augmentColor({
         color: { main: global.accentYellow },
@@ -111,6 +111,20 @@ const theme = (mode) =>
         fontStyle: 'italic',
         fontSize: '1.5rem',
         letterSpacing: -0.5,
+        textTransform: 'capitalize',
+      },
+    },
+    components: {
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            fontFamily: global.fontSecondary,
+            letterSpacing: 1,
+            paddingRight: 10,
+            paddingLeft: 10,
+            fontWeight: 600,
+          },
+        },
       },
     },
   });

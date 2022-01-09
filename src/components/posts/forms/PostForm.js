@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // Components & Data
 import StepsForm from './StepsForm';
 // import breeds from '../../../data/breedsData.js';
-import FormLayout from '../../shared/FormLayout';
+import BaseLayout from '../../shared/BaseLayout';
 // import FormInput from '../../shared/FormInput';
 // import FormHint from '../../shared/FormHint';
 
@@ -59,7 +59,7 @@ function PostForm() {
   };
 
   return (
-    <FormLayout>
+    <BaseLayout>
       <form onSubmit={handlePublish} noValidate>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={12} md={5}>
@@ -88,7 +88,7 @@ function PostForm() {
           </Grid>
         </Grid>
       </form>
-    </FormLayout>
+    </BaseLayout>
   );
 }
 
