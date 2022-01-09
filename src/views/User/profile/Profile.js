@@ -18,6 +18,26 @@ const Profile = () => {
     return state.profileReducer;
   });
 
+  // Get the User
+  const user = JSON.parse(localStorage.getItem('profile'));
+  if (user?.result) {
+    console.log('User is:');
+    console.log(user.result);
+  }
+
+  // This will stop the page from loading if there are no users.
+  // You can remove it if you want.
+  if (!user?.result?.username) {
+    return (
+      <Container>
+        <Typography variant="h6" align="center">
+          You are not signed in. Please Sign in so that you can edit your
+          Profile.
+        </Typography>
+      </Container>
+    );
+  }
+
   return (
     <>
       <Header title="Profile" />
@@ -48,7 +68,7 @@ const Profile = () => {
               component="div"
             >
               {' '}
-              {profile.username}
+              {user.result.username}
             </Typography>{' '}
             {/* bagde details */}
             {profile.proGroomer && (
