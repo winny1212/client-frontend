@@ -75,7 +75,7 @@ export default function Register() {
       console.log('Signing Up');
 
       // We dispatch the Sign Up Action
-      dispatch(signUp(...formData));
+      dispatch(signUp(formData));
 
       console.log('Sent to Dispatch');
 
