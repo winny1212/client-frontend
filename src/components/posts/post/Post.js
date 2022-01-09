@@ -6,7 +6,10 @@ import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
 import Hr from '../../shared/Hr';
 import usersData from '../../../data/usersData';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
+import { pxToRem, getDate } from '../../../utils/general';
+import ProGroomer from '../../shared/ProGroomer';
+import IconText from '../../shared/IconText';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -19,8 +22,8 @@ import Chip from '@mui/material/Chip';
 import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
 import { capitalize } from '@mui/material';
-import ProGroomer from '../../shared/ProGroomer';
-import { pxToRem, getDate } from '../../../utils/general';
+import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
+import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -105,14 +108,17 @@ function Post({ post }) {
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ mb: 3 }}
         >
-          <Typography>
-            {getDate(post.createdAt)}
-            {/* {format(new Date(post.createdAt), dateFormat)} */}
-          </Typography>
-          <Typography>Grooming Time</Typography>
+          <IconText label={getDate(post.createdAt)} fontSize="small">
+            <EventNoteTwoToneIcon color="secondary" />
+          </IconText>
+
+          {/* ! To change (add post.duration) */}
+          <IconText label={`Grooming Time: 1 hr`} fontSize="small">
+            <TimelapseTwoToneIcon color="secondary" />
+          </IconText>
         </Stack>
 
-        <Typography component="h2" variant="h6" sx={{ mb: 1.5 }}>
+        <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
           Instructions
         </Typography>
         <Grid container spacing={2}>
@@ -128,8 +134,8 @@ function Post({ post }) {
           </Grid>
           <Grid item xs={12} md={6}>
             <ol>
-              {post.steps?.map((step) => (
-                <li>{step}</li>
+              {post.steps?.map((step, index) => (
+                <li key={index}>{step}</li>
               ))}
             </ol>
           </Grid>
