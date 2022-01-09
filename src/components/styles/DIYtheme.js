@@ -105,6 +105,8 @@ const theme = (mode) =>
       },
       caption: {
         fontFamily: global.fontSecondary,
+        fontWeight: 600,
+        letterSpacing: 1,
       },
       overline: {
         fontFamily: global.fontSecondary,

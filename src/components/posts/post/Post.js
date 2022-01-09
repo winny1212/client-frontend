@@ -18,6 +18,7 @@ import Chip from '@mui/material/Chip';
 import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
 import { capitalize } from '@mui/material';
+import ProGroomer from '../../shared/ProGroomer';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -85,7 +86,7 @@ function Post({ post }) {
           <Typography component="h3" variant="author">
             by {capitalize(fakeUser.username)}
           </Typography>
-          {fakeUser.proGroomer && <p>pro groomer</p>}
+          {fakeUser.proGroomer && <ProGroomer />}
         </Box>
       </Stack>
       <Hr />
