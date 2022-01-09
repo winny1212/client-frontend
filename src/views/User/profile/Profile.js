@@ -8,8 +8,9 @@ import {
   Container,
   Button,
 } from '@mui/material';
-import PetsIcon from '@mui/icons-material/Pets';
+// import PetsIcon from '@mui/icons-material/Pets';
 import ProGroomer from '../../../components/shared/ProGroomer';
+import Header from '../../../components/layout/Header';
 
 const Profile = () => {
   //import the Data from usersData
@@ -19,6 +20,7 @@ const Profile = () => {
 
   return (
     <>
+      <Header title="Profile" />
       <Container>
         <Grid style={{ marginBottom: '2rem' }} container spacing={2}>
           <Grid item xs={6} md={4}>
