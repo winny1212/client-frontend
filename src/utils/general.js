@@ -11,3 +11,14 @@ const basePx = 16;
 export const pxToRem = (value) => {
   return `${value / basePx}rem`;
 };
+
+// Alternative to date-fns, obtain date from MongoDB
+export const getDate = (date) => {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  return new Date(date).toLocaleDateString('en-us', options);
+};

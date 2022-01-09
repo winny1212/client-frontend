@@ -20,7 +20,7 @@ import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
 import { capitalize } from '@mui/material';
 import ProGroomer from '../../shared/ProGroomer';
-import { pxToRem } from '../../../utils/general';
+import { pxToRem, getDate } from '../../../utils/general';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -40,7 +40,11 @@ function Post({ post }) {
   // On the onClick Button, we will dispatch the following.
   // dispatch(deletePost(post._id))
 
-  const dateFormat = 'EEE, do LLLL yyyy';
+  // ! Issues with date-fns ISO date error...
+  // const dateFormat = 'EEE, do LLLL yyyy';
+  // const postDate = post.createdAt;
+  // console.log('DATE---', postDate);
+
   const fakeUser = usersData[1];
 
   return (
@@ -101,7 +105,10 @@ function Post({ post }) {
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ mb: 3 }}
         >
-          <Typography>{format(new Date('2022-01-05'), dateFormat)}</Typography>
+          <Typography>
+            {getDate(post.createdAt)}
+            {/* {format(new Date(post.createdAt), dateFormat)} */}
+          </Typography>
           <Typography>Grooming Time</Typography>
         </Stack>
 
