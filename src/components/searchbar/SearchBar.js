@@ -38,13 +38,22 @@ const SearchBar = () => {
           <Option>Haski</Option>
           <Option>Saymoyed</Option>
           <Option>Groodle</Option>
+          <Option>Lablador</Option>
+          <Option>Germand</Option>
+          <Option>Chihuahua</Option>
+          <Option>Chihuahua</Option>
+          <Option>Chihuahua</Option>
           <Option>Chihuahua</Option>
         </Select>
         <Select>
           <Option disabled selected>
             Size
           </Option>
-          <Option>XS</Option>
+          <Option>Size</Option>
+          <Option>S</Option>
+          <Option>M</Option>
+          <Option>L</Option>
+          <Option>XL</Option>
         </Select>
       </Filter>
       <Filter>
