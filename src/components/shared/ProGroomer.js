@@ -4,14 +4,14 @@ import VerifiedTwoToneIcon from '@mui/icons-material/VerifiedTwoTone';
 
 const ProGroomer = () => {
   return (
-    <Box component="span" sx={{ display: 'inline-flex' }}>
+    <Box component="span" sx={{ display: 'inline-flex', mt: 0.5 }}>
       <VerifiedTwoToneIcon
         color="secondary"
         fontSize="small"
         sx={{ mr: 0.75 }}
       />
       <Typography variant="caption" sx={{ textTransform: 'uppercase' }}>
-        Pro Groomer
+        Professional Groomer
       </Typography>
     </Box>
   );

@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import PetsIcon from '@mui/icons-material/Pets';
+import ProGroomer from '../../../components/shared/ProGroomer';
 
 const Profile = () => {
   //import the Data from usersData
@@ -48,18 +49,17 @@ const Profile = () => {
               {profile.username}
             </Typography>{' '}
             {/* bagde details */}
-            {profile.proGroomer ? (
-              <Typography
-                align="left"
-                style={{ marginTop: '1rem' }}
-                variant="body1"
-                component="div"
-              >
-                <PetsIcon />
-                Professional Groomer
-              </Typography>
-            ) : (
-              ' '
+            {profile.proGroomer && (
+              <ProGroomer />
+              // <Typography
+              //   align="left"
+              //   style={{ marginTop: '1rem' }}
+              //   variant="body1"
+              //   component="div"
+              // >
+              //   <PetsIcon />
+              //   Professional Groomer
+              // </Typography>
             )}
             {/* location details */}
             <Typography
