@@ -1,5 +1,6 @@
 import '../../index.css';
 import global from './globalStyle';
+import { pxToRem } from '../../utils/general';
 import { createTheme } from '@mui/material/styles';
 import { pink } from '@mui/material/colors/';
 
@@ -48,6 +49,9 @@ const theme = (mode) =>
       accentPink: palette.augmentColor({
         color: { main: global.accentPink },
       }),
+      white: palette.augmentColor({
+        color: { main: '#fff' },
+      }),
     },
     typography: {
       fontFamily: global.fontPrimary,
@@ -69,6 +73,14 @@ const theme = (mode) =>
         fontFamily: global.fontPrimary,
         // fontWeight: 700,
         fontStyle: 'italic',
+      },
+      // Section headings
+      h5: {
+        fontFamily: global.fontPrimary,
+        letterSpacing: -0.5,
+        lineHeight: 1.5,
+        fontStyle: 'italic',
+        textTransform: 'capitalize',
       },
       // Post Card title
       h6: {
@@ -102,6 +114,8 @@ const theme = (mode) =>
       },
       caption: {
         fontFamily: global.fontSecondary,
+        fontWeight: 600,
+        letterSpacing: 1,
       },
       overline: {
         fontFamily: global.fontSecondary,
@@ -113,16 +127,39 @@ const theme = (mode) =>
         letterSpacing: -0.5,
         textTransform: 'capitalize',
       },
+      bodyIntro: {
+        fontFamily: global.fontSecondary,
+        fontWeight: 400,
+        fontSize: pxToRem(22),
+      },
+      author: {
+        fontFamily: global.fontPrimary,
+        fontStyle: 'italic',
+        paddingBottom: 0,
+      },
     },
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
             fontFamily: global.fontSecondary,
+            fontSize: '0.7rem',
             letterSpacing: 1,
             paddingRight: 10,
             paddingLeft: 10,
             fontWeight: 600,
+          },
+        },
+      },
+      MuiAvatar: {
+        styleOverrides: {
+          root: {
+            fontFamily: global.fontSecondary,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            width: 50,
+            height: 50,
+            backgroundColor: global.colorSecondary,
           },
         },
       },

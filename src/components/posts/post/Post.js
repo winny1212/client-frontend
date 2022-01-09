@@ -5,6 +5,11 @@ import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
 import Hr from '../../shared/Hr';
+import usersData from '../../../data/usersData';
+// import { format } from 'date-fns';
+import { pxToRem, getDate } from '../../../utils/general';
+import ProGroomer from '../../shared/ProGroomer';
+import IconText from '../../shared/IconText';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -14,8 +19,11 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Chip from '@mui/material/Chip';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
+import Image from '../../shared/Image';
+import Avatar from '@mui/material/Avatar';
+import { capitalize } from '@mui/material';
+import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
+import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -35,39 +43,108 @@ function Post({ post }) {
   // On the onClick Button, we will dispatch the following.
   // dispatch(deletePost(post._id))
 
-  const imgHeight = 300;
+  // ! Issues with date-fns ISO date error...
+  // const dateFormat = 'EEE, do LLLL yyyy';
+  // const postDate = post.createdAt;
+  // console.log('DATE---', postDate);
+
+  const fakeUser = usersData[1];
 
   return (
     <>
-      <Hr>
-        <Chip
-          color="secondary"
-          label={`${post.dogSize} ${post.breed}`.toUpperCase()}
-        />
-      </Hr>
+      <Container maxWidth="lg">
+        <Hr>
+          {post.dogSize && (
+            <Chip
+              variant="outlined"
+              color="primary"
+              label={`${post.dogSize} ${post.breed}`.toUpperCase()}
+            />
+          )}
+        </Hr>
+        {post.image && (
+          <>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={6}>
+                <Image
+                  src={post.image?.before}
+                  alt={`${post.dogSize} ${post.breed} before grooming`}
+                  caption="Before"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Image
+                  src={post.image?.after}
+                  alt={`${post.dogSize} ${post.breed} after grooming`}
+                  caption="After"
+                />
+              </Grid>
+            </Grid>
+            <Hr />
+          </>
+        )}
 
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={1}>
-        <CardMedia
-          component="img"
-          height={imgHeight}
-          image={post.image?.before}
-        />
-        <CardMedia
-          component="img"
-          height={imgHeight}
-          image={post.image?.after}
-        />
-      </Stack>
+        <Stack direction="row" spacing={2}>
+          <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              textAlign: 'left',
+            }}
+          >
+            <Typography component="h3" variant="author">
+              by {capitalize(fakeUser.username)}
+            </Typography>
+            {fakeUser.proGroomer && <ProGroomer />}
+          </Box>
+        </Stack>
+        <Hr />
 
-      <Hr />
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={{ xs: 0.25, md: 3 }}
+          divider={<Divider orientation="vertical" flexItem />}
+          sx={{ mb: 3 }}
+        >
+          <IconText label={getDate(post.createdAt)} fontSize="small">
+            <EventNoteTwoToneIcon color="secondary" />
+          </IconText>
 
-      <p>post author</p>
-      <p>post details</p>
+          {/* ! To change (add post.duration) */}
+          <IconText label={`Grooming Time: 1 hr`} fontSize="small">
+            <TimelapseTwoToneIcon color="secondary" />
+          </IconText>
+        </Stack>
 
-      <Hr />
+        <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
+          Instructions
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} sx={{ mb: 1 }}>
+            {post.description && (
+              <Typography
+                variant="bodyIntro"
+                sx={{ fontSize: { xs: pxToRem(18), md: pxToRem(22) } }}
+              >
+                {post.description}
+              </Typography>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ol>
+              {post.steps?.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
+          </Grid>
 
-      <p>Instructions</p>
-      <p>Video</p>
+          <Grid item xs={12} md={6}>
+            <p>Video</p>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 }
