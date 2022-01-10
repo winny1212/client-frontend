@@ -114,8 +114,6 @@ const theme = (mode) =>
       },
       caption: {
         fontFamily: global.fontSecondary,
-        fontWeight: 600,
-        letterSpacing: 1,
       },
       overline: {
         fontFamily: global.fontSecondary,
@@ -136,6 +134,11 @@ const theme = (mode) =>
         fontFamily: global.fontPrimary,
         fontStyle: 'italic',
         paddingBottom: 0,
+      },
+      role: {
+        fontFamily: global.fontSecondary,
+        fontWeight: 600,
+        letterSpacing: 1,
       },
     },
     components: {
