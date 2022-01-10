@@ -4,7 +4,7 @@ import { StyledBtnOutlined } from '../../shared/StyledButtons';
 // MUI
 import Box from '@mui/material/Box';
 
-const AddStep = ({ step, handleInputChange, handleStepSubmit }) => {
+const AddStep = ({ step, handleInputChange, handleAddStep }) => {
   return (
     <>
       <FormInput
@@ -21,11 +21,7 @@ const AddStep = ({ step, handleInputChange, handleStepSubmit }) => {
       />
 
       <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <StyledBtnOutlined
-          size="small"
-          type="submit"
-          onClick={handleStepSubmit}
-        >
+        <StyledBtnOutlined size="small" type="submit" onClick={handleAddStep}>
           Add Step
         </StyledBtnOutlined>
       </Box>

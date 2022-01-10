@@ -31,12 +31,22 @@ function Steps({ handleChange, postData, setPostData }) {
   const [isEditing, setIsEditing] = useState(false);
   const [currentStep, setCurrentStep] = useState({});
 
+  // handle onChange for the AddStep component
   const handleInputChange = (e) => {
     setStep(e.target.value);
-    // console.log('step', step);
   };
 
-  const handleStepSubmit = (e) => {
+  // handle onChange for the EditStep component
+  const handleEditInputChange = (e) => {
+    setCurrentStep({
+      ...currentStep,
+      text: e.target.value,
+    });
+    console.log('currentStep -', currentStep);
+  };
+
+  // handle onSubmit when the 'Add Step' is clicked
+  const handleAddStep = (e) => {
     e.preventDefault();
 
     const newStep = { id: generateID(), text: step.trim() };
@@ -48,11 +58,34 @@ function Steps({ handleChange, postData, setPostData }) {
     setStep('');
   };
 
+  // handle update step state
+  const handleUpdateStep = (id, updatedStep) => {
+    const modifiedStep = instructions.map((instruction) => {
+      return instruction.id === id ? updatedStep : instruction;
+    });
+    setIsEditing(false);
+    setInstructions(modifiedStep);
+  };
+
+  // handle modified step submit
+  const handleSaveEditedStep = (e) => {
+    e.preventDefault();
+
+    handleUpdateStep(currentStep.id, currentStep);
+  };
+
+  // handle step deletion
+  const handleDeleteStep = (id) => {
+    const removeStep = instructions.filter((instruction) => {
+      return instruction.id !== id;
+    });
+  };
+
   return (
     <>
       <AddStep
         step={step}
-        handleStepSubmit={handleStepSubmit}
+        handleAddStep={handleAddStep}
         handleInputChange={handleInputChange}
       />
 
