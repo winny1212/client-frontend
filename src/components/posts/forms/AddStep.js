@@ -1,5 +1,5 @@
 import FormInput from '../../shared/FormInput';
-import { StyledBtnOutlined } from '../../shared/StyledButtons';
+import { StyledBtn } from '../../shared/StyledButtons';
 
 // MUI
 import Box from '@mui/material/Box';
@@ -20,10 +20,16 @@ const AddStep = ({ step, handleInputChange, handleAddStep }) => {
         onChange={handleInputChange}
       />
 
-      <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <StyledBtnOutlined size="small" type="submit" onClick={handleAddStep}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: { xs: 'center', md: 'flex-end' },
+          mt: 1.5,
+        }}
+      >
+        <StyledBtn size="small" type="submit" onClick={handleAddStep}>
           Add Step
-        </StyledBtnOutlined>
+        </StyledBtn>
       </Box>
     </>
   );

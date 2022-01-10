@@ -43,7 +43,7 @@ function Steps({ handleChange, postData, setPostData }) {
       ...currentStep,
       text: e.target.value,
     });
-    console.log('currentStep -', currentStep);
+    // console.log('currentStep -', currentStep);
   };
 
   // handle onSubmit when the 'Add Step' is clicked
@@ -89,11 +89,20 @@ function Steps({ handleChange, postData, setPostData }) {
 
   return (
     <>
-      <AddStep
-        step={step}
-        handleAddStep={handleAddStep}
-        handleInputChange={handleInputChange}
-      />
+      {isEditing ? (
+        <EditStep
+          currentStep={currentStep}
+          setIsEditing={setIsEditing}
+          handleEditInputChange={handleEditInputChange}
+          handleSaveEditedStep={handleSaveEditedStep}
+        />
+      ) : (
+        <AddStep
+          step={step}
+          handleAddStep={handleAddStep}
+          handleInputChange={handleInputChange}
+        />
+      )}
 
       <Hr />
 
@@ -104,7 +113,7 @@ function Steps({ handleChange, postData, setPostData }) {
       <List>
         {instructions.map((instruction, index) => (
           <Step
-            // key={instruction.id}
+            key={instruction.id}
             instruction={instruction}
             index={index}
             handleEditStep={handleEditStep}

@@ -2,9 +2,14 @@ import FormInput from '../../shared/FormInput';
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 
 // MUI
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
-const EditStep = ({ step, handleInputChange, handleAddStep }) => {
+const EditStep = ({
+  currentStep,
+  setIsEditing,
+  handleEditInputChange,
+  handleSaveEditedStep,
+}) => {
   return (
     <>
       <FormInput
@@ -15,19 +20,24 @@ const EditStep = ({ step, handleInputChange, handleAddStep }) => {
         multiline
         rows={3}
         helperText="Click 'Update' to save changes"
-        value={step}
-        onChange={handleInputChange}
+        value={currentStep.text}
+        onChange={handleEditInputChange}
       />
 
-      <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <StyledBtn size="small" type="submit" onClick={handleAddStep}>
+      <Stack
+        direction="row"
+        justifyContent={{ xs: 'center', md: 'flex-end' }}
+        spacing={1}
+        mt={1.5}
+      >
+        <StyledBtn size="small" type="submit" onClick={handleSaveEditedStep}>
           Update Step
         </StyledBtn>
 
-        <StyledBtnOutlined size="small" onClick={handleAddStep}>
+        <StyledBtnOutlined size="small" onClick={() => setIsEditing(false)}>
           Cancel
         </StyledBtnOutlined>
-      </Box>
+      </Stack>
     </>
   );
 };
