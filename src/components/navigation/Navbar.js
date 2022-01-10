@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+// State Managers
+import { useDispatch } from 'react-redux'
+;
+// To decode the token
+import decode from 'jwt-decode';
+
 // import { NavLink } from 'react-router-dom';
+
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -23,6 +32,33 @@ import { useStyles } from '../../components/navigation/styles';
 function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
+
+  // We must make sure when token expires, the user is logged out.
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    navigate('/auth');
+    setUser(null);
+  };
+
+  useEffect(() => {
+    const token = user?.token;
+
+    // The logic to log out after a certain time.
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
 
   //usersData set with reducer
   const profile = useSelector((state) => {
@@ -81,7 +117,7 @@ function Navbar() {
                         <Button href="/posts/new" variant="container">
                           Create a Post
                         </Button>
-                        <Button href="/logout" variant="container">
+                        <Button href="/" onClick={logout} variant="container">
                           Logout
                         </Button>
                       </>

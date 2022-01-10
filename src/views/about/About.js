@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import Header from '../../components/layout/Header';
 
 import data from './dataSlider';
 import './Slider.css';
@@ -32,57 +33,60 @@ export default function About() {
   }, [index]);
 
   return (
-    <section className="section">
-      <div className="title">
-        <h2>
-          <span>/</span>About
-        </h2>
-      </div>
-      <div className="section-center">
-        {image.map((image, imageIndex) => {
-          const { id, image_link, title } = image;
+    <>
+      <Header title="About DIY Grooming" />
+      <section className="section">
+        <div className="title">
+          <h2>
+            <span>/</span>About
+          </h2>
+        </div>
+        <div className="section-center">
+          {image.map((image, imageIndex) => {
+            const { id, image_link, title } = image;
 
-          let position = 'nextSlide';
-          if (imageIndex === index) {
-            position = 'activeSlide';
-          }
+            let position = 'nextSlide';
+            if (imageIndex === index) {
+              position = 'activeSlide';
+            }
 
-          if (
-            imageIndex === index - 1 ||
-            (index === 0 && imageIndex === image.length - 1)
-          ) {
-            position = 'lastSlide';
-          }
+            if (
+              imageIndex === index - 1 ||
+              (index === 0 && imageIndex === image.length - 1)
+            ) {
+              position = 'lastSlide';
+            }
 
-          return (
-            <article className={position} key={id}>
-              <img src={image_link} alt={title} className="dog-img" />
+            return (
+              <article className={position} key={id}>
+                <img src={image_link} alt={title} className="dog-img" />
 
-              <p className="title">{title}</p>
-            </article>
-          );
-        })}
-        {/* import the left icon button and set up the click function */}
-        <button className="prev" onClick={() => setIndex(index - 1)}>
-          <FiChevronLeft />
-        </button>
-        {/* import the right icon and set up the click function */}
-        <button className="next" onClick={() => setIndex(index + 1)}>
-          <FiChevronRight />
-        </button>
-      </div>
+                <p className="title">{title}</p>
+              </article>
+            );
+          })}
+          {/* import the left icon button and set up the click function */}
+          <button className="prev" onClick={() => setIndex(index - 1)}>
+            <FiChevronLeft />
+          </button>
+          {/* import the right icon and set up the click function */}
+          <button className="next" onClick={() => setIndex(index + 1)}>
+            <FiChevronRight />
+          </button>
+        </div>
 
-      <div className="para">
-        <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
-        <p>
-          Welcome to the Notting Hill Community Dog Blog! This is an platform
-          where everyone can create an online blog, dedicated to dog owners in
-          the community to post about their dog grooming tips and tricks to help
-          the community to do their own DIY dog grooming. As well as to give
-          opportunity for the professional dog groomers to get back on their
-          business again if needed as a mobile dog grooming service.
-        </p>
-      </div>
-    </section>
+        <div className="para">
+          <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
+          <p>
+            Welcome to the Notting Hill Community Dog Blog! This is an platform
+            where everyone can create an online blog, dedicated to dog owners in
+            the community to post about their dog grooming tips and tricks to
+            help the community to do their own DIY dog grooming. As well as to
+            give opportunity for the professional dog groomers to get back on
+            their business again if needed as a mobile dog grooming service.
+          </p>
+        </div>
+      </section>
+    </>
   );
 }

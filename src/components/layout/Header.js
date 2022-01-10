@@ -11,7 +11,8 @@ const Header = ({ title, color }) => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        pb: '2.5rem',
         mb: '2rem',
         height: 200,
         bgcolor: color || 'accentYellow.main',
