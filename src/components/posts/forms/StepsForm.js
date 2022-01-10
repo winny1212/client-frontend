@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { generateID } from '../../../utils/general';
 
 // MUI
 import Box from '@mui/material/Box';
@@ -21,9 +22,28 @@ import { StyledBtnOutlined } from '../../shared/StyledButtons';
 
 function Steps({ handleChange, postData, setPostData }) {
   // state for lists of steps
-  const [stepsList, setStepsList] = useState(postData.steps);
+  const [instructions, setInstructions] = useState([]);
   // state for each step
   const [step, setStep] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentStep, setCurrentStep] = useState({});
+
+  const handleInputChange = (e) => {
+    setStep(e.target.value);
+    // console.log('step', step);
+  };
+
+  const handleStepSubmit = (e) => {
+    e.preventDefault();
+
+    const newStep = { id: generateID(), text: step.trim() };
+
+    if (step !== '') {
+      setInstructions([...instructions, newStep]);
+    }
+    // clear out input
+    setStep('');
+  };
 
   return (
     <>
@@ -36,10 +56,18 @@ function Steps({ handleChange, postData, setPostData }) {
         rows={3}
         helperText="Click 'Add Step' to write more steps. Up to 10 steps recommended"
         required
+        value={step}
+        onChange={handleInputChange}
       />
 
       <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <StyledBtnOutlined size="small">Add Step</StyledBtnOutlined>
+        <StyledBtnOutlined
+          size="small"
+          type="submit"
+          onClick={handleStepSubmit}
+        >
+          Add Step
+        </StyledBtnOutlined>
       </Box>
 
       <Hr />
@@ -48,7 +76,47 @@ function Steps({ handleChange, postData, setPostData }) {
         Grooming instructions preview
       </Typography>
 
+      <ol>
+        {instructions.map((step) => (
+          <li key={step.id}>
+            {step.text}
+            <button>edit</button>
+            <button>delete</button>
+          </li>
+        ))}
+      </ol>
+
       <List>
+        {instructions.map((instruction, index) => (
+          <ListItem
+            key={instruction.id}
+            alignItems="flex-start"
+            sx={{ pl: 0.25 }}
+            secondaryAction={
+              <Stack>
+                <IconButton edge="end" aria-label="edit">
+                  <EditTwoToneIcon color="secondary" fontSize="small" />
+                </IconButton>
+                <IconButton edge="end" aria-label="delete">
+                  <DeleteTwoToneIcon color="secondary" fontSize="small" />
+                </IconButton>
+              </Stack>
+            }
+          >
+            <ListItemAvatar>
+              <Avatar
+                sx={{ width: { xs: 36, md: 42 }, height: { xs: 36, md: 42 } }}
+              >
+                {index + 1}
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText sx={{ pr: 1 }}>{instruction.text}</ListItemText>
+          </ListItem>
+        ))}
+      </List>
+
+      <List>
+        {/* PREVIEW ONLY */}
         <ListItem
           alignItems="flex-start"
           sx={{ pl: 0.25 }}
@@ -71,8 +139,7 @@ function Steps({ handleChange, postData, setPostData }) {
             </Avatar>
           </ListItemAvatar>
           <ListItemText sx={{ pr: 1 }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel
-            mollitia, ducimus fuga provident nihil aspernatur.
+            This is how it's gonna look like...
           </ListItemText>
         </ListItem>
       </List>
