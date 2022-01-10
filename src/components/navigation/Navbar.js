@@ -83,7 +83,109 @@ function Navbar() {
 
   //Breakpoints
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.up('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  //login User logic for reendering
+  const LoginUser = () => (
+    <>
+      {user ? (
+        <>
+          <Button href="/profile" variant="container">
+            Profile
+          </Button>
+          <Button href="/posts/new" variant="container">
+            Create a Post
+          </Button>
+          <Button href="/" onClick={logout} variant="container">
+            Logout
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button href="/register" variant="container">
+            Register
+          </Button>
+          <Button href="/login" variant="container">
+            Login
+          </Button>
+        </>
+      )}
+    </>
+  );
+
+  //render mobile breakpoint
+  const MobileNavBar = () => (
+    <>
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton size="large" onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <MenuIcon />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: '45px' }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={openUser}
+          onClose={handleCloseUserMenu}
+        >
+          <Container
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+            }}
+          >
+            <Button variant="container" href="/">
+              Home
+            </Button>
+            <Button href="/register" variant="container">
+              Register
+            </Button>
+            <Button href="/about" variant="container">
+              About
+            </Button>
+            <Button href="/login" variant="container">
+              Login
+            </Button>
+            <Button href="/create" variant="container">
+              Create a Post
+            </Button>
+          </Container>
+        </Menu>
+      </Box>
+    </>
+  );
+
+  //render Desktop breakpoint
+  const DesktopNavBar = () => (
+    <>
+      <Container
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+      >
+        <Button variant="container" href="/">
+          Home
+        </Button>
+        <Button href="/about" variant="container">
+          About
+        </Button>
+        <LoginUser />
+      </Container>
+    </>
+  );
 
   return (
     <>
@@ -96,96 +198,7 @@ function Navbar() {
             <Box
               sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}
             >
-              {isMatch ? (
-                <>
-                  <Container
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Button variant="container" href="/">
-                      Home
-                    </Button>
-                    <Button href="/about" variant="container">
-                      About
-                    </Button>
-
-                    {/* logic for render routes if user is login  */}
-                    {user ? (
-                      <>
-                        <Button href="/profile" variant="container">
-                          Profile
-                        </Button>
-                        <Button href="/posts/new" variant="container">
-                          Create a Post
-                        </Button>
-                        <Button href="/" onClick={logout} variant="container">
-                          Logout
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button href="/register" variant="container">
-                          Register
-                        </Button>
-                        <Button href="/login" variant="container">
-                          Login
-                        </Button>
-                      </>
-                    )}
-                  </Container>
-                </>
-              ) : (
-                <>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
-                      <IconButton
-                        size="large"
-                        onClick={handleOpenUserMenu}
-                        sx={{ p: 0 }}
-                      >
-                        <MenuIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: '45px' }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      open={openUser}
-                      onClose={handleCloseUserMenu}
-                    >
-                      <Container>
-                        <Button href="/" variant="container">
-                          Home
-                        </Button>
-                        <Button href="/register" variant="container">
-                          Register
-                        </Button>
-                        <Button href="/about" variant="container">
-                          About
-                        </Button>
-                        <Button href="/login" variant="container">
-                          Login
-                        </Button>
-                        <Button href="/create" variant="container">
-                          Create a Post
-                        </Button>
-                      </Container>
-                    </Menu>
-                  </Box>
-                </>
-              )}
+              {isMobile ? <MobileNavBar /> : <DesktopNavBar />}
             </Box>
           </Toolbar>
         </Container>
