@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import ClearTwoToneIcon from '@mui/icons-material/ClearTwoTone';
 
-const Step = ({ instruction, index }) => {
+const Step = ({ instruction, index, handleEditStep, handleDeleteStep }) => {
   return (
     <>
       <ListItem
@@ -19,10 +19,18 @@ const Step = ({ instruction, index }) => {
         sx={{ pl: 0.25 }}
         secondaryAction={
           <Stack justifyContent="flex-start">
-            <IconButton edge="end" aria-label="edit">
+            <IconButton
+              edge="end"
+              aria-label="edit"
+              onClick={() => handleEditStep(instruction)}
+            >
               <EditTwoToneIcon color="secondary" fontSize="small" />
             </IconButton>
-            <IconButton edge="end" aria-label="delete">
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => handleDeleteStep(instruction.id)}
+            >
               <ClearTwoToneIcon color="secondary" fontSize="small" />
             </IconButton>
           </Stack>

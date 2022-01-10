@@ -22,6 +22,7 @@ import Hr from '../../shared/Hr';
 import { StyledBtnOutlined } from '../../shared/StyledButtons';
 import Step from './Step';
 import AddStep from './AddStep';
+import EditStep from './EditStep';
 
 function Steps({ handleChange, postData, setPostData }) {
   // state for lists of steps
@@ -58,7 +59,7 @@ function Steps({ handleChange, postData, setPostData }) {
     setStep('');
   };
 
-  // handle update step state
+  // handle update step state (for saving changes)
   const handleUpdateStep = (id, updatedStep) => {
     const modifiedStep = instructions.map((instruction) => {
       return instruction.id === id ? updatedStep : instruction;
@@ -70,7 +71,6 @@ function Steps({ handleChange, postData, setPostData }) {
   // handle modified step submit
   const handleSaveEditedStep = (e) => {
     e.preventDefault();
-
     handleUpdateStep(currentStep.id, currentStep);
   };
 
@@ -79,6 +79,12 @@ function Steps({ handleChange, postData, setPostData }) {
     const removeStep = instructions.filter((instruction) => {
       return instruction.id !== id;
     });
+  };
+
+  // handle edit step
+  const handleEditStep = (step) => {
+    setIsEditing(true);
+    setCurrentStep({ ...step });
   };
 
   return (
@@ -97,7 +103,13 @@ function Steps({ handleChange, postData, setPostData }) {
 
       <List>
         {instructions.map((instruction, index) => (
-          <Step key={instruction.id} instruction={instruction} index={index} />
+          <Step
+            // key={instruction.id}
+            instruction={instruction}
+            index={index}
+            handleEditStep={handleEditStep}
+            handleDeleteStep={handleDeleteStep}
+          />
         ))}
       </List>
 
