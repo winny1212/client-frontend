@@ -10,7 +10,7 @@ const ProGroomer = () => {
         fontSize="small"
         sx={{ mr: 0.75 }}
       />
-      <Typography variant="caption" sx={{ textTransform: 'uppercase' }}>
+      <Typography variant="role" sx={{ textTransform: 'uppercase' }}>
         Professional Groomer
       </Typography>
     </Box>
