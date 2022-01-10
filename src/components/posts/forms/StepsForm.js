@@ -21,6 +21,7 @@ import FormInput from '../../shared/FormInput';
 import Hr from '../../shared/Hr';
 import { StyledBtnOutlined } from '../../shared/StyledButtons';
 import Step from './Step';
+import AddStep from './AddStep';
 
 function Steps({ handleChange, postData, setPostData }) {
   // state for lists of steps
@@ -49,44 +50,17 @@ function Steps({ handleChange, postData, setPostData }) {
 
   return (
     <>
-      <FormInput
-        label="Write one succinct and clear step at a time"
-        hint="Step-by-step instruction"
-        id="step"
-        name="step"
-        multiline
-        rows={3}
-        helperText="Click 'Add Step' to write more steps. Up to 10 steps recommended"
-        required
-        value={step}
-        onChange={handleInputChange}
+      <AddStep
+        step={step}
+        handleStepSubmit={handleStepSubmit}
+        handleInputChange={handleInputChange}
       />
-
-      <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <StyledBtnOutlined
-          size="small"
-          type="submit"
-          onClick={handleStepSubmit}
-        >
-          Add Step
-        </StyledBtnOutlined>
-      </Box>
 
       <Hr />
 
       <Typography variant="subtitle1" sx={{ textAlign: 'left' }}>
         Grooming instructions preview
       </Typography>
-
-      {/* <ol>
-        {instructions.map((step) => (
-          <li key={step.id}>
-            {step.text}
-            <button>edit</button>
-            <button>delete</button>
-          </li>
-        ))}
-      </ol> */}
 
       <List>
         {instructions.map((instruction, index) => (
