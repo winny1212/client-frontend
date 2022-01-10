@@ -25,9 +25,8 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const SearchBar = () => {
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState('newest');
+const SearchBar = (props) => {
+  const { filters, setFilters, sort, setSort } = props;
 
   const handleFilters = (e) => {
     const value = e.target.value;
