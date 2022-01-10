@@ -58,6 +58,11 @@ function Navbar() {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+  if (user?.result) {
+    console.log('User is:');
+    console.log(user.result);
+  }
+
   //usersData set with reducer
   const profile = useSelector((state) => {
     return state.profileReducer;
