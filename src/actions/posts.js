@@ -75,7 +75,7 @@ export const deletePost = (id) => async (dispatch) => {
 // Like a post
 export const likePost = (id) => async (dispatch) => {
   try {
-    const { data } = await likePost(id);
+    const { data } = await likeAPost(id);
 
     dispatch({ type: LIKE, payload: data });
   } catch (error) {

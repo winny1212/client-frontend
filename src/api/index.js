@@ -27,9 +27,19 @@ export const updateOldPost = (id, updatedPost) =>
 
 export const deleteAPost = (id) => API.delete(`'/posts'/${id}`);
 
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const likeAPost = (id) => API.patch(`/posts/${id}/likePost`);
 
 // Sign in and Sign Up Routes
 export const signInUser = (formData) => API.post('/user/signin', formData);
 
 export const signUpUser = (formData) => API.post('/user/signup', formData);
+
+// Users Routes
+export const fetchAllUsers = () => API.get('/users');
+
+export const fetchSingleUser = (id) => API.get(`/user/${id}`);
+
+export const updateOldUser = (id, updatedUser) =>
+  API.patch(`'/user'/${id}`, updatedUser);
+
+export const deleteAUser = (id) => API.delete(`'/user'/${id}`);
