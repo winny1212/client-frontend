@@ -42,7 +42,6 @@ const SearchBar = () => {
           <Option disabled selected>
             Size
           </Option>
-          <Option>Size</Option>
           <Option>S</Option>
           <Option>M</Option>
           <Option>L</Option>

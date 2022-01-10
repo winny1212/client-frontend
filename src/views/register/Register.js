@@ -12,6 +12,7 @@ import {
   Container,
   Checkbox,
   FormControlLabel,
+  fabClasses,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
@@ -37,7 +38,7 @@ export default function Register() {
 
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
 
   // Form Data State
   const [formData, setFormData] = useState(initialState);
