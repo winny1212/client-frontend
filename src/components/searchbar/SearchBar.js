@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { mobile } from './responsive';
 import styled from 'styled-components';
 import { dogBreeds } from '../../data/breedsData.js';
@@ -26,11 +26,22 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const SearchBar = () => {
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState('newest');
+
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    });
+  };
+
   return (
     <FilterContainer>
       <Filter>
         <FilterText>Filter Blogs:</FilterText>
-        <Select>
+        <Select name="color" onChange={handleFilters}>
           <Option disabled selected>
             Breed
           </Option>
@@ -38,7 +49,7 @@ const SearchBar = () => {
             <Option key={breed.id}>{breed.label}</Option>
           ))}
         </Select>
-        <Select>
+        <Select name="size" onChange={handleFilters}>
           <Option disabled selected>
             Size
           </Option>
@@ -50,8 +61,8 @@ const SearchBar = () => {
       </Filter>
       <Filter>
         <FilterText>Sort Blogs:</FilterText>
-        <Select>
-          <Option selected>Newest</Option>
+        <Select onChange={(e) => setSort(e.target.value)}>
+          <Option value="newest">Newest</Option>
         </Select>
       </Filter>
     </FilterContainer>
