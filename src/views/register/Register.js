@@ -119,31 +119,7 @@ export default function Register() {
                   container
                   direction="row"
                   justifyContent="flex-start"
-                  margin="10px 15px 0 "
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{ marginRight: 8, fontSize: 22 }}
-                  >
-                    Are you a dog groomer?
-                  </Typography>
-                  <FormControlLabel
-                    color="secondary"
-                    control={<Checkbox />}
-                    label="Yes"
-                  />
-                  <FormControlLabel
-                    color="secondary"
-                    control={<Checkbox />}
-                    label="No"
-                  />
-                </Grid>
-
-                <Grid
-                  container
-                  direction="row"
-                  justifyContent="flex-start"
-                  margin="0 15px 0 "
+                  margin="15px 0 5px 0 "
                 >
                   <Typography
                     variant="h5"

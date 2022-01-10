@@ -29,7 +29,6 @@ function Home() {
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
-        <h3>Searchbar</h3>
         {/* import search and filter function components */}
         <SearchBar />
         <h3>Featured Posts</h3>
