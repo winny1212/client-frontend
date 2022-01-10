@@ -1,6 +1,7 @@
 import React from 'react';
 import { mobile } from './responsive';
 import styled from 'styled-components';
+import { dogBreeds } from '../../data/breedsData.js';
 
 const FilterContainer = styled.div`
   display: flex;
@@ -33,17 +34,9 @@ const SearchBar = () => {
           <Option disabled selected>
             Breed
           </Option>
-          <Option>Poodle</Option>
-          <Option>Golden Retriver</Option>
-          <Option>Haski</Option>
-          <Option>Saymoyed</Option>
-          <Option>Groodle</Option>
-          <Option>Lablador</Option>
-          <Option>Germand</Option>
-          <Option>Chihuahua</Option>
-          <Option>Chihuahua</Option>
-          <Option>Chihuahua</Option>
-          <Option>Chihuahua</Option>
+          {dogBreeds.map((breed) => (
+            <Option key={breed.id}>{breed.label}</Option>
+          ))}
         </Select>
         <Select>
           <Option disabled selected>
