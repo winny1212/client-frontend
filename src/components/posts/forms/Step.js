@@ -14,7 +14,7 @@ const Step = ({ instruction, index, handleEditStep, handleDeleteStep }) => {
   return (
     <>
       <ListItem
-        key={instruction.id}
+        // key={instruction.id}
         alignItems="flex-start"
         sx={{ pl: 0.25 }}
         secondaryAction={

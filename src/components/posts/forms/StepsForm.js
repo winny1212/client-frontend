@@ -79,6 +79,7 @@ function Steps({ handleChange, postData, setPostData }) {
     const removeStep = instructions.filter((instruction) => {
       return instruction.id !== id;
     });
+    setInstructions(removeStep);
   };
 
   // handle edit step
