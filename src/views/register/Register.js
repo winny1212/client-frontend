@@ -75,7 +75,7 @@ export default function Register() {
       console.log('Signing Up');
 
       // We dispatch the Sign Up Action
-      dispatch(signUp(...formData));
+      dispatch(signUp(formData));
 
       console.log('Sent to Dispatch');
 
@@ -85,6 +85,9 @@ export default function Register() {
       console.log(formData);
       console.log('Signing In');
 
+      dispatch(signIn(formData));
+
+      navigate('/');
       // dispatch(signIn(formData), navigate);
     }
   };

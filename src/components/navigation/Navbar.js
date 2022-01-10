@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // State Managers
-import { useDispatch } from 'react-redux'
-;
+import { useDispatch } from 'react-redux';
 // To decode the token
 import decode from 'jwt-decode';
 
 // import { NavLink } from 'react-router-dom';
-
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
