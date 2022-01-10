@@ -58,6 +58,7 @@ function Navbar() {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+  // get user
   if (user?.result) {
     console.log('User is:');
     console.log(user.result);
