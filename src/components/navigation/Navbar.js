@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // State Managers
-import { useDispatch } from 'react-redux'
-;
+import { useDispatch } from 'react-redux';
 // To decode the token
 import decode from 'jwt-decode';
 
 // import { NavLink } from 'react-router-dom';
-
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -60,6 +58,12 @@ function Navbar() {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+  // get user
+  if (user?.result) {
+    console.log('User is:');
+    console.log(user.result);
+  }
+
   //usersData set with reducer
   const profile = useSelector((state) => {
     return state.profileReducer;
@@ -109,7 +113,7 @@ function Navbar() {
                     </Button>
 
                     {/* logic for render routes if user is login  */}
-                    {profile ? (
+                    {user ? (
                       <>
                         <Button href="/profile" variant="container">
                           Profile

@@ -85,6 +85,9 @@ export default function Register() {
       console.log(formData);
       console.log('Signing In');
 
+      dispatch(signIn(formData));
+
+      navigate('/');
       // dispatch(signIn(formData), navigate);
     }
   };
