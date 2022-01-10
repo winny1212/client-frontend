@@ -14,9 +14,9 @@ import Header from '../../../components/layout/Header';
 
 const Profile = () => {
   //import the Data from usersData
-  const profile = useSelector((state) => {
-    return state.profileReducer;
-  });
+  // const profile = useSelector((state) => {
+  //   return state.profileReducer;
+  // });
 
   // Get the User
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -24,6 +24,9 @@ const Profile = () => {
     console.log('User is:');
     console.log(user.result);
   }
+
+  //user data from local storage
+  const profile = user.result;
 
   // This will stop the page from loading if there are no users.
   // You can remove it if you want.
@@ -68,10 +71,10 @@ const Profile = () => {
               component="div"
             >
               {' '}
-              {user.result.username}
+              {profile.username}
             </Typography>{' '}
             {/* bagde details */}
-            {profile.proGroomer && (
+            {user.result.proGroomer && (
               <ProGroomer />
               // <Typography
               //   align="left"
