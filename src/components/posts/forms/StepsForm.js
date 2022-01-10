@@ -14,11 +14,13 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import ClearTwoToneIcon from '@mui/icons-material/ClearTwoTone';
 
 // Components
 import FormInput from '../../shared/FormInput';
 import Hr from '../../shared/Hr';
 import { StyledBtnOutlined } from '../../shared/StyledButtons';
+import Step from './Step';
 
 function Steps({ handleChange, postData, setPostData }) {
   // state for lists of steps
@@ -76,7 +78,7 @@ function Steps({ handleChange, postData, setPostData }) {
         Grooming instructions preview
       </Typography>
 
-      <ol>
+      {/* <ol>
         {instructions.map((step) => (
           <li key={step.id}>
             {step.text}
@@ -84,39 +86,16 @@ function Steps({ handleChange, postData, setPostData }) {
             <button>delete</button>
           </li>
         ))}
-      </ol>
+      </ol> */}
 
       <List>
         {instructions.map((instruction, index) => (
-          <ListItem
-            key={instruction.id}
-            alignItems="flex-start"
-            sx={{ pl: 0.25 }}
-            secondaryAction={
-              <Stack>
-                <IconButton edge="end" aria-label="edit">
-                  <EditTwoToneIcon color="secondary" fontSize="small" />
-                </IconButton>
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteTwoToneIcon color="secondary" fontSize="small" />
-                </IconButton>
-              </Stack>
-            }
-          >
-            <ListItemAvatar>
-              <Avatar
-                sx={{ width: { xs: 36, md: 42 }, height: { xs: 36, md: 42 } }}
-              >
-                {index + 1}
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText sx={{ pr: 1 }}>{instruction.text}</ListItemText>
-          </ListItem>
+          <Step key={instruction.id} instruction={instruction} index={index} />
         ))}
       </List>
 
       <List>
-        {/* PREVIEW ONLY */}
+        {/* PREVIEW ONLY TO BE DELETED*/}
         <ListItem
           alignItems="flex-start"
           sx={{ pl: 0.25 }}
@@ -126,7 +105,7 @@ function Steps({ handleChange, postData, setPostData }) {
                 <EditTwoToneIcon color="secondary" fontSize="small" />
               </IconButton>
               <IconButton edge="end" aria-label="delete">
-                <DeleteTwoToneIcon color="secondary" fontSize="small" />
+                <ClearTwoToneIcon color="secondary" fontSize="small" />
               </IconButton>
             </Stack>
           }
@@ -139,7 +118,10 @@ function Steps({ handleChange, postData, setPostData }) {
             </Avatar>
           </ListItemAvatar>
           <ListItemText sx={{ pr: 1 }}>
-            This is how it's gonna look like...
+            This is how it's gonna look like... Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Doloribus reiciendis, ratione totam
+            perferendis laboriosam provident doloremque facere maxime, nobis
+            aperiam animi delectus eos est ab!
           </ListItemText>
         </ListItem>
       </List>
