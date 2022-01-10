@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { generateID } from '../../../utils/general';
 
 // MUI
@@ -26,11 +26,26 @@ import EditStep from './EditStep';
 
 function Steps({ handleChange, postData, setPostData }) {
   // state for lists of steps
-  const [instructions, setInstructions] = useState([]);
+  const [instructions, setInstructions] = useState(() => {
+    if (postData.steps.length > 0) {
+      return postData.steps;
+    } else {
+      return [];
+    }
+  });
+
+  console.log('instructions', instructions);
+
   // state for each step
   const [step, setStep] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentStep, setCurrentStep] = useState({});
+
+  // !TODO
+  // send all steps to postData
+  // useEffect(() => {
+  //   setPostData(instructions);
+  // }, [instructions, setPostData]);
 
   // handle onChange for the AddStep component
   const handleInputChange = (e) => {
@@ -147,10 +162,10 @@ function Steps({ handleChange, postData, setPostData }) {
             </Avatar>
           </ListItemAvatar>
           <ListItemText sx={{ pr: 1 }}>
-            This is how it's gonna look like... Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Doloribus reiciendis, ratione totam
-            perferendis laboriosam provident doloremque facere maxime, nobis
-            aperiam animi delectus eos est ab!
+            THIS IS HOW IT'S GONNA LOOK LIKE. TRY ADDING A STEP ABOVE! (to
+            delete) Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Doloribus reiciendis, ratione totam perferendis laboriosam provident
+            doloremque facere maxime, nobis aperiam animi delectus eos est ab!
           </ListItemText>
         </ListItem>
       </List>
