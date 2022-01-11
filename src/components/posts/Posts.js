@@ -14,9 +14,7 @@ import PostCard from './PostCard';
 function Posts({ filters, setFilters, sort, setSort }) {
   const posts = useSelector((state) => state.postsReducer);
 
-  useEffect(() => {
-    setFilters(posts.filter((item) => {}));
-  }, [filters]);
+  
 
   return !posts.length ? (
     <CircularProgress />
