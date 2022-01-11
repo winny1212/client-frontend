@@ -140,6 +140,7 @@ function DetailsForm(props) {
         }
       />
 
+      {/* image: { before: '', after: '' } */}
       <Stack spacing={1}>
         <FormLabel>Upload before & after grooming photos</FormLabel>
         <Stack
@@ -149,7 +150,12 @@ function DetailsForm(props) {
           alignItems="stretch"
           divider={<Divider orientation="vertical" flexItem />}
         >
-          <ImgUpload id="img-before" imgLabel="Before" />
+          <ImgUpload
+            id="img-before"
+            imgLabel="Before"
+            name="before"
+            value={postData.image.before}
+          />
           <ImgUpload id="img-after" imgLabel="After" />
         </Stack>
       </Stack>
