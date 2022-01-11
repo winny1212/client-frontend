@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header';
 
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../actions/posts';
+import { getAllUsers } from '../../actions/auth';
 
 // UserContext
 import { UserContext } from '../../context/UserContext';
@@ -23,9 +24,14 @@ function Home() {
 
   const { currentId } = useContext(UserContext);
 
-  // fetch & load all posts
   useEffect(() => {
+    // fetch & load all posts
     dispatch(getAllPosts());
+
+    // fetch & load all Users
+    dispatch(getAllUsers());
+
+    console.log('The currentID is:', currentId);
   }, [dispatch, currentId]);
 
   return (

@@ -34,10 +34,6 @@ const PostCard = ({ post }) => {
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
     <CardActionArea component={RouterLink} to={`/posts/${post._id}`}>
-      {/* Dont worry about this code - only checking if it works.
-      <Box>
-        {user?.result?._id === post?.creator && <p>You are the creator</p>}
-      </Box> */}
       <Card
         sx={{
           display: 'flex',
