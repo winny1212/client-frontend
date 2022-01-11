@@ -2,22 +2,15 @@ import React, { useState } from 'react';
 
 // Components & Data
 import StepsForm from './StepsForm';
-// import breeds from '../../../data/breedsData.js';
 import BaseLayout from '../../shared/BaseLayout';
-// import FormInput from '../../shared/FormInput';
-// import FormHint from '../../shared/FormHint';
 
 // MUI
 import Grid from '@mui/material/Grid';
-// import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
-// import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-// eslint-disable-next-line
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 import DetailsForm from './DetailsForm';
 
-// {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
+// {_id, breed, dogSize, username, title, duration, description, steps, image, likes, comments, createdAt}
 
 function PostForm() {
   // Handle dog breeds selection state (has to be handled separately for MUI)
@@ -25,7 +18,7 @@ function PostForm() {
 
   const initialPostData = {
     title: '',
-    author: '',
+    username: '',
     breed: selectedBreed,
     dogSize: '',
     duration: 1,
