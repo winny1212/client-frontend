@@ -87,10 +87,8 @@ const NavBarLinks = () => {
           <Container
             sx={{
               display: 'flex',
-              // position: 'relative',
+              justifyContent: 'flex-end',
               bgcolor: 'accentYellow.main',
-              paddingTop: 0,
-              paddingBottom: 0,
             }}
           >
             <Button variant="container" href="/">
@@ -136,7 +134,7 @@ const NavBarLinks = () => {
   );
 
   return (
-    <div>
+    <>
       <Box
         sx={{
           flexGrow: 1,
@@ -146,7 +144,7 @@ const NavBarLinks = () => {
       >
         {isMobile ? <MobileNavBar /> : <DesktopNavBar />}
       </Box>
-    </div>
+    </>
   );
 };
 
