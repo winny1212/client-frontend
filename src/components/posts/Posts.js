@@ -19,9 +19,9 @@ function Posts({ filters, setFilters, sort, setSort }) {
   const users = useSelector((state) => state.profileReducer);
   console.log('Here are the Users:', users);
 
-  useEffect(() => {
-    setFilters(posts.filter((item) => {}));
-  }, [filters]);
+  // useEffect(() => {
+  //   setFilters(posts.filter((item) => {}));
+  // }, [filters]);
 
   return !posts.length ? (
     <CircularProgress />
