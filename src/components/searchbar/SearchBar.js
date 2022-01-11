@@ -35,6 +35,7 @@ const SearchBar = (props) => {
       [e.target.name]: value,
     });
   };
+  console.log(filters);
 
   return (
     <FilterContainer>
@@ -52,10 +53,9 @@ const SearchBar = (props) => {
           <Option disabled selected>
             Size
           </Option>
-          <Option>S</Option>
-          <Option>M</Option>
-          <Option>L</Option>
-          <Option>XL</Option>
+          <Option>small</Option>
+          <Option>medium</Option>
+          <Option>large</Option>
         </Select>
       </Filter>
       <Filter>
