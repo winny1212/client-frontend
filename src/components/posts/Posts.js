@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 // import Post from './post/Post';
 
 // MUI
@@ -10,13 +11,17 @@ import Grid from '@mui/material/Grid';
 import { CircularProgress } from '@mui/material';
 import PostCard from './PostCard';
 
-function Posts() {
+function Posts({ filters, setFilters, sort, setSort }) {
   const posts = useSelector((state) => state.postsReducer);
   console.log('Here are the Posts:', posts);
 
   // Testing users
   const users = useSelector((state) => state.profileReducer);
   console.log('Here are the Users:', users);
+
+  useEffect(() => {
+    setFilters(posts.filter((item) => {}));
+  }, [filters]);
 
   return !posts.length ? (
     <CircularProgress />

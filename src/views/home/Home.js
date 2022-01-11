@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Posts from '../../components/posts/Posts';
 import Header from '../../components/layout/Header';
 
@@ -17,6 +17,9 @@ import SearchBar from '../../components/searchbar/SearchBar';
 // import Typography from '@mui/material/Typography';
 
 function Home() {
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState('newest');
+
   const dispatch = useDispatch();
 
   const { currentId } = useContext(UserContext);
@@ -35,11 +38,20 @@ function Home() {
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
-        <h3>Searchbar</h3>
         {/* import search and filter function components */}
-        <SearchBar />
+        <SearchBar
+          filters={filters}
+          setFilters={setFilters}
+          sort={sort}
+          setSort={setSort}
+        />
         <h3>Featured Posts</h3>
-        <Posts />
+        <Posts
+          filters={filters}
+          setFilters={setFilters}
+          sort={sort}
+          setSort={setSort}
+        />
       </Container>
     </>
   );
