@@ -12,6 +12,11 @@ import PostCard from './PostCard';
 
 function Posts() {
   const posts = useSelector((state) => state.postsReducer);
+  console.log('Here are the Posts:', posts);
+
+  // Testing users
+  const users = useSelector((state) => state.profileReducer);
+  console.log('Here are the Users:', users);
 
   return !posts.length ? (
     <CircularProgress />

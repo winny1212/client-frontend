@@ -35,7 +35,7 @@ export const signInUser = (formData) => API.post('/user/signin', formData);
 export const signUpUser = (formData) => API.post('/user/signup', formData);
 
 // Users Routes
-export const fetchAllUsers = () => API.get('/users');
+export const fetchAllUsers = () => API.get('/user');
 
 export const fetchSingleUser = (id) => API.get(`/user/${id}`);
 
