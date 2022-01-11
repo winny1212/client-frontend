@@ -103,7 +103,7 @@ const NavBarLinks = () => {
             <Button variant="container" href="/login">
               Login
             </Button>
-            <Button variant="container" href="/create">
+            <Button href="/posts/new" variant="container">
               Create a Post
             </Button>
           </Container>
