@@ -42,7 +42,7 @@ function Navbar() {
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location, user, navigate, logout]);
+  }, [location]);
 
   // get user
   if (user?.result) {
