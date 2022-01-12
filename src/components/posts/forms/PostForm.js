@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
 
+// Redux State
+import { useDispatch } from 'react-redux';
+
+// Dispatch Action
+import { createPost } from '../../../actions/posts';
+
 // Components & Data
+import PostContextProvider from '../../../context/PostContext';
 import StepsForm from './StepsForm';
-// import breeds from '../../../data/breedsData.js';
 import BaseLayout from '../../shared/BaseLayout';
-// import FormInput from '../../shared/FormInput';
-// import FormHint from '../../shared/FormHint';
 
 // MUI
 import Grid from '@mui/material/Grid';
-// import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
-// import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-// eslint-disable-next-line
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
 import DetailsForm from './DetailsForm';
 
-// {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
+// {_id, breed, dogSize, username, title, duration, description, steps, image, likes, comments, createdAt}
 
 function PostForm() {
+  // Invoke Redux State
+  const dispatch = useDispatch();
+
+  // Get the current user for the post's username/author
+  const currentUser = JSON.parse(localStorage.getItem('profile'));
+
   // Handle dog breeds selection state (has to be handled separately for MUI)
   const [selectedBreed, setSelectedBreed] = useState(null);
 
   const initialPostData = {
     title: '',
-    author: '',
     breed: selectedBreed,
     dogSize: '',
     duration: 1,
@@ -46,6 +51,10 @@ function PostForm() {
     setPostData({ ...postData, [name]: value });
   };
 
+  // Clear all inputs to initial state
+  const clearInputs = () => setPostData(initialPostData);
+
+  // Create POST to send to backend
   const handlePublish = (e) => {
     e.preventDefault();
 
@@ -61,36 +70,38 @@ function PostForm() {
   };
 
   return (
-    <BaseLayout>
-      <form onSubmit={handlePublish} noValidate>
-        <Grid container direction="row" spacing={3}>
-          <Grid item xs={12} md={5}>
-            <DetailsForm
-              handleChange={handleChange}
-              postData={postData}
-              setPostData={setPostData}
-              selectedBreed={selectedBreed}
-              setSelectedBreed={setSelectedBreed}
-            />
-          </Grid>
+    <PostContextProvider>
+      <BaseLayout>
+        <form onSubmit={handlePublish} noValidate>
+          <Grid container direction="row" spacing={3}>
+            <Grid item xs={12} md={5}>
+              <DetailsForm
+                handleChange={handleChange}
+                postData={postData}
+                setPostData={setPostData}
+                selectedBreed={selectedBreed}
+                setSelectedBreed={setSelectedBreed}
+              />
+            </Grid>
 
-          <Grid item xs={12} md={7}>
-            <StepsForm
-              handleChange={handleChange}
-              postData={postData}
-              setPostData={setPostData}
-            />
-          </Grid>
+            <Grid item xs={12} md={7}>
+              <StepsForm
+                handleChange={handleChange}
+                postData={postData}
+                setPostData={setPostData}
+              />
+            </Grid>
 
-          <Grid item xs={12} md={12}>
-            <Stack spacing={2} direction="row" justifyContent="center">
-              {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
-              <StyledBtn type="submit">Publish Post</StyledBtn>
-            </Stack>
+            <Grid item xs={12} md={12}>
+              <Stack spacing={2} direction="row" justifyContent="center">
+                {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
+                <StyledBtn type="submit">Publish Post</StyledBtn>
+              </Stack>
+            </Grid>
           </Grid>
-        </Grid>
-      </form>
-    </BaseLayout>
+        </form>
+      </BaseLayout>
+    </PostContextProvider>
   );
 }
 
