@@ -14,31 +14,19 @@ import Step from './Step';
 import AddStep from './AddStep';
 import EditStep from './EditStep';
 
-function Steps({ handleChange, postData, setPostData }) {
+function Steps() {
   // PostContext consume
   const { instructions, setInstructions, stepsTempLocal } = usePostContext();
-
-  // state for lists of steps
-  // const [instructions, setInstructions] = useState(() => {
-  //   if (postData.steps.length > 0) {
-  //     return postData.steps;
-  //   } else {
-  //     return [];
-  //   }
-  // });
-
-  console.log('instructions', instructions);
 
   // state for each step
   const [step, setStep] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentStep, setCurrentStep] = useState({});
 
-  // !TODO
-  // send all steps to postData
-  // useEffect(() => {
-  //   setPostData(instructions);
-  // }, [instructions, setPostData]);
+  // save steps to temp local storage
+  useEffect(() => {
+    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
+  }, [instructions, stepsTempLocal]);
 
   // handle onChange for the AddStep component
   const handleInputChange = (e) => {
@@ -51,7 +39,6 @@ function Steps({ handleChange, postData, setPostData }) {
       ...currentStep,
       text: e.target.value,
     });
-    // console.log('currentStep -', currentStep);
   };
 
   // handle onSubmit when the 'Add Step' is clicked
