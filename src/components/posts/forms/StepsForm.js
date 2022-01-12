@@ -23,11 +23,6 @@ function Steps() {
   const [isEditing, setIsEditing] = useState(false);
   const [currentStep, setCurrentStep] = useState({});
 
-  // save steps to temp local storage
-  useEffect(() => {
-    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
-  }, [instructions, stepsTempLocal]);
-
   // handle onChange for the AddStep component
   const handleInputChange = (e) => {
     setStep(e.target.value);

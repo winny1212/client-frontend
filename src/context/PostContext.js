@@ -37,6 +37,11 @@ const PostContextProvider = ({ children }) => {
     }
   });
 
+  // save steps to temp local storage
+  useEffect(() => {
+    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
+  }, [instructions, stepsTempLocal]);
+
   const handlePostPublish = (e) => {
     e.preventDefault();
     console.log('-- postData:\n', JSON.stringify(postData, null, 2));

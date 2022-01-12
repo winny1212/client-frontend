@@ -36,7 +36,9 @@ function PostForm() {
     initialDetailsData,
     details,
     setDetails,
+    stepsTempLocal,
     selectedBreed,
+    setSelectedBreed,
     instructions,
   } = usePostContext();
 
@@ -47,21 +49,24 @@ function PostForm() {
   const handlePostPublish = (e) => {
     e.preventDefault();
 
-    setPostData({
+    const newPost = setPostData({
       ...postData,
       ...details,
       steps: instructions,
       breed: selectedBreed.label,
+      username: currentUser?.result?.username,
     });
     // add alert to notify post is published?
 
     // Send post to backend - CREATE POST
-    // dispatch(
-    //   createPost({ ...postData, username: currentUser?.result?.username }),
-    // );
+    dispatch(createPost({ ...postData, newPost }));
 
     // clear inputs back to initial values
     clearInputs();
+    // clear temporary local storage for steps
+    localStorage.removeItem(stepsTempLocal);
+    // set breed back to null
+    setSelectedBreed(null);
 
     console.log('Post Published!');
     console.log('-- postData:\n', JSON.stringify(postData, null, 2));
