@@ -153,8 +153,8 @@ function DetailsForm(props) {
           <ImgUpload
             id="img-before"
             imgLabel="Before"
-            name="before"
-            value={postData.image.before}
+            // name="before"
+            // value={postData.image.before}
           />
           <ImgUpload id="img-after" imgLabel="After" />
         </Stack>

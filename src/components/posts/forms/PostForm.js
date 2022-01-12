@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Dispatch Action
-import { createPost } from '../../actions/posts';
+import { createPost } from '../../../actions/posts';
 
 // Components & Data
 import PostContextProvider from '../../../context/PostContext';

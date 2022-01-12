@@ -30,8 +30,25 @@ const PostContextProvider = ({ children }) => {
   // Collected individual steps to form final instructions (steps)
   const [instructions, setInstructions] = useState([]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPostData({ ...postData, [name]: value });
+  };
+
   return (
-    <PostContext.Provider value={{ postData, setPostData }}>
+    <PostContext.Provider
+      value={{
+        postData,
+        setPostData,
+        details,
+        setDetails,
+        selectedBreed,
+        setSelectedBreed,
+        instructions,
+        setInstructions,
+        handleChange,
+      }}
+    >
       {children}
     </PostContext.Provider>
   );
