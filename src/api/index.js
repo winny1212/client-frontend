@@ -20,6 +20,9 @@ API.interceptors.request.use((req) => {
 
 export const fetchAllPosts = () => API.get('/posts');
 
+export const fetchPostsBySearch = (searchQuery) =>
+  API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}`);
+
 export const createNewPost = (newPost) => API.post('/posts', newPost);
 
 export const updateOldPost = (id, updatedPost) =>
