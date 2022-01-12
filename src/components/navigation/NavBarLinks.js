@@ -50,9 +50,6 @@ const NavBarLinks = () => {
         </>
       ) : (
         <>
-          <StyledBtn href="/register" variant="container">
-            Register
-          </StyledBtn>
           <StyledBtn href="/login" variant="container">
             Login
           </StyledBtn>
@@ -109,16 +106,6 @@ const NavBarLinks = () => {
               href="/"
             >
               Home
-            </Button>
-            <Button
-              sx={{
-                borderBottom: '1px solid #502D5C',
-                width: '100vw',
-              }}
-              variant="container"
-              href="/register"
-            >
-              Register
             </Button>
             <Button
               sx={{
