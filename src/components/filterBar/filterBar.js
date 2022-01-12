@@ -25,7 +25,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const SearchBar = (props) => {
+const FilterBar = (props) => {
   const { filters, setFilters, sort, setSort } = props;
 
   const handleFilters = (e) => {
@@ -66,4 +66,4 @@ const SearchBar = (props) => {
   );
 };
 
-export default SearchBar;
+export default FilterBar;

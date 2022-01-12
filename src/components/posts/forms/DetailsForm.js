@@ -66,7 +66,7 @@ function DetailsForm(props) {
         <FormLabel>This grooming is best suited for</FormLabel>
         <Autocomplete
           fullWidth
-          id="dog-breed"
+          id="breed"
           name="breed"
           options={breeds}
           renderInput={(params) => <TextField {...params} label="Dog Breed" />}
@@ -133,10 +133,14 @@ function DetailsForm(props) {
         helperText="Separate each item with a comma"
         value={postData.tools}
         onChange={(e) =>
-          setPostData({ ...postData, tools: e.target.value.split(/\s*,\s*/) })
+          setPostData({
+            ...postData,
+            tools: e.target.value.split(/\s*,\s*/),
+          })
         }
       />
 
+      {/* image: { before: '', after: '' } */}
       <Stack spacing={1}>
         <FormLabel>Upload before & after grooming photos</FormLabel>
         <Stack
@@ -146,15 +150,20 @@ function DetailsForm(props) {
           alignItems="stretch"
           divider={<Divider orientation="vertical" flexItem />}
         >
-          <ImgUpload id="img-before" imgLabel="Before" />
+          <ImgUpload
+            id="img-before"
+            imgLabel="Before"
+            // name="before"
+            // value={postData.image.before}
+          />
           <ImgUpload id="img-after" imgLabel="After" />
         </Stack>
       </Stack>
 
       <FormInput
-        hint="Include grooming video link if available"
-        label="Video Link"
-        id="videolink"
+        hint="Video link"
+        label="Include a grooming video link if available"
+        id="video"
         name="video"
         value={postData.video}
         onChange={handleChange}
