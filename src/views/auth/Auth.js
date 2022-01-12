@@ -39,6 +39,8 @@ const initialState = {
   confirmPassword: '',
 };
 
+export const validateInput = (str = '') => str.includes('@');
+
 export default function Auth() {
   const dispatch = useDispatch();
   // let navigate = useNavigate();
