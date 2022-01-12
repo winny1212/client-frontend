@@ -13,11 +13,11 @@ import PostCard from './PostCard';
 
 function Posts({ filters, setFilters, sort, setSort }) {
   const posts = useSelector((state) => state.postsReducer);
-  console.log('Here are the Posts:', posts);
+  // console.log('Here are the Posts:', posts);
 
   // Testing users
   const users = useSelector((state) => state.profileReducer);
-  console.log('Here are the Users:', users);
+  // console.log('Here are the Users:', users);
 
   // useEffect(() => {
   //   setFilters(posts.filter((item) => {}));

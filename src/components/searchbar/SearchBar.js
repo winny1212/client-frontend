@@ -35,7 +35,7 @@ const SearchBar = (props) => {
       [e.target.name]: value,
     });
   };
-  console.log(filters);
+  // console.log(filters);
 
   return (
     <FilterContainer>

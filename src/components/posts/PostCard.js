@@ -27,7 +27,7 @@ const PostCard = ({ post }) => {
   // user?.result?._id === post?.creator;
 
   // const { postID } = useParams();
-  console.log('Post Info:', post);
+  // console.log('Post Info:', post);
   // console.log(`postID: ${postID}`);
   // console.log(`post._id: ${post._id}`);
 
