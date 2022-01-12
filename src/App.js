@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="register" element={<Auth />} />
+            <Route path="login" element={<Auth />} />
 
             <Route path="posts" element={<Navigate replace to="/" />} />
             {/* EDIT: /posts/:id/edit */}
