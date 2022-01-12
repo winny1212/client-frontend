@@ -19,11 +19,16 @@ function Posts({ filters, setFilters, sort, setSort }) {
   const users = useSelector((state) => state.profileReducer);
   console.log('Here are the Users:', users);
 
+  //setup the initial state of filteredBlogs
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
+  // the filter condition
   console.log(filters);
+
+  //the filteredBlogs
   console.log(filteredBlogs);
 
+  // filter function
   useEffect(() => {
     setFilteredBlogs(
       posts.filter((post) =>
@@ -38,6 +43,7 @@ function Posts({ filters, setFilters, sort, setSort }) {
     <CircularProgress />
   ) : (
     <Grid container direction="row" spacing={2} alignItems="stretch">
+      {/* if the filteredBlogs exist, show the filteredBlogs, or show all posts */}
       {!filteredBlogs
         ? filteredBlogs.map((post) => (
             <Grid item xs={12} md={6} lg={4} key={post._id}>
