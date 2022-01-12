@@ -15,6 +15,7 @@ import { UserContext } from '../../context/UserContext';
 // MUI
 import Container from '@mui/material/Container';
 import FilterBar from '../../components/filterBar/FilterBar';
+import useStyles from './styles';
 
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
