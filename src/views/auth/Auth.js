@@ -201,6 +201,7 @@ export default function Auth() {
               )}
             </Grid>
             <StyledBtn
+              role="button"
               type="submit"
               fullWidth
               // sx={{ mt: 2 }}
