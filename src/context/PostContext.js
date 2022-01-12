@@ -30,9 +30,14 @@ const PostContextProvider = ({ children }) => {
   // Collected individual steps to form final instructions (steps)
   const [instructions, setInstructions] = useState([]);
 
-  const handleChange = (e) => {
+  const handleDetailsChange = (e) => {
     const { name, value } = e.target;
-    setPostData({ ...postData, [name]: value });
+    setDetails({ ...details, [name]: value });
+  };
+
+  const handlePostPublish = (e) => {
+    e.preventDefault();
+    console.log('-- postData:\n', JSON.stringify(postData, null, 2));
   };
 
   return (
@@ -46,7 +51,8 @@ const PostContextProvider = ({ children }) => {
         setSelectedBreed,
         instructions,
         setInstructions,
-        handleChange,
+        handleDetailsChange,
+        handlePostPublish,
       }}
     >
       {children}

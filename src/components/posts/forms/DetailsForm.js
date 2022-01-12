@@ -6,6 +6,10 @@ import FormLabel from '../../shared/FormLabel';
 import breeds from '../../../data/breedsData';
 import timeMarks from '../../../data/groomingTime';
 import ImgUpload from '../../shared/ImgUpload';
+import HelperText from '../../shared/HelperText';
+
+// Context
+import { usePostContext } from '../../../context/PostContext';
 
 // MUI
 import Autocomplete from '@mui/material/Autocomplete';
@@ -19,24 +23,31 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 
-// onChange = { handleChange };
-
 function DetailsForm(props) {
   const {
     postData,
     setPostData,
-    selectedBreed,
-    setSelectedBreed,
+    // selectedBreed,
+    // setSelectedBreed,
     handleChange,
   } = props;
 
-  // For Slider
+  // PostContext
+  const {
+    details,
+    setDetails,
+    handleDetailsChange,
+    selectedBreed,
+    setSelectedBreed,
+  } = usePostContext();
+
+  // For Grooming time/duration slider
   const durationValue = (value) => {
     return `up to ${value}hr`;
   };
 
   const handleSliderChange = (name) => (e, value) => {
-    setPostData({ ...postData, [name]: value });
+    setDetails({ ...details, [name]: value });
   };
 
   return (
@@ -47,8 +58,8 @@ function DetailsForm(props) {
         name="title"
         id="title"
         required
-        onChange={handleChange}
-        value={postData.title}
+        onChange={handleDetailsChange}
+        value={details.title}
       />
 
       <FormInput
@@ -58,8 +69,8 @@ function DetailsForm(props) {
         id="description"
         multiline
         rows={2}
-        onChange={handleChange}
-        value={postData.description}
+        onChange={handleDetailsChange}
+        value={details.description}
       />
 
       <Stack spacing={1}>
@@ -68,12 +79,14 @@ function DetailsForm(props) {
           fullWidth
           id="breed"
           name="breed"
+          required
           options={breeds}
           renderInput={(params) => <TextField {...params} label="Dog Breed" />}
           getOptionLabel={(option) => option.label}
           value={selectedBreed}
           onChange={(e, newBreed) => setSelectedBreed(newBreed)}
         />
+        <HelperText>Start typing or select the breed from the list</HelperText>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Dog size</FormLabel>
@@ -81,8 +94,8 @@ function DetailsForm(props) {
             row
             aria-label="dogSize"
             name="dogSize"
-            value={postData.dogSize}
-            onChange={handleChange}
+            value={details.dogSize}
+            onChange={handleDetailsChange}
           >
             <FormControlLabel
               key="small"
@@ -119,7 +132,7 @@ function DetailsForm(props) {
             valueLabelDisplay="off"
             marks={timeMarks}
             size="small"
-            value={postData.duration}
+            value={details.duration}
             onChange={handleSliderChange('duration')}
           />
         </Box>
@@ -131,10 +144,10 @@ function DetailsForm(props) {
         name="tools"
         id="tools"
         helperText="Separate each item with a comma"
-        value={postData.tools}
+        value={details.tools}
         onChange={(e) =>
-          setPostData({
-            ...postData,
+          setDetails({
+            ...details,
             tools: e.target.value.split(/\s*,\s*/),
           })
         }
