@@ -30,57 +30,69 @@ function PostForm() {
   const currentUser = JSON.parse(localStorage.getItem('profile'));
 
   // PostContext consume
-  const { handlePostPublish } = usePostContext();
-
-  // Post state
-  // const [postData, setPostData] = useState(initialPostData);
-
-  // console.log('-- postData:\n', JSON.stringify(postData, null, 2));
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setPostData({ ...postData, [name]: value });
-  // };
+  const {
+    postData,
+    setPostData,
+    initialDetailsData,
+    details,
+    setDetails,
+    selectedBreed,
+    instructions,
+  } = usePostContext();
 
   // Clear all inputs to initial state
-  // const clearInputs = () => setDetails(initialDetailsData);
+  const clearInputs = () => setDetails(initialDetailsData);
 
   // Create POST to send to backend
-  const handlePublish = (e) => {
+  const handlePostPublish = (e) => {
     e.preventDefault();
 
-    console.log('Post Published!');
-
-    // ! Make sure to include breed: selectedBreed!
-
+    setPostData({
+      ...postData,
+      ...details,
+      steps: instructions,
+      breed: selectedBreed.label,
+    });
     // add alert to notify post is published?
 
-    // clear inputs back to initial values
+    // Send post to backend - CREATE POST
+    // dispatch(
+    //   createPost({ ...postData, username: currentUser?.result?.username }),
+    // );
 
+    // clear inputs back to initial values
+    clearInputs();
+
+    console.log('Post Published!');
+    console.log('-- postData:\n', JSON.stringify(postData, null, 2));
     // redirect page to the new post
   };
 
   return (
-    <BaseLayout>
-      <form onSubmit={handlePublish} noValidate>
-        <Grid container direction="row" spacing={3}>
-          <Grid item xs={12} md={5}>
-            <DetailsForm />
-          </Grid>
+    <>
+      <BaseLayout>
+        <form onSubmit={handlePostPublish} noValidate>
+          <Grid container direction="row" spacing={3}>
+            <Grid item xs={12} md={5}>
+              <DetailsForm />
+            </Grid>
 
-          <Grid item xs={12} md={7}>
-            <StepsForm />
-          </Grid>
+            <Grid item xs={12} md={7}>
+              <StepsForm />
+            </Grid>
 
-          <Grid item xs={12} md={12}>
-            <Stack spacing={2} direction="row" justifyContent="center">
-              {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
-              <StyledBtn type="submit">Publish Post</StyledBtn>
-            </Stack>
+            <Grid item xs={12} md={12}>
+              <Stack spacing={2} direction="row" justifyContent="center">
+                {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
+                <StyledBtn type="submit">Publish Post</StyledBtn>
+              </Stack>
+            </Grid>
           </Grid>
-        </Grid>
-      </form>
-    </BaseLayout>
+        </form>
+        <p>POST DATA PREVIEW</p>
+        <p>{JSON.stringify(postData, null, 2)}</p>
+      </BaseLayout>
+    </>
   );
 }
 

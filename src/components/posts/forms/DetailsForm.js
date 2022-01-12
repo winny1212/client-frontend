@@ -25,13 +25,8 @@ import Divider from '@mui/material/Divider';
 
 function DetailsForm() {
   // PostContext consume
-  const {
-    details,
-    setDetails,
-    handleDetailsChange,
-    selectedBreed,
-    setSelectedBreed,
-  } = usePostContext();
+  const { details, setDetails, selectedBreed, setSelectedBreed } =
+    usePostContext();
 
   // For Grooming time/duration slider
   const durationValue = (value) => {
@@ -39,6 +34,11 @@ function DetailsForm() {
   };
 
   const handleSliderChange = (name) => (e, value) => {
+    setDetails({ ...details, [name]: value });
+  };
+
+  const handleDetailsChange = (e) => {
+    const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
   };
 

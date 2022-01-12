@@ -37,16 +37,6 @@ const PostContextProvider = ({ children }) => {
     }
   });
 
-  // save steps to temp local storage
-  // useEffect(() => {
-  //   localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
-  // }, [instructions, stepsTempLocal]);
-
-  const handleDetailsChange = (e) => {
-    const { name, value } = e.target;
-    setDetails({ ...details, [name]: value });
-  };
-
   const handlePostPublish = (e) => {
     e.preventDefault();
     console.log('-- postData:\n', JSON.stringify(postData, null, 2));
@@ -65,7 +55,6 @@ const PostContextProvider = ({ children }) => {
         instructions,
         setInstructions,
         stepsTempLocal,
-        handleDetailsChange,
         handlePostPublish,
       }}
     >
