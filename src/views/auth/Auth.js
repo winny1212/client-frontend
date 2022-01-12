@@ -13,6 +13,10 @@ import {
   Checkbox,
   FormControlLabel,
   fabClasses,
+  FormControl,
+  RadioGroup,
+  FormLabel,
+  Radio,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
@@ -127,16 +131,26 @@ export default function Register() {
                   >
                     Are you a professional dog groomer?
                   </Typography>
-                  <FormControlLabel
-                    color="secondary"
-                    control={<Checkbox />}
-                    label="Yes"
-                  />
-                  <FormControlLabel
-                    color="secondary"
-                    control={<Checkbox />}
-                    label="No"
-                  />
+                  <FormControl component="fieldset">
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup row name="row-radio-buttons-group">
+                      <FormControlLabel
+                        value="Yes"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel
+                        value="No"
+                        control={<Radio />}
+                        label="No"
+                      />
+                      <FormControlLabel
+                        value="other"
+                        control={<Radio />}
+                        label="Other"
+                      />
+                    </RadioGroup>
+                  </FormControl>
                 </Grid>
 
                 <Input
