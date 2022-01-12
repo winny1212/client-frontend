@@ -27,6 +27,7 @@ function useQuery() {
 function Home() {
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   // State for Filter and Sort
   const [filters, setFilters] = useState({});
