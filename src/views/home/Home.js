@@ -16,8 +16,6 @@ import { UserContext } from '../../context/UserContext';
 import Container from '@mui/material/Container';
 import FilterBar from '../../components/filterBar/FilterBar';
 
-import SearchBar from '../../components/searchbar/SearchBar';
-
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
@@ -26,12 +24,9 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-import axios from 'axios';
-
 function Home() {
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   // State for Filter and Sort
   const [filters, setFilters] = useState({});
@@ -52,7 +47,6 @@ function Home() {
 
     // fetch & load all Users
     dispatch(getAllUsers());
-
   }, [dispatch, currentId]);
 
   const handleKeyPress = (event) => {
@@ -97,7 +91,6 @@ function Home() {
         >
           Search
         </Button>
-        <SearchBar
         <FilterBar
           filters={filters}
           setFilters={setFilters}
