@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { generateID } from '../../../utils/general';
+import { nanoid } from 'nanoid';
 
 // MUI
 import Box from '@mui/material/Box';
@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
@@ -65,7 +64,7 @@ function Steps({ handleChange, postData, setPostData }) {
   const handleAddStep = (e) => {
     e.preventDefault();
 
-    const newStep = { id: generateID(), text: step.trim() };
+    const newStep = { id: nanoid(8), text: step.trim() };
 
     if (step !== '') {
       setInstructions([...instructions, newStep]);

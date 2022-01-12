@@ -11,14 +11,16 @@ const Input = ({
   autoFocus,
   type,
   handleShowPassword,
+  ...inputProps
 }) => (
   <Grid item xs={12}>
     <TextField
+      {...inputProps}
       name={name}
       onChange={handleChange}
       variant="outlined"
       color="secondary"
-      required
+      // required
       fullWidth
       label={label}
       autoFocus={autoFocus}

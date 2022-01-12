@@ -25,7 +25,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const SearchBar = (props) => {
+const FilterBar = (props) => {
   const { filters, setFilters, sort, setSort } = props;
 
   const handleFilters = (e) => {
@@ -41,21 +41,19 @@ const SearchBar = (props) => {
     <FilterContainer>
       <Filter>
         <FilterText>Filter Blogs:</FilterText>
-        <Select name="color" onChange={handleFilters}>
-          <Option disabled selected>
-            Breed
-          </Option>
+        <Select name="breed" onChange={handleFilters}>
+          <Option disabled>Breed</Option>
           {dogBreeds.map((breed) => (
-            <Option key={breed.id}>{breed.label}</Option>
+            <Option value={breed.label} key={breed.id}>
+              {breed.label}
+            </Option>
           ))}
         </Select>
         <Select name="size" onChange={handleFilters}>
-          <Option disabled selected>
-            Size
-          </Option>
-          <Option>small</Option>
-          <Option>medium</Option>
-          <Option>large</Option>
+          <Option disabled>Size</Option>
+          <Option value="small">small</Option>
+          <Option value="medium">medium</Option>
+          <Option value="mlarge">large</Option>
         </Select>
       </Filter>
       <Filter>
@@ -68,4 +66,4 @@ const SearchBar = (props) => {
   );
 };
 
-export default SearchBar;
+export default FilterBar;

@@ -1,4 +1,4 @@
-// on this file is implemented responsive breakpoint
+// on this file is implemented responsive breakpoint //
 
 import React, { useState } from 'react';
 
@@ -14,6 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+
+import { StyledBtn } from '../shared/StyledButtons';
 
 const NavBarLinks = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -48,12 +50,9 @@ const NavBarLinks = () => {
         </>
       ) : (
         <>
-          <Button href="/register" variant="container">
-            Register
-          </Button>
-          <Button href="/login" variant="container">
+          <StyledBtn href="/login" variant="container">
             Login
-          </Button>
+          </StyledBtn>
         </>
       )}
     </>
@@ -87,20 +86,45 @@ const NavBarLinks = () => {
           <Container
             sx={{
               display: 'flex',
-              justifyContent: 'flex-end',
-              bgcolor: 'accentYellow.main',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              width: '100vw',
+              marginLeft: '-4vw',
+              height: '70vw',
+              rowGap: '20px',
+
+              //bgcolor: 'accentYellow.main',
             }}
           >
-            <Button variant="container" href="/">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/"
+            >
               Home
             </Button>
-            <Button variant="container" href="/register">
-              Register
-            </Button>
-            <Button variant="container" href="/about">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/about"
+            >
               About
             </Button>
-            <Button variant="container" href="/login">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/login"
+            >
               Login
             </Button>
             <Button href="/posts/new" variant="container">

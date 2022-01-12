@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header';
 import { TextField, Button } from '@mui/material';
 
 import { useDispatch } from 'react-redux';
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getAllPosts, getPostBySearch } from '../../actions/posts';
 import { getAllUsers } from '../../actions/auth';
@@ -13,8 +14,10 @@ import { UserContext } from '../../context/UserContext';
 
 // MUI
 import Container from '@mui/material/Container';
+import FilterBar from '../../components/filterBar/FilterBar';
+
 import SearchBar from '../../components/searchbar/SearchBar';
-import useStyles from './styles';
+
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
@@ -22,6 +25,8 @@ import useStyles from './styles';
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
+
+import axios from 'axios';
 
 function Home() {
   const { currentId } = useContext(UserContext);
@@ -41,12 +46,13 @@ function Home() {
   const page = query.get('page');
   const searchQuery = query.get('searchQuery');
 
+  // fetch & load all posts
   useEffect(() => {
-    // fetch & load all posts
     dispatch(getAllPosts());
 
     // fetch & load all Users
     dispatch(getAllUsers());
+
   }, [dispatch, currentId]);
 
   const handleKeyPress = (event) => {
@@ -92,6 +98,7 @@ function Home() {
           Search
         </Button>
         <SearchBar
+        <FilterBar
           filters={filters}
           setFilters={setFilters}
           sort={sort}

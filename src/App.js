@@ -6,9 +6,8 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import Login from './components/Users/Login/Login';
 import Home from './views/home/Home';
-import Register from './views/register/Register';
+import Auth from './views/auth/Auth';
 import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
 import Form from './views/form/Form';
@@ -33,8 +32,7 @@ function App() {
             <Route path="/posts/search" exact element={<Home />} />
 
             <Route path="about" element={<About />} />
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Auth />} />
 
             {/* <Route path="posts" element={<Navigate replace to="/" />} /> */}
             {/* EDIT: /posts/:id/edit */}

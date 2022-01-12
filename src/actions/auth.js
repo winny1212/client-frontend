@@ -15,7 +15,7 @@ import {
   DELETE_USER,
 } from '../constants/actionTypes';
 
-// Sign Up
+// Sign In
 export const signIn = (formData) => async (dispatch) => {
   try {
     const response = await signInUser(formData);
@@ -34,7 +34,7 @@ export const signIn = (formData) => async (dispatch) => {
   }
 };
 
-// Sign In
+// Sign Up
 export const signUp = (formData) => async (dispatch) => {
   try {
     // Sign Up the User
@@ -48,7 +48,7 @@ export const signUp = (formData) => async (dispatch) => {
   }
 };
 
-// New functions
+// Fetch all users
 export const getAllUsers = () => async (dispatch) => {
   try {
     // Gets the data
@@ -61,7 +61,7 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
-// Update an old post
+// Update user's profile / data
 export const updateUser = (id, post) => async (dispatch) => {
   try {
     const { data } = await updateOldUser(id, post);
@@ -72,7 +72,7 @@ export const updateUser = (id, post) => async (dispatch) => {
   }
 };
 
-// Delete a Post
+// Delete user account
 export const deleteUser = (id) => async (dispatch) => {
   try {
     const { deletedToken } = await deleteAUser(id);

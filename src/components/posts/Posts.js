@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // import Post from './post/Post';
@@ -19,19 +19,42 @@ function Posts({ filters, setFilters, sort, setSort }) {
   const users = useSelector((state) => state.profileReducer);
   // console.log('Here are the Users:', users);
 
+  //setup the initial state of filteredBlogs
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+
+  // the filter condition
+  // console.log(filters);
+
+  //the filteredBlogs
+  // console.log(filteredBlogs);
+
+  // filter function
   // useEffect(() => {
-  //   setFilters(posts.filter((item) => {}));
-  // }, [filters]);
+  //   setFilteredBlogs(
+  //     posts.filter((post) =>
+  //       Object.entries(filters).every(([key, value]) =>
+  //         post[key].includes(value),
+  //       ),
+  //     ),
+  //   );
+  // }, [posts, filters]);
 
   return !posts.length ? (
     <CircularProgress />
   ) : (
     <Grid container direction="row" spacing={2} alignItems="stretch">
-      {posts.map((post) => (
-        <Grid item xs={12} md={6} lg={4} key={post._id}>
-          <PostCard post={post} />
-        </Grid>
-      ))}
+      {/* if the filteredBlogs exist, show the filteredBlogs, or show all posts */}
+      {!filteredBlogs
+        ? filteredBlogs.map((post) => (
+            <Grid item xs={12} md={6} lg={4} key={post._id}>
+              <PostCard post={post} />
+            </Grid>
+          ))
+        : posts.map((post) => (
+            <Grid item xs={12} md={6} lg={4} key={post._id}>
+              <PostCard post={post} />
+            </Grid>
+          ))}
     </Grid>
   );
 }
