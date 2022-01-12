@@ -4,7 +4,6 @@ import Header from '../../components/layout/Header';
 
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../actions/posts';
-import { getAllUsers } from '../../actions/auth';
 
 // UserContext
 import { UserContext } from '../../context/UserContext';
@@ -16,6 +15,8 @@ import FilterBar from '../../components/filterBar/FilterBar';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
 
+import axios from 'axios';
+
 function Home() {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState('newest');
@@ -24,14 +25,9 @@ function Home() {
 
   const { currentId } = useContext(UserContext);
 
+  // fetch & load all posts
   useEffect(() => {
-    // fetch & load all posts
     dispatch(getAllPosts());
-
-    // fetch & load all Users
-    dispatch(getAllUsers());
-
-    console.log('The currentID is:', currentId);
   }, [dispatch, currentId]);
 
   return (
