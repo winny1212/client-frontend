@@ -23,21 +23,21 @@ function Posts({ filters, setFilters, sort, setSort }) {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   // the filter condition
-  console.log(filters);
+  // console.log(filters);
 
   //the filteredBlogs
-  console.log(filteredBlogs);
+  // console.log(filteredBlogs);
 
   // filter function
-  useEffect(() => {
-    setFilteredBlogs(
-      posts.filter((post) =>
-        Object.entries(filters).every(([key, value]) =>
-          post[key].includes(value),
-        ),
-      ),
-    );
-  }, [posts, filters]);
+  // useEffect(() => {
+  //   setFilteredBlogs(
+  //     posts.filter((post) =>
+  //       Object.entries(filters).every(([key, value]) =>
+  //         post[key].includes(value),
+  //       ),
+  //     ),
+  //   );
+  // }, [posts, filters]);
 
   return !posts.length ? (
     <CircularProgress />
