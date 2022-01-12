@@ -23,16 +23,8 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 
-function DetailsForm(props) {
-  const {
-    postData,
-    setPostData,
-    // selectedBreed,
-    // setSelectedBreed,
-    handleChange,
-  } = props;
-
-  // PostContext
+function DetailsForm() {
+  // PostContext consume
   const {
     details,
     setDetails,
@@ -178,8 +170,8 @@ function DetailsForm(props) {
         label="Include a grooming video link if available"
         id="video"
         name="video"
-        value={postData.video}
-        onChange={handleChange}
+        value={details.video}
+        onChange={handleDetailsChange}
       />
     </>
   );

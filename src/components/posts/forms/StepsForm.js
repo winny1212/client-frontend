@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
+// Context
+import { usePostContext } from '../../../context/PostContext';
+
 // MUI
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import ClearTwoToneIcon from '@mui/icons-material/ClearTwoTone';
 
 // Components
-import FormInput from '../../shared/FormInput';
 import Hr from '../../shared/Hr';
-import { StyledBtnOutlined } from '../../shared/StyledButtons';
 import Step from './Step';
 import AddStep from './AddStep';
 import EditStep from './EditStep';
 
 function Steps({ handleChange, postData, setPostData }) {
+  // PostContext consume
+  const { instructions, setInstructions, stepsTempLocal } = usePostContext();
+
   // state for lists of steps
-  const [instructions, setInstructions] = useState(() => {
-    if (postData.steps.length > 0) {
-      return postData.steps;
-    } else {
-      return [];
-    }
-  });
+  // const [instructions, setInstructions] = useState(() => {
+  //   if (postData.steps.length > 0) {
+  //     return postData.steps;
+  //   } else {
+  //     return [];
+  //   }
+  // });
 
   console.log('instructions', instructions);
 
@@ -135,38 +129,6 @@ function Steps({ handleChange, postData, setPostData }) {
             handleDeleteStep={handleDeleteStep}
           />
         ))}
-      </List>
-
-      <List>
-        {/* PREVIEW ONLY TO BE DELETED*/}
-        <ListItem
-          alignItems="flex-start"
-          sx={{ pl: 0.25 }}
-          secondaryAction={
-            <Stack>
-              <IconButton edge="end" aria-label="edit">
-                <EditTwoToneIcon color="secondary" fontSize="small" />
-              </IconButton>
-              <IconButton edge="end" aria-label="delete">
-                <ClearTwoToneIcon color="secondary" fontSize="small" />
-              </IconButton>
-            </Stack>
-          }
-        >
-          <ListItemAvatar>
-            <Avatar
-              sx={{ width: { xs: 36, md: 42 }, height: { xs: 36, md: 42 } }}
-            >
-              1
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText sx={{ pr: 1 }}>
-            THIS IS HOW IT'S GONNA LOOK LIKE. TRY ADDING A STEP ABOVE! (to
-            delete) Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Doloribus reiciendis, ratione totam perferendis laboriosam provident
-            doloremque facere maxime, nobis aperiam animi delectus eos est ab!
-          </ListItemText>
-        </ListItem>
       </List>
     </>
   );

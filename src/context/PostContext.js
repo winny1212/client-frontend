@@ -3,12 +3,10 @@ import React, { useState, useContext } from 'react';
 // Initial Details Post data
 const initialDetailsData = {
   title: '',
-  breed: null,
   dogSize: '',
   duration: 1,
   description: '',
   tools: [],
-  steps: [],
   image: { before: '', after: '' },
   video: '',
 };
@@ -27,8 +25,17 @@ const PostContextProvider = ({ children }) => {
   // (has to be handled separately for MUI auto-complete)
   const [selectedBreed, setSelectedBreed] = useState(null);
 
+  // Store temporary data in the local storage
+  const stepsTempLocal = 'DIYG_temp_steps';
   // Collected individual steps to form final instructions (steps)
-  const [instructions, setInstructions] = useState([]);
+  const [instructions, setInstructions] = useState(() => {
+    const savedSteps = localStorage.getItem(stepsTempLocal);
+    if (savedSteps) {
+      return JSON.parse(savedSteps);
+    } else {
+      return [];
+    }
+  });
 
   const handleDetailsChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +58,7 @@ const PostContextProvider = ({ children }) => {
         setSelectedBreed,
         instructions,
         setInstructions,
+        stepsTempLocal,
         handleDetailsChange,
         handlePostPublish,
       }}

@@ -75,13 +75,7 @@ function PostForm() {
         <form onSubmit={handlePublish} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
-              <DetailsForm
-                handleChange={handleChange}
-                postData={postData}
-                setPostData={setPostData}
-                selectedBreed={selectedBreed}
-                setSelectedBreed={setSelectedBreed}
-              />
+              <DetailsForm />
             </Grid>
 
             <Grid item xs={12} md={7}>
