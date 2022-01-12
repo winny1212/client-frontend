@@ -11,7 +11,7 @@ import { UserContext } from '../../context/UserContext';
 
 // MUI
 import Container from '@mui/material/Container';
-import SearchBar from '../../components/searchbar/SearchBar';
+import FilterBar from '../../components/filterBar/FilterBar';
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
@@ -39,7 +39,7 @@ function Home() {
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
         {/* import search and filter function components */}
-        <SearchBar
+        <FilterBar
           filters={filters}
           setFilters={setFilters}
           sort={sort}
