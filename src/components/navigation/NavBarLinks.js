@@ -94,20 +94,50 @@ const NavBarLinks = () => {
               flexDirection: 'column',
               width: '100vw',
               marginLeft: '-4vw',
-              height: '100vw',
+              height: '70vw',
+              rowGap: '20px',
+
               //bgcolor: 'accentYellow.main',
             }}
           >
-            <Button variant="container" href="/">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/"
+            >
               Home
             </Button>
-            <Button variant="container" href="/register">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/register"
+            >
               Register
             </Button>
-            <Button variant="container" href="/about">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/about"
+            >
               About
             </Button>
-            <Button variant="container" href="/login">
+            <Button
+              sx={{
+                borderBottom: '1px solid #502D5C',
+                width: '100vw',
+              }}
+              variant="container"
+              href="/login"
+            >
               Login
             </Button>
             <Button href="/posts/new" variant="container">
