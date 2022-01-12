@@ -40,38 +40,38 @@ function PostForm() {
     selectedBreed,
     setSelectedBreed,
     instructions,
+    handlePostPublish,
   } = usePostContext();
 
   // Clear all inputs to initial state
   const clearInputs = () => setDetails(initialDetailsData);
 
-  // Create POST to send to backend
-  const handlePostPublish = (e) => {
-    e.preventDefault();
+  // // Create POST to send to backend
+  // const handlePostPublish = (e) => {
+  //   e.preventDefault();
 
-    const newPost = setPostData({
-      ...postData,
-      ...details,
-      steps: instructions,
-      breed: selectedBreed.label,
-      username: currentUser?.result?.username,
-    });
-    // add alert to notify post is published?
+  //   const newPost = setPostData({
+  //     ...details,
+  //     steps: instructions,
+  //     breed: selectedBreed.label,
+  //     username: currentUser?.result?.username,
+  //   });
+  //   // add alert to notify post is published?
 
-    // Send post to backend - CREATE POST
-    dispatch(createPost({ ...postData, newPost }));
+  //   // Send post to backend - CREATE POST
+  //   dispatch(createPost(newPost));
 
-    // clear inputs back to initial values
-    clearInputs();
-    // clear temporary local storage for steps
-    localStorage.removeItem(stepsTempLocal);
-    // set breed back to null
-    setSelectedBreed(null);
+  //   // clear inputs back to initial values
+  //   clearInputs();
+  //   // clear temporary local storage for steps
+  //   localStorage.removeItem(stepsTempLocal);
+  //   // set breed back to null
+  //   setSelectedBreed(null);
 
-    console.log('Post Published!');
-    console.log('-- postData:\n', JSON.stringify(postData, null, 2));
-    // redirect page to the new post
-  };
+  //   console.log('Post Published!');
+  //   console.log('-- postData:\n', JSON.stringify(postData, null, 2));
+  //   // redirect page to the new post
+  // };
 
   return (
     <>
@@ -94,7 +94,7 @@ function PostForm() {
             </Grid>
           </Grid>
         </form>
-        <p>POST DATA PREVIEW</p>
+        <h3>POST DATA PREVIEW</h3>
         <p>{JSON.stringify(postData, null, 2)}</p>
       </BaseLayout>
     </>
