@@ -27,11 +27,14 @@ function App() {
         <Navbar />
         <main className="content-wrapper">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" exact element={<Navigate replace to="/posts" />} />
+            <Route path="/posts" exact element={<Home />} />
+            <Route path="/posts/search" exact element={<Home />} />
+
             <Route path="about" element={<About />} />
             <Route path="login" element={<Auth />} />
 
-            <Route path="posts" element={<Navigate replace to="/" />} />
+            {/* <Route path="posts" element={<Navigate replace to="/" />} /> */}
             {/* EDIT: /posts/:id/edit */}
             <Route path="posts/new" element={<NewPost />} />
             <Route path="posts/:postID" element={<PostId />} />
