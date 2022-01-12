@@ -1,15 +1,4 @@
-import React, { useState, useContext } from 'react';
-
-// Initial Details Post data
-const initialDetailsData = {
-  title: '',
-  dogSize: '',
-  duration: 1,
-  description: '',
-  tools: [],
-  image: { before: '', after: '' },
-  video: '',
-};
+import React, { useState, useContext, useEffect } from 'react';
 
 // Setup Post Context
 const PostContext = React.createContext();
@@ -17,6 +6,17 @@ const PostContext = React.createContext();
 const PostContextProvider = ({ children }) => {
   // Final form data to be submitted to the backend
   const [postData, setPostData] = useState({});
+
+  // Initial Details Post data
+  const initialDetailsData = {
+    title: '',
+    dogSize: '',
+    duration: 1,
+    description: '',
+    tools: [],
+    image: { before: '', after: '' },
+    video: '',
+  };
 
   // Post data for DetailsForm
   const [details, setDetails] = useState(initialDetailsData);
@@ -37,6 +37,11 @@ const PostContextProvider = ({ children }) => {
     }
   });
 
+  // save steps to temp local storage
+  // useEffect(() => {
+  //   localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
+  // }, [instructions, stepsTempLocal]);
+
   const handleDetailsChange = (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
@@ -52,6 +57,7 @@ const PostContextProvider = ({ children }) => {
       value={{
         postData,
         setPostData,
+        initialDetailsData,
         details,
         setDetails,
         selectedBreed,

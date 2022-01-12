@@ -11,6 +11,9 @@ import PostContextProvider from '../../../context/PostContext';
 import StepsForm from './StepsForm';
 import BaseLayout from '../../shared/BaseLayout';
 
+// Context
+import { usePostContext } from '../../../context/PostContext';
+
 // MUI
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -26,33 +29,21 @@ function PostForm() {
   // Get the current user for the post's username/author
   const currentUser = JSON.parse(localStorage.getItem('profile'));
 
-  // Handle dog breeds selection state (has to be handled separately for MUI)
-  const [selectedBreed, setSelectedBreed] = useState(null);
-
-  const initialPostData = {
-    title: '',
-    breed: selectedBreed,
-    dogSize: '',
-    duration: 1,
-    description: '',
-    tools: [],
-    steps: [],
-    image: { before: '', after: '' },
-    video: '',
-  };
+  // PostContext consume
+  const { handlePostPublish } = usePostContext();
 
   // Post state
-  const [postData, setPostData] = useState(initialPostData);
+  // const [postData, setPostData] = useState(initialPostData);
 
-  console.log('-- postData:\n', JSON.stringify(postData, null, 2));
+  // console.log('-- postData:\n', JSON.stringify(postData, null, 2));
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPostData({ ...postData, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setPostData({ ...postData, [name]: value });
+  // };
 
   // Clear all inputs to initial state
-  const clearInputs = () => setPostData(initialPostData);
+  // const clearInputs = () => setDetails(initialDetailsData);
 
   // Create POST to send to backend
   const handlePublish = (e) => {
@@ -70,32 +61,26 @@ function PostForm() {
   };
 
   return (
-    <PostContextProvider>
-      <BaseLayout>
-        <form onSubmit={handlePublish} noValidate>
-          <Grid container direction="row" spacing={3}>
-            <Grid item xs={12} md={5}>
-              <DetailsForm />
-            </Grid>
-
-            <Grid item xs={12} md={7}>
-              <StepsForm
-                handleChange={handleChange}
-                postData={postData}
-                setPostData={setPostData}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-              <Stack spacing={2} direction="row" justifyContent="center">
-                {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
-                <StyledBtn type="submit">Publish Post</StyledBtn>
-              </Stack>
-            </Grid>
+    <BaseLayout>
+      <form onSubmit={handlePublish} noValidate>
+        <Grid container direction="row" spacing={3}>
+          <Grid item xs={12} md={5}>
+            <DetailsForm />
           </Grid>
-        </form>
-      </BaseLayout>
-    </PostContextProvider>
+
+          <Grid item xs={12} md={7}>
+            <StepsForm />
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <Stack spacing={2} direction="row" justifyContent="center">
+              {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
+              <StyledBtn type="submit">Publish Post</StyledBtn>
+            </Stack>
+          </Grid>
+        </Grid>
+      </form>
+    </BaseLayout>
   );
 }
 
