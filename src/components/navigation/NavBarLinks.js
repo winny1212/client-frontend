@@ -15,6 +15,11 @@ import Container from '@mui/material/Container';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 
+// custom style hook
+import useStyles from './styles';
+
+//import { StyledBtn } from '../shared/StyledButtons';
+
 const NavBarLinks = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
@@ -26,6 +31,9 @@ const NavBarLinks = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  //call the styles
+  const classes = useStyles();
 
   //Breakpoints
   const theme = useTheme();
@@ -87,8 +95,12 @@ const NavBarLinks = () => {
           <Container
             sx={{
               display: 'flex',
-              justifyContent: 'flex-end',
-              bgcolor: 'accentYellow.main',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              width: '100vw',
+
+              // bgcolor: 'accentYellow.main',
             }}
           >
             <Button variant="container" href="/">
