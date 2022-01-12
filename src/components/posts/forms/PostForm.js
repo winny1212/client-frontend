@@ -11,6 +11,9 @@ import PostContextProvider from '../../../context/PostContext';
 import StepsForm from './StepsForm';
 import BaseLayout from '../../shared/BaseLayout';
 
+// Context
+import { usePostContext } from '../../../context/PostContext';
+
 // MUI
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -26,70 +29,61 @@ function PostForm() {
   // Get the current user for the post's username/author
   const currentUser = JSON.parse(localStorage.getItem('profile'));
 
-  // Handle dog breeds selection state (has to be handled separately for MUI)
-  const [selectedBreed, setSelectedBreed] = useState(null);
-
-  const initialPostData = {
-    title: '',
-    breed: selectedBreed,
-    dogSize: '',
-    duration: 1,
-    description: '',
-    tools: [],
-    steps: [],
-    image: { before: '', after: '' },
-    video: '',
-  };
-
-  // Post state
-  const [postData, setPostData] = useState(initialPostData);
-
-  console.log('-- postData:\n', JSON.stringify(postData, null, 2));
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPostData({ ...postData, [name]: value });
-  };
+  // PostContext consume
+  const {
+    postData,
+    setPostData,
+    initialDetailsData,
+    details,
+    setDetails,
+    stepsTempLocal,
+    selectedBreed,
+    setSelectedBreed,
+    instructions,
+  } = usePostContext();
 
   // Clear all inputs to initial state
-  const clearInputs = () => setPostData(initialPostData);
+  const clearInputs = () => setDetails(initialDetailsData);
 
   // Create POST to send to backend
-  const handlePublish = (e) => {
+  const handlePostPublish = (e) => {
     e.preventDefault();
 
-    console.log('Post Published!');
-
-    // ! Make sure to include breed: selectedBreed!
-
+    const newPost = setPostData({
+      ...postData,
+      ...details,
+      steps: instructions,
+      breed: selectedBreed.label,
+      username: currentUser?.result?.username,
+    });
     // add alert to notify post is published?
 
-    // clear inputs back to initial values
+    // Send post to backend - CREATE POST
+    dispatch(createPost({ ...postData, newPost }));
 
+    // clear inputs back to initial values
+    clearInputs();
+    // clear temporary local storage for steps
+    localStorage.removeItem(stepsTempLocal);
+    // set breed back to null
+    setSelectedBreed(null);
+
+    console.log('Post Published!');
+    console.log('-- postData:\n', JSON.stringify(postData, null, 2));
     // redirect page to the new post
   };
 
   return (
-    <PostContextProvider>
+    <>
       <BaseLayout>
-        <form onSubmit={handlePublish} noValidate>
+        <form onSubmit={handlePostPublish} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
-              <DetailsForm
-                handleChange={handleChange}
-                postData={postData}
-                setPostData={setPostData}
-                selectedBreed={selectedBreed}
-                setSelectedBreed={setSelectedBreed}
-              />
+              <DetailsForm />
             </Grid>
 
             <Grid item xs={12} md={7}>
-              <StepsForm
-                handleChange={handleChange}
-                postData={postData}
-                setPostData={setPostData}
-              />
+              <StepsForm />
             </Grid>
 
             <Grid item xs={12} md={12}>
@@ -100,8 +94,10 @@ function PostForm() {
             </Grid>
           </Grid>
         </form>
+        <p>POST DATA PREVIEW</p>
+        <p>{JSON.stringify(postData, null, 2)}</p>
       </BaseLayout>
-    </PostContextProvider>
+    </>
   );
 }
 

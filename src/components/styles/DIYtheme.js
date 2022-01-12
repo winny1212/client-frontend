@@ -52,6 +52,9 @@ const theme = (mode) =>
       white: palette.augmentColor({
         color: { main: '#fff' },
       }),
+      textGrey: palette.augmentColor({
+        color: { main: global.colorTextGrey },
+      }),
     },
     typography: {
       fontFamily: global.fontPrimary,
