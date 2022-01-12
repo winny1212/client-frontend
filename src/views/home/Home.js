@@ -47,20 +47,16 @@ function Home() {
 
     // fetch & load all Users
     dispatch(getAllUsers());
-
-    // console.log('The currentID is:', currentId);
   }, [dispatch, currentId]);
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      // Search Post
       searchPost();
     }
   };
 
   const searchPost = () => {
     if (search.trim()) {
-      // Dispatch -> Fetch searched Posts.
       dispatch(getPostBySearch({ search }));
       setSearch('');
       navigate(`/posts/search?searchQuery=${search}`);
@@ -75,15 +71,6 @@ function Home() {
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
         {/* import search and filter function components */}
-        {/* SearchPosts */}
-        {/* <Input
-          name="search"
-          label="Search Term"
-          value={search}
-          onChange={console.log('typing!')}
-          onKeyPress={handleKeyPress}
-          type="text"
-        /> */}
         <TextField
           name="search"
           label="Search Posts"

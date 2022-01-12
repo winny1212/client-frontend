@@ -6,7 +6,6 @@ import {
   DELETE,
 } from '../constants/actionTypes';
 
-// This is where the actual data is being sent. In line 4 is where the posts for now stay.
 const postsReducer = (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:

@@ -45,9 +45,6 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
     // Gets the data
     const { data } = await fetchPostsBySearch(searchQuery);
 
-    console.log('Searched Data is:', data.posts);
-
-    // Send data to out local state
     dispatch({ type: FETCH_BY_SEARCH, payload: data.posts });
   } catch (error) {
     console.log(error);
