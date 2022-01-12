@@ -1,4 +1,4 @@
-// on this file is implemented responsive breakpoint
+// on this file is implemented responsive breakpoint //
 
 import React, { useState } from 'react';
 
@@ -15,10 +15,7 @@ import Container from '@mui/material/Container';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 
-// custom style hook
-import useStyles from './styles';
-
-//import { StyledBtn } from '../shared/StyledButtons';
+import { StyledBtn } from '../shared/StyledButtons';
 
 const NavBarLinks = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -31,9 +28,6 @@ const NavBarLinks = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  //call the styles
-  const classes = useStyles();
 
   //Breakpoints
   const theme = useTheme();
@@ -56,12 +50,12 @@ const NavBarLinks = () => {
         </>
       ) : (
         <>
-          <Button href="/register" variant="container">
+          <StyledBtn href="/register" variant="container">
             Register
-          </Button>
-          <Button href="/login" variant="container">
+          </StyledBtn>
+          <StyledBtn href="/login" variant="container">
             Login
-          </Button>
+          </StyledBtn>
         </>
       )}
     </>
@@ -99,8 +93,9 @@ const NavBarLinks = () => {
               alignItems: 'center',
               flexDirection: 'column',
               width: '100vw',
-
-              // bgcolor: 'accentYellow.main',
+              marginLeft: '-4vw',
+              height: '100vw',
+              //bgcolor: 'accentYellow.main',
             }}
           >
             <Button variant="container" href="/">
