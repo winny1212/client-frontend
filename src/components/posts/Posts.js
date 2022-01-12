@@ -23,15 +23,16 @@ function Posts({ filters, setFilters, sort, setSort }) {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   // the filter condition
-  // console.log(filters);
+  console.log(filters);
 
   //the filteredBlogs
-  // console.log(filteredBlogs);
+  console.log(filteredBlogs);
 
   // filter function
   // useEffect(() => {
   //   setFilteredBlogs(
   //     posts.filter((post) =>
+  //       // filters:{breed:'Poodle',size:'small'}
   //       Object.entries(filters).every(([key, value]) =>
   //         post[key].includes(value),
   //       ),

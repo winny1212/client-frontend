@@ -39,6 +39,8 @@ const initialState = {
   confirmPassword: '',
 };
 
+export const validateInput = (str = '') => str.includes('@');
+
 export default function Auth() {
   const dispatch = useDispatch();
   // let navigate = useNavigate();
@@ -199,6 +201,7 @@ export default function Auth() {
               )}
             </Grid>
             <StyledBtn
+              role="button"
               type="submit"
               fullWidth
               // sx={{ mt: 2 }}

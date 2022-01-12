@@ -49,11 +49,11 @@ const FilterBar = (props) => {
             </Option>
           ))}
         </Select>
-        <Select name="size" onChange={handleFilters}>
-          <Option disabled>Size</Option>
+        <Select name="dogSize" onChange={handleFilters}>
+          <Option disabled>dogSize</Option>
           <Option value="small">small</Option>
           <Option value="medium">medium</Option>
-          <Option value="mlarge">large</Option>
+          <Option value="large">large</Option>
         </Select>
       </Filter>
       <Filter>
