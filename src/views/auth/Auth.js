@@ -185,7 +185,7 @@ export default function Auth() {
                 label="Password"
                 required
                 handleChange={handleChange}
-                type={showPassword ? 'text' : 'password'}
+                type={!showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
               />
               {isSignup && (
