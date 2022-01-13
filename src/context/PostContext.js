@@ -13,7 +13,7 @@ const PostContextProvider = ({ children }) => {
 
   // Get the current user for the post's username/author
   const currentUser = JSON.parse(localStorage.getItem('profile'));
-  const author = currentUser?.result?.username;
+  const authorId = currentUser?.result?._id;
 
   // Final form data to be submitted to the backend
   const [postData, setPostData] = useState({});
@@ -58,11 +58,10 @@ const PostContextProvider = ({ children }) => {
 
   // listening to final postData and sends to API
   useEffect(() => {
-    console.log('useEffect was triggered!');
-    console.log('Post data received!\n-- postData:\n', postData);
+    console.log('useEffect\n-- postData:\n', postData);
 
-    // Send post to backend - CREATE POST
-    dispatch(createPost(postData));
+    // Only CREATE POST when postData is ready
+    if (postData) dispatch(createPost(postData));
   }, [postData, dispatch]);
 
   // Create POST to send to backend
@@ -74,7 +73,7 @@ const PostContextProvider = ({ children }) => {
       ...details,
       steps: instructions,
       breed: selectedBreed.label,
-      username: author,
+      author: authorId,
     });
 
     // clear inputs back to initial values
@@ -83,6 +82,7 @@ const PostContextProvider = ({ children }) => {
     localStorage.removeItem(stepsTempLocal);
     // set breed back to null
     setSelectedBreed(null);
+    console.log('-- New postData Published! --');
   };
 
   return (
@@ -99,6 +99,7 @@ const PostContextProvider = ({ children }) => {
         setInstructions,
         stepsTempLocal,
         handlePostPublish,
+        authorId,
       }}
     >
       {children}
