@@ -16,6 +16,7 @@ import { UserContext } from '../../context/UserContext';
 import Container from '@mui/material/Container';
 import FilterBar from '../../components/filterBar/FilterBar';
 import useStyles from './styles';
+import Pagination from '../../components/Pagination/Pagination';
 
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
@@ -61,10 +62,10 @@ function Home() {
     if (search.trim()) {
       dispatch(getPostBySearch({ search }));
       setSearch('');
-      navigate(`/posts/search?searchQuery=${search}`);
+      // navigate(`/posts/search?searchQuery=${search}`);
     } else {
       // Go back to home.
-      navigate('/');
+      navigate('/posts');
     }
   };
 
@@ -73,6 +74,7 @@ function Home() {
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
         {/* import search and filter function components */}
+
         <TextField
           name="search"
           label="Search Posts"
@@ -100,6 +102,7 @@ function Home() {
           setSort={setSort}
         />
         <h3>Featured Posts</h3>
+        <Pagination />
         <Posts
           filters={filters}
           setFilters={setFilters}
