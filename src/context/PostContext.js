@@ -48,21 +48,8 @@ const PostContextProvider = ({ children }) => {
     }
   });
 
-  // save steps to temp local storage
-  useEffect(() => {
-    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
-  }, [instructions, stepsTempLocal]);
-
   // Clear all inputs to initial state
   const clearInputs = () => setDetails(initialDetailsData);
-
-  // listening to final postData and sends to API
-  // useEffect(() => {
-  //   console.log('useEffect\n-- postData:\n', postData);
-  // }, [postData]);
-
-  // Only CREATE POST when postData is ready
-  // if (postData) dispatch(createPost(postData));
 
   // Create POST to send to backend
   const handlePostPublish = (e) => {
