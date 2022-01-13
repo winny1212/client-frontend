@@ -12,26 +12,35 @@ import useStyles from './styles';
 import { getAllPosts } from '../../actions/posts';
 
 const Paginate = ({ page }) => {
-  // const { numberOfPages } = useSelector((state) => state.posts);
+  const { numberOfPages } = useSelector((state) => state.postsReducer);
+  // const { state } = useSelector((state) => state.posts);
+
   const dispatch = useDispatch();
+
+  // Redux is messed up, check the state out.
   const classes = useStyles();
 
-  //   useEffect(() => {
-  //     if (page) {
-  //       dispatch(getAllPosts(page));
-  //     }
-  //   }, [dispatch, page]);
+  useEffect(() => {
+    // Re-render on every page click.
+    if (page) {
+      dispatch(getAllPosts(page));
+    }
+  }, [dispatch, page]);
 
   return (
     <Pagination
       className={classes.style}
       size={'large'}
-      count={5}
-      page={1}
+      count={numberOfPages}
+      page={Number(page) || 1}
       variant="outlined"
       color="secondary"
       renderItem={(item) => (
-        <PaginationItem {...item} component={Link} to={`/posts?page=${1}`} />
+        <PaginationItem
+          {...item}
+          component={Link}
+          to={`/posts?page=${item.page}`}
+        />
       )}
     />
   );

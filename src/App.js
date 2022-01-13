@@ -27,7 +27,11 @@ function App() {
         <Navbar />
         <main className="content-wrapper">
           <Routes>
-            <Route path="/" exact element={<Navigate replace to="/posts" />} />
+            <Route
+              path="/"
+              exact
+              element={<Navigate replace to="posts?page=1" />}
+            />
             <Route path="/posts" exact element={<Home />} />
             <Route path="/posts/search" exact element={<Home />} />
 

@@ -3,7 +3,7 @@ import Posts from '../../components/posts/Posts';
 import Header from '../../components/layout/Header';
 import { TextField, Button } from '@mui/material';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getAllPosts, getPostBySearch } from '../../actions/posts';
@@ -27,6 +27,7 @@ function useQuery() {
 }
 
 function Home() {
+  const postState = useSelector((state) => state.postsReducer);
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -44,13 +45,15 @@ function Home() {
   const page = query.get('page');
   const searchQuery = query.get('searchQuery');
 
-  // fetch & load all posts
-  useEffect(() => {
-    dispatch(getAllPosts());
+  // fetch & load all Users
+  // useEffect(() => {
+  //   // We will fetch Posts at Pagination.
+  //   // dispatch(getAllPosts(1));
+  //   // console.log('(useEffect) Post Reducer is:', postState);
 
-    // fetch & load all Users
-    dispatch(getAllUsers());
-  }, [dispatch, currentId]);
+  //   // fetch & load all Users
+  //   dispatch(getAllUsers());
+  // }, [dispatch, currentId]);
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -61,8 +64,10 @@ function Home() {
   const searchPost = () => {
     if (search.trim()) {
       dispatch(getPostBySearch({ search }));
+
+      navigate(`/posts/search?searchQuery=${search || 'none'}`);
+
       setSearch('');
-      // navigate(`/posts/search?searchQuery=${search}`);
     } else {
       // Go back to home.
       navigate('/posts');
@@ -102,7 +107,7 @@ function Home() {
           setSort={setSort}
         />
         <h3>Featured Posts</h3>
-        <Pagination />
+        <Pagination page={page} />
         <Posts
           filters={filters}
           setFilters={setFilters}

@@ -12,7 +12,7 @@ import { CircularProgress } from '@mui/material';
 import PostCard from './PostCard';
 
 function Posts({ filters, setFilters, sort, setSort }) {
-  const posts = useSelector((state) => state.postsReducer);
+  const { posts } = useSelector((state) => state.postsReducer);
   // console.log('Here are the Posts:', posts);
 
   // Testing users
@@ -39,7 +39,7 @@ function Posts({ filters, setFilters, sort, setSort }) {
   //   );
   // }, [posts, filters]);
 
-  return !posts.length ? (
+  return !posts?.length ? (
     <CircularProgress />
   ) : (
     <Grid container direction="row" spacing={2} alignItems="stretch">

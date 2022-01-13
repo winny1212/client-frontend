@@ -29,10 +29,11 @@ import {
  (3) We are also using Redux thunk, that is why we can async.
 */
 
-export const getAllPosts = () => async (dispatch) => {
+export const getAllPosts = (page) => async (dispatch) => {
   try {
     // Gets the data
-    const { data } = await fetchAllPosts();
+    const { data } = await fetchAllPosts(page);
+    console.log('Data we got From getAllPosts:', data.data);
 
     // Send data to out local state
     dispatch({ type: FETCH_ALL, payload: data });
@@ -46,16 +47,17 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
   try {
     // Gets the data
     const { data } = await fetchPostsBySearch(searchQuery);
+    const posts = data.posts;
 
-    console.log('The data we received from searchPosts:', data);
-
-    if (data.posts) {
-      dispatch({ type: FETCH_BY_SEARCH, payload: data.posts });
-    }
+    console.log('Data we got From getPostBySearch:', posts);
 
     if (data.message === 'No Results') {
       // We need a Modal
       alert('No posts with that name....');
+    }
+
+    if (posts) {
+      dispatch({ type: FETCH_BY_SEARCH, payload: posts });
     }
   } catch (error) {
     console.log(error);
