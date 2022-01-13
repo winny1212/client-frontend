@@ -14,11 +14,21 @@ import Container from '@mui/material/Container';
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
-
+import FilterBar from '../../components/filterBar/FilterBar';
+import useStyles from './styles';
 import axios from 'axios';
 
 function Home() {
+  const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
+  const classes = useStyles();
+
+  // State for Filter and Sort
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState('newest');
+
+  // State for Search
+  const [search, setSearch] = useState('');
 
   const { currentId } = useContext(UserContext);
 
@@ -35,6 +45,39 @@ function Home() {
 
         <h3 style={{ textAlign: 'center', fontSize: '40px' }}>Posts Gallery</h3>
         <Posts />
+        <TextField
+          name="search"
+          label="Search Posts"
+          value={search}
+          onKeyPress={handleKeyPress}
+          onChange={(e) => setSearch(e.target.value)}
+          variant="outlined"
+          color="secondary"
+          fullWidth
+        />
+        <Button
+          type="submit"
+          sx={{ width: '100%', marginTop: 2 }}
+          variant="contained"
+          color="secondary"
+          className={classes.submit}
+          onClick={searchPost}
+        >
+          Search
+        </Button>
+        <FilterBar
+          filters={filters}
+          setFilters={setFilters}
+          sort={sort}
+          setSort={setSort}
+        />
+        <h3>Featured Posts</h3>
+        <Posts
+          filters={filters}
+          setFilters={setFilters}
+          sort={sort}
+          setSort={setSort}
+        />
       </Container>
     </>
   );
