@@ -29,29 +29,8 @@
   Slider
   ===============
   */
-  .title {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .title h2 {
-    letter-spacing: 0.1rem;
-    line-height: 1.25;
-   
-   color:rgb(89,55,99);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-  }
-  .title span {
-    font-size: 0.85em;
-    color: rgb(89,55,99);
-    margin-right: 1rem;
-    font-weight: 700;
-  }
   .section-center {
     margin: 0 auto;
-    
     width: 70vw;
     height:50vh;
     max-width: 800px;
@@ -103,9 +82,7 @@
     background: grey;
   }
 
-  .arrow{
-    
-  }
+  
   .prev {
     left: 15px;
     
