@@ -66,25 +66,28 @@ export default function About() {
             );
           })}
           {/* import the left icon button and set up the click function */}
-          <button className="prev" onClick={() => setIndex(index - 1)}>
+          <button className="prev arrow" onClick={() => setIndex(index - 1)}>
             <FiChevronLeft />
           </button>
           {/* import the right icon and set up the click function */}
-          <button className="next" onClick={() => setIndex(index + 1)}>
+          <button className="next arrow" onClick={() => setIndex(index + 1)}>
             <FiChevronRight />
           </button>
         </div>
 
         <div className="para">
           <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
-          <p>
-            Welcome to the Notting Hill Community Dog Blog! This is an platform
-            where everyone can create an online blog, dedicated to dog owners in
-            the community to post about their dog grooming tips and tricks to
-            help the community to do their own DIY dog grooming. As well as to
-            give opportunity for the professional dog groomers to get back on
-            their business again if needed as a mobile dog grooming service.
-          </p>
+          <div className="content">
+            <p>
+              Welcome to the Notting Hill Community Dog Blog! This is an
+              platform where everyone can create an online blog, dedicated to
+              dog owners in the community to post about their dog grooming tips
+              and tricks to help the community to do their own DIY dog grooming.
+              As well as to give opportunity for the professional dog groomers
+              to get back on their business again if needed as a mobile dog
+              grooming service.
+            </p>
+          </div>
         </div>
       </section>
     </>

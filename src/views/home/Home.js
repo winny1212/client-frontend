@@ -67,7 +67,7 @@ function Home() {
   return (
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
-      <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
+      <Container maxWidth="lg">
         {/* import search and filter function components */}
         <TextField
           name="search"
@@ -81,7 +81,7 @@ function Home() {
         />
         <Button
           type="submit"
-          sx={{ width: '100%', marginTop: 2 }}
+          sx={{ width: '100%', marginTop: 2, marginBottom: 2 }}
           variant="contained"
           color="secondary"
           className={classes.submit}
@@ -90,7 +90,7 @@ function Home() {
           Search
         </Button>
 
-        <h3>Featured Posts</h3>
+        <h3 style={{ textAlign: 'center', fontSize: '30px' }}>Posts Gallery</h3>
         <Posts />
       </Container>
     </>
