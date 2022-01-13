@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import {
   fetchAllPosts,
   fetchPostsBySearch,
@@ -27,6 +28,7 @@ import {
  (2) Sends all of that data to our local state (redux)
  (3) We are also using Redux thunk, that is why we can async.
 */
+
 export const getAllPosts = () => async (dispatch) => {
   try {
     // Gets the data
@@ -45,7 +47,16 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
     // Gets the data
     const { data } = await fetchPostsBySearch(searchQuery);
 
-    dispatch({ type: FETCH_BY_SEARCH, payload: data.posts });
+    console.log('The data we received from searchPosts:', data);
+
+    if (data.posts) {
+      dispatch({ type: FETCH_BY_SEARCH, payload: data.posts });
+    }
+
+    if (data.message === 'No Results') {
+      // We need a Modal
+      alert('No posts with that name....');
+    }
   } catch (error) {
     console.log(error);
   }
