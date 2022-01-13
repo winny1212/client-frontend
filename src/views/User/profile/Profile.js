@@ -30,7 +30,7 @@ const Profile = () => {
   if (!user?.result?.username) {
     return (
       <Container>
-        <Typography variant="h6" align="center">
+        <Typography variant="h6" align="center" sx={{ marginTop: '10%' }}>
           You are not signed in. Please Sign in so that you can edit your
           Profile.
         </Typography>
