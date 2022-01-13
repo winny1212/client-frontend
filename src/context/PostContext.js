@@ -57,12 +57,12 @@ const PostContextProvider = ({ children }) => {
   const clearInputs = () => setDetails(initialDetailsData);
 
   // listening to final postData and sends to API
-  useEffect(() => {
-    console.log('useEffect\n-- postData:\n', postData);
+  // useEffect(() => {
+  //   console.log('useEffect\n-- postData:\n', postData);
+  // }, [postData]);
 
-    // Only CREATE POST when postData is ready
-    if (postData) dispatch(createPost(postData));
-  }, [postData, dispatch]);
+  // Only CREATE POST when postData is ready
+  // if (postData) dispatch(createPost(postData));
 
   // Create POST to send to backend
   const handlePostPublish = (e) => {
@@ -73,7 +73,7 @@ const PostContextProvider = ({ children }) => {
       ...details,
       steps: instructions,
       breed: selectedBreed.label,
-      author: authorId,
+      authorId: authorId,
     });
 
     // clear inputs back to initial values

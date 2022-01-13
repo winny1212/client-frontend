@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Redux State
 import { useDispatch } from 'react-redux';
@@ -33,6 +33,15 @@ function PostForm() {
   const { postData, handlePostPublish } = usePostContext();
   // UserContext consume
   const { firebase } = useUserContext();
+
+  // listening to final postData and sends to API
+  // !TODO temporary fix, dispatch should be inside handlePostPublish
+  useEffect(() => {
+    console.log('useEffect\n-- postData:\n', postData);
+
+    // Only CREATE POST when postData is ready
+    if (Object.entries(postData).length !== 0) dispatch(createPost(postData));
+  }, [postData, dispatch]);
 
   return (
     <>
