@@ -30,10 +30,10 @@ function Home() {
   return (
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
         {/* import search and filter function components */}
 
-        <h3 style={{ textAlign: 'center' }}>Posts Gallery</h3>
+        <h3 style={{ textAlign: 'center', fontSize: '40px' }}>Posts Gallery</h3>
         <Posts />
       </Container>
     </>
