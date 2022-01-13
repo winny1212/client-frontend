@@ -14,9 +14,9 @@ import Container from '@mui/material/Container';
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
-import FilterBar from '../../components/filterBar/FilterBar';
-import useStyles from './styles';
-import axios from 'axios';
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function Home() {
   const { currentId } = useContext(UserContext);
@@ -43,8 +43,6 @@ function Home() {
       <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
         {/* import search and filter function components */}
 
-        <h3 style={{ textAlign: 'center', fontSize: '40px' }}>Posts Gallery</h3>
-        <Posts />
         <TextField
           name="search"
           label="Search Posts"
