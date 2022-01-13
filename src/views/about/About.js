@@ -37,9 +37,11 @@ export default function About() {
       <Header title="About DIY Grooming" />
       <section className="section">
         <div className="section-center">
+          {/* map the carousel data */}
           {image.map((image, imageIndex) => {
             const { id, image_link, title } = image;
 
+            // set the current image position
             let position = 'nextSlide';
             if (imageIndex === index) {
               position = 'activeSlide';
@@ -53,6 +55,7 @@ export default function About() {
             }
 
             return (
+              // display the carousel data
               <article className={position} key={id}>
                 <img src={image_link} alt={title} className="dog-img" />
 
@@ -70,6 +73,7 @@ export default function About() {
           </button>
         </div>
 
+        {/* introduction part */}
         <div className="para">
           <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
           <div className="content">
