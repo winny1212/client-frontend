@@ -45,12 +45,9 @@ function Home() {
   const page = query.get('page');
   const searchQuery = query.get('searchQuery');
 
-  // fetch & load all Users
   // useEffect(() => {
   //   // We will fetch Posts at Pagination.
   //   // dispatch(getAllPosts(1));
-  //   // console.log('(useEffect) Post Reducer is:', postState);
-
   //   // fetch & load all Users
   //   dispatch(getAllUsers());
   // }, [dispatch, currentId]);

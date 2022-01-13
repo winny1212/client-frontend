@@ -49,10 +49,10 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
     const { data } = await fetchPostsBySearch(searchQuery);
     const posts = data.posts;
 
-    console.log('Data we got From getPostBySearch:', posts);
+    // console.log('Data we got From getPostBySearch:', posts);
+    // console.log('No need for payload.data, just payload');
 
     if (data.message === 'No Results') {
-      // We need a Modal
       alert('No posts with that name....');
     }
 
