@@ -11,22 +11,22 @@ import Grid from '@mui/material/Grid';
 import { CircularProgress } from '@mui/material';
 import PostCard from './PostCard';
 
-function Posts({ filters, setFilters, sort, setSort }) {
+function Posts() {
   const posts = useSelector((state) => state.postsReducer);
-  // console.log('Here are the Posts:', posts);
+  console.log('Here are the Posts:', posts);
 
   // Testing users
   const users = useSelector((state) => state.profileReducer);
-  // console.log('Here are the Users:', users);
+  console.log('Here are the Users:', users);
 
   //setup the initial state of filteredBlogs
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   // the filter condition
-  console.log(filters);
+  // console.log(filters);
 
   //the filteredBlogs
-  console.log(filteredBlogs);
+  // console.log(filteredBlogs);
 
   // filter function
   // useEffect(() => {

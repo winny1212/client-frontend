@@ -15,7 +15,6 @@ import { UserContext } from '../../context/UserContext';
 // MUI
 import Container from '@mui/material/Container';
 
-import FilterBar from '../../components/filterBar/FilterBar';
 import useStyles from './styles';
 
 // import Grid from '@mui/material/Grid';
@@ -30,10 +29,6 @@ function Home() {
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  // State for Filter and Sort
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState('newest');
 
   // State for Search
   const [search, setSearch] = useState('');
@@ -94,19 +89,9 @@ function Home() {
         >
           Search
         </Button>
-        <FilterBar
-          filters={filters}
-          setFilters={setFilters}
-          sort={sort}
-          setSort={setSort}
-        />
+
         <h3>Featured Posts</h3>
-        <Posts
-          filters={filters}
-          setFilters={setFilters}
-          sort={sort}
-          setSort={setSort}
-        />
+        <Posts />
       </Container>
     </>
   );
