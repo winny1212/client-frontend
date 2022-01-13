@@ -36,11 +36,6 @@ export default function About() {
     <>
       <Header title="About DIY Grooming" />
       <section className="section">
-        <div className="title">
-          <h2>
-            <span>/</span>About
-          </h2>
-        </div>
         <div className="section-center">
           {image.map((image, imageIndex) => {
             const { id, image_link, title } = image;
@@ -79,13 +74,19 @@ export default function About() {
           <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
           <div className="content">
             <p>
-              Welcome to the Notting Hill Community Dog Blog! This is an
-              platform where everyone can create an online blog, dedicated to
-              dog owners in the community to post about their dog grooming tips
-              and tricks to help the community to do their own DIY dog grooming.
-              As well as to give opportunity for the professional dog groomers
-              to get back on their business again if needed as a mobile dog
-              grooming service.
+              &nbsp; &nbsp;Welcome to the Notting Hill Community Dog Blog! This
+              is an platform where everyone can create an online blog, dedicated
+              to dog owners in the community to post about their dog grooming
+              tips and tricks to help the community to do their own DIY dog
+              grooming. As well as to give opportunity for the professional dog
+              groomers to get back on their business again if needed as a mobile
+              dog grooming service.
+            </p>
+            <br></br>
+            <p>
+              &nbsp; &nbsp;If you have your lovely dog and want to know more
+              knowledge about grooming your dog or want to make more friends who
+              also has dogs and is closed to you, please feel free to join us.
             </p>
           </div>
         </div>
