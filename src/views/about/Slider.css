@@ -29,8 +29,9 @@
   Slider
   ===============
   */
+  
   .section-center {
-    margin: 0 auto;
+    margin: 0 auto;  
     width: 70vw;
     height:50vh;
     max-width: 800px;
@@ -65,15 +66,14 @@
     transform: translateY(-50%); 
     color: white;
     width: 2rem;
-   height: 2rem;
-  background-color: rgb(196, 192, 192);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 2rem;
+    background-color: rgb(196, 192, 192);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-color: transparent;
-    /* font-size: 1rem; */
-    
+    /* font-size: 1rem; */  
     cursor: pointer;
     transition: all 0.3s linear;
   }
@@ -82,7 +82,7 @@
     background: grey;
   }
 
-  
+
   .prev {
     left: 15px;
     
