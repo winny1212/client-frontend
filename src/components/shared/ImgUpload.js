@@ -11,7 +11,9 @@ const ImgUpload = (props) => {
         <input
           style={{ display: 'none' }}
           id={copyid}
+          name={copyid}
           type="file"
+          accept="image/*"
           {...inputProps}
         />
         <span className="btn-icon">
