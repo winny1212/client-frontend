@@ -14,6 +14,7 @@ import { UserContext } from '../../context/UserContext';
 
 // MUI
 import Container from '@mui/material/Container';
+
 import FilterBar from '../../components/filterBar/FilterBar';
 import useStyles from './styles';
 
@@ -71,7 +72,7 @@ function Home() {
   return (
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
         {/* import search and filter function components */}
         <TextField
           name="search"
