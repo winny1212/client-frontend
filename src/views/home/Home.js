@@ -10,7 +10,7 @@ import { UserContext } from '../../context/UserContext';
 
 // MUI
 import Container from '@mui/material/Container';
-import FilterBar from '../../components/filterBar/FilterBar';
+
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
@@ -18,9 +18,6 @@ import FilterBar from '../../components/filterBar/FilterBar';
 import axios from 'axios';
 
 function Home() {
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState('newest');
-
   const dispatch = useDispatch();
 
   const { currentId } = useContext(UserContext);
@@ -35,19 +32,9 @@ function Home() {
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg">
         {/* import search and filter function components */}
-        <FilterBar
-          filters={filters}
-          setFilters={setFilters}
-          sort={sort}
-          setSort={setSort}
-        />
-        <h3>Featured Posts</h3>
-        <Posts
-          filters={filters}
-          setFilters={setFilters}
-          sort={sort}
-          setSort={setSort}
-        />
+
+        <h3 style={{ textAlign: 'center' }}>Posts Gallery</h3>
+        <Posts />
       </Container>
     </>
   );

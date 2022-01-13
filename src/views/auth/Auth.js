@@ -104,7 +104,7 @@ export default function Auth() {
   };
 
   return (
-    <>
+    <div data-testid="form">
       <Header title={isSignup ? 'Register' : 'Login'} />
       <Container component="main" maxWidth="md" sx={{ marginTop: 3 }}>
         <Paper className={classes.paper} elevation={0}>
@@ -123,6 +123,7 @@ export default function Auth() {
                   <Input
                     name="username"
                     label="Username"
+                    data-testid="nameInput"
                     handleChange={handleChange}
                     type="text"
                     required
@@ -203,6 +204,7 @@ export default function Auth() {
             <StyledBtn
               role="button"
               type="submit"
+              data-testid="submit"
               fullWidth
               // sx={{ mt: 2 }}
               // variant="contained"
@@ -224,6 +226,6 @@ export default function Auth() {
           </form>
         </Paper>
       </Container>
-    </>
+    </div>
   );
 }
