@@ -11,9 +11,13 @@ import { UserContext } from '../../context/UserContext';
 // MUI
 import Container from '@mui/material/Container';
 
+import FilterBar from '../../components/filterBar/FilterBar';
+import useStyles from './styles';
+
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -42,7 +46,6 @@ function Home() {
       <Header title="Find tips & tricks to groom your beloved pets" />
       <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
         {/* import search and filter function components */}
-
         <TextField
           name="search"
           label="Search Posts"
