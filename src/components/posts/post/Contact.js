@@ -1,4 +1,5 @@
 import React from 'react';
+// import API from material-ui
 import {
   Button,
   TextField,
@@ -11,8 +12,21 @@ import {
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 const Contact = () => {
+  //initial contact form state when click the button
+  const [open, setOpen] = React.useState(false);
+
+  //function of toggle
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
+      {/* contact form */}
       <Button variant="outlined" onClick={handleClickOpen}>
         Contact me
       </Button>
@@ -51,6 +65,7 @@ const Contact = () => {
           />
         </DialogContent>
         <DialogActions>
+          {/* button for canceling the form or submitting the form */}
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>
         </DialogActions>
