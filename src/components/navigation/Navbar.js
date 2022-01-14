@@ -27,9 +27,7 @@ function Navbar() {
     return state.authReducer.authData;
   });
 
-  const logout = (e) => {
-    e.preventDefault();
-
+  const logout = () => {
     dispatch({ type: 'LOGOUT' });
     navigate('/auth');
   };

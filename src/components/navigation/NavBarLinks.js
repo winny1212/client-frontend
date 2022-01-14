@@ -45,7 +45,14 @@ const NavBarLinks = ({ user, logout }) => {
             <Button href="/posts/new" variant="container">
               Create a Post
             </Button>
-            <Button href="/" onClick={logout} variant="container">
+            <Button
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                logout();
+              }}
+              variant="container"
+            >
               Logout
             </Button>
           </>
