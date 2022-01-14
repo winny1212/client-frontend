@@ -54,6 +54,8 @@ export const getAllUsers = () => async (dispatch) => {
     // Gets the data
     const { data } = await fetchAllUsers();
 
+    console.log('Data we got From getAllUsers:', data);
+
     // Send data to out local state
     dispatch({ type: FETCH_ALL_USERS, payload: data });
   } catch (error) {

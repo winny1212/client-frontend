@@ -9,6 +9,9 @@ import {
   Button,
   FormControlLabel,
   Input,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from '@mui/material';
 import Header from '../../../components/layout/Header';
 
@@ -102,16 +105,22 @@ const ProfileForm = () => {
               <Typography variant="h5" sx={{ marginRight: 8, fontSize: 22 }}>
                 Are you a professional dog groomer?
               </Typography>
-              <FormControlLabel
-                color="secondary"
-                control={<Checkbox />}
-                label="Yes"
-              />
-              <FormControlLabel
-                color="secondary"
-                control={<Checkbox />}
-                label="No"
-              />
+              <FormControl component="fieldset">
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup row name="row-radio-buttons-group">
+                  <FormControlLabel
+                    value="Yes"
+                    control={<Radio />}
+                    label="Yes"
+                  />
+                  <FormControlLabel value="No" control={<Radio />} label="No" />
+                  {/* <FormControlLabel
+                            value="other"
+                            control={<Radio />}
+                            label="Other"
+                          /> */}
+                </RadioGroup>
+              </FormControl>
               <br />
               {/* email */}
               <TextField
@@ -163,13 +172,19 @@ const ProfileForm = () => {
                   onChange={changeHandler}
                 />
 
-                <Button variant="contained" component="span" fullWidth>
+                <Button
+                  sx={{ marginTop: '12px' }}
+                  variant="contained"
+                  component="span"
+                  fullWidth
+                >
                   Upload Photo
                 </Button>
                 <br />
                 {/* bio */}
 
                 <TextField
+                  sx={{ marginTop: '12px' }}
                   id="outlined-multiline-static"
                   label="Bio"
                   multiline
@@ -178,7 +193,11 @@ const ProfileForm = () => {
                 />
                 <br />
                 {/* submit */}
-                <Button type="submit" variant="contained">
+                <Button
+                  sx={{ marginTop: '12px' }}
+                  type="submit"
+                  variant="contained"
+                >
                   Submit
                 </Button>
               </label>

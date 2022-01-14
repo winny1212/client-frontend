@@ -12,8 +12,8 @@ import { CircularProgress } from '@mui/material';
 import PostCard from './PostCard';
 
 function Posts() {
-  const posts = useSelector((state) => state.postsReducer);
-  console.log('Here are the Posts:', posts);
+  const { posts } = useSelector((state) => state.postsReducer);
+  console.log('Here are the posts:', posts);
 
   // Testing users
   const users = useSelector((state) => state.profileReducer);
@@ -40,7 +40,7 @@ function Posts() {
   //   );
   // }, [posts, filters]);
 
-  return !posts.length ? (
+  return !posts?.length ? (
     <CircularProgress />
   ) : (
     <Grid container direction="row" spacing={2} alignItems="stretch">

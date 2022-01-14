@@ -36,15 +36,12 @@ export default function About() {
     <>
       <Header title="About DIY Grooming" />
       <section className="section">
-        <div className="title">
-          <h2>
-            <span>/</span>About
-          </h2>
-        </div>
         <div className="section-center">
+          {/* map the carousel data */}
           {image.map((image, imageIndex) => {
             const { id, image_link, title } = image;
 
+            // set the current image position
             let position = 'nextSlide';
             if (imageIndex === index) {
               position = 'activeSlide';
@@ -58,6 +55,7 @@ export default function About() {
             }
 
             return (
+              // display the carousel data
               <article className={position} key={id}>
                 <img src={image_link} alt={title} className="dog-img" />
 
@@ -66,25 +64,35 @@ export default function About() {
             );
           })}
           {/* import the left icon button and set up the click function */}
-          <button className="prev" onClick={() => setIndex(index - 1)}>
+          <button className="prev arrow" onClick={() => setIndex(index - 1)}>
             <FiChevronLeft />
           </button>
           {/* import the right icon and set up the click function */}
-          <button className="next" onClick={() => setIndex(index + 1)}>
+          <button className="next arrow" onClick={() => setIndex(index + 1)}>
             <FiChevronRight />
           </button>
         </div>
 
+        {/* introduction part */}
         <div className="para">
           <h3>Welcome to the Notting Hill Dog DIY Blog</h3>
-          <p>
-            Welcome to the Notting Hill Community Dog Blog! This is an platform
-            where everyone can create an online blog, dedicated to dog owners in
-            the community to post about their dog grooming tips and tricks to
-            help the community to do their own DIY dog grooming. As well as to
-            give opportunity for the professional dog groomers to get back on
-            their business again if needed as a mobile dog grooming service.
-          </p>
+          <div className="content">
+            <p>
+              &nbsp; &nbsp;Welcome to the Notting Hill Community Dog Blog! This
+              is an platform where everyone can create an online blog, dedicated
+              to dog owners in the community to post about their dog grooming
+              tips and tricks to help the community to do their own DIY dog
+              grooming. As well as to give opportunity for the professional dog
+              groomers to get back on their business again if needed as a mobile
+              dog grooming service.
+            </p>
+            <br></br>
+            <p>
+              &nbsp; &nbsp;If you have your lovely dog and want to know more
+              knowledge about grooming your dog or want to make more friends who
+              also has dogs and is closed to you, please feel free to join us.
+            </p>
+          </div>
         </div>
       </section>
     </>

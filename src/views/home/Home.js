@@ -3,7 +3,7 @@ import Posts from '../../components/posts/Posts';
 import Header from '../../components/layout/Header';
 import { TextField, Button } from '@mui/material';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getAllPosts, getPostBySearch } from '../../actions/posts';
@@ -16,6 +16,7 @@ import { UserContext } from '../../context/UserContext';
 import Container from '@mui/material/Container';
 
 import useStyles from './styles';
+import Pagination from '../../components/Pagination/Pagination';
 
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
@@ -26,6 +27,8 @@ function useQuery() {
 }
 
 function Home() {
+  const postState = useSelector((state) => state.postsReducer);
+  console.log('Post State at home:', postState);
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -39,13 +42,12 @@ function Home() {
   const page = query.get('page');
   const searchQuery = query.get('searchQuery');
 
-  // fetch & load all posts
-  useEffect(() => {
-    dispatch(getAllPosts());
-
-    // fetch & load all Users
-    dispatch(getAllUsers());
-  }, [dispatch, currentId]);
+  // useEffect(() => {
+  //   // We will fetch Posts at Pagination.
+  //   // dispatch(getAllPosts(1));
+  //   // fetch & load all Users
+  //   dispatch(getAllUsers());
+  // }, [dispatch, currentId]);
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -56,19 +58,22 @@ function Home() {
   const searchPost = () => {
     if (search.trim()) {
       dispatch(getPostBySearch({ search }));
+
+      navigate(`/posts/search?searchQuery=${search || 'none'}`);
+
       setSearch('');
-      navigate(`/posts/search?searchQuery=${search}`);
     } else {
       // Go back to home.
-      navigate('/');
+      navigate('/posts');
     }
   };
 
   return (
     <>
       <Header title="Find tips & tricks to groom your beloved pets" />
-      <Container maxWidth="lg" sx={{ marginTop: '-25px' }}>
+      <Container maxWidth="lg">
         {/* import search and filter function components */}
+
         <TextField
           name="search"
           label="Search Posts"
@@ -81,7 +86,7 @@ function Home() {
         />
         <Button
           type="submit"
-          sx={{ width: '100%', marginTop: 2 }}
+          sx={{ width: '100%', marginTop: 2, marginBottom: 2 }}
           variant="contained"
           color="secondary"
           className={classes.submit}
@@ -89,8 +94,8 @@ function Home() {
         >
           Search
         </Button>
-
-        <h3>Featured Posts</h3>
+        <h3 style={{ textAlign: 'center', fontSize: '30px' }}>Posts Gallery</h3>
+        <Pagination page={page} />
         <Posts />
       </Container>
     </>
