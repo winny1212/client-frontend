@@ -25,6 +25,8 @@ import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 
+import Contact from './Contact';
+
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
 function Post({ post }) {
@@ -116,6 +118,8 @@ function Post({ post }) {
           <IconText label={`Grooming Time: 1 hr`} fontSize="small">
             <TimelapseTwoToneIcon color="secondary" />
           </IconText>
+
+          <Contact username={fakeUser.username} />
         </Stack>
 
         <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
