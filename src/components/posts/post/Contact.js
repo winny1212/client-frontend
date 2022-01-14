@@ -28,7 +28,7 @@ const Contact = ({ username }) => {
     <div>
       {/* contact form */}
       <Button variant="outlined" onClick={handleClickOpen}>
-        Contact
+        Contact me
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Contact {username}</DialogTitle>
