@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { StyledBtn } from '../shared/StyledButtons';
 
-const NavBarLinks = () => {
+const NavBarLinks = ({ user, logout }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const openUser = Boolean(anchorElUser);
 
@@ -34,29 +34,38 @@ const NavBarLinks = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   //login User logic for rendering
-  const LoginUser = (user, logout) => (
-    <>
-      {user ? (
-        <>
-          <Button href="/profile" variant="container">
-            Profile
-          </Button>
-          <Button href="/posts/new" variant="container">
-            Create a Post
-          </Button>
-          <Button href="/" onClick={logout} variant="container">
-            Logout
-          </Button>
-        </>
-      ) : (
-        <>
-          <StyledBtn href="/login" variant="container">
-            Login
-          </StyledBtn>
-        </>
-      )}
-    </>
-  );
+  const LoginUser = () => {
+    return (
+      <>
+        {user ? (
+          <>
+            <Button href="/profile" variant="container">
+              Profile
+            </Button>
+            <Button href="/posts/new" variant="container">
+              Create a Post
+            </Button>
+            <Button
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                logout();
+              }}
+              variant="container"
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <StyledBtn href="/login" variant="container">
+              Login
+            </StyledBtn>
+          </>
+        )}
+      </>
+    );
+  };
 
   //render mobile breakpoint
   const MobileNavBar = () => (
@@ -137,7 +146,7 @@ const NavBarLinks = () => {
   );
 
   //render Desktop breakpoint
-  const DesktopNavBar = (user) => (
+  const DesktopNavBar = () => (
     <>
       <Container
         sx={{
@@ -152,7 +161,7 @@ const NavBarLinks = () => {
         <Button href="/about" variant="container">
           About
         </Button>
-        <LoginUser user={{ user }} />
+        <LoginUser user={user} logout={logout} />
       </Container>
     </>
   );

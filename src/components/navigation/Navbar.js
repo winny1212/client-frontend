@@ -17,16 +17,19 @@ import Container from '@mui/material/Container';
 import Logo from '../shared/Logo';
 
 function Navbar() {
-  // We must make sure when token expires, the user is logged out.
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
+  //usersData set with reducer
+  //this is required to observe redux store and render the component when store has changed.
+  const user = useSelector((state) => {
+    return state.authReducer.authData;
+  });
+
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
     navigate('/auth');
-    setUser(null);
   };
 
   useEffect(() => {
@@ -40,19 +43,6 @@ function Navbar() {
         logout();
       }
     }
-
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
-
-  // get user
-  if (user?.result) {
-    console.log('User is:');
-    console.log(user.result);
-  }
-
-  //usersData set with reducer
-  const profile = useSelector((state) => {
-    return state.profileReducer;
   });
 
   return (
@@ -61,7 +51,7 @@ function Navbar() {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Logo />
-            <NavBarLinks />
+            <NavBarLinks user={user} logout={logout} />
           </Toolbar>
         </Container>
       </AppBar>
