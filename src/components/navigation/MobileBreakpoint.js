@@ -101,16 +101,44 @@ const MobileBreakpoint = () => {
             <>
               {user ? (
                 <>
-                  <Button variant="container" href="/">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    variant="container"
+                    href="/"
+                  >
                     Home
                   </Button>
-                  <Button href="/about" variant="container">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    href="/about"
+                    variant="container"
+                  >
                     About
                   </Button>
-                  <Button href="/profile" variant="container">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    href="/profile"
+                    variant="container"
+                  >
                     Profile
                   </Button>
-                  <Button href="/posts/new" variant="container">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    href="/posts/new"
+                    variant="container"
+                  >
                     Create a Post
                   </Button>
                   <Button
@@ -126,10 +154,24 @@ const MobileBreakpoint = () => {
                 </>
               ) : (
                 <>
-                  <Button variant="container" href="/">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    variant="container"
+                    href="/"
+                  >
                     Home
                   </Button>
-                  <Button href="/about" variant="container">
+                  <Button
+                    sx={{
+                      borderBottom: '1px solid #502D5C',
+                      width: '100vw',
+                    }}
+                    href="/about"
+                    variant="container"
+                  >
                     About
                   </Button>
                   <Button href="/login" variant="container">
