@@ -18,7 +18,6 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import DynamicButtons from './DynamicButtons';
 
 //render mobile breakpoint
 const MobileBreakpoint = () => {
@@ -26,7 +25,7 @@ const MobileBreakpoint = () => {
   const openUser = Boolean(anchorElUser);
 
   const dispatch = useDispatch();
-  //const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
 
   //usersData set with reducer
@@ -127,85 +126,18 @@ const MobileBreakpoint = () => {
                 </>
               ) : (
                 <>
-                  {isMobile ? (
-                    <Button />
-                  ) : (
-                    <Button href="/login" variant="container">
-                      Login
-                    </Button>
-                  )}
+                  <Button variant="container" href="/">
+                    Home
+                  </Button>
+                  <Button href="/about" variant="container">
+                    About
+                  </Button>
+                  <Button href="/login" variant="container">
+                    Login
+                  </Button>
                 </>
               )}
             </>
-            {/* {user ? (
-              <>
-                <Button href="/profile" variant="container">
-                  Profile
-                </Button>
-                <Button href="/posts/new" variant="container">
-                  Create a Post
-                </Button>
-                <Button
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    logout();
-                  }}
-                  variant="container"
-                >
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  sx={{
-                    borderBottom: '1px solid #502D5C',
-                    width: '100vw',
-                  }}
-                  variant="container"
-                  href="/"
-                >
-                  Home
-                </Button>
-                <Button
-                  sx={{
-                    borderBottom: '1px solid #502D5C',
-                    width: '100vw',
-                  }}
-                  variant="container"
-                  href="/about"
-                >
-                  About
-                </Button>
-                <Button
-                  sx={{
-                    borderBottom: '1px solid #502D5C',
-                    width: '100vw',
-                  }}
-                  href="/profile"
-                  variant="container"
-                >
-                  Profile
-                </Button>
-                <Button
-                  sx={{
-                    borderBottom: '1px solid #502D5C',
-                    width: '100vw',
-                  }}
-                  href="/posts/new"
-                  variant="container"
-                >
-                  Create a Post
-                </Button>
-                <DynamicButtons
-                  sx={{
-                    borderBottom: '1px solid #502D5C',
-                    width: '100vw',
-                  }}
-                />
-              </>
-            )} */}
           </Container>
         </Menu>
       </Box>
