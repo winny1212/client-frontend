@@ -8,10 +8,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@mui/material/Button';
+} from '@mui/material';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
-const Contact = () => {
+const Contact = ({ username }) => {
   //initial contact form state when click the button
   const [open, setOpen] = React.useState(false);
 
@@ -28,10 +28,10 @@ const Contact = () => {
     <div>
       {/* contact form */}
       <Button variant="outlined" onClick={handleClickOpen}>
-        Contact me
+        Contact
       </Button>
-      <Dialog open={open} onClose={handleClose} onSubmit={sendEmail}>
-        <DialogTitle>Contact me</DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Contact {username}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             If you have any question,please feel free to contact me.
