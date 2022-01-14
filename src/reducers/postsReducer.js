@@ -12,7 +12,7 @@ const postsReducer = (state = { posts: [] }, action) => {
     case FETCH_ALL:
       return {
         ...state,
-        posts: action.payload,
+        posts: action.payload.data,
         currentPage: action.payload.currentPage,
         numberOfPages: action.payload.numberOfPages,
       };

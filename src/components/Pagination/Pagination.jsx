@@ -12,9 +12,7 @@ import useStyles from './styles';
 import { getAllPosts } from '../../actions/posts';
 
 const Paginate = ({ page }) => {
-  const state = useSelector((state) => state.postsReducer);
-  console.log('Posts ReducerState', state);
-  let numberOfPages = 1;
+  const { numberOfPages } = useSelector((state) => state.postsReducer);
 
   // const { state } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
