@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
+import { storage } from '../../../services/firebase';
+import { nanoid } from 'nanoid';
 
 // Components & Data
 import FormInput from '../../shared/FormInput';
@@ -27,6 +30,32 @@ function DetailsForm() {
   // PostContext consume
   const { details, setDetails, selectedBreed, setSelectedBreed } =
     usePostContext();
+
+  // Images states
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleSelectFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  // Handle upload with Firebase
+  const uploadImg = async (file, folderName, setLoading) => {
+    const folderPath = folderName;
+    const fileName = `img_${nanoid(10)}_${file.name}`;
+    const fileRef = ref(storage, `/${folderPath}/${fileName}`);
+
+    // setLoading(true)
+    const snapshot = await uploadBytes(fileRef, file);
+    // setLoading(false
+    alert('File uploaded!');
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    uploadImg(selectedFile, 'posts_images');
+  };
 
   // For Grooming time/duration slider
   const durationValue = (value) => {
@@ -155,19 +184,29 @@ function DetailsForm() {
           alignItems="stretch"
           divider={<Divider orientation="vertical" flexItem />}
         >
-          <ImgUpload
-            id="img-before"
-            imgLabel="Before"
-            // name="before"
-            // value={postData.image.before}
-          />
-          <ImgUpload id="img-after" imgLabel="After" />
+          <div>
+            <ImgUpload
+              id="img-before"
+              imgLabel="Before"
+              name="image.before"
+              // value={fileSelect}
+              onChange={handleSelectFileChange}
+            />
+            {/* <img src={fileSelect} alt="" /> */}
+            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
+            <button onClick={handleUpload}>Upload</button>
+          </div>
+
+          <div>
+            <ImgUpload id="img-after" imgLabel="After" />
+            <HelperText sx={{ ml: 1, mt: 1 }}>test</HelperText>
+          </div>
         </Stack>
       </Stack>
 
       <FormInput
-        hint="Video link"
-        label="Include a grooming video link if available"
+        hint="Include a grooming video url if available"
+        label="Video Link"
         id="video"
         name="video"
         value={details.video}

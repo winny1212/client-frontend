@@ -43,10 +43,13 @@ function PostForm() {
     if (Object.entries(postData).length !== 0) dispatch(createPost(postData));
   }, [postData, dispatch]);
 
+  const test = () => {};
+
   return (
     <>
       <BaseLayout>
-        <form onSubmit={handlePostPublish} noValidate>
+        {/* <form onSubmit={handlePostPublish} noValidate> */}
+        <form onSubmit={test} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
               <DetailsForm />

@@ -1,7 +1,7 @@
 import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
 
 const ImgUpload = (props) => {
-  const { id, imgLabel, ...inputProps } = props;
+  const { e, id, name, imgLabel, value, ...inputProps } = props;
 
   const copyid = id || 'img-upload';
 
@@ -11,7 +11,8 @@ const ImgUpload = (props) => {
         <input
           style={{ display: 'none' }}
           id={copyid}
-          name={copyid}
+          name={name}
+          value={value}
           type="file"
           accept="image/*"
           {...inputProps}

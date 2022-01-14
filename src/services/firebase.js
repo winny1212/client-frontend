@@ -1,4 +1,5 @@
-import { initializeApp } from 'firebase/app';
+import firebase, { initializeApp } from 'firebase/app';
+import 'firebase/storage';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -20,4 +21,7 @@ export const getFirebase = () => {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+export const storage = getStorage(
+  app,
+  process.env.REACT_APP_FIREBASE_STORAGE_BUCKET_URL,
+);
