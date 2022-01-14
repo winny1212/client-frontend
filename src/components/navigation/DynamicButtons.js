@@ -27,7 +27,7 @@ const DynamicButtons = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
-    navigate('/auth');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const DynamicButtons = () => {
             Create a Post
           </Button>
           <Button
-            href="/auth"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               logout();
