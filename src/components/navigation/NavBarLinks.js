@@ -10,8 +10,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 
 const NavBarLinks = () => {
-  const [anchorElUser, setAnchorElUser] = useState(null);
-
   //Breakpoints
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

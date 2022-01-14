@@ -21,7 +21,7 @@ const DesktopBreakpoint = () => {
           alignItems: 'center',
         }}
       >
-        <Button variant="container" href="/">
+        <Button variant="container" href="/auth">
           Home
         </Button>
         <Button href="/about" variant="container">

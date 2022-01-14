@@ -57,7 +57,7 @@ const DynamicButtons = () => {
             Create a Post
           </Button>
           <Button
-            href="/"
+            href="/auth"
             onClick={(e) => {
               e.preventDefault();
               logout();
