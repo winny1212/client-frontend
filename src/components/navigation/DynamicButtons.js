@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 //material ui
 import Button from '@mui/material/Button';
@@ -40,6 +42,9 @@ const DynamicButtons = () => {
       }
     }
   });
+  //Breakpoints
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
@@ -64,9 +69,13 @@ const DynamicButtons = () => {
         </>
       ) : (
         <>
-          <StyledBtn href="/login" variant="container">
-            Login
-          </StyledBtn>
+          {isMobile ? (
+            <Button />
+          ) : (
+            <StyledBtn href="/login" variant="container">
+              Login
+            </StyledBtn>
+          )}
         </>
       )}
     </>
