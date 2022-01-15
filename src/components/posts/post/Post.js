@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
-// eslint-disable-next-line no-unused-vars
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
@@ -25,7 +23,7 @@ import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 
-import Contact from './Contact';
+import Contact from '../../../modals/Contact';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
