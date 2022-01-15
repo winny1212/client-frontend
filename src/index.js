@@ -19,13 +19,17 @@ import reducers from './reducers';
 import { UserContextProvider } from './context/UserContext';
 import PostContextProvider from './context/PostContext';
 
+// This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
+// and compose is simply applying the middleware so we can perform async functions.
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
+
+// Why did we do this?
+/*
 // this is a persisted state from the previous usage of the app.
 const persistedState = localStorage.getItem('reduxState')
   ? JSON.parse(localStorage.getItem('reduxState'))
   : {};
 
-// This is the basic setup for Redux - we give create store the Combined reducers called 'reducer'
-// and compose is simply applying the middleware so we can perform async functions.
 const store = createStore(
   reducers,
   persistedState,
@@ -37,6 +41,7 @@ store.subscribe(() => {
   // Save it in local storage so that if we refresh any page, we are still logged in.
   localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 });
+*/
 
 ReactDOM.render(
   <Provider store={store}>
