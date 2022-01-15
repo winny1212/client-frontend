@@ -27,7 +27,12 @@ const AddStep = ({ step, handleInputChange, handleAddStep }) => {
           mt: 1.5,
         }}
       >
-        <StyledBtn size="small" type="submit" onClick={handleAddStep}>
+        <StyledBtn
+          size="small"
+          type="submit"
+          onClick={handleAddStep}
+          color="secondary"
+        >
           Add Step
         </StyledBtn>
       </Box>

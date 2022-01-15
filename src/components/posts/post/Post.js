@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
-// eslint-disable-next-line no-unused-vars
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
@@ -25,7 +23,7 @@ import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 
-import Contact from './Contact';
+import Contact from '../../../modals/Contact';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 
@@ -91,7 +89,8 @@ function Post({ post }) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
               flexDirection: 'column',
               textAlign: 'left',
             }}
@@ -138,8 +137,8 @@ function Post({ post }) {
           </Grid>
           <Grid item xs={12} md={6}>
             <ol>
-              {post.steps?.map((step, index) => (
-                <li key={index}>{step}</li>
+              {post.steps?.map((step) => (
+                <li key={step.id}>{step.text}</li>
               ))}
             </ol>
           </Grid>

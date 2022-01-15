@@ -30,7 +30,12 @@ const EditStep = ({
         spacing={1}
         mt={1.5}
       >
-        <StyledBtn size="small" type="submit" onClick={handleSaveEditedStep}>
+        <StyledBtn
+          size="small"
+          type="submit"
+          onClick={handleSaveEditedStep}
+          color="secondary"
+        >
           Update Step
         </StyledBtn>
 

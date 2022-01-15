@@ -13,6 +13,7 @@ import Hr from '../../shared/Hr';
 import Step from './Step';
 import AddStep from './AddStep';
 import EditStep from './EditStep';
+import HelperText from '../../shared/HelperText';
 
 function Steps() {
   // PostContext consume
@@ -105,6 +106,9 @@ function Steps() {
       <Typography variant="subtitle1" sx={{ textAlign: 'left' }}>
         Grooming instructions preview
       </Typography>
+      <HelperText sx={{ ml: 0 }}>
+        Please include at least three steps
+      </HelperText>
 
       <List>
         {instructions.map((instruction, index) => (

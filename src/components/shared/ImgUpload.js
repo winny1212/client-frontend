@@ -1,23 +1,38 @@
-import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
+import { useRef } from 'react';
+// import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
+import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
+// import ImgPreview from './ImgPreview';
+// import HelperText from './HelperText';
 
-const ImgUpload = (props) => {
-  const { id, imgLabel, ...inputProps } = props;
-
+const ImgUpload = ({
+  id,
+  name,
+  imgLabel,
+  value,
+  handleImageDetailsChange,
+  ...inputProps
+}) => {
   const copyid = id || 'img-upload';
+  // const imgRef = useRef();
 
   return (
     <>
-      <label htmlFor={copyid}>
+      <label htmlFor={id}>
         <input
-          style={{ display: 'none' }}
-          id={copyid}
-          name={copyid}
           type="file"
           accept="image/*"
+          style={{ display: 'none' }}
+          // ref={imgRef}
+          id={id}
+          name={name}
+          value={value}
+          onChange={(e) =>
+            handleImageDetailsChange(name, e.currentTarget.files[0])
+          }
           {...inputProps}
         />
         <span className="btn-icon">
-          <PhotoCameraTwoToneIcon
+          <PhotoSizeSelectActualTwoToneIcon
             sx={{ mr: 1 }}
             color="secondary"
             fontSize="small"

@@ -29,6 +29,9 @@ const PostContextProvider = ({ children }) => {
     video: '',
   };
 
+  // Loading states
+  const [loading, setLoading] = useState(false);
+
   // Post data for DetailsForm
   const [details, setDetails] = useState(initialDetailsData);
 
@@ -87,6 +90,9 @@ const PostContextProvider = ({ children }) => {
         stepsTempLocal,
         handlePostPublish,
         authorId,
+        clearInputs,
+        loading,
+        setLoading,
       }}
     >
       {children}
