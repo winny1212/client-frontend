@@ -31,8 +31,8 @@ export const signIn = (formData) => async (dispatch) => {
     if (response.data.message !== 'Wrong Password') {
       const { data } = response;
       console.log('Token:', data);
-      // localStorage.setItem('profile', JSON.stringify({ ...data }));
       dispatch({ type: AUTH, data });
+      window.location.reload(false);
     }
   } catch (error) {
     console.log(error);
