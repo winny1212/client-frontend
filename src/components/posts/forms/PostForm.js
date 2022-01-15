@@ -30,7 +30,16 @@ function PostForm() {
   const currentUser = JSON.parse(localStorage.getItem('profile'));
 
   // PostContext consume
-  const { postData, handlePostPublish } = usePostContext();
+  const {
+    postData,
+    details,
+    instructions,
+    selectedBreed,
+    authorId,
+    stepsTempLocal,
+    setSelectedBreed,
+    clearInputs,
+  } = usePostContext();
 
   // Local states
   const [progress, setProgress] = useState(0);
@@ -44,6 +53,30 @@ function PostForm() {
     if (Object.entries(postData).length !== 0) dispatch(createPost(postData));
   }, [postData, dispatch]);
 
+  // Create POST to send to backend
+  const handlePostPublish = (e) => {
+    e.preventDefault();
+
+    const newPost = {
+      ...postData,
+      ...details,
+      steps: instructions,
+      breed: selectedBreed.label,
+      authorId: authorId,
+    };
+
+    // create post
+    dispatch(createPost(newPost));
+
+    // clear inputs back to initial values
+    clearInputs();
+    // clear temporary local storage for steps
+    localStorage.removeItem(stepsTempLocal);
+    // set breed back to null
+    setSelectedBreed(null);
+    console.log('-- New postData Published! --');
+  };
+
   const test = () => {};
 
   return (
@@ -53,7 +86,7 @@ function PostForm() {
         <form onSubmit={test} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
-              <DetailsForm setProgress={setProgress} />
+              <DetailsForm setProgress={setProgress} progress={progress} />
             </Grid>
 
             <Grid item xs={12} md={7}>
@@ -63,6 +96,7 @@ function PostForm() {
             <Grid item xs={12} md={12}>
               <Stack spacing={2} direction="row" justifyContent="center">
                 {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
+                <br />
                 <StyledBtn type="submit">Publish Post</StyledBtn>
               </Stack>
             </Grid>

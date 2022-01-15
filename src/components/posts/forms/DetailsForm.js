@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  uploadBytesResumable,
+} from 'firebase/storage';
 import { storage } from '../../../services/firebase';
 import { nanoid } from 'nanoid';
 
@@ -10,6 +15,7 @@ import breeds from '../../../data/breedsData';
 import timeMarks from '../../../data/groomingTime';
 import ImgUpload from '../../shared/ImgUpload';
 import HelperText from '../../shared/HelperText';
+import { StyledBtn } from '../../shared/StyledButtons';
 
 // Context
 import { usePostContext } from '../../../context/PostContext';
@@ -26,8 +32,9 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import ImgPreview from '../../shared/ImgPreview';
+import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
 
-function DetailsForm({ setProgress }) {
+function DetailsForm({ progress, setProgress }) {
   // PostContext consume
   const { details, setDetails, selectedBreed, setSelectedBreed } =
     usePostContext();
@@ -36,37 +43,70 @@ function DetailsForm({ setProgress }) {
   const [selectedImgBefore, setSelectedImgBefore] = useState(null);
   const [selectedImgAfter, setSelectedImgAfter] = useState(null);
 
-  const handleImageDetailsChange = (name, id, value) => {
+  const handleImageDetailsChange = (name, value) => {
     // handle selected image previews
-    if (id === 'img-before') {
+    if (name === 'img-before') {
       setSelectedImgBefore(value);
     }
 
-    if (id === 'img-after') {
+    if (name === 'img-after') {
       setSelectedImgAfter(value);
     }
     // when image is uploaded and URL is obtained, insert into details
-    setDetails((prev) => ({ ...prev, [name]: value }));
+    // setDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle file upload to Firebase
-  const uploadImg = async (file, folderName, setLoading) => {
+  const uploadFile = (file, folderName, imgType) => {
     if (!file) return;
     const folderPath = folderName;
     const fileName = `img_${nanoid(10)}_${file.name}`;
     const storageRef = ref(storage, `/${folderPath}/${fileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
-    // setLoading(true)
-    const snapshot = await uploadBytes(storageRef, file);
-    const imgURL = await getDownloadURL(storageRef);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const currentProgress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        );
+        setProgress(currentProgress);
+      },
+      (error) => console.log(error),
+      () => {
+        // when image is uploaded and URL is obtained, update details
+        getDownloadURL(uploadTask.snapshot.ref).then((imgURL) => {
+          console.log('imgURL:', imgURL);
+          if (imgType === 'before') {
+            setDetails((prev) => ({
+              ...prev,
+              image: { ...prev.image, before: imgURL },
+            }));
+          }
+          if (imgType === 'after') {
+            setDetails((prev) => ({
+              ...prev,
+              image: { ...prev.image, after: imgURL },
+            }));
+          }
+        });
+      },
+    );
 
-    // setLoading(false
-    alert('File uploaded!');
+    if (progress === 100) {
+      alert('File uploaded!');
+    }
   };
 
   const handleUpload = (e) => {
     e.preventDefault();
-    uploadImg(selectedImgBefore, 'posts_images');
+    try {
+      selectedImgBefore &&
+        uploadFile(selectedImgBefore, 'posts_images', 'before');
+      selectedImgAfter && uploadFile(selectedImgAfter, 'posts_images', 'after');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // For Grooming time/duration slider
@@ -131,6 +171,12 @@ function DetailsForm({ setProgress }) {
             onChange={handleDetailsChange}
           >
             <FormControlLabel
+              key="any"
+              value="any"
+              control={<Radio size="small" />}
+              label="Any"
+            />
+            <FormControlLabel
               key="small"
               value="small"
               control={<Radio size="small" />}
@@ -189,6 +235,9 @@ function DetailsForm({ setProgress }) {
       {/* image: { before: '', after: '' } */}
       <Stack spacing={1}>
         <FormLabel>Upload before & after grooming photos</FormLabel>
+        <HelperText sx={{ ml: 0, mb: 2 }}>
+          Please choose at least one photo
+        </HelperText>
         <Stack
           spacing={2}
           direction="row"
@@ -197,14 +246,23 @@ function DetailsForm({ setProgress }) {
           divider={<Divider orientation="vertical" flexItem />}
         >
           <div>
-            <ImgUpload
-              id="img-before"
-              imgLabel="Before"
-              name="image.before"
-              value={details?.image?.before}
-              handleImageDetailsChange={handleImageDetailsChange}
-            />
-            {/* <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText> */}
+            <label htmlFor="img-before">
+              <input
+                type="file"
+                id="img-before"
+                style={{ display: 'none' }}
+                accept="image/*"
+                onChange={(e) => setSelectedImgBefore(e.target.files[0])}
+              />
+              <span className="btn-icon">
+                <PhotoSizeSelectActualTwoToneIcon
+                  sx={{ mr: 1 }}
+                  color="secondary"
+                  fontSize="small"
+                />
+                Before
+              </span>
+            </label>
             {selectedImgBefore && (
               <ImgPreview
                 src={URL.createObjectURL(selectedImgBefore)}
@@ -214,14 +272,23 @@ function DetailsForm({ setProgress }) {
           </div>
 
           <div>
-            <ImgUpload
-              id="img-after"
-              imgLabel="After"
-              name="image.after"
-              value={details?.image?.after}
-              handleImageDetailsChange={handleImageDetailsChange}
-            />
-            {/* <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText> */}
+            <label htmlFor="img-after">
+              <input
+                type="file"
+                id="img-after"
+                style={{ display: 'none' }}
+                accept="image/*"
+                onChange={(e) => setSelectedImgAfter(e.target.files[0])}
+              />
+              <span className="btn-icon">
+                <PhotoSizeSelectActualTwoToneIcon
+                  sx={{ mr: 1 }}
+                  color="secondary"
+                  fontSize="small"
+                />
+                After
+              </span>
+            </label>
             {selectedImgAfter && (
               <ImgPreview
                 src={URL.createObjectURL(selectedImgAfter)}
@@ -229,10 +296,56 @@ function DetailsForm({ setProgress }) {
               />
             )}
           </div>
+
+          {/* ! MAJOR ERROR - To revisit... */}
+          {/* <div>
+            <ImgUpload
+              id="img-before"
+              imgLabel="Before"
+              name="img-before"
+              // value={details?.image?.before}
+              value="img-before"
+              onChange={(e) => setSelectedImgBefore(e.target.files[0])}
+              handleImageDetailsChange={handleImageDetailsChange}
+            />
+            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
+            {selectedImgBefore && (
+              <ImgPreview
+                src={URL.createObjectURL(selectedImgBefore)}
+                alt="img-preview"
+              />
+            )}
+          </div> */}
+
+          {/* <div>
+            <ImgUpload
+              id="img-after"
+              imgLabel="After"
+              // name={details.image?.after}
+              name="img-after"
+              value="img-after"
+              onChange={(e) => setSelectedImgAfter(e.target.files[0])}
+              handleImageDetailsChange={handleImageDetailsChange}
+            />
+            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
+            {selectedImgAfter && (
+              <ImgPreview
+                src={URL.createObjectURL(selectedImgAfter)}
+                alt="img-preview"
+              />
+            )}
+          </div> */}
         </Stack>
       </Stack>
-      {/* Upload test */}
-      <button onClick={handleUpload}>Upload</button>
+      {/* SUBMIT PHOTOS TO STORAGE */}
+      {(selectedImgBefore || selectedImgAfter) && (
+        <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+          <StyledBtn onClick={handleUpload} size="small">
+            Finalise Photos
+          </StyledBtn>
+          {progress > 0 && <FormLabel>Processing: {progress} %</FormLabel>}
+        </Stack>
+      )}
 
       <FormInput
         hint="Include a grooming video url if available"

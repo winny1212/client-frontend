@@ -87,6 +87,7 @@ const PostContextProvider = ({ children }) => {
         stepsTempLocal,
         handlePostPublish,
         authorId,
+        clearInputs,
       }}
     >
       {children}

@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 // import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
 import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
-import ImgPreview from './ImgPreview';
-import HelperText from './HelperText';
+// import ImgPreview from './ImgPreview';
+// import HelperText from './HelperText';
 
 const ImgUpload = ({
   id,
@@ -13,21 +13,21 @@ const ImgUpload = ({
   ...inputProps
 }) => {
   const copyid = id || 'img-upload';
-  const imgRef = useRef();
+  // const imgRef = useRef();
 
   return (
     <>
-      <label htmlFor={copyid}>
+      <label htmlFor={id}>
         <input
           type="file"
           accept="image/*"
           style={{ display: 'none' }}
-          ref={imgRef}
-          id={copyid}
+          // ref={imgRef}
+          id={id}
           name={name}
           value={value}
           onChange={(e) =>
-            handleImageDetailsChange(name, copyid, e.currentTarget.files[0])
+            handleImageDetailsChange(name, e.currentTarget.files[0])
           }
           {...inputProps}
         />
@@ -40,9 +40,6 @@ const ImgUpload = ({
           {imgLabel}
         </span>
       </label>
-      {/* <br />
-      <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name || ''}</HelperText> */}
-      {/* <ImgPreview src={URL.createObjectURL(selectedFile)} alt="img-file" /> */}
     </>
   );
 };
