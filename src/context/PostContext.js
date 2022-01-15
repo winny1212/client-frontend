@@ -15,8 +15,6 @@ const PostContextProvider = ({ children }) => {
   const currentUser = JSON.parse(localStorage.getItem('profile'));
   const authorId = currentUser?.result?._id;
 
-  console.log('CURRENT USER ID', authorId);
-
   // Final form data to be submitted to the backend
   const [postData, setPostData] = useState({});
 

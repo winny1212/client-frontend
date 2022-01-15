@@ -142,6 +142,14 @@ const theme = (mode) =>
         fontFamily: global.fontSecondary,
         fontWeight: 600,
         letterSpacing: 1,
+        fontSize: '0.8rem',
+        textTransform: 'uppercase',
+      },
+      h7: {
+        fontFamily: global.fontPrimary,
+        fontWeight: 600,
+        fontSize: '0.85rem',
+        fontStyle: 'italic',
       },
     },
     components: {

@@ -22,6 +22,7 @@ import { usePostContext } from '../../../context/PostContext';
 
 // MUI
 import Autocomplete from '@mui/material/Autocomplete';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Radio from '@mui/material/Radio';
@@ -246,8 +247,8 @@ function DetailsForm({ progress, setProgress }) {
         <Stack
           spacing={2}
           direction="row"
-          justifyContent="flex-start"
           alignItems="stretch"
+          sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           divider={<Divider orientation="vertical" flexItem />}
         >
           <div>
@@ -345,21 +346,26 @@ function DetailsForm({ progress, setProgress }) {
 
       {/* SUBMIT PHOTOS TO STORAGE */}
       {(selectedImgBefore || selectedImgAfter) && (
-        <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-          {progress === 0 && (
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={2}
+          sx={{ alignItems: 'center' }}
+        >
+          {progress <= 99 ? (
             <>
               <StyledBtn onClick={handleUpload} size="small" color="secondary">
                 Finalise Photos
               </StyledBtn>
-              <FormLabel>Processing: {progress} %</FormLabel>
+              {progress > 1 && (
+                <Typography variant="h7">Processing: {progress} %</Typography>
+              )}
             </>
-          )}
-          {progress === 100 && (
+          ) : (
             <>
               <StyledBtn disabled size="small" color="secondary">
                 Finalise Photos
               </StyledBtn>
-              <FormLabel>Photos Finalised!</FormLabel>
+              <Typography variant="h7">Photos Finalised!</Typography>
             </>
           )}
         </Stack>
