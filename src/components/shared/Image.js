@@ -7,6 +7,7 @@ const ImageWrapper = styled.figure`
 const Img = styled.img`
   object-fit: cover;
   width: 100%;
+  height: clamp(250px, 300px, 550px);
 `;
 
 const Caption = styled.figcaption`

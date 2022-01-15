@@ -89,7 +89,8 @@ function Post({ post }) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
               flexDirection: 'column',
               textAlign: 'left',
             }}
@@ -136,8 +137,8 @@ function Post({ post }) {
           </Grid>
           <Grid item xs={12} md={6}>
             <ol>
-              {post.steps?.map((step, index) => (
-                <li key={index}>{step}</li>
+              {post.steps?.map((step) => (
+                <li key={step.id}>{step.text}</li>
               ))}
             </ol>
           </Grid>
