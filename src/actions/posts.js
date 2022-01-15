@@ -6,6 +6,7 @@ import {
   updateOldPost,
   deleteAPost,
   likeAPost,
+  commentAPost,
 } from '../api';
 
 import {
@@ -15,6 +16,7 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  COMMENT,
 } from '../constants/actionTypes';
 
 // This is where we can make requests to the backend.
@@ -105,6 +107,21 @@ export const likePost = (id) => async (dispatch) => {
     const { data } = await likeAPost(id);
 
     dispatch({ type: LIKE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Comment on Post
+export const commentPost = (comment, id) => async (dispatch) => {
+  try {
+    const { data } = await commentAPost(comment, id);
+
+    console.log('commentPost data:', data);
+
+    dispatch({ type: COMMENT, payload: data });
+
+    return data.comments;
   } catch (error) {
     console.log(error);
   }
