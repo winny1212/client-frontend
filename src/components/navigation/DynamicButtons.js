@@ -41,7 +41,7 @@ const DynamicButtons = () => {
         logout();
       }
     }
-  });
+  }, [logout]);
   //Breakpoints
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

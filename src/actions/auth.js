@@ -21,12 +21,17 @@ export const signIn = (formData) => async (dispatch) => {
     const response = await signInUser(formData);
     // If all is good, get the relevant data and dispatch to state.
     if (response.data.message === 'Wrong Password') {
-      console.log('Password is wrong');
-    } else if (response.data.message === 'User Does Not Exist') {
-      console.log('Username is wrong');
-    } else if (response.data.message !== 'Wrong Password') {
+      alert('Password is wrong');
+    }
+
+    if (response.data.message === 'User Does Not Exist') {
+      alert('Username is wrong');
+    }
+
+    if (response.data.message !== 'Wrong Password') {
       const { data } = response;
       console.log('Token:', data);
+      // localStorage.setItem('profile', JSON.stringify({ ...data }));
       dispatch({ type: AUTH, data });
     }
   } catch (error) {
