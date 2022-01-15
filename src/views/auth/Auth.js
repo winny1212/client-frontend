@@ -78,17 +78,11 @@ export default function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // We should compare if the two passwords entered are correct.
     // Do User Sign up checks.
     if (isSignup) {
-      console.log('Formdata is:', formData);
-      console.log('Signing Up');
-
       // We dispatch the Sign Up Action
       dispatch(signUp(formData));
-
-      console.log('Sent to Dispatch');
 
       // Redirect to Home
       navigate('/');
