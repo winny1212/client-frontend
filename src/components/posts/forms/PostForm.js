@@ -31,8 +31,9 @@ function PostForm() {
 
   // PostContext consume
   const { postData, handlePostPublish } = usePostContext();
-  // UserContext consume
-  const { firebase } = useUserContext();
+
+  // Local states
+  const [progress, setProgress] = useState(0);
 
   // listening to final postData and sends to API
   // !TODO temporary fix, dispatch should be inside handlePostPublish
@@ -52,7 +53,7 @@ function PostForm() {
         <form onSubmit={test} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
-              <DetailsForm />
+              <DetailsForm setProgress={setProgress} />
             </Grid>
 
             <Grid item xs={12} md={7}>

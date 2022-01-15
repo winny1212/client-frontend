@@ -1,24 +1,38 @@
-import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
+import { useState, useRef } from 'react';
+// import PhotoCameraTwoToneIcon from '@mui/icons-material/PhotoCameraTwoTone';
+import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
+import ImgPreview from './ImgPreview';
+import HelperText from './HelperText';
 
-const ImgUpload = (props) => {
-  const { e, id, name, imgLabel, value, ...inputProps } = props;
-
+const ImgUpload = ({
+  id,
+  name,
+  imgLabel,
+  value,
+  handleImageDetailsChange,
+  ...inputProps
+}) => {
   const copyid = id || 'img-upload';
+  const imgRef = useRef();
 
   return (
     <>
       <label htmlFor={copyid}>
         <input
+          type="file"
+          accept="image/*"
           style={{ display: 'none' }}
+          ref={imgRef}
           id={copyid}
           name={name}
           value={value}
-          type="file"
-          accept="image/*"
+          onChange={(e) =>
+            handleImageDetailsChange(name, copyid, e.currentTarget.files[0])
+          }
           {...inputProps}
         />
         <span className="btn-icon">
-          <PhotoCameraTwoToneIcon
+          <PhotoSizeSelectActualTwoToneIcon
             sx={{ mr: 1 }}
             color="secondary"
             fontSize="small"
@@ -26,6 +40,9 @@ const ImgUpload = (props) => {
           {imgLabel}
         </span>
       </label>
+      {/* <br />
+      <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name || ''}</HelperText> */}
+      {/* <ImgPreview src={URL.createObjectURL(selectedFile)} alt="img-file" /> */}
     </>
   );
 };

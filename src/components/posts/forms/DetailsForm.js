@@ -25,36 +25,48 @@ import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
+import ImgPreview from '../../shared/ImgPreview';
 
-function DetailsForm() {
+function DetailsForm({ setProgress }) {
   // PostContext consume
   const { details, setDetails, selectedBreed, setSelectedBreed } =
     usePostContext();
 
   // Images states
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedImgBefore, setSelectedImgBefore] = useState(null);
+  const [selectedImgAfter, setSelectedImgAfter] = useState(null);
 
-  const handleSelectFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
+  const handleImageDetailsChange = (name, id, value) => {
+    // handle selected image previews
+    if (id === 'img-before') {
+      setSelectedImgBefore(value);
     }
+
+    if (id === 'img-after') {
+      setSelectedImgAfter(value);
+    }
+    // when image is uploaded and URL is obtained, insert into details
+    setDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle upload with Firebase
+  // Handle file upload to Firebase
   const uploadImg = async (file, folderName, setLoading) => {
+    if (!file) return;
     const folderPath = folderName;
     const fileName = `img_${nanoid(10)}_${file.name}`;
-    const fileRef = ref(storage, `/${folderPath}/${fileName}`);
+    const storageRef = ref(storage, `/${folderPath}/${fileName}`);
 
     // setLoading(true)
-    const snapshot = await uploadBytes(fileRef, file);
+    const snapshot = await uploadBytes(storageRef, file);
+    const imgURL = await getDownloadURL(storageRef);
+
     // setLoading(false
     alert('File uploaded!');
   };
 
   const handleUpload = (e) => {
     e.preventDefault();
-    uploadImg(selectedFile, 'posts_images');
+    uploadImg(selectedImgBefore, 'posts_images');
   };
 
   // For Grooming time/duration slider
@@ -189,20 +201,38 @@ function DetailsForm() {
               id="img-before"
               imgLabel="Before"
               name="image.before"
-              // value={fileSelect}
-              onChange={handleSelectFileChange}
+              value={details?.image?.before}
+              handleImageDetailsChange={handleImageDetailsChange}
             />
-            {/* <img src={fileSelect} alt="" /> */}
-            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
-            <button onClick={handleUpload}>Upload</button>
+            {/* <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText> */}
+            {selectedImgBefore && (
+              <ImgPreview
+                src={URL.createObjectURL(selectedImgBefore)}
+                alt="img-preview"
+              />
+            )}
           </div>
 
           <div>
-            <ImgUpload id="img-after" imgLabel="After" />
-            <HelperText sx={{ ml: 1, mt: 1 }}>test</HelperText>
+            <ImgUpload
+              id="img-after"
+              imgLabel="After"
+              name="image.after"
+              value={details?.image?.after}
+              handleImageDetailsChange={handleImageDetailsChange}
+            />
+            {/* <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText> */}
+            {selectedImgAfter && (
+              <ImgPreview
+                src={URL.createObjectURL(selectedImgAfter)}
+                alt="img-preview"
+              />
+            )}
           </div>
         </Stack>
       </Stack>
+      {/* Upload test */}
+      <button onClick={handleUpload}>Upload</button>
 
       <FormInput
         hint="Include a grooming video url if available"
