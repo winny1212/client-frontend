@@ -30,9 +30,11 @@ const MobileBreakpoint = () => {
 
   //usersData set with reducer
   //this is required to observe redux store and render the component when store has changed.
-  const user = useSelector((state) => {
-    return state.authReducer.authData;
-  });
+  // const user = useSelector((state) => {
+  //   return state.authReducer.authData;
+  // });
+
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });

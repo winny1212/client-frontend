@@ -5,6 +5,7 @@ import { API } from '../../api';
 import { useSelector } from 'react-redux';
 import Header from '../../components/layout/Header';
 import Post from '../../components/posts/post/Post';
+import CommentSection from './CommentSection';
 
 // MUI
 import Container from '@mui/material/Container';
@@ -20,7 +21,7 @@ const PostId = () => {
   useEffect(() => {
     const getPost = async () => {
       const res = await API.get('/posts/' + postID);
-      console.log(res.data);
+      // console.log(res.data);
       setPost(res.data);
     };
     getPost();
@@ -35,8 +36,9 @@ const PostId = () => {
       <Header title={post.title} />
       <Container maxWidth="lg">
         <Post post={post} />
-        <h3>Comment Form</h3>
-        <h3>Comments</h3>
+        {/* <h3>Comment Form</h3>
+        <h3>Comments</h3> */}
+        <CommentSection post={post} postID={postID} />
       </Container>
     </>
   );
