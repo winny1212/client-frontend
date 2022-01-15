@@ -36,8 +36,14 @@ import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelec
 
 function DetailsForm({ progress, setProgress }) {
   // PostContext consume
-  const { details, setDetails, selectedBreed, setSelectedBreed } =
-    usePostContext();
+  const {
+    details,
+    setDetails,
+    selectedBreed,
+    setSelectedBreed,
+    loading,
+    setLoading,
+  } = usePostContext();
 
   // Images states
   const [selectedImgBefore, setSelectedImgBefore] = useState(null);
@@ -64,6 +70,7 @@ function DetailsForm({ progress, setProgress }) {
     const storageRef = ref(storage, `/${folderPath}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
+    setLoading(true);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -93,9 +100,7 @@ function DetailsForm({ progress, setProgress }) {
       },
     );
 
-    if (progress === 100) {
-      alert('File uploaded!');
-    }
+    setLoading(false);
   };
 
   const handleUpload = (e) => {
@@ -337,13 +342,26 @@ function DetailsForm({ progress, setProgress }) {
           </div> */}
         </Stack>
       </Stack>
+
       {/* SUBMIT PHOTOS TO STORAGE */}
       {(selectedImgBefore || selectedImgAfter) && (
         <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-          <StyledBtn onClick={handleUpload} size="small">
-            Finalise Photos
-          </StyledBtn>
-          {progress > 0 && <FormLabel>Processing: {progress} %</FormLabel>}
+          {progress === 0 && (
+            <>
+              <StyledBtn onClick={handleUpload} size="small" color="secondary">
+                Finalise Photos
+              </StyledBtn>
+              <FormLabel>Processing: {progress} %</FormLabel>
+            </>
+          )}
+          {progress === 100 && (
+            <>
+              <StyledBtn disabled size="small" color="secondary">
+                Finalise Photos
+              </StyledBtn>
+              <FormLabel>Photos Finalised!</FormLabel>
+            </>
+          )}
         </Stack>
       )}
 

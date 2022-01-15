@@ -1,16 +1,16 @@
+// import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-export const StyledBtn = (props) => {
-  const { children, ...inputProps } = props;
+export const StyledBtn = ({ children, ...inputProps }) => {
   return (
     <Button
       {...inputProps}
       variant="contained"
       disableElevation
       sx={{
+        borderRadius: '1.5rem',
         px: '1.5rem',
         py: 1,
-        borderRadius: '1.5rem',
       }}
     >
       {children}

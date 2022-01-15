@@ -10,6 +10,7 @@ import { createPost } from '../../../actions/posts';
 import StepsForm from './StepsForm';
 import BaseLayout from '../../shared/BaseLayout';
 import { StyledBtn, StyledBtnOutlined } from '../../shared/StyledButtons';
+import Hr from '../../shared/Hr';
 import DetailsForm from './DetailsForm';
 
 // Context
@@ -19,6 +20,7 @@ import { useUserContext } from '../../../context/UserContext';
 // MUI
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 // {_id, breed, dogSize, username, title, duration, description, steps, image, likes, comments, createdAt}
 
@@ -54,7 +56,7 @@ function PostForm() {
   }, [postData, dispatch]);
 
   // Create POST to send to backend
-  const handlePostPublish = (e) => {
+  const handlePostPublish = async (e) => {
     e.preventDefault();
 
     const newPost = {
@@ -75,6 +77,7 @@ function PostForm() {
     // set breed back to null
     setSelectedBreed(null);
     console.log('-- New postData Published! --');
+    console.log('-- newPost: ', newPost);
   };
 
   const test = () => {};
@@ -83,21 +86,21 @@ function PostForm() {
     <>
       <BaseLayout>
         {/* <form onSubmit={handlePostPublish} noValidate> */}
-        <form onSubmit={test} noValidate>
+        <form onSubmit={handlePostPublish} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
               <DetailsForm setProgress={setProgress} progress={progress} />
             </Grid>
 
             <Grid item xs={12} md={7}>
-              <StepsForm />
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-              <Stack spacing={2} direction="row" justifyContent="center">
-                {/* <StyledBtnOutlined>Save Draft</StyledBtnOutlined> */}
-                <br />
-                <StyledBtn type="submit">Publish Post</StyledBtn>
+              <Stack>
+                <StepsForm />
+                <Hr />
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                  <StyledBtn type="submit" size="large">
+                    Publish Post
+                  </StyledBtn>
+                </Box>
               </Stack>
             </Grid>
           </Grid>

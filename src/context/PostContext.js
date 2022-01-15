@@ -15,6 +15,8 @@ const PostContextProvider = ({ children }) => {
   const currentUser = JSON.parse(localStorage.getItem('profile'));
   const authorId = currentUser?.result?._id;
 
+  console.log('CURRENT USER ID', authorId);
+
   // Final form data to be submitted to the backend
   const [postData, setPostData] = useState({});
 
@@ -28,6 +30,9 @@ const PostContextProvider = ({ children }) => {
     image: { before: '', after: '' },
     video: '',
   };
+
+  // Loading states
+  const [loading, setLoading] = useState(false);
 
   // Post data for DetailsForm
   const [details, setDetails] = useState(initialDetailsData);
@@ -88,6 +93,8 @@ const PostContextProvider = ({ children }) => {
         handlePostPublish,
         authorId,
         clearInputs,
+        loading,
+        setLoading,
       }}
     >
       {children}
