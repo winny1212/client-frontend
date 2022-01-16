@@ -96,7 +96,7 @@ function Post({ post }) {
             }}
           >
             <Typography component="h3" variant="author">
-              by {capitalize(post.authorId)}
+              {/* by {capitalize(post.authorId)} */}
             </Typography>
             {post.proGroomer && <ProGroomer />}
           </Box>
