@@ -98,6 +98,8 @@ export default function Auth() {
     }
   };
 
+  console.log('--FORMDATA: ', formData);
+
   return (
     <div data-testid="form">
       <Header title={isSignup ? 'Register' : 'Login'} />
@@ -130,14 +132,20 @@ export default function Auth() {
                     </Typography>
                     <FormControl component="fieldset">
                       <FormLabel component="legend"></FormLabel>
-                      <RadioGroup row name="row-radio-buttons-group">
+                      <RadioGroup
+                        row
+                        aria-label="proGroomer"
+                        name="proGroomer"
+                        value={formData.proGroomer}
+                        onChange={handleChange}
+                      >
                         <FormControlLabel
-                          value="Yes"
+                          value="true"
                           control={<Radio />}
                           label="Yes"
                         />
                         <FormControlLabel
-                          value="No"
+                          value="false"
                           control={<Radio />}
                           label="No"
                         />
@@ -151,12 +159,12 @@ export default function Auth() {
                     handleChange={handleChange}
                     type="text"
                   />
-                  <Input
+                  {/* <Input
                     name="socMedia"
                     label="Social media"
                     handleChange={handleChange}
                     type="text"
-                  />
+                  /> */}
                 </>
               )}
 
