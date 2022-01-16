@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Posts from '../../components/posts/Posts';
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 import { TextField, Button } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,10 +17,7 @@ import Container from '@mui/material/Container';
 
 import useStyles from './styles';
 import Pagination from '../../components/Pagination/Pagination';
-
-// import Grid from '@mui/material/Grid';
-// import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
+import SearchBar from '../../components/searchbar/SearchBar';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -70,31 +67,18 @@ function Home() {
 
   return (
     <>
-      <Header title="Find tips & tricks to groom your beloved pets" />
-      <Container maxWidth="lg">
-        {/* import search and filter function components */}
+      <Header
+        title="Find tips & tricks to groom your beloved pets"
+        sx={{ mb: 0, height: 180, pb: '1.5rem' }}
+      />
+      <SearchBar
+        search={search}
+        handleKeyPress={handleKeyPress}
+        setSearch={setSearch}
+        searchPost={searchPost}
+      />
 
-        <TextField
-          name="search"
-          label="Search Posts"
-          value={search}
-          onKeyPress={handleKeyPress}
-          onChange={(e) => setSearch(e.target.value)}
-          variant="outlined"
-          color="secondary"
-          fullWidth
-        />
-        <Button
-          type="submit"
-          sx={{ width: '100%', marginTop: 2, marginBottom: 2 }}
-          variant="contained"
-          color="secondary"
-          className={classes.submit}
-          onClick={searchPost}
-        >
-          Search
-        </Button>
-        <h3 style={{ textAlign: 'center', fontSize: '30px' }}>Posts Gallery</h3>
+      <Container maxWidth="lg">
         <Pagination page={page} />
         <Posts />
       </Container>

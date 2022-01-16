@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import defaultImg from '../../assets/img/diyg_default_img_01.png';
+import { useSelector } from 'react-redux';
 
 // MUI
 import Box from '@mui/material/Box';
@@ -22,9 +23,11 @@ const PostCard = ({ post }) => {
   // Dispatch needed for Liking Post and commenting on it.
   const dispatch = useDispatch();
   // Get the User - we will use to assign it to post.
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const currentUser = JSON.parse(localStorage.getItem('profile'));
   // This code below will check if certain users can Delete if u need to do that.
-  // user?.result?._id === post?.creator;
+  // user?.result?._id === post?.authorId;
+
+  const users = useSelector((state) => state.profileReducer);
 
   // const { postID } = useParams();
   // console.log('Post Info:', post);

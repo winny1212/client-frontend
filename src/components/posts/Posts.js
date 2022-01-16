@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-// import Post from './post/Post';
-
 // MUI
-// import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Masonry from '@mui/lab/Masonry';
 import { CircularProgress } from '@mui/material';
 import PostCard from './PostCard';
 
@@ -22,41 +18,18 @@ function Posts() {
   //setup the initial state of filteredBlogs
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
-  // the filter condition
-  // console.log(filters);
-
-  //the filteredBlogs
-  // console.log(filteredBlogs);
-
-  // filter function
-  // useEffect(() => {
-  //   setFilteredBlogs(
-  //     posts.filter((post) =>
-  //       // filters:{breed:'Poodle',size:'small'}
-  //       Object.entries(filters).every(([key, value]) =>
-  //         post[key].includes(value),
-  //       ),
-  //     ),
-  //   );
-  // }, [posts, filters]);
-
   return !posts?.length ? (
-    <CircularProgress />
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <CircularProgress />
+    </Box>
   ) : (
-    <Grid container direction="row" spacing={2} alignItems="stretch">
-      {/* if the filteredBlogs exist, show the filteredBlogs, or show all posts */}
-      {!filteredBlogs
-        ? filteredBlogs.map((post) => (
-            <Grid item xs={12} md={6} lg={4} key={post._id}>
-              <PostCard post={post} />
-            </Grid>
-          ))
-        : posts.map((post) => (
-            <Grid item xs={12} md={6} lg={4} key={post._id}>
-              <PostCard post={post} />
-            </Grid>
-          ))}
-    </Grid>
+    <>
+      <Masonry columns={{ xs: 1, md: 2, lg: 3 }} spacing={2}>
+        {posts.map((post) => (
+          <PostCard post={post} key={post._id} />
+        ))}
+      </Masonry>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 // import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-export const StyledBtn = ({ children, ...inputProps }) => {
+export const StyledBtn = ({ sx, children, ...inputProps }) => {
   return (
     <Button
       {...inputProps}
@@ -11,6 +11,7 @@ export const StyledBtn = ({ children, ...inputProps }) => {
         borderRadius: '1.5rem',
         px: '1.5rem',
         py: 1,
+        ...sx,
       }}
     >
       {children}
@@ -19,7 +20,7 @@ export const StyledBtn = ({ children, ...inputProps }) => {
 };
 
 export const StyledBtnOutlined = (props) => {
-  const { children, ...inputProps } = props;
+  const { sx, children, ...inputProps } = props;
   return (
     <Button
       {...inputProps}
@@ -29,6 +30,7 @@ export const StyledBtnOutlined = (props) => {
         px: '1.5rem',
         py: 1,
         borderRadius: '1.5rem',
+        ...sx,
       }}
     >
       {children}

@@ -24,7 +24,7 @@ import useStyles from './styles';
 import Input from './Input';
 
 // Components
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 import { StyledBtn } from '../../components/shared/StyledButtons';
 
 // Import Actions
@@ -44,7 +44,6 @@ export const validateInput = (str = '') => str.includes('@');
 
 export default function Auth() {
   const dispatch = useDispatch();
-  // let navigate = useNavigate();
   let navigate = useNavigate();
 
   const classes = useStyles();
@@ -61,7 +60,7 @@ export default function Auth() {
   // Toggling between Sign up and Sign In
   const switchMode = () => {
     setIsSignup((preIsSignup) => !preIsSignup);
-    // always have the show password to false
+    // always have the show password in false state
     setShowPassword(false);
   };
 
@@ -98,7 +97,7 @@ export default function Auth() {
     }
   };
 
-  console.log('--FORMDATA: ', formData);
+  // console.log('--FORMDATA: ', formData);
 
   return (
     <div data-testid="form">

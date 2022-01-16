@@ -4,7 +4,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-const Header = ({ title, color }) => {
+const Header = ({ title, color, sx }) => {
   return (
     <Box
       component="header"
@@ -16,6 +16,7 @@ const Header = ({ title, color }) => {
         mb: '2rem',
         height: 200,
         bgcolor: color || 'accentYellow.main',
+        ...sx,
       }}
     >
       <Typography
