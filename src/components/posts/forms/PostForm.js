@@ -94,7 +94,6 @@ function PostForm() {
   return (
     <>
       <BaseLayout>
-        {/* <form onSubmit={handlePostPublish} noValidate> */}
         <form onSubmit={handlePostPublish} noValidate>
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12} md={5}>
@@ -112,14 +111,15 @@ function PostForm() {
                   spacing={3}
                   sx={{ mt: 3 }}
                 >
-                  {instructions.length > 3 && progress === 0 ? (
+                  {instructions.length >= 3 && progress === 100 ? (
+                    // User can only publish when there are at least 3 steps and one photo is uploaded
                     <StyledBtn type="submit" size="large">
                       Publish Post
                     </StyledBtn>
                   ) : (
                     <>
                       <Typography variant="h7" sx={{ textAlign: 'center' }}>
-                        Ensure to include a photo and minimum grooming
+                        Ensure to include a photo and the minimum grooming
                         instructions!
                       </Typography>
                       <StyledBtn disabled type="submit" size="large">
