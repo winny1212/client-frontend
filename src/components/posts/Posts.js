@@ -26,7 +26,7 @@ function Posts() {
     <>
       <Masonry columns={{ xs: 1, md: 2, lg: 3 }} spacing={2}>
         {posts.map((post) => (
-          <PostCard post={post} />
+          <PostCard post={post} key={post._id} />
         ))}
       </Masonry>
     </>

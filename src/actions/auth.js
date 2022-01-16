@@ -68,6 +68,22 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
+// !TODO
+// Fetch author - post.authorId === user._id
+export const getAuthor = () => async (dispatch) => {
+  try {
+    // Gets the data
+    const { data } = await fetchSingleUser();
+
+    console.log('Author Data:', data);
+
+    // Send data to out local state
+    dispatch({ type: FETCH_SINGLE_USER, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Update user's profile / data
 export const updateUser = (id, post) => async (dispatch) => {
   try {

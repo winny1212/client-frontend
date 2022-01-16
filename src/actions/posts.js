@@ -7,6 +7,7 @@ import {
   deleteAPost,
   likeAPost,
   commentAPost,
+  fetchSingleUser,
 } from '../api';
 
 import {
