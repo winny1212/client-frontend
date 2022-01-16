@@ -25,13 +25,13 @@ function Posts() {
       <CircularProgress />
     </Box>
   ) : (
-    <Grid container direction="row" spacing={2} alignItems="stretch">
-      {posts.map((post) => (
-        <Grid item xs={12} md={6} lg={4} key={post._id}>
+    <>
+      <Masonry columns={{ xs: 1, md: 2, lg: 3 }} spacing={2}>
+        {posts.map((post) => (
           <PostCard post={post} />
-        </Grid>
-      ))}
-    </Grid>
+        ))}
+      </Masonry>
+    </>
   );
 }
 
