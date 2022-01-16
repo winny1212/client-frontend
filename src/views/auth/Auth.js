@@ -17,6 +17,7 @@ import {
   FormLabel,
   Radio,
   Box,
+  Stack,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
@@ -60,8 +61,8 @@ export default function Auth() {
   // Toggling between Sign up and Sign In
   const switchMode = () => {
     setIsSignup((preIsSignup) => !preIsSignup);
-
-    handleShowPassword(false);
+    // always have the show password to false
+    setShowPassword(false);
   };
 
   // Will update our formData with its respective field.
@@ -97,6 +98,8 @@ export default function Auth() {
     }
   };
 
+  console.log('--FORMDATA: ', formData);
+
   return (
     <div data-testid="form">
       <Header title={isSignup ? 'Register' : 'Login'} />
@@ -105,10 +108,6 @@ export default function Auth() {
           <Avatar sx={{ margin: 1, backgroundColor: 'secondary.light', my: 3 }}>
             <LockIcon />
           </Avatar>
-
-          {/* <Typography component="h1" variant="h5">
-            {isSignup ? 'Sign up' : 'Sign in'}
-          </Typography> */}
 
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2} sx={{ mb: 3 }}>
@@ -123,37 +122,36 @@ export default function Auth() {
                     required
                   />
 
-                  <Grid
-                    item
-                    direction="row"
+                  <Stack
+                    direction="column"
                     justifyContent="flex-start"
-                    // margin="15px 0 5px 0 "
-                    sx={{ mt: 1, ml: 1 }}
+                    sx={{ pl: 1.5, mt: 2, ml: 1 }}
                   >
                     <Typography variant="subtitle1" sx={{ marginRight: 8 }}>
                       Are you a professional dog groomer?
                     </Typography>
                     <FormControl component="fieldset">
                       <FormLabel component="legend"></FormLabel>
-                      <RadioGroup row name="row-radio-buttons-group">
+                      <RadioGroup
+                        row
+                        aria-label="proGroomer"
+                        name="proGroomer"
+                        value={formData.proGroomer}
+                        onChange={handleChange}
+                      >
                         <FormControlLabel
-                          value="Yes"
+                          value="true"
                           control={<Radio />}
                           label="Yes"
                         />
                         <FormControlLabel
-                          value="No"
+                          value="false"
                           control={<Radio />}
                           label="No"
                         />
-                        {/* <FormControlLabel
-                            value="other"
-                            control={<Radio />}
-                            label="Other"
-                          /> */}
                       </RadioGroup>
                     </FormControl>
-                  </Grid>
+                  </Stack>
 
                   <Input
                     name="location"
@@ -161,12 +159,12 @@ export default function Auth() {
                     handleChange={handleChange}
                     type="text"
                   />
-                  <Input
+                  {/* <Input
                     name="socMedia"
                     label="Social media"
                     handleChange={handleChange}
                     type="text"
-                  />
+                  /> */}
                 </>
               )}
 
@@ -182,7 +180,7 @@ export default function Auth() {
                 label="Password"
                 required
                 handleChange={handleChange}
-                type={!showPassword ? 'text' : 'password'}
+                type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
               />
               {isSignup && (
