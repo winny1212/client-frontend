@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { API } from '../../api';
 // eslint-disable-next-line
 import { useSelector } from 'react-redux';
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 import Post from '../../components/posts/post/Post';
 import CommentSection from './CommentSection';
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Posts from '../../components/posts/Posts';
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 import { TextField, Button } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';

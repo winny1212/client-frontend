@@ -24,7 +24,7 @@ import useStyles from './styles';
 import Input from './Input';
 
 // Components
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 import { StyledBtn } from '../../components/shared/StyledButtons';
 
 // Import Actions

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // MUI
-// import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import { CircularProgress } from '@mui/material';

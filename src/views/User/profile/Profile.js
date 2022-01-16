@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 // import PetsIcon from '@mui/icons-material/Pets';
 import ProGroomer from '../../../components/shared/ProGroomer';
-import Header from '../../../components/layout/Header';
+import Header from '../../../components/shared/Header';
 
 const Profile = () => {
   //import the Data from usersData

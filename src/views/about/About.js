@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
-import Header from '../../components/layout/Header';
+import Header from '../../components/shared/Header';
 
 import data from './dataSlider';
 import './Slider.css';
