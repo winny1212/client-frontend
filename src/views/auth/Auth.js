@@ -17,6 +17,7 @@ import {
   FormLabel,
   Radio,
   Box,
+  Stack,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import useStyles from './styles';
@@ -60,8 +61,8 @@ export default function Auth() {
   // Toggling between Sign up and Sign In
   const switchMode = () => {
     setIsSignup((preIsSignup) => !preIsSignup);
-
-    handleShowPassword(false);
+    // always have the show password to false
+    setShowPassword(false);
   };
 
   // Will update our formData with its respective field.
@@ -106,10 +107,6 @@ export default function Auth() {
             <LockIcon />
           </Avatar>
 
-          {/* <Typography component="h1" variant="h5">
-            {isSignup ? 'Sign up' : 'Sign in'}
-          </Typography> */}
-
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {isSignup && (
@@ -123,12 +120,10 @@ export default function Auth() {
                     required
                   />
 
-                  <Grid
-                    item
-                    direction="row"
+                  <Stack
+                    direction="column"
                     justifyContent="flex-start"
-                    // margin="15px 0 5px 0 "
-                    sx={{ mt: 1, ml: 1 }}
+                    sx={{ pl: 1.5, mt: 2, ml: 1 }}
                   >
                     <Typography variant="subtitle1" sx={{ marginRight: 8 }}>
                       Are you a professional dog groomer?
@@ -146,14 +141,9 @@ export default function Auth() {
                           control={<Radio />}
                           label="No"
                         />
-                        {/* <FormControlLabel
-                            value="other"
-                            control={<Radio />}
-                            label="Other"
-                          /> */}
                       </RadioGroup>
                     </FormControl>
-                  </Grid>
+                  </Stack>
 
                   <Input
                     name="location"
@@ -182,7 +172,7 @@ export default function Auth() {
                 label="Password"
                 required
                 handleChange={handleChange}
-                type={!showPassword ? 'text' : 'password'}
+                type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
               />
               {isSignup && (
