@@ -25,7 +25,6 @@ function useQuery() {
 
 function Home() {
   const postState = useSelector((state) => state.postsReducer);
-  console.log('Post State at home:', postState);
   const { currentId } = useContext(UserContext);
   const dispatch = useDispatch();
   const classes = useStyles();

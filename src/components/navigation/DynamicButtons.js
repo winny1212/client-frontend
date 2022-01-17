@@ -51,7 +51,7 @@ const DynamicButtons = () => {
 
   return (
     <>
-      {user ? (
+      {user?.result?.username ? (
         <>
           <Button href="/profile" variant="container">
             Profile

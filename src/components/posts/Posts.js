@@ -9,11 +9,8 @@ import PostCard from './PostCard';
 
 function Posts() {
   const { posts } = useSelector((state) => state.postsReducer);
-  console.log('Here are the posts:', posts);
 
-  // Testing users
   const users = useSelector((state) => state.profileReducer);
-  console.log('Here are the Users:', users);
 
   //setup the initial state of filteredBlogs
   const [filteredBlogs, setFilteredBlogs] = useState([]);
