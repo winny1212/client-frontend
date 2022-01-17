@@ -2,17 +2,6 @@
 
 **T3A2-B MERN Full-stack App**
 
-Setup:
-
-`node version v16.13.0 (lts version)`
-
-To update `node`:
-
-- `nvm install --lts`
-- `nvm use --lts`
-
-`npm version 8.1.0` & `yarn version 1.23.0-20210726.1745 (classic)`
-
 ---
 
 ### Contributors
@@ -26,73 +15,101 @@ To update `node`:
 
 ---
 
-## Getting Started with Create React App
+# Deployed Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+https://diy-grooming.netlify.app/
+```
 
-## Available Scripts
+👉🏻  [**Go to live website**](https://diy-grooming.netlify.app/) 
 
-In the project directory, you can run:
+## User login for testing
 
-### `yarn start`
+- Email: catto@emailtest.com
+- Password: 123123
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Home
 
-### `yarn test`
+![ss](./docs/screenshot/01_home.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![ss](./docs/screenshot/02_about.png)
 
-### `yarn build`
+![ss](./docs/screenshot/03_rego.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![ss](./docs/screenshot/04_post.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![ss](./docs/screenshot/05_form.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Backend – Server Side API
 
-### `yarn eject`
+```
+https://diy-grooming.herokuapp.com/
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+👉🏻  [**Go to live API**](https://diy-grooming.herokuapp.com/) 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Documentations
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+👉🏻  [**Check documentations for project details**](https://github.com/DIYGrooming/docs)  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## System used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Node v16.13
+- Yarn 1.23 (client-front)
+- NPM v8.1 (backend)
+- Bootstrapped with Create React App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Tech Stack
 
-### Code Splitting
+- **Frontend:**
+  - React JS – for the UI front-end library
+- **Styling:**
+  - Material UI
+  - Styled-components
+  - CSS
+- **Backend:**
+  - Database – MongoDB to store user registrations data and posts data
+- **Image Storage:**
+  - Firebase – for storing users' post before and after grooming photos
+- **Unit Testing:**
+  - Jest – integration for unit testing
+- **Deployment:**
+  - Heroku for the backend API
+  - Netlify for the frontend live website
+- **Project Management & Collaborations Tools:**
+  - Trello – managing tasks and sub-tasks
+  - GitHub Organisation – to better manage the mini-repositories as a team
+  - Discord – team communication tool
+  - Google Docs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Dependencies
 
-### Analyzing the Bundle Size
+- Jest & Supertest – unit testing
+- Nodemon – better simultanously running the front and backend servers
+- Firebase – for integrating Firebase storage implementation in the front-end
+- Express – for server routing management & control
+- Dotenv – offers security by automatically load environment variables in the development and production process
+- Mongoose – used to integrate database library as Object Data Modelling to connect NodeJS with MongoDB
+- React router dom – routing helper for React in creating dynamic routes and implementations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Manual Testing
 
-### Advanced Configuration
+> [Google docs →](https://docs.google.com/spreadsheets/d/1mJl3-WuvjXtg10zq3uvOUODrX56ebJTQjuLsFqvPbC4/edit?usp=sharing)   
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![ss](./docs/screenshot/testing.png)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
+## Trello
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Trello board link:
+
+```
+https://trello.com/b/lODYCsYA
+```
+
