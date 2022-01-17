@@ -149,7 +149,7 @@ function Post({ post }) {
 
           {currentUser === author?._id && (
             <Box>
-              <StyledBtn size="small" href="/">
+              <StyledBtn size="small" href={`edit/${post._id}`}>
                 Edit Post
               </StyledBtn>
             </Box>

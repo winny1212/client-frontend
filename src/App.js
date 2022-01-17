@@ -10,14 +10,13 @@ import Home from './views/home/Home';
 import Auth from './views/auth/Auth';
 import About from './views/about/About';
 import Navbar from './components/navigation/Navbar';
-import Form from './views/form/Form';
 import ProfileForm from './views/User/profile/ProfileForm';
 import Profile from './views/User/profile/Profile';
 import Footer from './components/footer/Footer';
 import NewPost from './views/post/NewPost';
 import PostId from './views/post/PostId';
-import UpdateForm from './views/form/UpdateForm';
 import ErrorPage from './views/error/ErrorPage';
+import EditPost from './views/post/EditPost';
 // import Post from './components/posts/post/Post';
 
 function App() {
@@ -39,13 +38,9 @@ function App() {
             <Route path="login" element={<Auth />} />
 
             {/* <Route path="posts" element={<Navigate replace to="/" />} /> */}
-            {/* EDIT: /posts/:id/edit */}
             <Route path="posts/new" element={<NewPost />} />
+            <Route path="posts/edit/:postID" element={<EditPost />} />
             <Route path="posts/:postID" element={<PostId />} />
-
-            {/* Temporary routes for view only */}
-            <Route path="/create" element={<Form />} />
-            <Route path="/edit" element={<UpdateForm />} />
 
             <Route path="/profile" element={<Profile />} />
 
