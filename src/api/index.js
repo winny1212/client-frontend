@@ -1,10 +1,16 @@
 import axios from 'axios';
 
 // Creating an Axios Instance
+
+// 1. Uncomment out this code below if you gonna test locally.
+// To run backend use this code. This is b/c heroku does not use nodemon
+// npm run start:dev
 export const API = axios.create({ baseURL: 'http://localhost:5000' });
 
-// const url = 'http://localhost:5000/posts';
-// We add out heroku base URL later
+// 2. Code for real database - it might be slower and you won't get server side error message.
+// export const API = axios.create({
+//   baseURL: 'https://diy-grooming.herokuapp.com/',
+// });
 
 // API Interceptor
 // We add the token to our req.headers so that on the back end (middleware/auth), we cam verify token and set req.userID.
