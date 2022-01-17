@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
@@ -26,9 +26,25 @@ import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 import Contact from '../../../modals/Contact';
 
 // {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
+import { useDispatch } from 'react-redux';
+import { getAuthor } from '../../../actions/auth';
 
 function Post({ post }) {
+  const dispatch = useDispatch();
   // const { currentId, setCurrentId } = useContext(UserContext);
+  const [author, setAuthor] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await dispatch(getAuthor(post.authorId));
+      // console.log(res.data);
+      setAuthor(user);
+    };
+    getUser();
+  }, [post.authorId, dispatch]);
+
+  console.log('POST is:', post);
+  console.log('POST user ID is:', post.authorId);
 
   // 1. Edit Button
   /*
@@ -97,6 +113,8 @@ function Post({ post }) {
           >
             <Typography component="h3" variant="author">
               {/* by {capitalize(post.authorId)} */}
+              {/* You must put the question mark other wise you are asking it to load data we dont have */}
+              {author?.username}
             </Typography>
             {post.proGroomer && <ProGroomer />}
           </Box>

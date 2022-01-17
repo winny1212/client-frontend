@@ -27,6 +27,9 @@ const PostId = () => {
     getPost();
   }, [postID]);
 
+  console.log('POST is:', post);
+  console.log('POST user ID is:', post.authorId);
+
   // const navigate = useNavigate();
 
   // const posts = useSelector((state) => state.postsReducer);

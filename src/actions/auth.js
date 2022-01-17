@@ -48,6 +48,7 @@ export const signUp = (formData) => async (dispatch) => {
     console.log('Data from Actions/SignUp:', data);
 
     dispatch({ type: AUTH, data });
+    window.location.reload(false);
   } catch (error) {
     console.log(error);
   }
@@ -70,15 +71,17 @@ export const getAllUsers = () => async (dispatch) => {
 
 // !TODO
 // Fetch author - post.authorId === user._id
-export const getAuthor = () => async (dispatch) => {
+export const getAuthor = (id) => async (dispatch) => {
   try {
     // Gets the data
-    const { data } = await fetchSingleUser();
+    const { data } = await fetchSingleUser(id);
 
     console.log('Author Data:', data);
 
     // Send data to out local state
     dispatch({ type: FETCH_SINGLE_USER, payload: data });
+
+    return await data;
   } catch (error) {
     console.log(error);
   }

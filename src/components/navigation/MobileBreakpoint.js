@@ -101,7 +101,7 @@ const MobileBreakpoint = () => {
             }}
           >
             <>
-              {user ? (
+              {user?.result?.username ? (
                 <>
                   <Button
                     sx={{
