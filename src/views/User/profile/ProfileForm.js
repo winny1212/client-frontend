@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Container,
   Paper,
@@ -13,18 +14,34 @@ import {
   Radio,
 } from '@mui/material';
 import Header from '../../../components/shared/Header';
+import ImgUpload from '../../../components/shared/ImgUpload';
+import { updateUser } from '../../../actions/auth';
 
 const ProfileForm = () => {
+  const dispatch = useDispatch();
+
   const user = JSON.parse(localStorage.getItem('profile'));
   const initialState = user.result;
   // Form Data State
   const [formData, setFormData] = useState(initialState);
+  const stateRef = useRef();
+
   //upload file to the state
   const [file, setFile] = useState();
   const [fileSelected, setFileSelected] = useState(false);
 
+  useEffect(() => {
+    // If we have the post we are looking for, populate all fields with the data,
+    // This is possible because teh fields are closed forms.
+    if (formData) {
+      setFormData(formData);
+    }
+  }, [formData]);
+
   // Will update our formData with its respective field.
   const handleChange = (event) => {
+    event.preventDefault();
+
     const { name, value } = event.target;
 
     setFormData((prev) => {
@@ -33,32 +50,18 @@ const ProfileForm = () => {
         [name]: value,
       };
     });
+    console.dir(formData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    dispatch(updateUser(formData._id, formData));
   };
-  // //handle upload data
-  // const formData = new FormData();
-
-  // formData.append('File', file);
-
-  // console.log(file.name);
-  // fetch({
-  //   method: 'POST',
-  //   body: formData,
-  // })
-  //   .then((response) => response.json())
-  //   .then((result) => {
-  //     console.log('Success:', result);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error:', error);
-  //   });
 
   // upload functionality
-  const changeHandler = (event) => {
-    setFile(event.target.files[0]);
+  const imageUpload = (file) => {
+    setFile(file);
     setFileSelected(true);
   };
 
@@ -80,13 +83,14 @@ const ProfileForm = () => {
           elevation={3}
         >
           <br />
-          <form onSubmit={handleSubmit}>
+          <form>
             <FormControl>
               {/* username */}
               <TextField
                 defaultValue={initialState.username}
                 id="outlined-basic"
                 label="Username"
+                name="username"
                 variant="outlined"
                 fullWidth
                 required
@@ -97,23 +101,19 @@ const ProfileForm = () => {
               <Typography variant="h5" sx={{ marginRight: 8, fontSize: 22 }}>
                 Are you a professional dog groomer?
               </Typography>
-              <FormControl
-                defaultValue={initialState.proGroomer}
-                component="fieldset"
-              >
+              <FormControl component="fieldset">
                 <FormLabel component="legend"></FormLabel>
-                <RadioGroup row name="row-radio-buttons-group">
+                <RadioGroup
+                  defaultValue={initialState.proGroomer}
+                  row
+                  name="row-radio-buttons-group"
+                >
                   <FormControlLabel
                     value="Yes"
                     control={<Radio />}
                     label="Yes"
                   />
                   <FormControlLabel value="No" control={<Radio />} label="No" />
-                  {/* <FormControlLabel
-                            value="other"
-                            control={<Radio />}
-                            label="Other"
-                          /> */}
                 </RadioGroup>
               </FormControl>
               <br />
@@ -160,7 +160,9 @@ const ProfileForm = () => {
               <br />
               {/* upload button */}
               <p>Please, add your photo!</p>
-              <label htmlFor="contained-button-file">
+              <ImgUpload handleImageDetailsChange={imageUpload} />
+
+              {/* <label htmlFor="contained-button-file">
                 <Input
                   style={{ display: 'none' }}
                   accept="image/*"
@@ -168,37 +170,38 @@ const ProfileForm = () => {
                   multiple
                   type="file"
                   onChange={changeHandler}
-                />
+                /> */}
 
-                <Button
-                  sx={{ marginTop: '12px' }}
-                  variant="contained"
-                  component="span"
-                  fullWidth
-                >
-                  Upload Photo
-                </Button>
-                <br />
-                {/* bio */}
+              {/* <Button
+                sx={{ marginTop: '12px' }}
+                variant="contained"
+                component="span"
+                fullWidth
+              >
+                Upload Photo
+              </Button> */}
+              <br />
+              {/* bio */}
 
-                <TextField
-                  sx={{ marginTop: '12px' }}
-                  id="outlined-multiline-static"
-                  label="Bio"
-                  multiline
-                  rows={4}
-                  fullWidth
-                />
-                <br />
-                {/* submit */}
-                <Button
-                  sx={{ marginTop: '12px' }}
-                  type="submit"
-                  variant="contained"
-                >
-                  Submit
-                </Button>
-              </label>
+              <TextField
+                defaultValue={initialState.bio}
+                sx={{ marginTop: '12px' }}
+                id="outlined-multiline-static"
+                label="Bio"
+                multiline
+                rows={4}
+                fullWidth
+              />
+              <br />
+              {/* submit */}
+              <Button
+                onClick={handleSubmit}
+                sx={{ marginTop: '12px' }}
+                type="submit"
+                variant="contained"
+              >
+                Submit
+              </Button>
             </FormControl>
           </form>
         </Paper>
