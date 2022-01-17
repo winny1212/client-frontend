@@ -27,20 +27,14 @@ const PostId = () => {
     getPost();
   }, [postID]);
 
-  console.log('POST is:', post);
+  // console.log('POST is:', post);
   console.log('POST user ID is:', post.authorId);
-
-  // const navigate = useNavigate();
-
-  // const posts = useSelector((state) => state.postsReducer);
 
   return (
     <>
       <Header title={post.title} />
       <Container maxWidth="lg">
         <Post post={post} />
-        {/* <h3>Comment Form</h3>
-        <h3>Comments</h3> */}
         <CommentSection post={post} postID={postID} />
       </Container>
     </>

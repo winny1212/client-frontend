@@ -22,17 +22,19 @@ import { deletePost, likePost } from '../../actions/posts';
 const PostCard = ({ post }) => {
   // Dispatch needed for Liking Post and commenting on it.
   const dispatch = useDispatch();
-  // Get the User - we will use to assign it to post.
-  const currentUser = JSON.parse(localStorage.getItem('profile'));
-  // This code below will check if certain users can Delete if u need to do that.
-  // user?.result?._id === post?.authorId;
 
   const users = useSelector((state) => state.profileReducer);
 
-  // const { postID } = useParams();
-  // console.log('Post Info:', post);
-  // console.log(`postID: ${postID}`);
-  // console.log(`post._id: ${post._id}`);
+  // const [author, setAuthor] = useState({});
+
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const user = await dispatch(getAuthor(post.authorId));
+  //     // console.log(res.data);
+  //     setAuthor(user);
+  //   };
+  //   getUser();
+  // }, [post.authorId, dispatch]);
 
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
@@ -43,6 +45,7 @@ const PostCard = ({ post }) => {
           flexDirection: { xs: 'column', md: 'row' },
           bgcolor: 'background.paper',
           borderRadius: '6px',
+          height: 205,
         }}
         elevation={0}
       >

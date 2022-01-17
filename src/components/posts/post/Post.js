@@ -2,12 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
+import StepView from './StepView';
 import Hr from '../../shared/Hr';
 import usersData from '../../../data/usersData';
 // import { format } from 'date-fns';
 import { pxToRem, getDate } from '../../../utils/general';
 import ProGroomer from '../../shared/ProGroomer';
 import IconText from '../../shared/IconText';
+import { StyledBtn } from '../../shared/StyledButtons';
+import { checkDuration, capitalise } from '../../../utils/postUtils';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -19,13 +22,12 @@ import Container from '@mui/material/Container';
 import Chip from '@mui/material/Chip';
 import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
-import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
+import List from '@mui/material/List';
 
 import Contact from '../../../modals/Contact';
 
-// {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 import { useDispatch } from 'react-redux';
 import { getAuthor } from '../../../actions/auth';
 
@@ -33,6 +35,7 @@ function Post({ post }) {
   const dispatch = useDispatch();
   // const { currentId, setCurrentId } = useContext(UserContext);
   const [author, setAuthor] = useState({});
+  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     const getUser = async () => {
@@ -43,8 +46,16 @@ function Post({ post }) {
     getUser();
   }, [post.authorId, dispatch]);
 
-  console.log('POST is:', post);
+  // Get the User - we will use to assign it to post.
+  const currentUserLocal = JSON.parse(localStorage.getItem('profile'));
+  const currentUser = currentUserLocal.result?._id;
+  // This code below will check if certain users can Delete if u need to do that.
+  // user?.result?._id === post?.authorId;
+
+  // console.log('POST is:', post);
   console.log('POST user ID is:', post.authorId);
+  console.log('AUTHOR: ', author);
+  console.log('CURRENT USER ID:', currentUser);
 
   // 1. Edit Button
   /*
@@ -78,7 +89,20 @@ function Post({ post }) {
             />
           )}
         </Hr>
-        {post.image && (
+
+        {!(post.image?.before && post.image?.after) ? (
+          <>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={12}>
+                <Image
+                  src={post.image?.before || post.image?.after}
+                  alt="post photo"
+                />
+              </Grid>
+            </Grid>
+            <Hr />
+          </>
+        ) : (
           <>
             <Grid container spacing={1}>
               <Grid item xs={12} md={6}>
@@ -100,30 +124,38 @@ function Post({ post }) {
           </>
         )}
 
-        <Stack direction="row" spacing={2}>
-          <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              flexDirection: 'column',
-              textAlign: 'left',
-            }}
-          >
-            <Typography component="h3" variant="author">
-              {/* by {capitalize(post.authorId)} */}
-              {/* You must put the question mark other wise you are asking it to load data we dont have */}
-              {author?.username}
-            </Typography>
-            {post.proGroomer && <ProGroomer />}
-          </Box>
+        <Stack direction={{ xs: 'column', sm: 'row' }}>
+          <Stack direction="row" spacing={2}>
+            <Avatar alt={author?.username} src={author?.avatar} />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                flexDirection: 'column',
+                textAlign: 'left',
+              }}
+            >
+              <Typography component="h3" variant="author">
+                by {author?.username}
+              </Typography>
+              {author?.proGroomer && <ProGroomer />}
+            </Box>
+          </Stack>
+
+          {currentUser === author?._id && (
+            <Box>
+              <StyledBtn size="small" href="/">
+                Edit Post
+              </StyledBtn>
+            </Box>
+          )}
         </Stack>
         <Hr />
 
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          spacing={{ xs: 0.25, md: 3 }}
+          spacing={{ xs: 0.85, md: 3 }}
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ mb: 3 }}
         >
@@ -131,18 +163,17 @@ function Post({ post }) {
             <EventNoteTwoToneIcon color="secondary" />
           </IconText>
 
-          {/* ! To change (add post.duration) */}
-          <IconText label={`Grooming Time: 1 hr`} fontSize="small">
+          <IconText
+            label={`Grooming Time: ${checkDuration(post?.duration)}`}
+            fontSize="small"
+          >
             <TimelapseTwoToneIcon color="secondary" />
           </IconText>
 
-          <Contact username={fakeUser.username} />
+          <Contact author={author} />
         </Stack>
 
-        <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
-          Instructions
-        </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mt="2.5rem">
           <Grid item xs={12} md={12} sx={{ mb: 1 }}>
             {post.description && (
               <Typography
@@ -153,17 +184,52 @@ function Post({ post }) {
               </Typography>
             )}
           </Grid>
-          <Grid item xs={12} md={6}>
-            <ol>
-              {post.steps?.map((step) => (
-                <li key={step.id}>{step.text}</li>
-              ))}
-            </ol>
+
+          <Grid item xs={12} md={9}>
+            <>
+              <Typography component="h2" variant="subtitle3" sx={{ my: 1.5 }}>
+                Instructions
+              </Typography>
+              <List>
+                {post.steps?.map((step, index) => (
+                  <StepView step={step} key={step.id} index={index} />
+                ))}
+              </List>
+            </>
           </Grid>
 
-          <Grid item xs={12} md={6}>
-            <p>Video</p>
+          <Grid item xs={12} md={3}>
+            <Stack
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <Typography component="h3" variant="subtitle3" sx={{ my: 1.5 }}>
+                Recommended Tools
+              </Typography>
+              <Stack
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+              >
+                {post.tools?.map((tool, index) => (
+                  <Chip
+                    key={index}
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    label={tool.toUpperCase()}
+                    sx={{ p: 1.25, m: 0.35 }}
+                  />
+                ))}
+              </Stack>
+            </Stack>
           </Grid>
+
+          {/* VIDEO FEATURE TO BE ON HOLD */}
+          {/* <Grid item xs={12} md={6}>
+            <p>Video</p>
+          </Grid> */}
         </Grid>
       </Container>
     </>
