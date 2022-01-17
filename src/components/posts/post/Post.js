@@ -125,10 +125,13 @@ function Post({ post }) {
                 alignItems: 'center',
                 justifyContent: 'flex-start',
                 flexDirection: 'column',
-                textAlign: 'left',
               }}
             >
-              <Typography component="h3" variant="author">
+              <Typography
+                component="h3"
+                variant="author"
+                sx={{ marginRight: 'auto' }}
+              >
                 by {author?.username}
               </Typography>
               {author?.proGroomer && <ProGroomer />}
@@ -136,7 +139,7 @@ function Post({ post }) {
           </Stack>
 
           {currentUser && currentUser === author?._id && (
-            <Box>
+            <Box sx={{ alignSelf: 'center', marginLeft: 'auto' }}>
               <StyledBtn size="small" href={`edit/${post._id}`}>
                 Edit Post
               </StyledBtn>
@@ -148,6 +151,7 @@ function Post({ post }) {
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={{ xs: 0.85, md: 3 }}
+          justifyContent="space-between"
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ mb: 3 }}
         >

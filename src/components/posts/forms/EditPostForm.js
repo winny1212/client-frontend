@@ -6,7 +6,7 @@ import { API } from '../../../api';
 import { useDispatch } from 'react-redux';
 
 // Dispatch Action
-import { createPost } from '../../../actions/posts';
+import { updatePost } from '../../../actions/posts';
 
 // Components & Data
 import StepsForm from './StepsForm';
@@ -46,6 +46,7 @@ function EditPostForm() {
 
   // Local states
   const [progress, setProgress] = useState(0);
+  const [imgUpdate, setImgUpdate] = useState(true);
 
   // Get the current user for the post's username/author
   const currentUser = JSON.parse(localStorage.getItem('profile'));
@@ -74,30 +75,33 @@ function EditPostForm() {
 
   console.log('EDIT POST FETCHED!', editPost);
 
+  const handleDeletePost = () => {};
+
   // Send updated POST to send to backend
   const handleUpdatePost = async (e) => {
     e.preventDefault();
 
-    // setLoading(true);
-    // const newPost = {
-    //   ...postData,
-    //   ...details,
-    //   steps: instructions,
-    //   breed: selectedBreed.label,
-    //   authorId: authorId,
-    // };
+    setLoading(true);
+    const newPost = {
+      ...editPost,
+      ...postData,
+      ...details,
+      steps: instructions,
+      breed: selectedBreed.label,
+      authorId: authorId,
+    };
 
-    // // create post
-    // dispatch(createPost(newPost));
-    // // clear inputs back to initial values
-    // clearInputs();
-    // // clear temporary local storage for steps
-    // localStorage.removeItem(stepsTempLocal);
-    // // set breed back to null
-    // setSelectedBreed(null);
-    // console.log('-- New postData Published! --');
-    // console.log('-- newPost: ', newPost);
-    // setLoading(false);
+    // create post
+    dispatch(updatePost(postID, newPost));
+    // clear inputs back to initial values
+    clearInputs();
+    // clear temporary local storage for steps
+    localStorage.removeItem(stepsTempLocal);
+    // set breed back to null
+    setSelectedBreed(null);
+    console.log('-- New postData Updated! --');
+    console.log('-- newPost: ', newPost);
+    setLoading(false);
     navigate(`/posts/${postID}`);
   };
 
@@ -111,6 +115,8 @@ function EditPostForm() {
                 setProgress={setProgress}
                 progress={progress}
                 editPost={editPost}
+                imgUpdate={imgUpdate}
+                setImgUpdate={setImgUpdate}
               />
             </Grid>
 
@@ -125,7 +131,7 @@ function EditPostForm() {
                   spacing={3}
                   sx={{ mt: 3 }}
                 >
-                  {instructions.length >= 3 && progress === 100 ? (
+                  {instructions.length >= 3 ? (
                     // User can only publish when there are at least 3 steps and one photo is uploaded
                     <StyledBtn type="submit" size="large">
                       Publish Post
@@ -142,6 +148,9 @@ function EditPostForm() {
                     </>
                   )}
 
+                  <StyledBtnOutlined href={`/posts/${postID}`} size="large">
+                    Cancel Update
+                  </StyledBtnOutlined>
                   <StyledBtnOutlined type="submit" size="large">
                     Delete Post
                   </StyledBtnOutlined>
