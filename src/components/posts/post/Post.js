@@ -2,12 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../../context/UserContext';
 import { deletePost } from '../../../actions/posts';
 import BaseLayout from '../../shared/BaseLayout';
+import StepView from './StepView';
 import Hr from '../../shared/Hr';
 import usersData from '../../../data/usersData';
 // import { format } from 'date-fns';
 import { pxToRem, getDate } from '../../../utils/general';
 import ProGroomer from '../../shared/ProGroomer';
 import IconText from '../../shared/IconText';
+import { checkDuration } from '../../../utils/postUtils';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -22,6 +24,7 @@ import Avatar from '@mui/material/Avatar';
 import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
+import List from '@mui/material/List';
 
 import Contact from '../../../modals/Contact';
 
@@ -114,7 +117,7 @@ function Post({ post }) {
         )}
 
         <Stack direction="row" spacing={2}>
-          <Avatar alt={fakeUser.username} src={fakeUser.avatar} />
+          <Avatar alt={author?.username} src={author?.avatar} />
           <Box
             sx={{
               display: 'flex',
@@ -125,9 +128,7 @@ function Post({ post }) {
             }}
           >
             <Typography component="h3" variant="author">
-              {/* by {capitalize(post.authorId)} */}
-              {/* You must put the question mark other wise you are asking it to load data we dont have */}
-              {author?.username}
+              by {author?.username}
             </Typography>
             {post.proGroomer && <ProGroomer />}
           </Box>
@@ -145,7 +146,10 @@ function Post({ post }) {
           </IconText>
 
           {/* ! To change (add post.duration) */}
-          <IconText label={`Grooming Time: 1 hr`} fontSize="small">
+          <IconText
+            label={`Grooming Time: ${checkDuration(post?.duration)}`}
+            fontSize="small"
+          >
             <TimelapseTwoToneIcon color="secondary" />
           </IconText>
 
@@ -167,11 +171,13 @@ function Post({ post }) {
             )}
           </Grid>
           <Grid item xs={12} md={6}>
-            <ol>
-              {post.steps?.map((step) => (
-                <li key={step.id}>{step.text}</li>
+            <List>
+              {post.steps?.map((step, index) => (
+                <>
+                  <StepView step={step} key={step.id} index={index} />
+                </>
               ))}
-            </ol>
+            </List>
           </Grid>
 
           <Grid item xs={12} md={6}>
