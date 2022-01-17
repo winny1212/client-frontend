@@ -44,6 +44,10 @@ function Post({ post }) {
       setAuthor(user);
     };
     getUser();
+    // cleanup
+    return () => {
+      setAuthor({});
+    };
   }, [post.authorId, dispatch]);
 
   // Get the User - we will use to assign it to post.
@@ -145,7 +149,7 @@ function Post({ post }) {
 
           {currentUser === author?._id && (
             <Box>
-              <StyledBtn size="small" href="/">
+              <StyledBtn size="small" href={`edit/${post._id}`}>
                 Edit Post
               </StyledBtn>
             </Box>

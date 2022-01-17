@@ -1,19 +1,19 @@
 import React from 'react';
 import Header from '../../components/shared/Header';
-import PostForm from '../../components/posts/forms/PostForm';
+import EditPostForm from '../../components/posts/forms/EditPostForm';
 
 // MUI
 import Container from '@mui/material/Container';
 
-const NewPost = () => {
+const EditPost = () => {
   return (
     <>
-      <Header title="New Post" />
+      <Header title="Edit Post" />
       <Container maxWidth="lg">
-        <PostForm />
+        <EditPostForm />
       </Container>
     </>
   );
 };
 
-export default NewPost;
+export default EditPost;
