@@ -35,6 +35,7 @@ function Post({ post }) {
   const dispatch = useDispatch();
   // const { currentId, setCurrentId } = useContext(UserContext);
   const [author, setAuthor] = useState({});
+  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     const getUser = async () => {
@@ -46,13 +47,15 @@ function Post({ post }) {
   }, [post.authorId, dispatch]);
 
   // Get the User - we will use to assign it to post.
-  const currentUser = JSON.parse(localStorage.getItem('profile'));
+  const currentUserLocal = JSON.parse(localStorage.getItem('profile'));
+  const currentUser = currentUserLocal.result?._id;
   // This code below will check if certain users can Delete if u need to do that.
   // user?.result?._id === post?.authorId;
 
-  console.log('POST is:', post);
+  // console.log('POST is:', post);
   console.log('POST user ID is:', post.authorId);
   console.log('AUTHOR: ', author);
+  console.log('CURRENT USER ID:', currentUser);
 
   // 1. Edit Button
   /*
@@ -140,9 +143,13 @@ function Post({ post }) {
             </Box>
           </Stack>
 
-          <Box>
-            <StyledBtn size="small">Edit Post</StyledBtn>
-          </Box>
+          {currentUser === author?._id && (
+            <Box>
+              <StyledBtn size="small" href="/">
+                Edit Post
+              </StyledBtn>
+            </Box>
+          )}
         </Stack>
         <Hr />
 
