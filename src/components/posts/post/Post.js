@@ -145,7 +145,6 @@ function Post({ post }) {
             <EventNoteTwoToneIcon color="secondary" />
           </IconText>
 
-          {/* ! To change (add post.duration) */}
           <IconText
             label={`Grooming Time: ${checkDuration(post?.duration)}`}
             fontSize="small"
@@ -153,7 +152,7 @@ function Post({ post }) {
             <TimelapseTwoToneIcon color="secondary" />
           </IconText>
 
-          <Contact username={fakeUser.username} />
+          <Contact username={fakeUser.username} author={author} />
         </Stack>
 
         <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
@@ -170,7 +169,7 @@ function Post({ post }) {
               </Typography>
             )}
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={10}>
             <List>
               {post.steps?.map((step, index) => (
                 <>
@@ -180,9 +179,10 @@ function Post({ post }) {
             </List>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          {/* VIDEO FEATURE TO BE ON HOLD */}
+          {/* <Grid item xs={12} md={6}>
             <p>Video</p>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </>
