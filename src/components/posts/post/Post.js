@@ -44,6 +44,10 @@ function Post({ post }) {
       setAuthor(user);
     };
     getUser();
+    // cleanup
+    return () => {
+      setAuthor({});
+    };
   }, [post.authorId, dispatch]);
 
   // Get the User - we will use to assign it to post.
