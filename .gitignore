@@ -127,3 +127,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 keys/
+
+# npm lock file
+package-lock.json

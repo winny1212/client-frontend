@@ -31,6 +31,7 @@ const profileReducer = (users = [], action) => {
         user._id === action.payload._id ? action.payload : user,
       );
     case DELETE_USER:
+      localStorage.clear();
       return users.filter((user) => user._id === action.payload);
     default:
       return users;
