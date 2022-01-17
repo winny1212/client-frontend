@@ -9,6 +9,11 @@ import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 
 import { commentPost } from '../../actions/posts';
+import styled from 'styled-components'
+import { CommentBankSharp } from '@mui/icons-material';
+
+
+
 
 const CommentSection = ({ postID, post }) => {
   // Comments take a while to load
@@ -42,6 +47,7 @@ const CommentSection = ({ postID, post }) => {
     commentsRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
+  console.log(comments);
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleClick();
@@ -85,10 +91,20 @@ const CommentSection = ({ postID, post }) => {
           </Typography>
           <div className={classes.commentsShow}>
             {comments?.map((comment, index) => (
+             
               <Typography key={index} variant="subtitle1">
-                <strong>{comment.split(':')[0]}</strong>
-                {comment.split(':')[1]}
+                <div className={classes.singleComment}>
+                  <div className={classes.CommentUser}>
+                    <strong>{comment.split(':')[0]}</strong>
+                    
+                  </div>
+
+                  <div className={classes.CommentContent}>
+                  {comment.split(':')[1]}
+                  </div>
+                </div>
               </Typography>
+            
             ))}
             <div ref={commentsRef} />
           </div>
