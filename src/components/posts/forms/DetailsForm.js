@@ -35,7 +35,7 @@ import Divider from '@mui/material/Divider';
 import ImgPreview from '../../shared/ImgPreview';
 import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
 
-function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
+function DetailsForm({ progress, setProgress, editPost }) {
   // PostContext consume
   const {
     details,
@@ -50,45 +50,29 @@ function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
   const [selectedImgBefore, setSelectedImgBefore] = useState(null);
   const [selectedImgAfter, setSelectedImgAfter] = useState(null);
 
-  // const newPost = {
-  //   ...postData,
-  //   ...details,
-  //   steps: instructions,
-  //   breed: selectedBreed.label,
-  //   authorId: authorId,
-  // };
+  // const editSelectedBreed = breeds.find(
+  //   (breed) => breed.label === editPost?.breed,
+  // );
 
   useEffect(() => {
     if (editPost) {
       setDetails({
         title: editPost.title,
-        duration: editPost.duration,
+        // duration: editPost.duration,
         description: editPost.description,
         tools: [editPost.tools],
         video: editPost.video,
+        dogSize: editPost.dogSize,
       });
-      setSelectedBreed();
+      // setSelectedBreed(editSelectedBreed);
     }
-
-    // return () => {
-    //   cleanup;
-    // };
+    // cleanup;
+    return () => {
+      setDetails({});
+    };
   }, [editPost, setDetails]);
 
-  console.log('--DETAILS FOR EDIT POST:', details);
-
-  const handleImageDetailsChange = (name, value) => {
-    // handle selected image previews
-    if (name === 'img-before') {
-      setSelectedImgBefore(value);
-    }
-
-    if (name === 'img-after') {
-      setSelectedImgAfter(value);
-    }
-    // when image is uploaded and URL is obtained, insert into details
-    // setDetails((prev) => ({ ...prev, [name]: value }));
-  };
+  // console.log('--DETAILS FOR EDIT POST:', details);
 
   // Handle file upload to Firebase
   const uploadFile = (file, folderName, imgType) => {

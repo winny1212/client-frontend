@@ -98,7 +98,7 @@ function EditPostForm() {
     // console.log('-- New postData Published! --');
     // console.log('-- newPost: ', newPost);
     // setLoading(false);
-    navigate('/');
+    navigate(`/posts/${postID}`);
   };
 
   return (
@@ -111,7 +111,6 @@ function EditPostForm() {
                 setProgress={setProgress}
                 progress={progress}
                 editPost={editPost}
-                setEditPost={setEditPost}
               />
             </Grid>
 
@@ -134,8 +133,8 @@ function EditPostForm() {
                   ) : (
                     <>
                       <Typography variant="h7" sx={{ textAlign: 'center' }}>
-                        Ensure to include a photo and the minimum grooming
-                        instructions!
+                        Ensure to finalise photos and include the minimum
+                        grooming instructions to publish the post!
                       </Typography>
                       <StyledBtn disabled type="submit" size="large">
                         Publish Post
@@ -144,7 +143,7 @@ function EditPostForm() {
                   )}
 
                   <StyledBtnOutlined type="submit" size="large">
-                    Publish Post
+                    Delete Post
                   </StyledBtnOutlined>
                 </Stack>
               </Stack>
