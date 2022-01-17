@@ -24,22 +24,13 @@ function Steps({ editPost }) {
   const [isEditing, setIsEditing] = useState(false);
   const [currentStep, setCurrentStep] = useState({});
 
-  // if editing post, load up local storage with existing data
-  // const [editInstructions, setEditInstructions] = useState(() => {
-  //   const savedSteps = localStorage.getItem(stepsTempLocal);
-  //   if (savedSteps) {
-  //     return JSON.parse(savedSteps);
-  //   } else {
-  //     return [];
-  //   }
-  // });
-
   // save steps to temp local storage
   useEffect(() => {
     if (editPost) {
-      localStorage.setItem(stepsTempLocal, JSON.stringify(editPost.steps));
+      localStorage.setItem(stepsTempLocal, JSON.stringify(editPost?.steps));
+    } else {
+      localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
     }
-    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
   }, [instructions, stepsTempLocal, editPost]);
 
   // handle onChange for the AddStep component
@@ -73,12 +64,6 @@ function Steps({ editPost }) {
 
   // handle update step state (for saving changes)
   const handleUpdateStep = (id, updatedStep) => {
-    if (editPost) {
-      const modifiedStep = editPost?.steps.map((instruction) => {
-        return instruction.id === id ? updatedStep : instruction;
-      });
-    }
-
     const modifiedStep = instructions.map((instruction) => {
       return instruction.id === id ? updatedStep : instruction;
     });
@@ -94,12 +79,6 @@ function Steps({ editPost }) {
 
   // handle step deletion
   const handleDeleteStep = (id) => {
-    if (editPost) {
-      const removeStep = instructions.filter((instruction) => {
-        return instruction.id !== id;
-      });
-    }
-
     const removeStep = instructions.filter((instruction) => {
       return instruction.id !== id;
     });
@@ -139,25 +118,15 @@ function Steps({ editPost }) {
       </HelperText>
 
       <List>
-        {editPost?.steps
-          ? editPost?.steps.map((instruction, index) => (
-              <Step
-                key={instruction.id}
-                instruction={instruction}
-                index={index}
-                handleEditStep={handleEditStep}
-                handleDeleteStep={handleDeleteStep}
-              />
-            ))
-          : instructions.map((instruction, index) => (
-              <Step
-                key={instruction.id}
-                instruction={instruction}
-                index={index}
-                handleEditStep={handleEditStep}
-                handleDeleteStep={handleDeleteStep}
-              />
-            ))}
+        {instructions.map((instruction, index) => (
+          <Step
+            key={instruction.id}
+            instruction={instruction}
+            index={index}
+            handleEditStep={handleEditStep}
+            handleDeleteStep={handleDeleteStep}
+          />
+        ))}
       </List>
     </>
   );
