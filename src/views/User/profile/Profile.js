@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import {
   Typography,
   Grid,
@@ -11,23 +13,23 @@ import {
 // import PetsIcon from '@mui/icons-material/Pets';
 import ProGroomer from '../../../components/shared/ProGroomer';
 import Header from '../../../components/shared/Header';
+import { deleteUser } from '../../../actions/auth';
 
 const Profile = () => {
-  //import the Data from usersData
-  const profile = useSelector((state) => {
-    return state.profileReducer;
-  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Get the User
-  const user = JSON.parse(localStorage.getItem('profile'));
-  if (user?.result) {
-    console.log('User is:');
-    console.log(user.result);
-  }
+  const profile = useSelector((state) => {
+    return (
+      state.authReducer.authData?.result ??
+      JSON.parse(localStorage.getItem('profile')).result
+    );
+  });
 
   // This will stop the page from loading if there are no users.
   // You can remove it if you want.
-  if (!user?.result?.username) {
+  if (!profile?.username) {
     return (
       <Container>
         <Typography variant="h6" align="center" sx={{ marginTop: '10%' }}>
@@ -37,6 +39,12 @@ const Profile = () => {
       </Container>
     );
   }
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    dispatch(deleteUser(profile._id));
+  };
 
   return (
     <>
@@ -54,7 +62,7 @@ const Profile = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image={profile.avatar}
+                image={profile.avatar ?? ''}
                 alt="image"
               />
             </Card>
@@ -68,7 +76,7 @@ const Profile = () => {
               component="div"
             >
               {' '}
-              {user.result.username}
+              {profile.username}
             </Typography>{' '}
             {/* bagde details */}
             {profile.proGroomer && (
@@ -147,6 +155,7 @@ const Profile = () => {
               color="secondary"
               variant="contained"
               size="small"
+              onClick={handleDelete}
             >
               Delete
             </Button>

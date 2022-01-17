@@ -32,7 +32,7 @@ export const signIn = (formData) => async (dispatch) => {
       const { data } = response;
       console.log('Token:', data);
       dispatch({ type: AUTH, data });
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   } catch (error) {
     console.log(error);
@@ -48,7 +48,7 @@ export const signUp = (formData) => async (dispatch) => {
     console.log('Data from Actions/SignUp:', data);
 
     dispatch({ type: AUTH, data });
-    window.location.reload(false);
+    // window.location.reload(false);
   } catch (error) {
     console.log(error);
   }
@@ -88,9 +88,9 @@ export const getAuthor = (id) => async (dispatch) => {
 };
 
 // Update user's profile / data
-export const updateUser = (id, post) => async (dispatch) => {
+export const updateUser = (id, postData) => async (dispatch) => {
   try {
-    const { data } = await updateOldUser(id, post);
+    const { data } = await updateOldUser(id, postData);
 
     dispatch({ type: UPDATE_USER, payload: data });
   } catch (error) {
