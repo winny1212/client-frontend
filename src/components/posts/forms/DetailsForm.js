@@ -16,6 +16,7 @@ import timeMarks from '../../../data/groomingTime';
 import ImgUpload from '../../shared/ImgUpload';
 import HelperText from '../../shared/HelperText';
 import { StyledBtn } from '../../shared/StyledButtons';
+import ImgPreview from '../../shared/ImgPreview';
 
 // Context
 import { usePostContext } from '../../../context/PostContext';
@@ -32,10 +33,16 @@ import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
-import ImgPreview from '../../shared/ImgPreview';
 import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
+import Checkbox from '@mui/material/Checkbox';
 
-function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
+function DetailsForm({
+  progress,
+  setProgress,
+  editPost,
+  imgUpdate,
+  setImgUpdate,
+}) {
   // PostContext consume
   const {
     details,
@@ -50,45 +57,29 @@ function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
   const [selectedImgBefore, setSelectedImgBefore] = useState(null);
   const [selectedImgAfter, setSelectedImgAfter] = useState(null);
 
-  // const newPost = {
-  //   ...postData,
-  //   ...details,
-  //   steps: instructions,
-  //   breed: selectedBreed.label,
-  //   authorId: authorId,
-  // };
+  // const editSelectedBreed = breeds.find(
+  //   (breed) => breed.label === editPost?.breed,
+  // );
 
   useEffect(() => {
     if (editPost) {
       setDetails({
         title: editPost.title,
-        duration: editPost.duration,
+        // duration: editPost.duration,
         description: editPost.description,
         tools: [editPost.tools],
         video: editPost.video,
+        dogSize: editPost.dogSize,
       });
-      setSelectedBreed();
+      // setSelectedBreed(editSelectedBreed);
     }
-
-    // return () => {
-    //   cleanup;
-    // };
+    // cleanup;
+    return () => {
+      setDetails({});
+    };
   }, [editPost, setDetails]);
 
-  console.log('--DETAILS FOR EDIT POST:', details);
-
-  const handleImageDetailsChange = (name, value) => {
-    // handle selected image previews
-    if (name === 'img-before') {
-      setSelectedImgBefore(value);
-    }
-
-    if (name === 'img-after') {
-      setSelectedImgAfter(value);
-    }
-    // when image is uploaded and URL is obtained, insert into details
-    // setDetails((prev) => ({ ...prev, [name]: value }));
-  };
+  // console.log('--DETAILS FOR EDIT POST:', details);
 
   // Handle file upload to Firebase
   const uploadFile = (file, folderName, imgType) => {
@@ -154,6 +145,11 @@ function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
   const handleDetailsChange = (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
+  };
+
+  // Toggling between updating photos or no update
+  const handleImgUpdate = () => {
+    setImgUpdate((prevChecked) => !prevChecked);
   };
 
   return (
@@ -267,6 +263,51 @@ function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
 
       {/* image: { before: '', after: '' } */}
       <Stack spacing={1}>
+        {editPost && (
+          <>
+            <FormLabel>Current post's photos</FormLabel>
+            <Stack
+              spacing={2}
+              direction="row"
+              alignItems="center"
+              sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
+            >
+              {editPost?.image?.before && (
+                <div>
+                  <HelperText sx={{ pl: 1.85 }}>Before</HelperText>
+                  <ImgPreview
+                    src={editPost?.image?.before}
+                    alt="current before"
+                  />
+                </div>
+              )}
+              {editPost?.image?.after && (
+                <div>
+                  <HelperText sx={{ pl: 1.85 }}>After</HelperText>
+                  <ImgPreview
+                    src={editPost?.image?.after}
+                    alt="current after"
+                  />
+                </div>
+              )}
+            </Stack>
+            {/* <FormControlLabel
+              control={
+                <Checkbox
+                  checked={imgUpdate}
+                  onChange={handleImgUpdate}
+                  inputProps={{ 'aria-label': 'not-img-update' }}
+                />
+              }
+              label="Not updating photos"
+            /> */}
+
+            <Typography variant="h7">
+              Please upload new photos below to change
+            </Typography>
+          </>
+        )}
+
         <FormLabel>Upload before & after grooming photos</FormLabel>
         <HelperText sx={{ ml: 0, mb: 2 }}>
           Please choose at least one photo

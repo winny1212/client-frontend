@@ -15,7 +15,7 @@ import AddStep from './AddStep';
 import EditStep from './EditStep';
 import HelperText from '../../shared/HelperText';
 
-function Steps() {
+function Steps({ editPost }) {
   // PostContext consume
   const { instructions, setInstructions, stepsTempLocal } = usePostContext();
 
@@ -26,8 +26,12 @@ function Steps() {
 
   // save steps to temp local storage
   useEffect(() => {
-    localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
-  }, [instructions, stepsTempLocal]);
+    if (editPost) {
+      localStorage.setItem(stepsTempLocal, JSON.stringify(editPost?.steps));
+    } else {
+      localStorage.setItem(stepsTempLocal, JSON.stringify(instructions));
+    }
+  }, [instructions, stepsTempLocal, editPost]);
 
   // handle onChange for the AddStep component
   const handleInputChange = (e) => {
@@ -45,8 +49,11 @@ function Steps() {
   // handle onSubmit when the 'Add Step' is clicked
   const handleAddStep = (e) => {
     e.preventDefault();
-
     const newStep = { id: nanoid(8), text: step.trim() };
+
+    if (editPost && step !== '') {
+      setInstructions([...editPost?.steps, newStep]);
+    }
 
     if (step !== '') {
       setInstructions([...instructions, newStep]);
