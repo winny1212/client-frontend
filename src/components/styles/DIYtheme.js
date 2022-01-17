@@ -115,6 +115,11 @@ const theme = (mode) =>
         fontFamily: global.fontSecondary,
         textTransform: 'uppercase',
       },
+      subtitle3: {
+        fontFamily: global.fontSecondary,
+        fontWeight: '800',
+        fontSize: '1rem',
+      },
       caption: {
         fontFamily: global.fontSecondary,
       },

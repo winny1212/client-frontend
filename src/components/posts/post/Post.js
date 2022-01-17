@@ -9,7 +9,7 @@ import usersData from '../../../data/usersData';
 import { pxToRem, getDate } from '../../../utils/general';
 import ProGroomer from '../../shared/ProGroomer';
 import IconText from '../../shared/IconText';
-import { checkDuration } from '../../../utils/postUtils';
+import { checkDuration, capitalise } from '../../../utils/postUtils';
 
 // MUI
 import Typography from '@mui/material/Typography';
@@ -21,7 +21,6 @@ import Container from '@mui/material/Container';
 import Chip from '@mui/material/Chip';
 import Image from '../../shared/Image';
 import Avatar from '@mui/material/Avatar';
-import { capitalize } from '@mui/material';
 import TimelapseTwoToneIcon from '@mui/icons-material/TimelapseTwoTone';
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 import List from '@mui/material/List';
@@ -82,6 +81,7 @@ function Post({ post }) {
             />
           )}
         </Hr>
+
         {!(post.image?.before && post.image?.after) ? (
           <>
             <Grid container spacing={1}>
@@ -137,7 +137,7 @@ function Post({ post }) {
 
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          spacing={{ xs: 0.25, md: 3 }}
+          spacing={{ xs: 0.85, md: 3 }}
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ mb: 3 }}
         >
@@ -155,10 +155,7 @@ function Post({ post }) {
           <Contact author={author} />
         </Stack>
 
-        <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
-          Instructions
-        </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mt="2.5rem">
           <Grid item xs={12} md={12} sx={{ mb: 1 }}>
             {post.description && (
               <Typography
@@ -169,14 +166,46 @@ function Post({ post }) {
               </Typography>
             )}
           </Grid>
-          <Grid item xs={12} md={10}>
-            <List>
-              {post.steps?.map((step, index) => (
-                <>
+
+          <Grid item xs={12} md={9}>
+            <>
+              <Typography component="h2" variant="subtitle3" sx={{ my: 1.5 }}>
+                Instructions
+              </Typography>
+              <List>
+                {post.steps?.map((step, index) => (
                   <StepView step={step} key={step.id} index={index} />
-                </>
-              ))}
-            </List>
+                ))}
+              </List>
+            </>
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+            <Stack
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <Typography component="h3" variant="subtitle3" sx={{ my: 1.5 }}>
+                Recommended Tools
+              </Typography>
+              <Stack
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+              >
+                {post.tools?.map((tool, index) => (
+                  <Chip
+                    key={index}
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    label={tool.toUpperCase()}
+                    sx={{ p: 1.25, m: 0.35 }}
+                  />
+                ))}
+              </Stack>
+            </Stack>
           </Grid>
 
           {/* VIDEO FEATURE TO BE ON HOLD */}
