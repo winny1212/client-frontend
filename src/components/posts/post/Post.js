@@ -9,6 +9,7 @@ import usersData from '../../../data/usersData';
 import { pxToRem, getDate } from '../../../utils/general';
 import ProGroomer from '../../shared/ProGroomer';
 import IconText from '../../shared/IconText';
+import { StyledBtn } from '../../shared/StyledButtons';
 import { checkDuration, capitalise } from '../../../utils/postUtils';
 
 // MUI
@@ -27,7 +28,6 @@ import List from '@mui/material/List';
 
 import Contact from '../../../modals/Contact';
 
-// {_id, breed, dogSize, author, title, description, steps, image, likes, comments, createdAt}
 import { useDispatch } from 'react-redux';
 import { getAuthor } from '../../../actions/auth';
 
@@ -44,6 +44,11 @@ function Post({ post }) {
     };
     getUser();
   }, [post.authorId, dispatch]);
+
+  // Get the User - we will use to assign it to post.
+  const currentUser = JSON.parse(localStorage.getItem('profile'));
+  // This code below will check if certain users can Delete if u need to do that.
+  // user?.result?._id === post?.authorId;
 
   console.log('POST is:', post);
   console.log('POST user ID is:', post.authorId);
@@ -116,21 +121,27 @@ function Post({ post }) {
           </>
         )}
 
-        <Stack direction="row" spacing={2}>
-          <Avatar alt={author?.username} src={author?.avatar} />
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              flexDirection: 'column',
-              textAlign: 'left',
-            }}
-          >
-            <Typography component="h3" variant="author">
-              by {author?.username}
-            </Typography>
-            {post.proGroomer && <ProGroomer />}
+        <Stack direction={{ xs: 'column', sm: 'row' }}>
+          <Stack direction="row" spacing={2}>
+            <Avatar alt={author?.username} src={author?.avatar} />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                flexDirection: 'column',
+                textAlign: 'left',
+              }}
+            >
+              <Typography component="h3" variant="author">
+                by {author?.username}
+              </Typography>
+              {author?.proGroomer && <ProGroomer />}
+            </Box>
+          </Stack>
+
+          <Box>
+            <StyledBtn size="small">Edit Post</StyledBtn>
           </Box>
         </Stack>
         <Hr />
