@@ -39,8 +39,6 @@ const PostId = () => {
       <Header title={post.title} />
       <Container maxWidth="lg">
         <Post post={post} />
-        {/* <h3>Comment Form</h3>
-        <h3>Comments</h3> */}
         <CommentSection post={post} postID={postID} />
       </Container>
     </>

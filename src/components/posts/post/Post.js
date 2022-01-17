@@ -45,6 +45,7 @@ function Post({ post }) {
 
   console.log('POST is:', post);
   console.log('POST user ID is:', post.authorId);
+  console.log('AUTHOR: ', author);
 
   // 1. Edit Button
   /*
@@ -78,7 +79,19 @@ function Post({ post }) {
             />
           )}
         </Hr>
-        {post.image && (
+        {!(post.image?.before && post.image?.after) ? (
+          <>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={12}>
+                <Image
+                  src={post.image?.before || post.image?.after}
+                  alt="post photo"
+                />
+              </Grid>
+            </Grid>
+            <Hr />
+          </>
+        ) : (
           <>
             <Grid container spacing={1}>
               <Grid item xs={12} md={6}>

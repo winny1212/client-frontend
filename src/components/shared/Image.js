@@ -7,7 +7,11 @@ const ImageWrapper = styled.figure`
 const Img = styled.img`
   object-fit: cover;
   width: 100%;
-  height: clamp(250px, 300px, 550px);
+  height: 450px;
+
+  @media (max-width: 600px) {
+    height: 300px;
+  }
 `;
 
 const Caption = styled.figcaption`
