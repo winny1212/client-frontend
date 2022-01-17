@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import defaultImg from '../../assets/img/diyg_default_img_01.png';
 import { useSelector } from 'react-redux';
@@ -19,6 +19,7 @@ import { CardActionArea } from '@mui/material';
 // <Link to={`/post/${post._id}`} className="link">
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../actions/posts';
+import { getAuthor } from '../../actions/auth';
 
 const PostContainer = styled.div`
   transition: all 0.5s ease;
@@ -35,16 +36,17 @@ const PostCard = ({ post }) => {
 
   const users = useSelector((state) => state.profileReducer);
 
-  // const [author, setAuthor] = useState({});
+  const [author, setAuthor] = useState({});
 
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const user = await dispatch(getAuthor(post.authorId));
-  //     // console.log(res.data);
-  //     setAuthor(user);
-  //   };
-  //   getUser();
-  // }, [post.authorId, dispatch]);
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await dispatch(getAuthor(post.authorId));
+      setAuthor(user);
+    };
+    getUser();
+  }, [post.authorId, dispatch]);
+
+  console.log(author);
 
   return (
     // LINK TO SINGLE POST to="/about" will be updated!
@@ -76,17 +78,17 @@ const PostCard = ({ post }) => {
               {`${post.dogSize} - ${post.breed}`.toUpperCase()}
             </Typography>
             <Typography variant="h6">{post.title}</Typography>
-            <Typography variant="body2">Post Author</Typography>
+            <Typography variant="body2">{author?.username}</Typography>
             <Box sx={{ alignItems: 'end' }}>
               <CardActions sx={{ px: 0 }}>
                 <Typography variant="body2">
                   {new Date(post.createdAt).toDateString()}
                 </Typography>
                 <Box>
-                  <FavoriteIcon
+                  {/* <FavoriteIcon
                     color="accentPink"
                     onClick={() => dispatch(likePost(post._id))}
-                  />
+                  /> */}
                   <CommentIcon color="accentPink" />
                 </Box>
               </CardActions>
