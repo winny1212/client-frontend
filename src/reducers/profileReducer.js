@@ -19,7 +19,6 @@ import {
   FETCH_SINGLE_USER,
 } from '../constants/actionTypes';
 
-// This is where the actual data is being sent. In line 4 is where the posts for now stay.
 const profileReducer = (users = [], action) => {
   switch (action.type) {
     case FETCH_ALL_USERS:
