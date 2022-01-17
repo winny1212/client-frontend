@@ -1,8 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-
 import {
   Container,
   Paper,
@@ -17,11 +14,10 @@ import {
   Radio,
 } from '@mui/material';
 import Header from '../../../components/shared/Header';
-import ImgUpload from '../../../components/shared/ImgUpload';
+// import ImgUpload from '../../../components/shared/ImgUpload';
 import { updateUser } from '../../../actions/auth';
 
 const ProfileForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -54,22 +50,19 @@ const ProfileForm = () => {
         [name]: value,
       };
     });
-  };
-  // upload functionality
-  const imageUpload = (name, file) => {
-    setFormData((prev) => {
-      return {
-        ...prev,
-        [name]: file,
-      };
-    });
+    console.dir(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     dispatch(updateUser(formData._id, formData));
-    navigate('/profile');
+  };
+
+  // upload functionality
+  const imageUpload = (file) => {
+    setFile(file);
+    setFileSelected(true);
   };
 
   return (
@@ -113,19 +106,14 @@ const ProfileForm = () => {
                 <RadioGroup
                   defaultValue={initialState.proGroomer}
                   row
-                  name="proGroomer"
-                  onChange={handleChange}
+                  name="row-radio-buttons-group"
                 >
                   <FormControlLabel
-                    value={true}
+                    value="Yes"
                     control={<Radio />}
                     label="Yes"
                   />
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                  />
+                  <FormControlLabel value="No" control={<Radio />} label="No" />
                 </RadioGroup>
               </FormControl>
               <br />
@@ -133,7 +121,6 @@ const ProfileForm = () => {
               <TextField
                 defaultValue={initialState.email}
                 id="outlined-basic"
-                name="email"
                 label="Email"
                 variant="outlined"
                 fullWidth
@@ -144,7 +131,6 @@ const ProfileForm = () => {
               {/* location */}
               <TextField
                 defaultValue={initialState.location}
-                name="location"
                 id="outlined-basic"
                 label="Location"
                 variant="outlined"
@@ -156,8 +142,6 @@ const ProfileForm = () => {
               {/* website */}
               <TextField
                 id="outlined-basic"
-                defaultValue={initialState.website}
-                name="website"
                 label="Website"
                 variant="outlined"
                 fullWidth
@@ -167,7 +151,6 @@ const ProfileForm = () => {
               {/* Social Media */}
               <TextField
                 defaultValue={initialState.socMedia}
-                name="socMedia"
                 id="outlined-basic"
                 label="Social Media"
                 variant="outlined"
@@ -177,14 +160,31 @@ const ProfileForm = () => {
               <br />
               {/* upload button */}
               <p>Please, add your photo!</p>
-              <ImgUpload name="avatar" handleImageDetailsChange={imageUpload} />
+              <ImgUpload handleImageDetailsChange={imageUpload} />
 
+              {/* <label htmlFor="contained-button-file">
+                <Input
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  onChange={changeHandler}
+                /> */}
+
+              {/* <Button
+                sx={{ marginTop: '12px' }}
+                variant="contained"
+                component="span"
+                fullWidth
+              >
+                Upload Photo
+              </Button> */}
               <br />
               {/* bio */}
 
               <TextField
                 defaultValue={initialState.bio}
-                name="bio"
                 sx={{ marginTop: '12px' }}
                 id="outlined-multiline-static"
                 label="Bio"
