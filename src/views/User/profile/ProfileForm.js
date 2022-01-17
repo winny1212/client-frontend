@@ -191,6 +191,7 @@ const ProfileForm = () => {
                 multiline
                 rows={4}
                 fullWidth
+                onChange={handleChange}
               />
               <br />
               {/* submit */}
