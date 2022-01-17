@@ -24,11 +24,20 @@ function Posts() {
     </Box>
   ) : (
     <>
-      <Masonry columns={{ xs: 1, md: 2, lg: 3 }} spacing={2}>
-        {posts.map((post) => (
-          <PostCard post={post} key={post._id} />
-        ))}
-      </Masonry>
+      <Box
+        sx={{
+          width: { xs: 'xs', md: 'md' },
+          minHeight: 250,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Masonry columns={{ xs: 1, md: 2, lg: 3 }} spacing={2}>
+          {posts.map((post) => (
+            <PostCard post={post} key={post._id} />
+          ))}
+        </Masonry>
+      </Box>
     </>
   );
 }

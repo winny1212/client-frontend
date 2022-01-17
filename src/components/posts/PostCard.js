@@ -43,6 +43,7 @@ const PostCard = ({ post }) => {
           flexDirection: { xs: 'column', md: 'row' },
           bgcolor: 'background.paper',
           borderRadius: '6px',
+          height: 205,
         }}
         elevation={0}
       >
