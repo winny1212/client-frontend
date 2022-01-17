@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
-const Contact = ({ username, author }) => {
+const Contact = ({ author }) => {
   //initial contact form state when click the button
   const [open, setOpen] = useState(false);
 

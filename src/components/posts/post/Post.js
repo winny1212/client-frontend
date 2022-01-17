@@ -152,7 +152,7 @@ function Post({ post }) {
             <TimelapseTwoToneIcon color="secondary" />
           </IconText>
 
-          <Contact username={fakeUser.username} author={author} />
+          <Contact author={author} />
         </Stack>
 
         <Typography component="h2" variant="h5" sx={{ mb: 1.5 }}>
