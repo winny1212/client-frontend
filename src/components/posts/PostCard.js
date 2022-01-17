@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../actions/posts';
 import { getAuthor } from '../../actions/auth';
 
+//the hover animation on the postcard
 const PostContainer = styled.div`
   transition: all 0.5s ease;
   &:hover {
