@@ -13,7 +13,12 @@ import Logo from '../shared/Logo';
 function Navbar() {
   return (
     <>
-      <AppBar position="static" elevation={0} color="accentYellow">
+      <AppBar
+        data-testid="navbar"
+        position="static"
+        elevation={0}
+        color="accentYellow"
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Logo />

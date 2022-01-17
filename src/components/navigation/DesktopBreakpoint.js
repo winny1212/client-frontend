@@ -24,7 +24,7 @@ const DesktopBreakpoint = () => {
         <Button variant="container" href="/">
           Home
         </Button>
-        <Button href="/about" variant="container">
+        <Button data-testid="about-button" href="/about" variant="container">
           About
         </Button>
         <DynamicButtons />
