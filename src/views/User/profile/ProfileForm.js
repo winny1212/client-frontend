@@ -14,7 +14,7 @@ import {
   Radio,
 } from '@mui/material';
 import Header from '../../../components/shared/Header';
-// import ImgUpload from '../../../components/shared/ImgUpload';
+import ImgUpload from '../../../components/shared/ImgUpload';
 import { updateUser } from '../../../actions/auth';
 
 const ProfileForm = () => {
