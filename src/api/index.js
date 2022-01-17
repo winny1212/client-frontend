@@ -54,4 +54,5 @@ export const fetchSingleUser = (id) => API.get(`/user/${id}`);
 export const updateOldUser = (id, updatedUser) =>
   API.patch(`/user/${id}`, updatedUser);
 
-export const deleteAUser = (id) => API.delete(`/user/${id}`);
+export const deleteAUser = (id) =>
+  API.request({ url: `/user/${id}`, method: 'DELETE' });

@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from '../constants/actionTypes';
+import { AUTH, LOGOUT, UPDATE_USER } from '../constants/actionTypes';
 
 const authReducer = (state = { authData: null }, action) => {
   switch (action.type) {
@@ -11,6 +11,15 @@ const authReducer = (state = { authData: null }, action) => {
       localStorage.clear();
 
       return { ...state, authData: null, loading: false, errors: null };
+
+    case UPDATE_USER:
+      // updates user data
+      const user = JSON.parse(localStorage.getItem('profile'));
+
+      const newData = { ...user, result: action.payload };
+      localStorage.setItem('profile', JSON.stringify(newData));
+
+      return { ...state, result: newData };
     default:
       return state;
   }

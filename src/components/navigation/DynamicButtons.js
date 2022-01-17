@@ -19,13 +19,12 @@ const DynamicButtons = () => {
   //const location = useLocation();
   const navigate = useNavigate();
 
-  //usersData set with reducer
-  //this is required to observe redux store and render the component when store has changed.
-  // const user = useSelector((state) => {
-  //   return state.authReducer.authData;
-  // });
-
-  const user = JSON.parse(localStorage.getItem('profile'));
+  // Get the User
+  const user = useSelector((state) => {
+    return (
+      state.authReducer.authData ?? JSON.parse(localStorage.getItem('profile'))
+    );
+  });
 
   // eslint-disable-next-line
   const logout = () => {
