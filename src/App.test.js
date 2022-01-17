@@ -3,7 +3,15 @@ import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Auth, { validateInput } from './views/auth/Auth.js';
 
+import { createMemoryHistory } from 'history';
+import Navbar from './components/navigation/Navbar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import DesktopBreakpoint from './components/navigation/DesktopBreakpoint';
+import NavBarLinks from './components/navigation/NavBarLinks.js';
+import About from './views/about/About.js';
+
 //cleanup the data after each test
+
 afterEach(() => {
   cleanup();
 });
@@ -21,3 +29,5 @@ describe('user auth/login/register', () => {
     expect(validateInput(text)).not.toBe(true);
   });
 });
+
+//test the route to about page
