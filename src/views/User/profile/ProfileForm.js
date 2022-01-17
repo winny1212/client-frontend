@@ -3,7 +3,6 @@ import {
   Container,
   Paper,
   Typography,
-  Checkbox,
   TextField,
   FormControl,
   Button,
@@ -15,17 +14,9 @@ import {
 } from '@mui/material';
 import Header from '../../../components/shared/Header';
 
-const initialState = {
-  username: '',
-  email: '',
-  proGroomer: false,
-  location: '',
-  socMedia: '',
-  website: '',
-  bio: '',
-};
-
 const ProfileForm = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const initialState = user.result;
   // Form Data State
   const [formData, setFormData] = useState(initialState);
   //upload file to the state
@@ -93,6 +84,7 @@ const ProfileForm = () => {
             <FormControl>
               {/* username */}
               <TextField
+                defaultValue={initialState.username}
                 id="outlined-basic"
                 label="Username"
                 variant="outlined"
@@ -105,7 +97,10 @@ const ProfileForm = () => {
               <Typography variant="h5" sx={{ marginRight: 8, fontSize: 22 }}>
                 Are you a professional dog groomer?
               </Typography>
-              <FormControl component="fieldset">
+              <FormControl
+                defaultValue={initialState.proGroomer}
+                component="fieldset"
+              >
                 <FormLabel component="legend"></FormLabel>
                 <RadioGroup row name="row-radio-buttons-group">
                   <FormControlLabel
@@ -124,6 +119,7 @@ const ProfileForm = () => {
               <br />
               {/* email */}
               <TextField
+                defaultValue={initialState.email}
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
@@ -134,6 +130,7 @@ const ProfileForm = () => {
               <br />
               {/* location */}
               <TextField
+                defaultValue={initialState.location}
                 id="outlined-basic"
                 label="Location"
                 variant="outlined"
@@ -153,6 +150,7 @@ const ProfileForm = () => {
               <br />
               {/* Social Media */}
               <TextField
+                defaultValue={initialState.socMedia}
                 id="outlined-basic"
                 label="Social Media"
                 variant="outlined"
