@@ -33,9 +33,7 @@ import { getAuthor } from '../../../actions/auth';
 
 function Post({ post }) {
   const dispatch = useDispatch();
-  // const { currentId, setCurrentId } = useContext(UserContext);
   const [author, setAuthor] = useState({});
-  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     const getUser = async () => {
@@ -52,7 +50,7 @@ function Post({ post }) {
 
   // Get the User - we will use to assign it to post.
   const currentUserLocal = JSON.parse(localStorage.getItem('profile'));
-  const currentUser = currentUserLocal.result?._id;
+  const currentUser = currentUserLocal?.result?._id;
   // This code below will check if certain users can Delete if u need to do that.
   // user?.result?._id === post?.authorId;
 
@@ -60,14 +58,6 @@ function Post({ post }) {
   console.log('POST user ID is:', post.authorId);
   console.log('AUTHOR: ', author);
   console.log('CURRENT USER ID:', currentUser);
-
-  // 1. Edit Button
-  /*
-    When we press the edit button, we will redirect the User to '/edit'/ 
-    Before that though, update the currentId so out global context knows which specific post to update.
-    That 'edit' page is the <UpdateForm /> page. 
-
-  */
 
   // 2. Delete Button
   // const dispatch = useDispatch();
@@ -78,8 +68,6 @@ function Post({ post }) {
   // const dateFormat = 'EEE, do LLLL yyyy';
   // const postDate = post.createdAt;
   // console.log('DATE---', postDate);
-
-  const fakeUser = usersData[1];
 
   return (
     <>
@@ -147,7 +135,7 @@ function Post({ post }) {
             </Box>
           </Stack>
 
-          {currentUser === author?._id && (
+          {currentUser && currentUser === author?._id && (
             <Box>
               <StyledBtn size="small" href={`edit/${post._id}`}>
                 Edit Post

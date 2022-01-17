@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ref,
   getDownloadURL,
@@ -35,7 +35,7 @@ import Divider from '@mui/material/Divider';
 import ImgPreview from '../../shared/ImgPreview';
 import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
 
-function DetailsForm({ progress, setProgress }) {
+function DetailsForm({ progress, setProgress, editPost, setEditPost }) {
   // PostContext consume
   const {
     details,
@@ -49,6 +49,33 @@ function DetailsForm({ progress, setProgress }) {
   // Images states
   const [selectedImgBefore, setSelectedImgBefore] = useState(null);
   const [selectedImgAfter, setSelectedImgAfter] = useState(null);
+
+  // const newPost = {
+  //   ...postData,
+  //   ...details,
+  //   steps: instructions,
+  //   breed: selectedBreed.label,
+  //   authorId: authorId,
+  // };
+
+  useEffect(() => {
+    if (editPost) {
+      setDetails({
+        title: editPost.title,
+        duration: editPost.duration,
+        description: editPost.description,
+        tools: [editPost.tools],
+        video: editPost.video,
+      });
+      setSelectedBreed();
+    }
+
+    // return () => {
+    //   cleanup;
+    // };
+  }, [editPost, setDetails]);
+
+  console.log('--DETAILS FOR EDIT POST:', details);
 
   const handleImageDetailsChange = (name, value) => {
     // handle selected image previews
@@ -302,45 +329,6 @@ function DetailsForm({ progress, setProgress }) {
               />
             )}
           </div>
-
-          {/* ! MAJOR ERROR - To revisit... */}
-          {/* <div>
-            <ImgUpload
-              id="img-before"
-              imgLabel="Before"
-              name="img-before"
-              // value={details?.image?.before}
-              value="img-before"
-              onChange={(e) => setSelectedImgBefore(e.target.files[0])}
-              handleImageDetailsChange={handleImageDetailsChange}
-            />
-            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
-            {selectedImgBefore && (
-              <ImgPreview
-                src={URL.createObjectURL(selectedImgBefore)}
-                alt="img-preview"
-              />
-            )}
-          </div> */}
-
-          {/* <div>
-            <ImgUpload
-              id="img-after"
-              imgLabel="After"
-              // name={details.image?.after}
-              name="img-after"
-              value="img-after"
-              onChange={(e) => setSelectedImgAfter(e.target.files[0])}
-              handleImageDetailsChange={handleImageDetailsChange}
-            />
-            <HelperText sx={{ ml: 1, mt: 1 }}>{selectedFile?.name}</HelperText>
-            {selectedImgAfter && (
-              <ImgPreview
-                src={URL.createObjectURL(selectedImgAfter)}
-                alt="img-preview"
-              />
-            )}
-          </div> */}
         </Stack>
       </Stack>
 

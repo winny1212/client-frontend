@@ -25,10 +25,14 @@ const PostId = () => {
       setPost(res.data);
     };
     getPost();
+    // cleanup
+    return () => {
+      setPost({});
+    };
   }, [postID]);
 
   // console.log('POST is:', post);
-  console.log('POST user ID is:', post.authorId);
+  // console.log('POST user ID is:', post.authorId);
 
   return (
     <>
