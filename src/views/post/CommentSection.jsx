@@ -96,7 +96,9 @@ const CommentSection = ({ postID, post }) => {
                 <div className={classes.singleComment}>
                   <div className={classes.CommentUser}>
                     <strong>{comment.split(':')[0]}</strong>
-                    
+                    <div className={classes.CommentTime}>
+                      Created at:{new Date().toLocaleString() + ""}
+                    </div>
                   </div>
 
                   <div className={classes.CommentContent}>
