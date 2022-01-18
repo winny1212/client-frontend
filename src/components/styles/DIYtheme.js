@@ -150,6 +150,12 @@ const theme = (mode) =>
         fontSize: '0.8rem',
         textTransform: 'uppercase',
       },
+      tinyOverTitle: {
+        fontFamily: global.fontSecondary,
+        fontWeight: 600,
+        lineHeight: -0.5,
+        fontSize: pxToRem(12),
+      },
       h7: {
         fontFamily: global.fontPrimary,
         fontWeight: 600,

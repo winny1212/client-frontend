@@ -194,33 +194,35 @@ function Post({ post }) {
             </>
           </Grid>
 
-          <Grid item xs={12} md={3}>
-            <Stack
-              direction="column"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-            >
-              <Typography component="h3" variant="subtitle3" sx={{ my: 1.5 }}>
-                Recommended Tools
-              </Typography>
+          {post.tools?.length > 0 && (
+            <Grid item xs={12} md={3}>
               <Stack
                 direction="column"
                 justifyContent="flex-start"
                 alignItems="flex-start"
               >
-                {post.tools?.map((tool, index) => (
-                  <Chip
-                    key={index}
-                    variant="outlined"
-                    color="secondary"
-                    size="small"
-                    label={tool.toUpperCase()}
-                    sx={{ p: 1.25, m: 0.35 }}
-                  />
-                ))}
+                <Typography component="h3" variant="subtitle3" sx={{ my: 1.5 }}>
+                  Recommended Tools
+                </Typography>
+                <Stack
+                  direction="column"
+                  justifyContent="flex-start"
+                  alignItems="flex-start"
+                >
+                  {post.tools?.map((tool, index) => (
+                    <Chip
+                      key={index}
+                      variant="outlined"
+                      color="secondary"
+                      size="small"
+                      label={tool.toUpperCase()}
+                      sx={{ p: 1.25, m: 0.35 }}
+                    />
+                  ))}
+                </Stack>
               </Stack>
-            </Stack>
-          </Grid>
+            </Grid>
+          )}
 
           {/* VIDEO FEATURE TO BE ON HOLD */}
           {/* <Grid item xs={12} md={6}>
