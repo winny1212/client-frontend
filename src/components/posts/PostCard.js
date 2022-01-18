@@ -28,7 +28,7 @@ const PostContainer = styled.div`
   transition: all 0.5s ease;
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
   }
 `;
