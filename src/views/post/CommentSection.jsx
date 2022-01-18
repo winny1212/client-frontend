@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 // Material UI
-import { TextField, Typography, Button } from '@mui/material';
+import { TextField, Typography, Button, Paper } from '@mui/material';
 
 import useStyles from './styles';
 
@@ -9,11 +9,9 @@ import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 
 import { commentPost } from '../../actions/posts';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { CommentBankSharp } from '@mui/icons-material';
-
-
-
+import { StyledBtn } from '../../components/shared/StyledButtons';
 
 const CommentSection = ({ postID, post }) => {
   // Comments take a while to load
@@ -59,58 +57,68 @@ const CommentSection = ({ postID, post }) => {
       <div className={classes.container}>
         {user?.result?.username && (
           <div className={classes.commentsBox}>
-            <Typography variant="h6" marginBottom={'10px'}>
-              Leave a comment
+            <Typography component="h3" variant="subtitle3" sx={{ my: 1.5 }}>
+              Leave comments
             </Typography>
-            <TextField
-              rows={4}
-              multiline
-              variant="outlined"
-              name="comment"
-              label="Comment"
-              value={comment}
-              onKeyPress={handleKeyPress}
-              onChange={(e) => setComment(e.target.value)}
-              color="secondary"
-              fullWidth
-            />
-            <Button
-              style={{ marginTop: '10px' }}
+
+            <Paper elevation={0} sx={{ width: '100%' }}>
+              <TextField
+                rows={4}
+                multiline
+                variant="outlined"
+                name="comment"
+                label="Comment"
+                value={comment}
+                onKeyPress={handleKeyPress}
+                onChange={(e) => setComment(e.target.value)}
+                color="secondary"
+                fullWidth
+              />
+            </Paper>
+
+            <StyledBtn
+              sx={{ marginTop: 1.5 }}
               disabled={!comment}
               variant="contained"
               onClick={handleClick}
-              className={classes.btn}
+              // className={classes.btn}
             >
               Comment
-            </Button>
+            </StyledBtn>
           </div>
         )}
-        <div className={classes.showBox}>
-          <Typography gutterBottom variant="h6">
-            Comments
-          </Typography>
-          <div className={classes.commentsShow}>
-            {comments?.map((comment, index) => (
-             
-              <Typography key={index} variant="subtitle1">
-                <div className={classes.singleComment}>
-                  <div className={classes.CommentUser}>
-                    <strong>{comment.split(':')[0]}</strong>
-                    <div className={classes.CommentTime}>
-                      Created at:{new Date().toLocaleString() + ""}
+        {comments?.length > 0 && (
+          <div className={classes.showBox}>
+            <Typography
+              component="h3"
+              variant="subtitle3"
+              sx={{ textAlign: 'left', my: 1.5 }}
+            >
+              {comments?.length === 1
+                ? comments?.length + ' Comment'
+                : comments?.length + ' Comments'}
+            </Typography>
+            <div className={classes.commentsShow}>
+              {comments?.map((comment, index) => (
+                <Typography key={index} variant="subtitle1">
+                  <div className={classes.singleComment}>
+                    <div className={classes.CommentUser}>
+                      <strong>{comment.split(':')[0]}</strong>
+                      <div className={classes.CommentTime}>
+                        {new Date().toLocaleString() + ''}
+                      </div>
+                    </div>
+
+                    <div className={classes.CommentContent}>
+                      {comment.split(':')[1]}
                     </div>
                   </div>
-                   
-                  <div className={classes.CommentContent}>
-                  {comment.split(':')[1]}
-                  </div>
-                </div>
-              </Typography>
-            
-            ))}
-            <div ref={commentsRef} />
+                </Typography>
+              ))}
+              <div ref={commentsRef} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
