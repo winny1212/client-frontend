@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   container: {
-    width: '95vw',
+    width: '95%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'start',
-    width: '100%',
+    // width: '100%',
     padding: '1rem 2rem',
   },
 
